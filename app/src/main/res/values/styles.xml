@@ -1,0 +1,33 @@
+<!--
+  ~ Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+  -->
+
+<resources>
+
+  <!-- Base application theme. -->
+  <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">@color/app_blue</item>
+    <item name="colorPrimaryDark">@color/app_blue_dark</item>
+    <item name="colorAccent">@color/app_yellow</item>
+  </style>
+
+  <!-- ToolBar -->
+  <style name="AppTheme.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+  </style>
+
+  <!-- Component -->
+  <style name="AppTheme.BaseRecyclerView">
+    <item name="android:clipToPadding">false</item>
+    <item name="android:fadingEdge">none</item>
+    <item name="android:scrollbarStyle">outsideOverlay</item>
+    <item name="android:scrollingCache">false</item>
+  </style>
+
+  <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+  <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+</resources>

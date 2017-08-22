@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+  -->
+<resources>
+  <color name="app_red">#ff7473</color>
+  <color name="app_yellow">#ffc647</color>
+  <color name="app_blue">#47b8e0</color>
+  <color name="app_blue_dark">#3aa4ca</color>
+  <color name="app_blue_black">#34314c</color>
+
+  <!-- Navigation -->
+  <color name="nav_background">@color/white</color>
+  <color name="nav_active">@color/app_blue</color>
+  <color name="nav_inactive">@color/grey400</color>
+</resources>

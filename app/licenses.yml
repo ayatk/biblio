@@ -1,0 +1,223 @@
+---
+- artifact: com.android.databinding:+:+
+  name: Android Databinding Libraries
+  year: 2016
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+
+- artifact: com.android.support:+:+
+  name: Android Support Libraries
+  year: 2016
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+
+- artifact: com.android.support.constraint:+:+
+  name: Android Constraint Layout Libraries
+  year: 2016
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+
+- artifact: com.github.gfx.android.orma:+:+
+  name: Android Orma Database
+  year: 2015
+  copyrightHolder: FUJI Goro (gfx)
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/gfx/Android-Orma
+
+- artifact: com.google.android.gms:+:+
+  name: play-services
+  skip: true
+
+- artifact: com.google.firebase:+:+
+  name: firebase
+  skip: true
+
+- artifact: com.google.dagger:dagger:+
+  name: Dagger
+  year: 2012
+  copyrightHolder: The Dagger Authors
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+
+- artifact: com.google.code.gson:gson:+
+  name: Gson
+  year: 2008
+  copyrightHolder: Google Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+
+- artifact: com.jakewharton.fliptables:fliptables:+
+  name: Flip Tables
+  year: 2014
+  copyrightHolder: Jake Wharton
+  license: Apache 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: http://github.com/JakeWharton/flip-tables/
+
+- artifact: com.squareup.okhttp3:+:+
+  name: OkHttp3
+  copyrightHolder: Square, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/square/okhttp
+
+- artifact: com.squareup.okio:okio:+
+  name: Okio
+  year: 2012
+  copyrightHolder: Square, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+
+- artifact: com.squareup.retrofit2:+:+
+  name: Retrofit2
+  year: 2013
+  copyrightHolder: Square, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+
+- artifact: com.squareup.leakcanary:leakcanary-android-no-op:+
+  name: No op LeakCanary for Android
+  copyrightHolder: Square, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: http://github.com/square/leakcanary/
+  skip: true
+
+- artifact: com.rejasupotaro:kvs-schema:+
+  name: kvs-schema
+  year: 2014
+  copyrightHolder: Kentaro Takiguchi
+  license: The MIT License
+  licenseUrl: https://github.com/rejasupotaro/kvs-schema/blob/master/LICENSE.txt
+
+- artifact: io.reactivex.rxjava2:rxandroid:+
+  name: RxAndroid
+  year: 2012
+  copyrightHolder: Netflix, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/ReactiveX/RxJava
+
+- artifact: io.reactivex.rxjava2:rxjava:+
+  name: rxjava
+  year: 2012
+  copyrightHolder: Netflix, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/ReactiveX/RxJava
+
+- artifact: io.reactivex.rxjava2:rxkotlin:+
+  name: RxKotlin
+  year: 2012
+  copyrightHolder: Netflix, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/ReactiveX/RxKotlin
+
+- artifact: org.reactivestreams:reactive-streams:+
+  name: reactive-streams
+  license: CC0
+  copyrightHolder: Reactive Streams Special Interest Group
+  licenseUrl: http://creativecommons.org/publicdomain/zero/1.0/
+  url: http://www.reactive-streams.org/
+  skip: true
+
+- artifact: javax.inject:javax.inject:+
+  name: javax.inject
+  year: 2009
+  copyrightHolder: The JSR-330 Expert Group
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: http://code.google.com/p/atinject/
+
+- artifact: org.antlr:antlr4-runtime:+
+  name: ANTLR 4 Runtime
+  year: 2012-2016
+  copyrightHolder: The ANTLR Project
+  license: BSD 3-clause license
+  licenseUrl: https://raw.githubusercontent.com/antlr/antlr4/master/LICENSE.txt
+  url: https://github.com/antlr/antlr4
+
+- artifact: org.jetbrains.kotlin:+:+
+  name: Kotlin
+  year: 2000-2017
+  copyrightHolder: jetbrains, inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://kotlinlang.org
+
+- artifact: org.jsoup:jsoup:+
+  name: jsoup
+  year: 2016
+  copyrightHolder: Jonathan Hedley
+  license: The MIT License
+  licenseUrl: http://jsoup.org/license
+  url: https://jsoup.org/
+
+- artifact: org.jetbrains:annotations:+
+  name: IntelliJ IDEA Annotations
+  copyrightHolder: JetBrains
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: http://www.jetbrains.org
+
+- artifact: com.github.jd-alexander:LikeButton:+
+  name: jd-alexander/LikeButton
+  year: 2016
+  copyrightHolder: Joel Dean
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/jd-alexander/LikeButton
+
+- artifact: com.google.android:flexbox:+
+  name: Flexbox layout
+  copyrightHolder: google inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/google/flexbox-layout
+
+- artifact: org.parceler:parceler-api:+
+  name: Parceler API
+  year: 2011-2015
+  copyrightHolder: John Ericksen
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/johncarl81/parceler
+
+- artifact: com.tomoima.debot:debot-no-op:+
+  name: debot-no-op
+  year: 2017
+  copyrightHolder: Imai
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/tomoima525/debot
+  skip: true
+
+- artifact: com.jakewharton.timber:timber:+
+  name: Timber
+  year: 2013
+  copyrightHolder: Jake Wharton
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/JakeWharton/timber
+  skip: true
+
+- artifact: com.github.mabbas007:TagsEditText:+
+  name: TagsEditText
+  copyrightHolder: mabbas007
+  license: Apache License 2.0
+  licenseUrl: https://api.github.com/licenses/apache-2.0
+  url: https://github.com/mabbas007/TagsEditText
+
+- artifact: com.crashlytics.sdk.android:+:+
+  name: Crashlytics
+  skip: true
+
+- artifact: io.fabric.sdk.android:fabric:+
+  name: Fabric
+  skip: true
+

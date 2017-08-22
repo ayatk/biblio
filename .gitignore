@@ -1,0 +1,15 @@
+*.iml
+.gradle
+/local.properties
+/.idea/
+!/.idea/codeStyleSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+
+# certificates
+app.release.jks
+app/google-services.json
+secret.properties
+signature.tar.gz

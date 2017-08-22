@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+  -->
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+  <data>
+    <variable
+        name="viewModel"
+        type="com.ayatk.biblio.viewmodel.NovelInfoViewModel"/>
+  </data>
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/divider"
+        android:orientation="vertical"
+        android:showDividers="middle">
+
+      <android.support.constraint.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="@dimen/space_16dp">
+
+        <TextView
+            android:id="@+id/novel_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/tag"
+            android:padding="@dimen/space_4dp"
+            android:text="@{viewModel.novel.novelState.stateName}"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="連載中"/>
+
+        <TextView
+            android:id="@+id/publisher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/tag"
+            android:padding="@dimen/space_4dp"
+            android:text="@{viewModel.novel.publisher.title}"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@+id/novel_type"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="小説家になろう"/>
+
+        <TextView
+            android:id="@+id/story"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:lineSpacingExtra="@dimen/line_2dp"
+            android:text="@{viewModel.novel.story}"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/novel_type"
+            tools:text="如月家という資産家の家に生を受けた如月琴音。しかし家の権力を使い我儘し放題だった彼女は高校２年に上がる前に屋敷から追い出される。そのことにショックを受けた彼女は自殺を敢行するが生き残ってしまった。
+「えっ、何で女になってんの？」
+しかも一人暮らししろと？いや願ったりかなったりで助かる。金持ちの生活よりは節制して自由な毎日の方が性に合っている。バイトも探さないとな。えっ、学園での評判悪いの。ならそれも改善していこう。目標は触らぬ神に祟りなし位の関係！あぁ、肉が食いたい。
+これは殺された男性が自殺したお嬢様の人生を引き継ぐ物語。
+筆者の都合により１０話、１２話は改訂版となっております。混乱を招くような行動、申し訳ありません。"/>
+
+      </android.support.constraint.ConstraintLayout>
+
+      <android.support.constraint.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground"
+          android:clickable="true"
+          android:onClick="@{viewModel::onClickWriter}"
+          android:padding="@dimen/space_16dp">
+
+
+        <ImageView
+            android:id="@+id/img_writer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:contentDescription="writer icon"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_writer_grey600_24_vector"/>
+
+        <TextView
+            android:id="@+id/writer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="0dp"
+            android:text="@{viewModel.novel.writer}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/img_writer"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="緋月紫砲"/>
+
+      </android.support.constraint.ConstraintLayout>
+
+      <android.support.constraint.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@drawable/clickable"
+          android:padding="@dimen/space_16dp">
+
+
+        <ImageView
+            android:id="@+id/img_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:contentDescription="keyword icon"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_pound_gley600_24_vector"/>
+
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/tag_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="0dp"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/img_tag"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+      </android.support.constraint.ConstraintLayout>
+
+      <android.support.constraint.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground"
+          android:onClick="@{viewModel::onClickUserTag}"
+          android:padding="@dimen/space_16dp">
+
+        <ImageView
+            android:id="@+id/img_user_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="keyword icon"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_tag_multiple_grey600_24_vector"/>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/user_tag_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="0dp"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_user_tag"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+      </android.support.constraint.ConstraintLayout>
+
+      <android.support.constraint.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@drawable/clickable"
+          android:padding="@dimen/space_16dp">
+
+        <ImageView
+            android:id="@+id/img_last_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_update_grey600_24_vector"/>
+
+        <TextView
+            android:id="@+id/last_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="0dp"
+            android:text="@{viewModel.lastUpdate}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/img_last_update"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2017年 03月24日 07時00分"/>
+
+      </android.support.constraint.ConstraintLayout>
+
+      <android.support.constraint.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground"
+          android:onClick="@{viewModel::onClickNovelPage}"
+          android:padding="@dimen/space_16dp">
+
+
+        <ImageView
+            android:id="@+id/img_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_earth_grey600_24_vector"/>
+
+        <TextView
+            android:id="@+id/last_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="0dp"
+            android:text="@{viewModel.url}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/img_url"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="http://ncode.syosetu.com/n3003cw"/>
+
+      </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+
+  </ScrollView>
+
+</layout>
