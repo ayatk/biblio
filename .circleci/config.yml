@@ -42,9 +42,7 @@ jobs:
           path: app/build/test-results
       - deploy:
           name: Deploy to DeployGate
-          track-master:
-            branch: master
-            commands:
-              - ./gradlew assembleNightlyRelease
-              - ./deploy.sh
-
+          branch: master
+          commands:
+            - ./gradlew assembleNightlyRelease
+            - ./deploy.sh
