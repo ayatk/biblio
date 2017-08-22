@@ -43,6 +43,6 @@ jobs:
       - deploy:
           name: Deploy to DeployGate
           branch: master
-          commands:
-            - ./gradlew assembleNightlyRelease
-            - ./deploy.sh
+          command: |
+            ./gradlew assembleNightlyRelease
+            ./deploy.sh
