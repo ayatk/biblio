@@ -29,7 +29,7 @@ def RELEASE_KEY_ALIAS = (System.getenv("RELEASE_KEY_ALIAS") != null) ?
 def RELEASE_KEY_PASSWORD = (System.getenv("RELEASE_KEY_PASSWORD") != null) ?
     System.getenv("RELEASE_KEY_PASSWORD") : ""
 def FABRIC_API_KEY = (System.getenv("FABRIC_API_KEY") != null) ?
-    System.getenv("RELEASE_KEY_ALIAS") : ""
+    System.getenv("FABRIC_API_KEY") : ""
 
 
 def secretPropsFile = file("$rootDir/secret.properties")
