@@ -48,7 +48,7 @@ android {
 
   defaultConfig {
     applicationId PACKAGE_NAME
-    minSdkVersion 16
+    minSdkVersion 17
     targetSdkVersion 26
     versionCode BUILD_NUM.toInteger()
     versionName VERSION
@@ -117,13 +117,13 @@ android {
     }
     // use deploygate
     nightly {
-      minSdkVersion 16
+      minSdkVersion 17
       applicationId "${PACKAGE_NAME}.nightly"
       versionName "${VERSION}-nightly"
     }
     production {
       // The actual minSdkVersion for the application.
-      minSdkVersion 16
+      minSdkVersion 17
     }
   }
 
