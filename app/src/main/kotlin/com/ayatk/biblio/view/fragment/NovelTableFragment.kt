@@ -34,7 +34,7 @@ class NovelTableFragment : BaseFragment() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    novel = Parcels.unwrap(arguments.getParcelable("NOVEL"))
+    novel = Parcels.unwrap(arguments.getParcelable(BUNDLE_ARGS_NOVEL))
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -56,19 +56,23 @@ class NovelTableFragment : BaseFragment() {
   }
 
   private fun initRecyclerView() {
-    binding.recyclerView.adapter = TableAdapter(context, viewModel.novelTableViewModels)
-    binding.recyclerView.setHasFixedSize(true)
-    binding.recyclerView.addItemDecoration(DividerItemDecoration(context, 1))
-    binding.recyclerView.layoutManager = LinearLayoutManager(context)
+    binding.recyclerView.apply {
+      adapter = TableAdapter(context, viewModel.novelTableViewModels)
+      setHasFixedSize(true)
+      addItemDecoration(DividerItemDecoration(context, 1))
+      layoutManager = LinearLayoutManager(context)
+    }
   }
 
   companion object {
+    private val BUNDLE_ARGS_NOVEL = "NOVEL"
+
     fun newInstance(novel: Novel): NovelTableFragment {
-      val bundle = Bundle()
-      val fragment = NovelTableFragment()
-      bundle.putParcelable("NOVEL", Parcels.wrap(novel))
-      fragment.arguments = bundle
-      return fragment
+      return NovelTableFragment().apply {
+        arguments = Bundle().apply {
+          putParcelable(BUNDLE_ARGS_NOVEL, Parcels.wrap(novel))
+        }
+      }
     }
   }
 
@@ -87,10 +91,10 @@ class NovelTableFragment : BaseFragment() {
     }
 
     override fun onBindViewHolder(holder: BindingHolder<ViewTableItemBinding>, position: Int) {
-      val viewModel = getItem(position)
-      val itemBinding = holder.binding
-      itemBinding.viewModel = viewModel
-      itemBinding.executePendingBindings()
+      holder.binding.apply {
+        viewModel = getItem(position)
+        executePendingBindings()
+      }
     }
   }
 }

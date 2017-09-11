@@ -33,13 +33,6 @@ enum class BigGenre constructor(val type: Int) {
   // ------------------------ COMPANION OBJECTS ------------------------
 
   companion object {
-    fun of(id: Int): BigGenre {
-      val value = values().firstOrNull { it.type == id }
-      if (value == null) {
-        return OTHER
-      } else {
-        return value
-      }
-    }
+    fun of(id: Int): BigGenre = values().firstOrNull { it.type == id } ?: OTHER
   }
 }

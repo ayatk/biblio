@@ -93,13 +93,6 @@ enum class Genre constructor(val type: Int) {
   // ------------------------ COMPANION OBJECTS ------------------------
 
   companion object {
-    fun of(id: Int): Genre {
-      val value = values().firstOrNull { it.type == id }
-      if (value == null) {
-        return NONGENRE
-      } else {
-        return value
-      }
-    }
+    fun of(id: Int): Genre = values().firstOrNull { it.type == id } ?: NONGENRE
   }
 }

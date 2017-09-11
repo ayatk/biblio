@@ -33,7 +33,7 @@ class NovelInfoFragment : BaseFragment() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    novel = Parcels.unwrap(arguments.getParcelable("NOVEL"))
+    novel = Parcels.unwrap(arguments.getParcelable(BUNDLE_ARGS_NOVEL))
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -70,12 +70,14 @@ class NovelInfoFragment : BaseFragment() {
   }
 
   companion object {
+    private val BUNDLE_ARGS_NOVEL = "NOVEL"
+
     fun newInstance(novel: Novel): NovelInfoFragment {
-      val bundle = Bundle()
-      val fragment = NovelInfoFragment()
-      bundle.putParcelable("NOVEL", Parcels.wrap(novel))
-      fragment.arguments = bundle
-      return fragment
+      return NovelInfoFragment().apply {
+        arguments = Bundle().apply {
+          putParcelable(BUNDLE_ARGS_NOVEL, Parcels.wrap(novel))
+        }
+      }
     }
   }
 }

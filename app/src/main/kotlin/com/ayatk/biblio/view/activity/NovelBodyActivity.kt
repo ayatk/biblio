@@ -43,9 +43,10 @@ class NovelBodyActivity : BaseActivity() {
     page = intent.getIntExtra("PAGE", 0)
 
     // ViewPager
-    val viewPager = binding.novelViewPager
-    viewPager.adapter = NovelBodyPagerAdapter(supportFragmentManager)
-    viewPager.currentItem = page - 1
+    binding.novelViewPager.apply {
+      adapter = NovelBodyPagerAdapter(supportFragmentManager)
+      currentItem = page - 1
+    }
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -64,14 +65,13 @@ class NovelBodyActivity : BaseActivity() {
 
   companion object {
     private val EXTRA_NOVEL = "NOVEL"
-
     private val EXTRA_PAGE = "PAGE"
 
     fun createIntent(context: Context, novel: Novel, page: Int): Intent {
-      val intent = Intent(context, NovelBodyActivity::class.java)
-      intent.putExtra(EXTRA_NOVEL, Parcels.wrap(novel))
-      intent.putExtra(EXTRA_PAGE, page)
-      return intent
+      return Intent(context, NovelBodyActivity::class.java).apply {
+        putExtra(EXTRA_NOVEL, Parcels.wrap(novel))
+        putExtra(EXTRA_PAGE, page)
+      }
     }
   }
 

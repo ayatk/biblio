@@ -21,8 +21,7 @@ object QueryTime {
   private var cal: Calendar = Calendar.getInstance()
 
   fun day2String(date: Date): String {
-    cal.time = date
-    return format.format(cal.time)
+    return format.format(cal.apply { cal.time = date }.time)
   }
 
   /**
@@ -33,22 +32,24 @@ object QueryTime {
    * @return String 2017/2/1 -> 20170201
    */
   fun day2MonthOne(date: Date): String {
-    cal.time = date
-    cal.set(Calendar.DAY_OF_MONTH, 1)
-    return format.format(cal.time)
+    return format.format(cal.apply {
+      time = date
+      set(Calendar.DAY_OF_MONTH, 1)
+    }.time)
   }
 
   /**
    *
    */
   fun day2Tuesday(date: Date): String {
-    cal.time = date
-    var week = cal.get(Calendar.DAY_OF_WEEK)
-    if (week == Calendar.MONDAY || week == Calendar.SUNDAY) {
-      week += 7
-    }
-    cal.add(Calendar.DAY_OF_MONTH, -week)
-    cal.add(Calendar.DAY_OF_MONTH, Calendar.TUESDAY)
-    return format.format(cal.time)
+    return format.format(cal.apply {
+      time = date
+      var week = get(Calendar.DAY_OF_WEEK)
+      if (week == Calendar.MONDAY || week == Calendar.SUNDAY) {
+        week += 7
+      }
+      add(Calendar.DAY_OF_MONTH, -week)
+      add(Calendar.DAY_OF_MONTH, Calendar.TUESDAY)
+    }.time)
   }
 }

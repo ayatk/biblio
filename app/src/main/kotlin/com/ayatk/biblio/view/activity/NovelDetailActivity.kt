@@ -59,12 +59,12 @@ class NovelDetailActivity : BaseActivity() {
 
   private fun initToolbar() {
     setSupportActionBar(binding.toolbar)
-    val bar = supportActionBar
-    if (bar != null) {
-      bar.setDisplayHomeAsUpEnabled(true)
-      bar.setDisplayShowHomeEnabled(true)
-      bar.setDisplayShowTitleEnabled(false)
-      bar.setHomeButtonEnabled(true)
+    supportActionBar?.run {
+      setDisplayHomeAsUpEnabled(true)
+      setDisplayShowHomeEnabled(true)
+      setDisplayShowTitleEnabled(false)
+      setHomeButtonEnabled(true)
+      binding.toolbar.setNavigationOnClickListener { finish() }
     }
   }
 

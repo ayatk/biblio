@@ -44,54 +44,35 @@ import com.github.gfx.android.orma.annotation.StaticTypeAdapters
         serializer = "serializeNovelState",
         deserializer = "deserializeNovelState"
     )
-) object TypeAdapters {
+)
+object TypeAdapters {
   @JvmStatic
-  fun serializeBigGenre(genre: BigGenre): Int {
-    return genre.type
-  }
+  fun serializeBigGenre(genre: BigGenre): Int = genre.type
 
   @JvmStatic
-  fun deserializeBigGenre(id: Int): BigGenre {
-    return BigGenre.of(id)
-  }
+  fun deserializeBigGenre(id: Int): BigGenre = BigGenre.of(id)
 
   @JvmStatic
-  fun serializeGenre(genre: Genre): Int {
-    return genre.type
-  }
+  fun serializeGenre(genre: Genre): Int = genre.type
 
   @JvmStatic
-  fun deserializeGenre(id: Int): Genre {
-    return Genre.of(id)
-  }
+  fun deserializeGenre(id: Int): Genre = Genre.of(id)
 
   @JvmStatic
-  fun serializeRankingType(rankingType: RankingType): String {
-    return rankingType.type
-  }
+  fun serializeRankingType(rankingType: RankingType): String = rankingType.type
 
   @JvmStatic
-  fun deserializeRankingType(type: String): RankingType {
-    return RankingType.valueOf(type)
-  }
+  fun deserializeRankingType(type: String): RankingType = RankingType.valueOf(type)
 
   @JvmStatic
-  fun serializePublisher(publisher: Publisher): String {
-    return publisher.name
-  }
+  fun serializePublisher(publisher: Publisher): String = publisher.name
 
   @JvmStatic
-  fun deserializePublisher(name: String): Publisher {
-    return Publisher.valueOf(name)
-  }
+  fun deserializePublisher(name: String): Publisher = Publisher.valueOf(name)
 
   @JvmStatic
-  fun serializeNovelState(novelState: NovelState): String {
-    return novelState.name
-  }
+  fun serializeNovelState(novelState: NovelState): String = novelState.name
 
   @JvmStatic
-  fun deserializeNovelState(name: String): NovelState {
-    return NovelState.valueOf(name)
-  }
+  fun deserializeNovelState(name: String): NovelState = NovelState.valueOf(name)
 }

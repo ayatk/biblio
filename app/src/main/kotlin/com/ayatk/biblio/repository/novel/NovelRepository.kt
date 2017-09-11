@@ -31,13 +31,7 @@ class NovelRepository
       return ArrayList(cache.values).toSingle()
     }
 
-
-    if (isDirty) {
-      return findAllFromRemote(codes, publisher)
-    } else {
-      return findAllFromLocal(codes, publisher)
-    }
-
+    return if (isDirty) findAllFromRemote(codes, publisher) else findAllFromLocal(codes, publisher)
   }
 
   override fun find(code: String, publisher: Publisher): Maybe<Novel> {
