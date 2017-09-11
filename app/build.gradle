@@ -54,6 +54,7 @@ android {
     versionName VERSION
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     vectorDrawables.useSupportLibrary true
+    multiDexEnabled true
 
     buildConfigField "String", "GIT_SHA", "\"${GIT_SHA}\""
     buildConfigField "String", "GIT_BRANCH", "\"${GIT_BRANCH}\""
