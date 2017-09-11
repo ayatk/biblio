@@ -42,7 +42,7 @@ jobs:
           path: app/build/test-results
       - deploy:
           name: Deploy to DeployGate
-          branch: master
           command: |
+            [ "$CIRCLE_BRANCH" != "master" ] && exit
             ./gradlew assembleNightlyRelease
             ./deploy.sh
