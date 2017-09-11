@@ -37,7 +37,7 @@ class NovelTableFragment : BaseFragment() {
     novel = Parcels.unwrap(arguments.getParcelable("NOVEL"))
   }
 
-  override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                             savedInstanceState: Bundle?): View? {
     binding = FragmentNovelTableBinding.inflate(inflater, container, false)
     binding.viewModel = viewModel

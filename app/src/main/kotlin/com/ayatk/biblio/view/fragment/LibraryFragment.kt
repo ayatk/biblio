@@ -34,7 +34,7 @@ class LibraryFragment : BaseFragment() {
   @Inject
   lateinit var viewModel: LibrariesViewModel
 
-  override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                             savedInstanceState: Bundle?): View? {
     setHasOptionsMenu(true)
     binding = FragmentLibraryBinding.inflate(inflater, container, false)

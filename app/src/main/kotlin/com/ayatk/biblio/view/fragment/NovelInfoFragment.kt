@@ -36,13 +36,13 @@ class NovelInfoFragment : BaseFragment() {
     novel = Parcels.unwrap(arguments.getParcelable("NOVEL"))
   }
 
-  override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                             savedInstanceState: Bundle?): View? {
     binding = FragmentNovelInfoBinding.inflate(inflater, container, false)
     binding.viewModel = NovelInfoViewModel(context, navigator, libraryRepository, novel)
 
     novel.novelTags.map {
-      val tagItem = this.getLayoutInflater(savedInstanceState).inflate(R.layout.view_tag, null)
+      val tagItem = this.onGetLayoutInflater(savedInstanceState).inflate(R.layout.view_tag, null)
       val textView = tagItem.findViewById<TextView>(R.id.tag)
       textView.text = it
       binding.tagContainer.addView(textView)
@@ -52,7 +52,7 @@ class NovelInfoFragment : BaseFragment() {
         .subscribe(
             {
               it.tag.map {
-                val tagItem = this.getLayoutInflater(savedInstanceState).inflate(R.layout.view_tag,
+                val tagItem = this.onGetLayoutInflater(savedInstanceState).inflate(R.layout.view_tag,
                     null)
                 val textView = tagItem.findViewById<TextView>(R.id.tag)
                 textView.text = it

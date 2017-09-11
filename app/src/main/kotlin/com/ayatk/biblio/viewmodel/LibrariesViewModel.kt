@@ -114,7 +114,7 @@ class LibrariesViewModel
 
     val regex = Regex("""^https?://(ncode|novel18)\.syosetu\.com/(n\d{4}[a-z]{1,2})/?""")
     val unUsedUrlSize = urls.filter { !regex.matches(it) }.size
-    val dounloadUrls = urls.filter { regex.matches(it) }
+    val downloadUrls = urls.filter { regex.matches(it) }
 
     if (unUsedUrlSize != 0) {
       Toast.makeText(context, "${unUsedUrlSize}個の小説がダウンロードできませんでした。", Toast.LENGTH_LONG).show()
@@ -122,7 +122,7 @@ class LibrariesViewModel
 
 
 
-    dounloadUrls.map {
+    downloadUrls.map {
       val publisher = if (regex.matchEntire(it)!!.destructured.component1() == "ncode")
         Publisher.NAROU else Publisher.NOCTURNE_MOONLIGHT
 
