@@ -16,7 +16,7 @@ import com.ayatk.biblio.view.helper.BottomNavigationViewHelper
 
 class MainActivity : BaseActivity() {
 
-  lateinit var binding: ActivityMainBinding
+  private lateinit var binding: ActivityMainBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -52,8 +52,6 @@ class MainActivity : BaseActivity() {
   }
 
   companion object {
-    fun createIntent(context: Context): Intent {
-      return Intent(context, MainActivity::class.java)
-    }
+    fun createIntent(context: Context): Intent = Intent(context, MainActivity::class.java)
   }
 }

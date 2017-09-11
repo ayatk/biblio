@@ -49,6 +49,10 @@
         android:launchMode="singleTask"
         android:parentActivityName=".view.activity.NovelDetailActivity"
         android:theme="@style/AppTheme.NoActionBar"/>
+
+    <activity
+        android:name=".view.activity.WebActivity"
+        android:theme="@style/AppTheme.NoActionBar"/>
   </application>
 
 </manifest>

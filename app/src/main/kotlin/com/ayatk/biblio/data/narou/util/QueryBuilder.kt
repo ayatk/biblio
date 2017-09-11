@@ -100,11 +100,7 @@ class QueryBuilder {
    * @return QueryBuilder
    */
   fun pickup(isPickup: Boolean): QueryBuilder {
-    if (isPickup) {
-      query += Pair("ispickup", "1")
-    } else {
-      query += Pair("ispickup", "0")
-    }
+    query += Pair("ispickup", if (isPickup) "1" else "0")
     return this
   }
 

@@ -38,9 +38,7 @@ class RequestInterceptor
   }
 
   private fun isConnected(): Boolean {
-    if (connectivityManager.activeNetworkInfo == null) {
-      return false
-    }
+    connectivityManager.activeNetworkInfo?.let { return false }
     return connectivityManager.activeNetworkInfo.isConnectedOrConnecting
   }
 }

@@ -64,21 +64,19 @@ open class BaseActivity : AppCompatActivity() {
 
   internal fun initBackToolbar(toolbar: Toolbar) {
     setSupportActionBar(toolbar)
-
-    val bar = supportActionBar
-    if (bar != null) {
-      bar.title = toolbar.title
-      bar.setDisplayHomeAsUpEnabled(true)
-      bar.setDisplayShowHomeEnabled(true)
-      bar.setDisplayShowTitleEnabled(true)
-      bar.setHomeButtonEnabled(true)
+    supportActionBar?.apply {
+      title = toolbar.title
+      setDisplayHomeAsUpEnabled(true)
+      setDisplayShowHomeEnabled(true)
+      setDisplayShowTitleEnabled(true)
+      setHomeButtonEnabled(true)
     }
   }
 
   internal fun replaceFragment(fragment: Fragment, @IdRes @LayoutRes layoutResId: Int) {
-    val ft = supportFragmentManager.beginTransaction()
-    ft.setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
-    ft.replace(layoutResId, fragment, fragment.javaClass.simpleName)
-    ft.commit()
+    supportFragmentManager.beginTransaction()
+        .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+        .replace(layoutResId, fragment, fragment.javaClass.simpleName)
+        .commit()
   }
 }

@@ -120,8 +120,6 @@ class LibrariesViewModel
       Toast.makeText(context, "${unUsedUrlSize}個の小説がダウンロードできませんでした。", Toast.LENGTH_LONG).show()
     }
 
-
-
     downloadUrls.map {
       val publisher = if (regex.matchEntire(it)!!.destructured.component1() == "ncode")
         Publisher.NAROU else Publisher.NOCTURNE_MOONLIGHT

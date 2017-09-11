@@ -21,11 +21,7 @@ class NovelTableRepository
   var isDirty = false
 
   override fun findAll(novel: Novel): Single<List<NovelTable>> {
-    if (isDirty) {
-      return findAllFromRemote(novel)
-    } else {
-      return findAllFromLocal(novel)
-    }
+    return if (isDirty) findAllFromRemote(novel) else findAllFromLocal(novel)
   }
 
   override fun find(novel: Novel, page: Int): Maybe<NovelTable> {

@@ -100,10 +100,12 @@ class LibraryFragment : BaseFragment() {
   }
 
   private fun initRecyclerView() {
-    binding.recyclerView.adapter = LibraryAdapter(context, viewModel.libraryViewModels)
-    binding.recyclerView.setHasFixedSize(true)
-    binding.recyclerView.addItemDecoration(DividerItemDecoration(context, 1))
-    binding.recyclerView.layoutManager = LinearLayoutManager(context)
+    binding.recyclerView.apply {
+      adapter = LibraryAdapter(context, viewModel.libraryViewModels)
+      setHasFixedSize(true)
+      addItemDecoration(DividerItemDecoration(context, 1))
+      layoutManager = LinearLayoutManager(context)
+    }
   }
 
   companion object {
@@ -125,15 +127,14 @@ class LibraryFragment : BaseFragment() {
     }
 
     override fun onBindViewHolder(holder: BindingHolder<ViewLibraryItemBinding>, position: Int) {
-      val viewModel = getItem(position)
-      val itemBinding = holder.binding
-      itemBinding.viewModel = viewModel
-      itemBinding.executePendingBindings()
+      holder.binding.apply {
+        viewModel = getItem(position)
+        executePendingBindings()
+      }
     }
 
     override fun getItemId(position: Int): Long {
-      val vm = getItem(position)
-      return vm.library.id
+      return getItem(position).library.id
     }
   }
 }

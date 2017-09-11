@@ -29,8 +29,8 @@ class NovelBodyFragment : BaseFragment() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    novel = Parcels.unwrap(arguments.getParcelable("NOVEL"))
-    page = arguments.getInt("NOVEL_PAGE")
+    novel = Parcels.unwrap(arguments.getParcelable(BUNDLE_ARGS_NOVEL))
+    page = arguments.getInt(BUNDLE_ARGS_NOVEL_PAGE)
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -54,13 +54,16 @@ class NovelBodyFragment : BaseFragment() {
   }
 
   companion object {
+    private val BUNDLE_ARGS_NOVEL = "NOVEL"
+    private val BUNDLE_ARGS_NOVEL_PAGE = "NOVEL_PAGE"
+
     fun newInstance(novel: Novel, page: Int): NovelBodyFragment {
-      val bundle = Bundle()
-      val fragment = NovelBodyFragment()
-      bundle.putParcelable("NOVEL", Parcels.wrap(novel))
-      bundle.putInt("NOVEL_PAGE", page)
-      fragment.arguments = bundle
-      return fragment
+      return NovelBodyFragment().apply {
+        arguments = Bundle().apply {
+          putParcelable(BUNDLE_ARGS_NOVEL, Parcels.wrap(novel))
+          putInt(BUNDLE_ARGS_NOVEL_PAGE, page)
+        }
+      }
     }
   }
 }

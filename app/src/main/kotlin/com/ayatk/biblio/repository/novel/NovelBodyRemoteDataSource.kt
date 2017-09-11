@@ -21,13 +21,13 @@ class NovelBodyRemoteDataSource
 @Inject constructor(private val client: NarouClient) : NovelBodyDataSource {
 
   override fun find(novel: Novel, page: Int): Single<List<NovelBody>> {
-    if (novel.novelState == NovelState.SHORT_STORY) {
-      return client.getSSPage(novel.code)
+    return if (novel.novelState == NovelState.SHORT_STORY) {
+      client.getSSPage(novel.code)
           .map { listOf(convertNovelBody(novel, it)) }
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
     } else {
-      return client.getPage(novel.code, page)
+      client.getPage(novel.code, page)
           .map { listOf(convertNovelBody(novel, it)) }
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
