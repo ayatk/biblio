@@ -33,7 +33,7 @@ class NovelBodyFragment : BaseFragment() {
     page = arguments.getInt("NOVEL_PAGE")
   }
 
-  override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                             savedInstanceState: Bundle?): View? {
     binding = FragmentNovelBodyBinding.inflate(inflater, container, false)
     binding.viewModel = viewModel

@@ -15,7 +15,7 @@ class SettingFragment : BaseFragment() {
 
   lateinit var binding: FragmentSettingBinding
 
-  override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                             savedInstanceState: Bundle?): View? {
     binding = FragmentSettingBinding.inflate(inflater, container, false)
 

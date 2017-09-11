@@ -13,7 +13,7 @@ class DebugApp : App() {
     super.onCreate()
 
     Stetho.initializeWithDefaults(this)
-    DebotConfigurator.configureWithDefault(this);
+    DebotConfigurator.configureWithDefault()
     Takt.stock(this).play()
   }
 
