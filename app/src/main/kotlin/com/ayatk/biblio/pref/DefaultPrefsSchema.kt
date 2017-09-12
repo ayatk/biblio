@@ -9,7 +9,7 @@ import com.ayatk.biblio.R
 import com.rejasupotaro.android.kvs.annotations.Key
 import com.rejasupotaro.android.kvs.annotations.Table
 
-@Table(name = "com.ayatk.novella.preferences")
+@Table(name = "com.ayatk.biblio.preferences")
 class DefaultPrefsSchema {
 
   @Key(name = "app_theme")

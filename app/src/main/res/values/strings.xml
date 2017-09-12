@@ -49,4 +49,12 @@
   <string name="genre_other">その他 [その他]</string>
   <string name="genre_nongenre">ノンジャンル [ノンジャンル]</string>
 
+  <!-- Preference -->
+  <string name="pref_category_general">一般</string>
+  <string name="pref_category_other">その他</string>
+
+  <string name="pref_oss_license">オープンソースライセンス</string>
+  <string name="pref_version">バージョン</string>
+  <string name="pref_show_tag_at_library">小説一覧にタグを表示する</string>
+
 </resources>

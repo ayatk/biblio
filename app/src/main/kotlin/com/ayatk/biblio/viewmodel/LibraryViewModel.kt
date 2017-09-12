@@ -29,7 +29,7 @@ constructor(private val navigator: Navigator,
   val novelProgress: String
       = context.getString(R.string.novel_progress, 0, library.novel.totalPages)
 
-  val isShowTag: Boolean = DefaultPrefs(context).showTagAtLibrary
+  val isShowTag: Boolean = DefaultPrefs.get(context).showTagAtLibrary
 
   override fun destroy() {}
 
