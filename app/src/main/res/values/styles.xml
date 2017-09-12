@@ -2,7 +2,8 @@
   ~ Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
   -->
 
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools">
 
   <!-- Base application theme. -->
   <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -16,6 +17,7 @@
   <style name="AppTheme.NoActionBar">
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
+    <item name="preferenceTheme">@style/AppTheme.PreferenceThemeOverlay</item>
   </style>
 
   <!-- Component -->
@@ -30,4 +32,8 @@
 
   <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+  <style name="AppTheme.PreferenceThemeOverlay" parent="PreferenceThemeOverlay.v14.Material">
+    <item name="android:colorAccent" tools:targetApi="21">@color/app_blue_dark</item>
+    <item name="colorAccent">@color/app_blue_dark</item>
+  </style>
 </resources>

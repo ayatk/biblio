@@ -12,6 +12,7 @@ import com.ayatk.biblio.data.narou.entity.enums.BigGenre
 import com.ayatk.biblio.data.narou.entity.enums.Genre
 import com.ayatk.biblio.data.narou.service.NarouApiService
 import com.ayatk.biblio.data.narou.service.NarouService
+import com.ayatk.biblio.pref.DefaultPrefsWrapper
 import com.ayatk.biblio.data.util.RequestInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -38,6 +39,11 @@ class AppModule(private val app: App) {
   fun provideConnectivityManager(): ConnectivityManager {
     return app.getSystemService(Context.CONNECTIVITY_SERVICE) as (ConnectivityManager)
   }
+
+  @Singleton
+  @Provides
+  fun provideDefaultPrefs(context: Context): DefaultPrefsWrapper = DefaultPrefsWrapper(
+      context)
 
   @Provides
   fun provideUserAgentInterceptor(interceptor: RequestInterceptor): Interceptor = interceptor

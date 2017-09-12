@@ -4,27 +4,26 @@
 
 package com.ayatk.biblio.view.fragment
 
-import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.ayatk.biblio.databinding.FragmentSettingBinding
+import android.support.v7.preference.PreferenceFragmentCompat
+import com.ayatk.biblio.BuildConfig
+import com.ayatk.biblio.R
+import com.ayatk.biblio.view.activity.WebActivity
 
-class SettingFragment : BaseFragment() {
+class SettingFragment : PreferenceFragmentCompat() {
 
-  lateinit var binding: FragmentSettingBinding
+  override fun onCreatePreferences(bundle: Bundle?, s: String?) {
+    addPreferencesFromResource(R.xml.pref)
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                            savedInstanceState: Bundle?): View? {
-    binding = FragmentSettingBinding.inflate(inflater, container, false)
+    findPreference("oss_license")?.setOnPreferenceClickListener { preference ->
+      startActivity(WebActivity.createIntent(
+          activity, getString(R.string.pref_oss_license), "file:///android_asset/licenses.html"))
+      true
+    }
 
-    return binding.root
-  }
-
-  override fun onAttach(context: Context?) {
-    super.onAttach(context)
-    component().inject(this)
+    findPreference("app_version")?.apply {
+      summary = "${BuildConfig.VERSION_NAME}/#${BuildConfig.BUILD_NUM} (${BuildConfig.GIT_SHA})"
+    }
   }
 
   companion object {
