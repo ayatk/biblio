@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/android:api-25-alpha
     environment:
-      JVM_OPTS: -Xmx3200m
+      JVM_OPTS: -Xmx4G -Dorg.gradle.daemon=false
     steps:
       - checkout
       - restore_cache:
@@ -31,10 +31,10 @@ jobs:
             mv google-services.json app/
       - run:
           name: Run Tests
-          command: ./gradlew lint test
+          command: ./gradlew lint test -PdisablePreDex
       - run:
           name: Build APK
-          command: ./gradlew assembleProductionRelease
+          command: ./gradlew assembleProductionRelease -PdisablePreDex
       - store_artifacts:
           path: app/build/reports
           destination: reports
@@ -44,5 +44,5 @@ jobs:
           name: Deploy to DeployGate
           command: |
             [ "$CIRCLE_BRANCH" != "master" ] && exit
-            ./gradlew assembleNightlyRelease
+            ./gradlew assembleNightlyRelease -PdisablePreDex
             ./deploy.sh
