@@ -9,7 +9,6 @@ import android.content.Context
 import android.databinding.BaseObservable
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.ayatk.biblio.BR
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.repository.library.LibraryRepository

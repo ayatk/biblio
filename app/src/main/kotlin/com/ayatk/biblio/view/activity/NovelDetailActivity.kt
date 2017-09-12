@@ -23,25 +23,24 @@ import javax.inject.Inject
 
 class NovelDetailActivity : BaseActivity() {
 
-  private val EXTRA_NOVEL = "extra_novel"
-
   @Inject
   lateinit var navigator: Navigator
 
-  lateinit var viewModel: NovelDetailViewModel
+  private val binding: ActivityNovelDetailBinding by lazy {
+    DataBindingUtil.setContentView<ActivityNovelDetailBinding>(this, R.layout.activity_novel_detail)
+  }
 
-  lateinit private var binding: ActivityNovelDetailBinding
+  private val novel: Novel  by lazy {
+    Parcels.unwrap<Novel>(intent.getParcelableExtra(EXTRA_NOVEL))
+  }
 
-  lateinit private var novel: Novel
+  private val viewModel: NovelDetailViewModel by lazy {
+    NovelDetailViewModel(novel)
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_novel_detail)
     component().inject(this)
-
-    novel = Parcels.unwrap(intent.getParcelableExtra(EXTRA_NOVEL))
-
-    viewModel = NovelDetailViewModel(novel)
     binding.viewModel = viewModel
 
     initToolbar()

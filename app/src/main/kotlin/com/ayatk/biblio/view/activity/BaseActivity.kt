@@ -22,7 +22,9 @@ open class BaseActivity : AppCompatActivity() {
 
   private var activityComponent: ActivityComponent? = null
 
-  private lateinit var debot: Debot
+  private val debot: Debot by lazy {
+    Debot.getInstance()
+  }
 
   fun component(): ActivityComponent {
     if (activityComponent == null) {
@@ -34,7 +36,6 @@ open class BaseActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    debot = Debot.getInstance()
     debot.allowShake(applicationContext)
   }
 

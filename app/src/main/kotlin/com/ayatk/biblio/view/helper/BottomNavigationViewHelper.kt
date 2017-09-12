@@ -22,15 +22,17 @@ object BottomNavigationViewHelper {
   fun disableShiftingMode(view: BottomNavigationView) {
     val menuView = view.getChildAt(0) as BottomNavigationMenuView
     try {
-      val shiftingMode = menuView.javaClass.getDeclaredField("mShiftingMode")
-      shiftingMode.isAccessible = true
-      shiftingMode.setBoolean(menuView, false)
-      shiftingMode.isAccessible = false
+      menuView.javaClass.getDeclaredField("mShiftingMode").apply {
+        isAccessible = true
+        setBoolean(menuView, false)
+        isAccessible = false
+      }
       for (i in 0 until menuView.childCount) {
-        val item = menuView.getChildAt(i) as BottomNavigationItemView
-        item.setShiftingMode(false)
-        // Set once again checked value, so view will be updated
-        item.setChecked(item.itemData.isChecked)
+        (menuView.getChildAt(i) as BottomNavigationItemView).also { item ->
+          item.setShiftingMode(false)
+          // Set once again checked value, so view will be updated
+          item.setChecked(item.itemData.isChecked)
+        }
       }
     } catch (e: NoSuchFieldException) {
       Log.e(TAG, "disableShiftingMode: Unable to get shift mode field")

@@ -15,7 +15,6 @@ import javax.inject.Inject
 class NovelBodyViewModel
 @Inject constructor(private val repository: NovelBodyRepository) : BaseObservable(), ViewModel {
 
-
   @Bindable
   var novelBody: NovelBody = NovelBody()
 
@@ -31,5 +30,4 @@ class NovelBodyViewModel
   }
 
   override fun destroy() {}
-
 }
