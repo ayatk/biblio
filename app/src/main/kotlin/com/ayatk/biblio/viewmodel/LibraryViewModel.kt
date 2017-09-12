@@ -17,8 +17,8 @@ import java.util.Locale
 
 class LibraryViewModel
 constructor(private val navigator: Navigator,
-            private val context: Context,
-            val library: Library) : BaseObservable(), ViewModel {
+            val library: Library,
+            context: Context) : BaseObservable(), ViewModel {
 
   private val dataFormat = SimpleDateFormat("yyyy/MM/dd kk:mm", Locale.getDefault())
 

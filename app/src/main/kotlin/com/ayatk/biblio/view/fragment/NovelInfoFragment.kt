@@ -29,11 +29,8 @@ class NovelInfoFragment : BaseFragment() {
   @Inject
   lateinit var libraryRepository: LibraryRepository
 
-  private lateinit var novel: Novel
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    novel = Parcels.unwrap(arguments.getParcelable(BUNDLE_ARGS_NOVEL))
+  private val novel: Novel by lazy {
+    Parcels.unwrap<Novel>(arguments.getParcelable(BUNDLE_ARGS_NOVEL))
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +49,8 @@ class NovelInfoFragment : BaseFragment() {
         .subscribe(
             {
               it.tag.map {
-                val tagItem = this.onGetLayoutInflater(savedInstanceState).inflate(R.layout.view_tag,
+                val tagItem = this.onGetLayoutInflater(savedInstanceState).inflate(
+                    R.layout.view_tag,
                     null)
                 val textView = tagItem.findViewById<TextView>(R.id.tag)
                 textView.text = it

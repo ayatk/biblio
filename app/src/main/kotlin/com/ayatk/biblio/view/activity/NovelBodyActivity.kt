@@ -25,21 +25,22 @@ class NovelBodyActivity : BaseActivity() {
   @Inject
   lateinit var navigator: Navigator
 
-  lateinit var binding: ActivityNovelBodyBinding
+  val binding: ActivityNovelBodyBinding by lazy {
+    DataBindingUtil.setContentView<ActivityNovelBodyBinding>(this, R.layout.activity_novel_body)
+  }
 
-  lateinit private var novel: Novel
+  private val novel: Novel by lazy {
+    Parcels.unwrap<Novel>(intent.getParcelableExtra("NOVEL"))
+  }
 
   private var page: Int = 0
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_novel_body)
     setSupportActionBar(binding.toolbar)
     initBackToolbar(binding.toolbar)
     component().inject(this)
 
-    novel = Parcels.unwrap(intent.getParcelableExtra("NOVEL"))
     page = intent.getIntExtra("PAGE", 0)
 
     // ViewPager

@@ -30,11 +30,8 @@ class NovelTableFragment : BaseFragment() {
 
   private lateinit var binding: FragmentNovelTableBinding
 
-  private lateinit var novel: Novel
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    novel = Parcels.unwrap(arguments.getParcelable(BUNDLE_ARGS_NOVEL))
+  private val novel: Novel by lazy {
+    Parcels.unwrap<Novel>(arguments.getParcelable(BUNDLE_ARGS_NOVEL))
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

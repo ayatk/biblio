@@ -5,11 +5,12 @@
 package com.ayatk.biblio.pref
 
 import android.support.annotation.StyleRes
+import com.ayatk.biblio.BuildConfig
 import com.ayatk.biblio.R
 import com.rejasupotaro.android.kvs.annotations.Key
 import com.rejasupotaro.android.kvs.annotations.Table
 
-@Table(name = "com.ayatk.biblio.preferences")
+@Table(name = "${BuildConfig.APPLICATION_ID}_preferences")
 class DefaultPrefsSchema {
 
   @Key(name = "app_theme")

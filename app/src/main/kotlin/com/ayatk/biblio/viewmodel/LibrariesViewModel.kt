@@ -10,7 +10,6 @@ import android.databinding.Bindable
 import android.databinding.ObservableArrayList
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.ayatk.biblio.BR
@@ -64,7 +63,7 @@ class LibrariesViewModel
 
   private fun convertToViewModel(
       context: Context, libraries: List<Library>): List<LibraryViewModel> {
-    return libraries.map { library -> LibraryViewModel(navigator, context, library) }
+    return libraries.map { library -> LibraryViewModel(navigator, library, context) }
   }
 
   fun start(context: Context, refresh: Boolean) {

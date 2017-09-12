@@ -15,7 +15,7 @@ class SettingFragment : PreferenceFragmentCompat() {
   override fun onCreatePreferences(bundle: Bundle?, s: String?) {
     addPreferencesFromResource(R.xml.pref)
 
-    findPreference("oss_license")?.setOnPreferenceClickListener { preference ->
+    findPreference("oss_license")?.setOnPreferenceClickListener { _ ->
       startActivity(WebActivity.createIntent(
           activity, getString(R.string.pref_oss_license), "file:///android_asset/licenses.html"))
       true

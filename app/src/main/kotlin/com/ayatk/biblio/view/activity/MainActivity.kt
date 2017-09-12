@@ -16,12 +16,12 @@ import com.ayatk.biblio.view.helper.BottomNavigationViewHelper
 
 class MainActivity : BaseActivity() {
 
-  private lateinit var binding: ActivityMainBinding
+  private val binding: ActivityMainBinding by lazy {
+    DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
     component().inject(this)
 
     BottomNavigationViewHelper.disableShiftingMode(binding.bottomNav)
