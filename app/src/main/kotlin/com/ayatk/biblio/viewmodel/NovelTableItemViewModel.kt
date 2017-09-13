@@ -7,19 +7,16 @@ package com.ayatk.biblio.viewmodel
 import android.databinding.BaseObservable
 import android.view.View
 import com.ayatk.biblio.model.NovelTable
+import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm
 import com.ayatk.biblio.view.helper.Navigator
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 class NovelTableItemViewModel
 constructor(private val navigator: Navigator,
             val novelTable: NovelTable) : BaseObservable(), ViewModel {
 
-  private val DATA_FORMAT = SimpleDateFormat("yyyy/MM/dd kk:mm", Locale.getDefault())
-
   val lastUpdate: String =
       if (novelTable.publishDate == null) ""
-      else DATA_FORMAT.format(novelTable.publishDate)
+      else FORMAT_yyyyMMdd_kkmm.format(novelTable.publishDate)
 
   override fun destroy() {}
 

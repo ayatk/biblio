@@ -4,10 +4,9 @@
 
 package com.ayatk.biblio.data.narou.util
 
-import java.text.SimpleDateFormat
+import com.ayatk.biblio.util.FORMAT_yyyyMMdd
 import java.util.Calendar
 import java.util.Date
-import java.util.Locale
 
 /**
  * ランキング用の日付を生成するクラス
@@ -16,12 +15,10 @@ import java.util.Locale
  */
 object QueryTime {
 
-  private val format = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
-
   private var cal: Calendar = Calendar.getInstance()
 
   fun day2String(date: Date): String {
-    return format.format(cal.apply { cal.time = date }.time)
+    return FORMAT_yyyyMMdd.format(cal.apply { cal.time = date }.time)
   }
 
   /**
@@ -32,7 +29,7 @@ object QueryTime {
    * @return String 2017/2/1 -> 20170201
    */
   fun day2MonthOne(date: Date): String {
-    return format.format(cal.apply {
+    return FORMAT_yyyyMMdd.format(cal.apply {
       time = date
       set(Calendar.DAY_OF_MONTH, 1)
     }.time)
@@ -42,7 +39,7 @@ object QueryTime {
    *
    */
   fun day2Tuesday(date: Date): String {
-    return format.format(cal.apply {
+    return FORMAT_yyyyMMdd.format(cal.apply {
       time = date
       var week = get(Calendar.DAY_OF_WEEK)
       if (week == Calendar.MONDAY || week == Calendar.SUNDAY) {
