@@ -12,18 +12,15 @@ import android.view.inputmethod.InputMethodManager
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.repository.library.LibraryRepository
+import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm_JP
 import com.ayatk.biblio.view.helper.Navigator
 import mabbas007.tagsedittext.TagsEditText
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 class NovelInfoViewModel
 constructor(private val context: Context,
             private val navigator: Navigator,
             private val libraryRepository: LibraryRepository,
             val novel: Novel) : BaseObservable(), ViewModel {
-
-  private val DATA_FORMAT = SimpleDateFormat("yyyy年MM月dd日 kk時mm分", Locale.getDefault())
 
 //  fun novelGenre(): String {
 //    when (novel.genre) {
@@ -51,7 +48,7 @@ constructor(private val context: Context,
 //    }
 //  }
 
-  fun lastUpdate(): String = DATA_FORMAT.format(novel.lastUpdateDate)
+  fun lastUpdate(): String = FORMAT_yyyyMMdd_kkmm_JP.format(novel.lastUpdateDate)
 
   fun url(): String = novel.publisher.url + novel.code.toLowerCase()
 

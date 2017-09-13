@@ -11,18 +11,15 @@ import com.ayatk.biblio.R
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.pref.DefaultPrefs
+import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm
 import com.ayatk.biblio.view.helper.Navigator
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 class LibraryItemViewModel
 constructor(private val navigator: Navigator,
             val library: Library,
             context: Context) : BaseObservable(), ViewModel {
 
-  private val dataFormat = SimpleDateFormat("yyyy/MM/dd kk:mm", Locale.getDefault())
-
-  val lastUpdate: String = dataFormat.format(library.novel.lastUpdateDate)
+  val lastUpdate: String = FORMAT_yyyyMMdd_kkmm.format(library.novel.lastUpdateDate)
 
   val isShortStory = library.novel.novelState == NovelState.SHORT_STORY
 

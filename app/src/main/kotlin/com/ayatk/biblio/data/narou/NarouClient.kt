@@ -12,11 +12,10 @@ import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.data.narou.service.NarouApiService
 import com.ayatk.biblio.data.narou.service.NarouService
 import com.ayatk.biblio.data.narou.util.QueryTime
+import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm
 import io.reactivex.Single
 import org.jsoup.Jsoup
-import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton
@@ -82,7 +81,6 @@ class NarouClient
 
   private fun parseTableOfContents(ncode: String, body: String): List<NarouNovelTable> {
 
-    val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault())
     val novelTableList = arrayListOf<NarouNovelTable>()
 
     val parseTable = Jsoup.parse(body)
@@ -90,7 +88,7 @@ class NarouClient
     // 短編小説のときは目次がないのでタイトルのNarouNovelTableを生成
     if (parseTable.select(".index_box").isEmpty()) {
       val title = parseTable.select(".novel_title").text()
-      val update = simpleDateFormat.parse(parseTable.select("meta[name=WWWC]").attr("content"))
+      val update = FORMAT_yyyyMMdd_kkmm.parse(parseTable.select("meta[name=WWWC]").attr("content"))
       return listOf(NarouNovelTable(ncode, title, false, 1, update, update))
     }
 
@@ -110,14 +108,14 @@ class NarouClient
             .split("/".toRegex())
             .dropLastWhile(String::isEmpty).toTypedArray()
 
-        val date = simpleDateFormat
+        val date = FORMAT_yyyyMMdd_kkmm
             .parse(element.select(".long_update")
                 .text()
                 .replace(" （改）", ""))
 
         var lastUpdate = date
         if (element.select(".long_update span").isNotEmpty()) {
-          lastUpdate = simpleDateFormat.parse(
+          lastUpdate = FORMAT_yyyyMMdd_kkmm.parse(
               element.select(".long_update span")
                   .attr("title")
                   .replace(" 改稿", ""))
