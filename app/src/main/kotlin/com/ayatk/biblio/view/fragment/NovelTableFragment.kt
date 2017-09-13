@@ -18,15 +18,15 @@ import com.ayatk.biblio.databinding.ViewTableItemBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.view.customview.BindingHolder
 import com.ayatk.biblio.view.customview.ObservableListRecyclerAdapter
+import com.ayatk.biblio.viewmodel.NovelTableItemViewModel
 import com.ayatk.biblio.viewmodel.NovelTableViewModel
-import com.ayatk.biblio.viewmodel.NovelTablesViewModel
 import org.parceler.Parcels
 import javax.inject.Inject
 
 class NovelTableFragment : BaseFragment() {
 
   @Inject
-  lateinit var viewModel: NovelTablesViewModel
+  lateinit var viewModel: NovelTableViewModel
 
   private lateinit var binding: FragmentNovelTableBinding
 
@@ -74,8 +74,8 @@ class NovelTableFragment : BaseFragment() {
   }
 
   private inner class TableAdapter constructor(
-      context: Context, list: ObservableList<NovelTableViewModel>) :
-      ObservableListRecyclerAdapter<NovelTableViewModel, BindingHolder<ViewTableItemBinding>>(
+      context: Context, list: ObservableList<NovelTableItemViewModel>) :
+      ObservableListRecyclerAdapter<NovelTableItemViewModel, BindingHolder<ViewTableItemBinding>>(
           context, list) {
 
     init {

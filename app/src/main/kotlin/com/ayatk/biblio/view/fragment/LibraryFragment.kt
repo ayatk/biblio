@@ -23,8 +23,8 @@ import com.ayatk.biblio.databinding.FragmentLibraryBinding
 import com.ayatk.biblio.databinding.ViewLibraryItemBinding
 import com.ayatk.biblio.view.customview.BindingHolder
 import com.ayatk.biblio.view.customview.ObservableListRecyclerAdapter
-import com.ayatk.biblio.viewmodel.LibrariesViewModel
 import com.ayatk.biblio.viewmodel.LibraryViewModel
+import com.ayatk.biblio.viewmodel.LibraryItemViewModel
 import javax.inject.Inject
 
 class LibraryFragment : BaseFragment() {
@@ -32,7 +32,7 @@ class LibraryFragment : BaseFragment() {
   lateinit var binding: FragmentLibraryBinding
 
   @Inject
-  lateinit var viewModel: LibrariesViewModel
+  lateinit var viewModel: LibraryViewModel
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                             savedInstanceState: Bundle?): View? {
@@ -113,8 +113,8 @@ class LibraryFragment : BaseFragment() {
   }
 
   private inner class LibraryAdapter constructor(
-      context: Context, list: ObservableList<LibraryViewModel>) :
-      ObservableListRecyclerAdapter<LibraryViewModel, BindingHolder<ViewLibraryItemBinding>>(
+      context: Context, list: ObservableList<LibraryItemViewModel>) :
+      ObservableListRecyclerAdapter<LibraryItemViewModel, BindingHolder<ViewLibraryItemBinding>>(
           context, list) {
 
     init {
