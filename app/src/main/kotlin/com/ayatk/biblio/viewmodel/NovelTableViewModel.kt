@@ -5,25 +5,44 @@
 package com.ayatk.biblio.viewmodel
 
 import android.databinding.BaseObservable
-import android.view.View
+import android.databinding.ObservableArrayList
+import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelTable
+import com.ayatk.biblio.repository.novel.NovelTableRepository
 import com.ayatk.biblio.view.helper.Navigator
-import java.text.SimpleDateFormat
-import java.util.Locale
+import io.reactivex.android.schedulers.AndroidSchedulers
+import timber.log.Timber
+import javax.inject.Inject
 
 class NovelTableViewModel
+@Inject
 constructor(private val navigator: Navigator,
-            val novelTable: NovelTable) : BaseObservable(), ViewModel {
+            private val novelTableRepository: NovelTableRepository) : BaseObservable(), ViewModel {
 
-  private val DATA_FORMAT = SimpleDateFormat("yyyy/MM/dd kk:mm", Locale.getDefault())
+  private val TAG = NovelTableViewModel::class.java.simpleName
 
-  val lastUpdate: String =
-      if (novelTable.publishDate == null) ""
-      else DATA_FORMAT.format(novelTable.publishDate)
+  var novelTableViewModels = ObservableArrayList<NovelTableItemViewModel>()
 
   override fun destroy() {}
 
-  fun onItemClick(@Suppress("UNUSED_PARAMETER") view: View) {
-    navigator.navigateToNovelBody(novelTable.novel, novelTable.page!!)
+  fun start(novel: Novel) {
+    novelTableRepository.findAll(novel)
+        .map({ novelTables -> convertToViewModel(novelTables) })
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(
+            this::renderLibraries,
+            { throwable -> Timber.tag(TAG).e(throwable, "Failed to show libraries.") }
+        )
+  }
+
+  private fun convertToViewModel(novelTables: List<NovelTable>): List<NovelTableItemViewModel> {
+    return novelTables.map { novelTable -> NovelTableItemViewModel(navigator, novelTable) }
+  }
+
+  private fun renderLibraries(novelTableItemViewModels: List<NovelTableItemViewModel>) {
+    if (this.novelTableViewModels.size != novelTableItemViewModels.size) {
+      this.novelTableViewModels.clear()
+      this.novelTableViewModels.addAll(novelTableItemViewModels.filter { !it.novelTable.isChapter })
+    }
   }
 }
