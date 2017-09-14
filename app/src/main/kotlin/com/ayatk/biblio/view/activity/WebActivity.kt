@@ -24,7 +24,6 @@ class WebActivity : BaseActivity() {
     val url = intent.getStringExtra(EXTRA_URL)
 
     binding.toolbar.title = title
-    setSupportActionBar(binding.toolbar)
 
     initBackToolbar(binding.toolbar)
     // WebViewによる表示
