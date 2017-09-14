@@ -23,8 +23,8 @@ import com.ayatk.biblio.databinding.FragmentLibraryBinding
 import com.ayatk.biblio.databinding.ViewLibraryItemBinding
 import com.ayatk.biblio.view.customview.BindingHolder
 import com.ayatk.biblio.view.customview.ObservableListRecyclerAdapter
-import com.ayatk.biblio.viewmodel.LibraryViewModel
 import com.ayatk.biblio.viewmodel.LibraryItemViewModel
+import com.ayatk.biblio.viewmodel.LibraryViewModel
 import javax.inject.Inject
 
 class LibraryFragment : BaseFragment() {

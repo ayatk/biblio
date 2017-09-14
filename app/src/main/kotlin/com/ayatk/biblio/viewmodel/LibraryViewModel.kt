@@ -144,7 +144,7 @@ class LibraryViewModel
   }
 
   private fun renderLibraries(libraryViewModels: List<LibraryItemViewModel>) {
-    if (this.libraryViewModels.size != libraryViewModels.size) {
+    if (this.libraryViewModels != libraryViewModels) {
       this.libraryViewModels.clear()
       this.libraryViewModels.addAll(libraryViewModels)
     }
