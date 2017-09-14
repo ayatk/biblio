@@ -39,7 +39,7 @@ class NovelBodyActivity : BaseActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setSupportActionBar(binding.toolbar)
+
     initBackToolbar(binding.toolbar)
     component().inject(this)
 
