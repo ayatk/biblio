@@ -11,7 +11,7 @@ import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.view.fragment.BookmarkFragment
 import com.ayatk.biblio.view.fragment.LibraryFragment
-import com.ayatk.biblio.view.fragment.SearchFragment
+import com.ayatk.biblio.view.fragment.RankingFragment
 import com.ayatk.biblio.view.fragment.SettingFragment
 
 
@@ -27,12 +27,12 @@ enum class Page constructor(
   BOOKMARK(R.id.nav_bookmark, R.string.bookmark, true, BookmarkFragment::class.java.simpleName) {
     override fun createFragment() = BookmarkFragment.newInstance()
   },
-  //  RANKING(R.id.nav_ranking, R.string.ranking, true, RankingFragment::class.java.simpleName) {
-//    override fun createFragment() = RankingFragment.newInstance()
-//  },
-  SEARCH(R.id.nav_search, R.string.search, true, SearchFragment::class.java.simpleName) {
-    override fun createFragment() = SearchFragment.newInstance()
+  RANKING(R.id.nav_ranking, R.string.ranking, true, RankingFragment::class.java.simpleName) {
+    override fun createFragment() = RankingFragment.newInstance()
   },
+  //  SEARCH(R.id.nav_search, R.string.search, true, SearchFragment::class.java.simpleName) {
+//    override fun createFragment() = SearchFragment.newInstance()
+//  },
   SETTINGS(R.id.nav_settings, R.string.setting, true, SettingFragment::class.java.simpleName) {
     override fun createFragment() = SettingFragment.newInstance()
   };

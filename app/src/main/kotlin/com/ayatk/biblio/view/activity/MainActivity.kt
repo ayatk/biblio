@@ -9,6 +9,8 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Build
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityMainBinding
 import com.ayatk.biblio.view.Page
@@ -34,8 +36,26 @@ class MainActivity : BaseActivity() {
 
     binding.bottomNav.setOnNavigationItemSelectedListener({
       changePage(Page.forMenuId(it.itemId))
+      invalidateOptionsMenu()
       true
     })
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    menuInflater.inflate(R.menu.menu_main, menu)
+    return super.onCreateOptionsMenu(menu)
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    when (item.itemId) {
+      R.id.nav_search -> startActivity(SearchActivity.createIntent(this))
+    }
+    return super.onOptionsItemSelected(item)
+  }
+
+  override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+    menu.getItem(0).isVisible = binding.bottomNav.selectedItemId != R.id.nav_settings
+    return super.onPrepareOptionsMenu(menu)
   }
 
   private fun toggleToolbarElevation(enable: Boolean) {
