@@ -9,23 +9,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.activity.SearchActivity">
 
-  <RelativeLayout
+  <android.support.v4.widget.DrawerLayout
+      android:id="@+id/drawer_layout"
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="match_parent"
+      tools:openDrawer="end">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingEnd="0dp"
-        app:title="@string/search"
-        style="@style/AppTheme.BaseToolbar"/>
+        android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/content_view"
-        android:layout_width="match_parent"
+      <android.support.design.widget.AppBarLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:theme="@style/ThemeOverlay.AppCompat.Light">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingEnd="0dp"
+            app:title="@string/search"
+            style="@style/AppTheme.BaseToolbar"/>
+
+      </android.support.design.widget.AppBarLayout>
+
+      <FrameLayout
+          android:id="@+id/content_view"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_below="@id/toolbar"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <!-- Filter drawer -->
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"/>
+        android:layout_gravity="end"
+        android:fitsSystemWindows="true">
 
-  </RelativeLayout>
+    </android.support.design.widget.NavigationView>
+
+  </android.support.v4.widget.DrawerLayout>
 </layout>

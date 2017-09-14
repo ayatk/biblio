@@ -8,6 +8,9 @@ import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v4.view.GravityCompat
+import android.view.Menu
+import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivitySearchBinding
 import com.ayatk.biblio.view.fragment.SearchFragment
@@ -27,13 +30,30 @@ class SearchActivity : BaseActivity() {
     replaceFragment(SearchFragment.newInstance(), R.id.content_view)
   }
 
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    menuInflater.inflate(R.menu.activity_search, menu)
+    return super.onCreateOptionsMenu(menu)
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    if (item.itemId == R.id.action_filter) {
+      binding.drawerLayout.openDrawer(GravityCompat.END)
+      return true
+    }
+    return super.onOptionsItemSelected(item)
+  }
+
   override fun finish() {
     super.finish()
     overridePendingTransition(0, R.anim.activity_fade_exit)
   }
 
   override fun onBackPressed() {
-    finish()
+    if (binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
+      binding.drawerLayout.closeDrawer(GravityCompat.END)
+    } else {
+      finish()
+    }
   }
 
   companion object {
