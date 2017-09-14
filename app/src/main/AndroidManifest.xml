@@ -53,6 +53,9 @@
     <activity
         android:name=".view.activity.WebActivity"
         android:theme="@style/AppTheme.NoActionBar"/>
+    <activity
+        android:name=".view.activity.SearchActivity"
+        android:theme="@style/AppTheme.NoActionBar"/>
   </application>
 
 </manifest>
