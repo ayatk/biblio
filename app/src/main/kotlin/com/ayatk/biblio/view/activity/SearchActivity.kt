@@ -13,6 +13,8 @@ import android.view.Menu
 import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivitySearchBinding
+import com.ayatk.biblio.event.DrawerOpenEvent
+import com.ayatk.biblio.util.RxBus
 import com.ayatk.biblio.view.fragment.SearchFragment
 
 
@@ -38,6 +40,7 @@ class SearchActivity : BaseActivity() {
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     if (item.itemId == R.id.action_filter) {
       binding.drawerLayout.openDrawer(GravityCompat.END)
+      RxBus.publish(DrawerOpenEvent())
       return true
     }
     return super.onOptionsItemSelected(item)
