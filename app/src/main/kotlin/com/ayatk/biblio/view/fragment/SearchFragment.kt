@@ -15,6 +15,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.FragmentSearchBinding
+import com.ayatk.biblio.event.DrawerOpenEvent
+import com.ayatk.biblio.util.RxBus
 
 class SearchFragment : BaseFragment() {
 
@@ -34,6 +36,7 @@ class SearchFragment : BaseFragment() {
   override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
     super.onCreateOptionsMenu(menu, inflater)
     inflater.inflate(R.menu.menu_search, menu)
+
     val menuItem = menu.findItem(R.id.action_search)
     menuItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
       override fun onMenuItemActionExpand(item: MenuItem): Boolean {
@@ -45,8 +48,10 @@ class SearchFragment : BaseFragment() {
         return false
       }
     })
+    menuItem.expandActionView()
 
-    (menuItem.actionView as SearchView).apply {
+    val searchView = menuItem.actionView as SearchView
+    searchView.apply {
       setOnQueryTextListener(object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String): Boolean {
           return onQueryTextChange(query)
@@ -57,11 +62,7 @@ class SearchFragment : BaseFragment() {
         }
       })
     }
-  }
-
-  override fun onPrepareOptionsMenu(menu: Menu) {
-    super.onPrepareOptionsMenu(menu)
-    menu.findItem(R.id.action_search).expandActionView()
+    RxBus.listen(DrawerOpenEvent::class.java).subscribe { searchView.clearFocus() }
   }
 
   override fun onAttach(context: Context?) {
