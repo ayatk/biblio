@@ -11,9 +11,6 @@ import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
@@ -36,7 +33,6 @@ class LibraryFragment : BaseFragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                             savedInstanceState: Bundle?): View? {
-    setHasOptionsMenu(true)
     binding = FragmentLibraryBinding.inflate(inflater, container, false)
     binding.viewModel = viewModel
 
@@ -61,18 +57,6 @@ class LibraryFragment : BaseFragment() {
   override fun onDestroy() {
     super.onDestroy()
     viewModel.destroy()
-  }
-
-  override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
-    super.onCreateOptionsMenu(menu, menuInflater)
-    menuInflater.inflate(R.menu.menu_library, menu)
-  }
-
-  override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    when (item.itemId) {
-      R.id.item_add_novels -> createNovelAddDialog()
-    }
-    return super.onOptionsItemSelected(item)
   }
 
   // TODO: 2017/03/24 一時的なものなので今後消す
