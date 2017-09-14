@@ -12,14 +12,12 @@ import com.ayatk.biblio.data.narou.entity.enums.BigGenre
 import com.ayatk.biblio.data.narou.entity.enums.Genre
 import com.ayatk.biblio.data.narou.service.NarouApiService
 import com.ayatk.biblio.data.narou.service.NarouService
-import com.ayatk.biblio.data.util.RequestInterceptor
 import com.ayatk.biblio.pref.DefaultPrefsWrapper
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer
 import dagger.Module
 import dagger.Provides
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -42,11 +40,7 @@ class AppModule(private val app: App) {
 
   @Singleton
   @Provides
-  fun provideDefaultPrefs(context: Context): DefaultPrefsWrapper = DefaultPrefsWrapper(
-      context)
-
-  @Provides
-  fun provideUserAgentInterceptor(interceptor: RequestInterceptor): Interceptor = interceptor
+  fun provideDefaultPrefs(context: Context): DefaultPrefsWrapper = DefaultPrefsWrapper(context)
 
   @Singleton
   @Provides
