@@ -33,15 +33,15 @@ class NovelBodyActivity : BaseActivity() {
     Parcels.unwrap<Novel>(intent.getParcelableExtra("NOVEL"))
   }
 
-  private var page: Int = 0
+  private val page: Int by lazy {
+    intent.getIntExtra("PAGE", 0)
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setSupportActionBar(binding.toolbar)
     initBackToolbar(binding.toolbar)
     component().inject(this)
-
-    page = intent.getIntExtra("PAGE", 0)
 
     // ViewPager
     binding.novelViewPager.apply {
