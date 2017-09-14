@@ -6,7 +6,6 @@ package com.ayatk.biblio.view.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.view.MenuItemCompat
 import android.support.v7.widget.SearchView
 import android.view.LayoutInflater
 import android.view.Menu
@@ -62,7 +61,7 @@ class SearchFragment : BaseFragment() {
 
   override fun onPrepareOptionsMenu(menu: Menu) {
     super.onPrepareOptionsMenu(menu)
-    MenuItemCompat.expandActionView(menu.findItem(R.id.action_search))
+    menu.findItem(R.id.action_search).expandActionView()
   }
 
   override fun onAttach(context: Context?) {
