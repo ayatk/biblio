@@ -13,11 +13,21 @@ import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import com.ayatk.biblio.R
+import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.databinding.ActivitySearchBinding
 import com.ayatk.biblio.view.fragment.SearchFragment
+import com.ayatk.biblio.viewmodel.SearchViewModel
+import javax.inject.Inject
 
 
 class SearchActivity : BaseActivity() {
+
+  @Inject
+  lateinit var narouClient: NarouClient
+
+  private val viewModel: SearchViewModel by lazy {
+    SearchViewModel(narouClient)
+  }
 
   private lateinit var searchView: SearchView
   private val binding: ActivitySearchBinding by lazy {
@@ -25,6 +35,7 @@ class SearchActivity : BaseActivity() {
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
+    component().inject(this)
     super.onCreate(savedInstanceState)
     overridePendingTransition(0, R.anim.activity_fade_exit)
 
@@ -52,12 +63,11 @@ class SearchActivity : BaseActivity() {
     searchView = menuItem.actionView as SearchView
     searchView.apply {
       setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-        override fun onQueryTextSubmit(query: String): Boolean {
-          return onQueryTextChange(query)
-        }
+        override fun onQueryTextSubmit(query: String): Boolean = onQueryTextChange(query)
 
         override fun onQueryTextChange(newText: String): Boolean {
-          return true
+          viewModel.search(newText)
+          return false
         }
       })
     }
