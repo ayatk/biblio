@@ -8,6 +8,7 @@ import com.ayatk.biblio.di.scope.ActivityScope
 import com.ayatk.biblio.view.activity.MainActivity
 import com.ayatk.biblio.view.activity.NovelBodyActivity
 import com.ayatk.biblio.view.activity.NovelDetailActivity
+import com.ayatk.biblio.view.activity.SearchActivity
 import dagger.Subcomponent
 
 @ActivityScope
@@ -19,6 +20,8 @@ interface ActivityComponent {
   fun inject(activity: NovelDetailActivity)
 
   fun inject(activity: NovelBodyActivity)
+
+  fun inject(activity: SearchActivity)
 
   fun plus(module: FragmentModule): FragmentComponent
 }
