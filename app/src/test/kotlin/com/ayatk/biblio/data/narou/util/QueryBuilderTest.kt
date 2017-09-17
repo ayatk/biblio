@@ -88,30 +88,34 @@ class QueryBuilderTest {
 
   @Test
   fun setSearchWordsTest() {
-    val ans = mapOf(Pair("out", "json"), Pair("word", "ほげ"))
-
+    // ほげ
+    val ans = mapOf(Pair("out", "json"), Pair("word", "%E3%81%BB%E3%81%92"))
     assertThat(ans, `is`(QueryBuilder().searchWords("ほげ").build()))
   }
 
   @Test
   fun setSearchWordsArrayQueryTest() {
     val wordsArray = arrayOf("ほげ", "ふが", "ぴよ")
-    val ans = mapOf(Pair("out", "json"), Pair("word", wordsArray.joinToString(" ")))
+    // ほげ+ふが+ぴよ
+    val ans = mapOf(Pair("out", "json"),
+        Pair("word", "%E3%81%BB%E3%81%92+%E3%81%B5%E3%81%8C+%E3%81%B4%E3%82%88"))
 
     assertThat(ans, `is`(QueryBuilder().searchWords(*wordsArray).build()))
   }
 
   @Test
   fun setNotSearchWordsTest() {
-    val ans = mapOf(Pair("out", "json"), Pair("notword", "ほげ"))
-
+    // ほげ
+    val ans = mapOf(Pair("out", "json"), Pair("notword", "%E3%81%BB%E3%81%92"))
     assertThat(ans, `is`(QueryBuilder().notWords("ほげ").build()))
   }
 
   @Test
   fun setNotSearchWordsArrayQueryTest() {
     val wordsArray = arrayOf("ほげ", "ふが", "ぴよ")
-    val ans = mapOf(Pair("out", "json"), Pair("notword", wordsArray.joinToString(" ")))
+    // ほげ+ふが+ぴよ
+    val ans = mapOf(Pair("out", "json"),
+        Pair("notword", "%E3%81%BB%E3%81%92+%E3%81%B5%E3%81%8C+%E3%81%B4%E3%82%88"))
 
     assertThat(ans, `is`(QueryBuilder().notWords(*wordsArray).build()))
   }
