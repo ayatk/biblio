@@ -61,4 +61,6 @@
   <string name="search_hint">小説を検索</string>
   <string name="filter">フイルター</string>
 
+  <string name="drawer_open">Open</string>
+  <string name="drawer_close">Close</string>
 </resources>
