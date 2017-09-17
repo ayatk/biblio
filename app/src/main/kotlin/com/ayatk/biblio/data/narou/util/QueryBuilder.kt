@@ -6,6 +6,7 @@ package com.ayatk.biblio.data.narou.util
 
 import com.ayatk.biblio.data.narou.entity.enums.OutputOrder
 import com.ayatk.biblio.data.narou.exception.NarouOutOfRangeException
+import java.net.URLEncoder
 
 class QueryBuilder {
   // すべてjsonでResponseを要求するためout=jsonを指定
@@ -74,7 +75,7 @@ class QueryBuilder {
    * @return QueryBuilder
    */
   fun searchWords(vararg words: String): QueryBuilder {
-    query += Pair("word", words.joinToString(" "))
+    query += Pair("word", URLEncoder.encode(words.joinToString(" "), "UTF-8"))
     return this
   }
 
@@ -87,7 +88,7 @@ class QueryBuilder {
    * @return QueryBuilder
    */
   fun notWords(vararg words: String): QueryBuilder {
-    query += Pair("notword", words.joinToString(" "))
+    query += Pair("notword", URLEncoder.encode(words.joinToString(" "), "UTF-8"))
     return this
   }
 
