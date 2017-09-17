@@ -45,7 +45,10 @@ class LibraryViewModel
 
   @Bindable
   var refreshing: Boolean = false
-    set(value) = notifyPropertyChanged(BR.refreshing)
+    set(value) {
+      field = value
+      notifyPropertyChanged(BR.refreshing)
+    }
 
   private val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
 
