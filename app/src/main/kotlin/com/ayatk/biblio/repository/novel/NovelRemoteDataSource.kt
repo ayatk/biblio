@@ -26,14 +26,12 @@ class NovelRemoteDataSource
       Publisher.NAROU              -> {
         return client
             .getNovel(QueryBuilder().ncode(*codes.toTypedArray()).build())
-            .map { convertNarouNovelToNovel(it, publisher) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
       }
       Publisher.NOCTURNE_MOONLIGHT -> {
         return client
             .getNovel18(QueryBuilder().ncode(*codes.toTypedArray()).build())
-            .map { convertNarouNovelToNovel(it, publisher) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
       }
@@ -53,35 +51,5 @@ class NovelRemoteDataSource
 
   override fun delete(code: String) {
     /* no-op */
-  }
-
-  private fun convertNarouNovelToNovel(
-      narouNovels: List<NarouNovel>, publisher: Publisher): List<Novel> {
-    return narouNovels.map {
-      Novel(
-          publisher = publisher,
-          code = it.ncode,
-          title = it.title,
-          writer = it.writer,
-          writerId = it.userID.toString(),
-          story = it.story,
-          novelTags = it.keyword.split(" "),
-          firstUpdateDate = it.firstup,
-          lastUpdateDate = it.lastup,
-          novelState =
-          if (it.novelType == 2) NovelState.SHORT_STORY
-          else if (it.novelType == 1 && it.end == 1) NovelState.SERIES
-          else NovelState.SERIES_END,
-          totalPages = it.page,
-          allRateCount = it.raterCount,
-          reviewCount = it.reviewCount,
-          bookmarkCount = it.bookmarkCount,
-          length = it.length,
-          original = it.gensaku,
-          isOrigin = true,
-          isR15 = it.isR15 == 1,
-          isR18 = publisher == Publisher.NOCTURNE_MOONLIGHT
-      )
-    }
   }
 }
