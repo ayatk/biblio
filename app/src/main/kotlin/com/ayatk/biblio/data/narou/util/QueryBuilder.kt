@@ -26,15 +26,15 @@ class QueryBuilder {
    * 小説の最大出力数を指定できます．
    * 指定しない場合は20件です．
    *
-   * @param lim int (1 ~ 500)
+   * @param size int (1 ~ 500)
    * @return QueryBuilder
    */
-  fun limit(lim: Int): QueryBuilder {
-    if (lim !in 1..500) {
+  fun size(size: Int): QueryBuilder {
+    if (size !in 1..500) {
       throw NarouOutOfRangeException("out of output limit (1 ~ 500)")
     }
 
-    query += Pair("lim", lim.toString())
+    query += Pair("lim", size.toString())
     return this
   }
 

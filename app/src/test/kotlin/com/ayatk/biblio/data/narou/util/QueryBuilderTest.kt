@@ -31,7 +31,7 @@ class QueryBuilderTest {
   fun setLimitQueryTest() {
     val ans = mapOf(Pair("out", "json"), Pair("lim", "300"))
 
-    assertThat(ans, `is`(QueryBuilder().limit(300).build()))
+    assertThat(ans, `is`(QueryBuilder().size(300).build()))
   }
 
   @Test
@@ -45,7 +45,7 @@ class QueryBuilderTest {
 
     throwNums.forEach {
       try {
-        QueryBuilder().limit(it).build()
+        QueryBuilder().size(it).build()
       } catch (e: NarouOutOfRangeException) {
         assertThat("out of output limit (1 ~ 500)", `is`(e.message))
       }
