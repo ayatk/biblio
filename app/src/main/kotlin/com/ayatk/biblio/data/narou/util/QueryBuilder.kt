@@ -18,7 +18,7 @@ class QueryBuilder {
    * @param ncode
    */
   fun ncode(vararg ncode: String): QueryBuilder {
-    query += Pair("ncode", ncode.map(String::toLowerCase).joinToString("-"))
+    query += Pair("ncode", ncode.joinToString("-", transform = String::toLowerCase))
     return this
   }
 
