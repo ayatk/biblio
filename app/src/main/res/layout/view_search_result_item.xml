@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="@{viewModel.novelProgress}"
+        android:text="@{String.format(@string/novel_total_pages, viewModel.novel.totalPages)}"
         android:textSize="12sp"
         android:visibility="@{viewModel.shortStory ? android.view.View.GONE : android.view.View.VISIBLE}"
         app:layout_constraintBaseline_toBaselineOf="@+id/publisher"

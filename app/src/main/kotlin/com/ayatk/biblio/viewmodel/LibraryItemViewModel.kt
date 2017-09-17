@@ -23,9 +23,6 @@ constructor(private val navigator: Navigator,
 
   val isShortStory = library.novel.novelState == NovelState.SHORT_STORY
 
-  val novelProgress: String
-      = context.getString(R.string.novel_progress, 0, library.novel.totalPages)
-
   val isShowTag: Boolean = DefaultPrefs.get(context).showTagAtLibrary
 
   override fun destroy() {}

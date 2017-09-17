@@ -22,6 +22,7 @@
   <string name="series_end">完結</string>
   <string name="short_story">短編</string>
   <string name="novel_progress">%1$d/%2$d</string>
+  <string name="novel_total_pages">全%1$d部</string>
 
   <!-- novel detail -->
   <string name="novel_detail">Novel Detail</string>
