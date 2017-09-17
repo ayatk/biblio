@@ -16,9 +16,6 @@ class SearchResultItemViewModel(val novel: Novel) : BaseObservable(), ViewModel 
 
   val isShortStory = novel.novelState == NovelState.SHORT_STORY
 
-  val novelProgress: String = "全${novel.totalPages}部"
-
-
   override fun destroy() {
   }
 }
