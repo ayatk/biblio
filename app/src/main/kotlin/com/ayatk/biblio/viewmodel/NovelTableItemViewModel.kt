@@ -10,9 +10,9 @@ import com.ayatk.biblio.model.NovelTable
 import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm
 import com.ayatk.biblio.view.helper.Navigator
 
-class NovelTableItemViewModel
-constructor(private val navigator: Navigator,
-            val novelTable: NovelTable) : BaseObservable(), ViewModel {
+class NovelTableItemViewModel(
+    private val navigator: Navigator,
+    val novelTable: NovelTable) : BaseObservable(), ViewModel {
 
   val lastUpdate: String =
       if (novelTable.publishDate == null) ""
@@ -21,6 +21,7 @@ constructor(private val navigator: Navigator,
   override fun destroy() {}
 
   fun onItemClick(@Suppress("UNUSED_PARAMETER") view: View) {
-    navigator.navigateToNovelBody(novelTable.novel, novelTable.page!!)
+    navigator.navigateToNovelBody(novelTable.novel,
+        requireNotNull(novelTable.page, { "ページ番号がはいってないぞい" }))
   }
 }
