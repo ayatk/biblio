@@ -23,6 +23,7 @@ class SearchViewModel(private val narouClient: NarouClient) : ViewModel {
   val searchResultVisibility: BehaviorSubject<Int> = BehaviorSubject.createDefault(View.GONE)
 
   override fun destroy() {
+    searchResultVisibility.onComplete()
     compositeDisposable.clear()
   }
 
