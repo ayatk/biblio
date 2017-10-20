@@ -165,14 +165,6 @@
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
   url: http://www.jetbrains.org
 
-- artifact: com.github.jd-alexander:LikeButton:+
-  name: jd-alexander/LikeButton
-  year: 2016
-  copyrightHolder: Joel Dean
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/jd-alexander/LikeButton
-
 - artifact: com.google.android:flexbox:+
   name: Flexbox layout
   copyrightHolder: google inc.
