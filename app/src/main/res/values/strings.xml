@@ -26,6 +26,8 @@
 
   <!-- novel detail -->
   <string name="novel_detail">Novel Detail</string>
+  <string name="novel_index_title">目次</string>
+  <string name="novel_info_title">小説情報</string>
 
   <!-- Genre -->
   <string name="genre_love_diff_world">異世界[恋愛]</string>
