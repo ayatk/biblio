@@ -80,21 +80,27 @@ class NovelDetailActivity : BaseActivity() {
 
   inner class NovelDetailPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-    private val pages = listOf(
-        Pair("目次", NovelTableFragment.newInstance(novel)),
-        Pair("小説情報", NovelInfoFragment.newInstance(novel))
-    )
-
     override fun getItem(position: Int): Fragment? {
-      return pages[position].second
+      return NovelDetailPage.values()[position].createFragment(novel)
     }
 
     override fun getCount(): Int {
-      return pages.size
+      return NovelDetailPage.values().size
     }
 
     override fun getPageTitle(position: Int): CharSequence {
-      return pages[position].first
+      return getString(NovelDetailPage.values()[position].title)
     }
+  }
+
+  private enum class NovelDetailPage(val title: Int) {
+    INDEX(R.string.novel_index_title) {
+      override fun createFragment(novel: Novel): Fragment = NovelTableFragment.newInstance(novel)
+    },
+    INFO(R.string.novel_info_title) {
+      override fun createFragment(novel: Novel): Fragment = NovelInfoFragment.newInstance(novel)
+    };
+
+    abstract fun createFragment(novel: Novel): Fragment
   }
 }
