@@ -30,11 +30,11 @@ class NovelBodyActivity : BaseActivity() {
   }
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(intent.getParcelableExtra("NOVEL"))
+    Parcels.unwrap<Novel>(intent.getParcelableExtra(EXTRA_NOVEL))
   }
 
   private val page: Int by lazy {
-    intent.getIntExtra("PAGE", 0)
+    intent.getIntExtra(EXTRA_PAGE, 0)
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
