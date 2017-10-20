@@ -96,6 +96,15 @@
         app:layout_constraintStart_toEndOf="@+id/read_progress"
         tools:text="連載中"/>
 
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/add_library"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="@{viewModel::onClickAddLibrary}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_book_plus_black_24_vector"/>
+
   </android.support.constraint.ConstraintLayout>
 
 </layout>

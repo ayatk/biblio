@@ -98,13 +98,6 @@ class LibraryViewModel
         )
   }
 
-  private fun saveLibrary(novel: Novel) {
-    libraryRepository.save(Library(novel = novel, tag = listOf())).subscribe(
-        { start(false) },
-        { throwable -> Timber.tag(TAG).e(throwable, "Failed to save libraries.") }
-    )
-  }
-
   private fun renderLibraries(libraryViewModels: List<LibraryItemViewModel>) {
     if (this.libraryViewModels != libraryViewModels) {
       this.libraryViewModels.clear()
