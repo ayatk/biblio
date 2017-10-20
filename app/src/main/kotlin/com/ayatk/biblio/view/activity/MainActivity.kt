@@ -13,6 +13,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityMainBinding
+import com.ayatk.biblio.pref.DefaultPrefs
 import com.ayatk.biblio.view.Page
 import com.ayatk.biblio.view.helper.BottomNavigationViewHelper
 
@@ -25,6 +26,8 @@ class MainActivity : BaseActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     component().inject(this)
+
+    DefaultPrefs.get(this).showTagAtLibrary
 
     BottomNavigationViewHelper.disableShiftingMode(binding.bottomNav)
 

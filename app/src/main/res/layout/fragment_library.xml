@@ -22,7 +22,7 @@
         android:id="@+id/refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:onRefreshListener="@{() -> viewModel.onSwipeRefresh(context)}"
+        app:onRefreshListener="@{viewModel::onSwipeRefresh}"
         app:refreshing="@{viewModel.refreshing}">
 
       <android.support.v7.widget.RecyclerView
