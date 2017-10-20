@@ -4,7 +4,6 @@
 
 package com.ayatk.biblio.view.fragment
 
-import android.app.AlertDialog
 import android.content.Context
 import android.databinding.ObservableList
 import android.os.Bundle
@@ -13,8 +12,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.FragmentLibraryBinding
 import com.ayatk.biblio.databinding.ViewLibraryItemBinding
@@ -51,36 +48,12 @@ class LibraryFragment : BaseFragment() {
 
   override fun onResume() {
     super.onResume()
-    viewModel.start(context, false)
+    viewModel.start(false)
   }
 
   override fun onDestroy() {
     super.onDestroy()
     viewModel.destroy()
-  }
-
-  // TODO: 2017/03/24 一時的なものなので今後消す
-  private fun createNovelAddDialog() {
-    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    val editView = EditText(context)
-    editView.hint = "小説のURLを入力"
-
-    val dialog = AlertDialog.Builder(context)
-        .setTitle(context.getString(R.string.add_novels))
-        .setView(editView)
-        .setPositiveButton("OK") { _, _ ->
-          viewModel.getNovels(context, editView.text.toString())
-          imm.hideSoftInputFromWindow(editView.windowToken, 0)
-        }
-        .setNegativeButton("キャンセル") { _, _ ->
-          imm.hideSoftInputFromWindow(editView.windowToken, 0)
-        }
-        .create()
-
-    dialog.show()
-    editView.requestFocus()
-
-    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
   }
 
   private fun initRecyclerView() {

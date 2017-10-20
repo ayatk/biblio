@@ -30,7 +30,7 @@ class NovelDetailActivity : BaseActivity() {
     DataBindingUtil.setContentView<ActivityNovelDetailBinding>(this, R.layout.activity_novel_detail)
   }
 
-  private val novel: Novel  by lazy {
+  private val novel: Novel by lazy {
     Parcels.unwrap<Novel>(intent.getParcelableExtra(EXTRA_NOVEL))
   }
 
