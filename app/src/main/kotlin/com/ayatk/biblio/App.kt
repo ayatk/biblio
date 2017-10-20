@@ -15,18 +15,14 @@ import io.fabric.sdk.android.Fabric
 
 open class App : Application() {
 
-  lateinit var appComponent: AppComponent
+  private val appComponent: AppComponent by lazy {
+    DaggerAppComponent.builder().appModule(AppModule(this)).build()
+  }
 
   override fun onCreate() {
     super.onCreate()
 
     Fabric.with(this, Crashlytics())
-
-    appComponent = DaggerAppComponent
-        .builder()
-        .appModule(AppModule(this))
-        .build()
-
     initLeakCanary()
   }
 
