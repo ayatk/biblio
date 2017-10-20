@@ -27,15 +27,11 @@
         android:id="@+id/novel_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
         android:ellipsize="end"
         android:lines="1"
         android:text="@{viewModel.novel.title}"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/last_update"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="悪役令嬢、庶民に堕ちる"/>
 
@@ -55,26 +51,26 @@
         android:id="@+id/last_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
+        android:layout_marginTop="8dp"
         android:text="@{viewModel.lastUpdate}"
         android:textColor="@color/grey500"
         android:textSize="@dimen/text_12sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/novel_title"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/publisher"
         tools:text="2017/03/01 07:00"/>
 
     <TextView
         android:id="@+id/publisher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/tag"
         android:padding="@dimen/space_4dp"
         android:text="@{viewModel.novel.publisher.title}"
         android:textSize="12sp"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/novel_type"
         app:layout_constraintTop_toBottomOf="@+id/novel_title"
         tools:text="小説家になろう"/>
 
@@ -82,22 +78,22 @@
         android:id="@+id/read_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:text="@{String.format(@string/novel_total_pages, viewModel.novel.totalPages)}"
         android:textSize="12sp"
         android:visibility="@{viewModel.shortStory ? android.view.View.GONE : android.view.View.VISIBLE}"
         app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
-        app:layout_constraintRight_toLeftOf="@+id/novel_type"/>
+        app:layout_constraintStart_toEndOf="@+id/novel_writer"/>
 
     <TextView
         android:id="@+id/novel_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:text="@{viewModel.novel.novelState.stateName}"
         android:textSize="12sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
-        app:layout_constraintRight_toLeftOf="@+id/publisher"
+        app:layout_constraintStart_toEndOf="@+id/read_progress"
         tools:text="連載中"/>
 
   </android.support.constraint.ConstraintLayout>
