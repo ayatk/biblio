@@ -22,7 +22,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.ayatk.biblio.R
 import com.ayatk.biblio.R.layout
-import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.databinding.ActivitySearchBinding
 import com.ayatk.biblio.databinding.ViewSearchResultItemBinding
 import com.ayatk.biblio.view.customview.BindingHolder
@@ -36,11 +35,7 @@ import javax.inject.Inject
 class SearchActivity : BaseActivity() {
 
   @Inject
-  lateinit var narouClient: NarouClient
-
-  private val viewModel: SearchViewModel by lazy {
-    SearchViewModel(narouClient)
-  }
+  lateinit var viewModel: SearchViewModel
 
   private val binding: ActivitySearchBinding by lazy {
     DataBindingUtil.setContentView<ActivitySearchBinding>(this, R.layout.activity_search)

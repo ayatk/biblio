@@ -9,12 +9,16 @@ import android.view.View
 import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.data.narou.util.QueryBuilder
 import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.repository.library.LibraryRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
+import javax.inject.Inject
 
-class SearchViewModel(private val narouClient: NarouClient) : ViewModel {
+class SearchViewModel @Inject constructor(
+    private val narouClient: NarouClient,
+    private val libraryRepository: LibraryRepository) : ViewModel {
 
   private val compositeDisposable = CompositeDisposable()
 
@@ -52,6 +56,6 @@ class SearchViewModel(private val narouClient: NarouClient) : ViewModel {
   }
 
   private fun convertToViewModel(novels: List<Novel>): List<SearchResultItemViewModel> {
-    return novels.map { novel -> SearchResultItemViewModel(novel) }
+    return novels.map { novel -> SearchResultItemViewModel(novel, libraryRepository) }
   }
 }
