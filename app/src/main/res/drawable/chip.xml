@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <solid android:color="@color/grey300"/>
+
+  <padding
+      android:bottom="6dp"
+      android:left="@dimen/space_12dp"
+      android:right="@dimen/space_12dp"
+      android:top="6dp"/>
+
+  <corners android:radius="30dp"/>
+</shape>

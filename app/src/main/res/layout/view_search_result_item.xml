@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
+  -->
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+  <data>
+
+    <variable
+        name="viewModel"
+        type="com.ayatk.biblio.viewmodel.SearchResultItemViewModel"/>
+  </data>
+
+  <android.support.constraint.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="?attr/selectableItemBackground"
+      android:clickable="true"
+      android:focusable="true"
+      android:padding="@dimen/space_16dp">
+
+    <TextView
+        android:id="@+id/novel_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="@{viewModel.novel.title}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="悪役令嬢、庶民に堕ちる"/>
+
+    <TextView
+        android:id="@+id/novel_writer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:text="@{viewModel.novel.writer}"
+        android:textColor="@color/grey500"
+        android:textSize="@dimen/text_12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:text="緋月紫砲"/>
+
+    <TextView
+        android:id="@+id/last_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@{viewModel.lastUpdate}"
+        android:textColor="@color/grey500"
+        android:textSize="@dimen/text_12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/publisher"
+        tools:text="2017/03/01 07:00"/>
+
+    <TextView
+        android:id="@+id/publisher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/tag"
+        android:padding="@dimen/space_4dp"
+        android:text="@{viewModel.novel.publisher.title}"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/novel_type"
+        app:layout_constraintTop_toBottomOf="@+id/novel_title"
+        tools:text="小説家になろう"/>
+
+    <TextView
+        android:id="@+id/read_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@{String.format(@string/novel_total_pages, viewModel.novel.totalPages)}"
+        android:textSize="12sp"
+        android:visibility="@{viewModel.shortStory ? android.view.View.GONE : android.view.View.VISIBLE}"
+        app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
+        app:layout_constraintStart_toEndOf="@+id/novel_writer"/>
+
+    <TextView
+        android:id="@+id/novel_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@{viewModel.novel.novelState.stateName}"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
+        app:layout_constraintStart_toEndOf="@+id/read_progress"
+        tools:text="連載中"/>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/add_library"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="@{viewModel::onClickAddLibrary}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_book_plus_black_24_vector"/>
+
+  </android.support.constraint.ConstraintLayout>
+
+</layout>

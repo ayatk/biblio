@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+  -->
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+  <data>
+
+    <import type="android.view.View"/>
+
+    <variable
+        name="viewModel"
+        type="com.ayatk.biblio.viewmodel.NovelBodyViewModel"/>
+
+  </data>
+
+  <android.support.v4.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/space_16dp"
+        android:divider="@drawable/divider"
+        android:orientation="vertical"
+        android:showDividers="middle">
+
+      <TextView
+          android:id="@+id/novel_prev_content"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="@dimen/space_16dp"
+          android:lineSpacingMultiplier="1.5"
+          android:text="@{viewModel.novelBody.prevContent}"
+          android:visibility="@{viewModel.novelBody.prevContent.isEmpty ? View.GONE : View.VISIBLE}"
+          tools:text="筆者のまえがきだよおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおん"/>
+
+      <TextView
+          android:id="@+id/novel_content"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="@dimen/space_16dp"
+          android:layout_marginTop="@dimen/space_16dp"
+          android:lineSpacingMultiplier="1.5"
+          android:text="@{viewModel.novelBody.content}"
+          tools:text="ほげhごえhごえhごえhごへごへおgへおごえ"/>
+
+      <TextView
+          android:id="@+id/novel_after_content"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/space_16dp"
+          android:lineSpacingMultiplier="1.5"
+          android:text="@{viewModel.novelBody.afterContent}"
+          android:visibility="@{viewModel.novelBody.afterContent.isEmpty ? View.GONE : View.VISIBLE}"
+          tools:text="あとがきだよおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおん"/>
+
+    </LinearLayout>
+
+  </android.support.v4.widget.NestedScrollView>
+</layout>

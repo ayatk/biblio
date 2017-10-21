@@ -1,0 +1,7 @@
+<!--
+  ~ Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+  -->
+
+<resources>
+  <string name="app_name" translatable="false">Biblio Debug</string>
+</resources>

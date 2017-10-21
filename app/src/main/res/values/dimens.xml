@@ -1,0 +1,47 @@
+<!--
+  ~ Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+  -->
+<resources>
+
+  <item name="match_parent" format="integer" type="dimen">-1</item>
+
+  <!-- space -->
+  <dimen name="space_4dp">4dp</dimen>
+  <dimen name="space_8dp">8dp</dimen>
+  <dimen name="space_12dp">12dp</dimen>
+  <dimen name="space_16dp">16dp</dimen>
+  <dimen name="space_24dp">24dp</dimen>
+  <dimen name="space_minus_4dp">-4dp</dimen>
+
+  <dimen name="icon_space_4dp">4dp</dimen>
+  <dimen name="icon_space_8dp">8dp</dimen>
+
+  <dimen name="line_space_1dp">1dp</dimen>
+  <dimen name="line_space_2dp">2dp</dimen>
+
+  <!-- Text -->
+  <dimen name="text_12sp">12sp</dimen>
+  <dimen name="text_14sp">14sp</dimen>
+  <dimen name="text_16sp">16sp</dimen>
+  <dimen name="text_20sp">20sp</dimen>
+  <dimen name="text_24sp">24sp</dimen>
+  <dimen name="text_drawable_12dp">12dp</dimen>
+
+  <!-- Line -->
+  <dimen name="line_1dp">1dp</dimen>
+  <dimen name="line_2dp">2dp</dimen>
+
+  <!-- Elevation -->
+  <dimen name="elevation_2dp">2dp</dimen>
+  <dimen name="elevation_4dp">4dp</dimen>
+  <dimen name="elevation_6dp">6dp</dimen>
+
+  <!-- Tag -->
+  <dimen name="tag_radius">4dp</dimen>
+  <dimen name="tag_padding_horizontal">8dp</dimen>
+  <dimen name="tag_padding_vertical">4dp</dimen>
+  <dimen name="tag_border_width">1dp</dimen>
+
+  <!-- Navigation Bar -->
+  <dimen name="bottom_nav_height">56dp</dimen>
+</resources>
