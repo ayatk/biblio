@@ -21,7 +21,9 @@ class NovelTableItemViewModel(
   override fun destroy() {}
 
   fun onItemClick(@Suppress("UNUSED_PARAMETER") view: View) {
-    navigator.navigateToNovelBody(novelTable.novel,
-        requireNotNull(novelTable.page, { "ページ番号がはいってないぞい" }))
+    if (!novelTable.isChapter) {
+      navigator.navigateToNovelBody(novelTable.novel,
+          requireNotNull(novelTable.page, { "ページ番号がはいってないぞい" }))
+    }
   }
 }
