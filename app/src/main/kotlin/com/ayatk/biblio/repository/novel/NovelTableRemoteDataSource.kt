@@ -46,7 +46,7 @@ class NovelTableRemoteDataSource
       novel: Novel, narouTables: List<NarouNovelTable>): List<NovelTable> {
     return narouTables.map {
       NovelTable(
-          id = "${novel.code}-${it.page}",
+          id = "${novel.code}-${it.id}",
           novel = novel,
           title = it.title,
           isChapter = it.isChapter,

@@ -92,13 +92,13 @@ class NarouClient
     if (parseTable.select(".index_box").isEmpty()) {
       val title = parseTable.select(".novel_title").text()
       val update = FORMAT_yyyyMMdd_kkmm.parse(parseTable.select("meta[name=WWWC]").attr("content"))
-      return listOf(NarouNovelTable(ncode, title, false, 1, update, update))
+      return listOf(NarouNovelTable(0, ncode, title, false, 1, update, update))
     }
 
-    for (element in parseTable.select(".index_box").first().children()) {
+    for ((index, element) in parseTable.select(".index_box").first().children().withIndex()) {
       if (element.className() == "chapter_title") {
         novelTableList.add(
-            NarouNovelTable(ncode, element.text(), true, null, null, null))
+            NarouNovelTable(index, ncode, element.text(), true, null, null, null))
       }
 
       if (element.className() == "novel_sublist2") {
@@ -124,7 +124,8 @@ class NarouClient
                   .replace(" 改稿", ""))
         }
         novelTableList.add(
-            NarouNovelTable(ncode, el.text(), false, Integer.parseInt(attrs[2]), date, lastUpdate)
+            NarouNovelTable(index, ncode, el.text(), false, Integer.parseInt(attrs[2]), date,
+                lastUpdate)
         )
       }
     }
@@ -136,11 +137,8 @@ class NarouClient
     return NarouNovelBody(
         ncode = ncode,
         page = page,
-        subtitle = if (doc.select(".novel_subtitle").isEmpty()) {
-          doc.select(".novel_title").text()
-        } else {
-          doc.select(".novel_subtitle").text()
-        },
+        subtitle = doc.select(if (doc.select(
+            ".novel_subtitle").isEmpty()) ".novel_title" else ".novel_subtitle").text(),
         prevContent = if (doc.select("#novel_p").isNotEmpty()) doc.select(
             "#novel_p")[0].text() else "",
         content = doc.select("#novel_honbun").html()
