@@ -42,7 +42,7 @@ constructor(private val navigator: Navigator,
   private fun renderLibraries(novelTableItemViewModels: List<NovelTableItemViewModel>) {
     if (this.novelTableViewModels.size != novelTableItemViewModels.size) {
       this.novelTableViewModels.clear()
-      this.novelTableViewModels.addAll(novelTableItemViewModels.filter { !it.novelTable.isChapter })
+      this.novelTableViewModels.addAll(novelTableItemViewModels)
     }
   }
 }
