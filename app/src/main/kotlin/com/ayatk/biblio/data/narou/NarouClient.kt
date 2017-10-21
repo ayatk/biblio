@@ -137,10 +137,10 @@ class NarouClient
     return NarouNovelBody(
         ncode = ncode,
         page = page,
-        subtitle = getFormattedContent(doc.select(if (doc.select(
-            ".novel_subtitle").isEmpty()) ".novel_title" else ".novel_subtitle").text()),
-        prevContent = if (doc.select("#novel_p").isNotEmpty()) doc.select(
-            "#novel_p")[0].text() else "",
+        subtitle = doc.select(if (doc.select(
+            ".novel_subtitle").isEmpty()) ".novel_title" else ".novel_subtitle").text(),
+        prevContent = getFormattedContent(if (doc.select("#novel_p").isNotEmpty()) doc.select(
+            "#novel_p")[0].text() else ""),
         content = getFormattedContent(doc.select("#novel_honbun").html()),
         afterContent = getFormattedContent(if (doc.select("#novel_a").isNotEmpty()) doc.select(
             "#novel_a").text() else "")
