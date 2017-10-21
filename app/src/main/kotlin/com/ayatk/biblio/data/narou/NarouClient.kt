@@ -137,15 +137,22 @@ class NarouClient
     return NarouNovelBody(
         ncode = ncode,
         page = page,
-        subtitle = doc.select(if (doc.select(
-            ".novel_subtitle").isEmpty()) ".novel_title" else ".novel_subtitle").text(),
+        subtitle = getFormattedContent(doc.select(if (doc.select(
+            ".novel_subtitle").isEmpty()) ".novel_title" else ".novel_subtitle").text()),
         prevContent = if (doc.select("#novel_p").isNotEmpty()) doc.select(
             "#novel_p")[0].text() else "",
-        content = doc.select("#novel_honbun").html()
-            .replace("</?(ru?by?|rt|rp|br)>".toRegex(), ""),
-        afterContent = if (doc.select("#novel_a").isNotEmpty()) doc.select(
-            "#novel_a").text() else ""
+        content = getFormattedContent(doc.select("#novel_honbun").html()),
+        afterContent = getFormattedContent(if (doc.select("#novel_a").isNotEmpty()) doc.select(
+            "#novel_a").text() else "")
     )
+  }
+
+  private fun getFormattedContent(content: String): String {
+    return content
+        .replace("\n", "")
+        .replace("<br */?>".toRegex(), "\n")
+        .trim { it <= '　' }
+        .replace("</?(ru?by?|rt|rp)>".toRegex(), "")
   }
 
   private fun convertNarouNovelToNovel(
