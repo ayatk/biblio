@@ -65,7 +65,7 @@ class AppModule(private val app: App) {
   fun provideNarouService(client: OkHttpClient): NarouService {
     return Retrofit.Builder()
         .client(client)
-        .baseUrl("http://ncode.syosetu.com")
+        .baseUrl("https://ncode.syosetu.com")
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(ScalarsConverterFactory.create())
         .build()
@@ -78,7 +78,7 @@ class AppModule(private val app: App) {
   fun provideNarou18Service(client: OkHttpClient): NarouService {
     return Retrofit.Builder()
         .client(client)
-        .baseUrl("http://novel18.syosetu.com")
+        .baseUrl("https://novel18.syosetu.com")
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(ScalarsConverterFactory.create())
         .build()
