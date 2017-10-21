@@ -10,7 +10,6 @@ import android.databinding.ObservableArrayList
 import android.view.View
 import com.ayatk.biblio.BR
 import com.ayatk.biblio.model.Library
-import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.pref.DefaultPrefsWrapper
 import com.ayatk.biblio.repository.library.LibraryRepository
@@ -87,7 +86,7 @@ class LibraryViewModel
                 viewModel.toObservable()
                     .concatMap { novelTableRepository.findAll(it.library.novel).toObservable() }
                     .subscribe({
-                      refreshing = true
+                      refreshing = false
                       novelRepository.isDirty = false
                       novelTableRepository.isDirty = false
                     })
