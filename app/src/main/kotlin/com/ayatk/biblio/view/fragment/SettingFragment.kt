@@ -22,7 +22,7 @@ class SettingFragment : PreferenceFragmentCompat() {
     }
 
     findPreference("app_version")?.apply {
-      summary = "${BuildConfig.VERSION_NAME}/#${BuildConfig.BUILD_NUM} (${BuildConfig.GIT_SHA})"
+      summary = "${BuildConfig.VERSION_NAME} #${BuildConfig.BUILD_NUM} (${BuildConfig.GIT_SHA})"
     }
   }
 
