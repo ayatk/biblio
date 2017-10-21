@@ -10,9 +10,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ayatk.biblio.databinding.FragmentNovelBodyBinding
+import com.ayatk.biblio.event.NovelBodySelectedEvent
+import com.ayatk.biblio.event.SubtitleChangeEvent
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.view.activity.NovelBodyActivity
 import com.ayatk.biblio.viewmodel.NovelBodyViewModel
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 import org.parceler.Parcels
 import javax.inject.Inject
 
@@ -36,8 +39,6 @@ class NovelBodyFragment : BaseFragment() {
     binding = FragmentNovelBodyBinding.inflate(inflater, container, false)
     binding.viewModel = viewModel
 
-    (activity as NovelBodyActivity).binding.toolbar.title = viewModel.novelBody.subtitle
-
     return binding.root
   }
 
@@ -48,7 +49,20 @@ class NovelBodyFragment : BaseFragment() {
 
   override fun onResume() {
     super.onResume()
+    EventBus.getDefault().register(this)
     viewModel.start(novel, page)
+  }
+
+  override fun onPause() {
+    super.onPause()
+    EventBus.getDefault().unregister(this)
+  }
+
+  @Subscribe
+  fun onEvent(event: NovelBodySelectedEvent) {
+    if (event.position + 1 == page) {
+      EventBus.getDefault().post(SubtitleChangeEvent(viewModel.novelBody.subtitle))
+    }
   }
 
   companion object {

@@ -231,6 +231,7 @@ dependencies {
   // Util
   implementation 'org.parceler:parceler-api:1.1.9'
   kapt 'org.parceler:parceler:1.1.9'
+  implementation 'org.greenrobot:eventbus:3.0.0'
 
   // Debug
   debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.1'
