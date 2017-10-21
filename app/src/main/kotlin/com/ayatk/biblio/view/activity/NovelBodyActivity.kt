@@ -11,12 +11,17 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.view.ViewPager
 import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityNovelBodyBinding
+import com.ayatk.biblio.event.NovelBodySelectedEvent
+import com.ayatk.biblio.event.SubtitleChangeEvent
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.view.fragment.NovelBodyFragment
 import com.ayatk.biblio.view.helper.Navigator
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 import org.parceler.Parcels
 import javax.inject.Inject
 
@@ -43,25 +48,49 @@ class NovelBodyActivity : BaseActivity() {
     initBackToolbar(binding.toolbar)
     component().inject(this)
 
+    EventBus.getDefault().post(NovelBodySelectedEvent(page))
+
     // ViewPager
     binding.novelViewPager.apply {
       adapter = NovelBodyPagerAdapter(supportFragmentManager)
       currentItem = page - 1
+      addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        override fun onPageSelected(position: Int) {
+          EventBus.getDefault().post(NovelBodySelectedEvent(position))
+        }
+
+        override fun onPageScrolled(position: Int, positionOffset: Float,
+                                    positionOffsetPixels: Int) {
+        }
+
+        override fun onPageScrollStateChanged(pos: Int) {}
+      })
     }
+  }
+
+  override fun onPause() {
+    super.onPause()
+    EventBus.getDefault().unregister(this)
+  }
+
+  override fun onResume() {
+    super.onResume()
+    EventBus.getDefault().register(this)
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
       android.R.id.home -> {
-        upToParentActivity()
+        finish()
         return true
       }
     }
     return super.onOptionsItemSelected(item)
   }
 
-  private fun upToParentActivity() {
-    navigator.navigateToNovelDetail(novel)
+  @Subscribe
+  fun onEvent(event: SubtitleChangeEvent) {
+    binding.toolbar.title = event.subtitle
   }
 
   companion object {
