@@ -5,10 +5,8 @@
 package com.ayatk.biblio.repository.novel
 
 import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.data.narou.entity.NarouNovel
 import com.ayatk.biblio.data.narou.util.QueryBuilder
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.model.enums.Publisher
 import io.reactivex.Completable
 import io.reactivex.Maybe
@@ -22,6 +20,9 @@ class NovelRemoteDataSource
 @Inject constructor(private val client: NarouClient) : NovelDataSource {
 
   override fun findAll(codes: List<String>, publisher: Publisher): Single<List<Novel>> {
+    if (codes.isEmpty()) {
+      return Single.create { listOf<Novel>() }
+    }
     when (publisher) {
       Publisher.NAROU              -> {
         return client
