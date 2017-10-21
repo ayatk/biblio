@@ -8,6 +8,8 @@ import java.util.Date
 
 data class NarouNovelTable(
 
+    var id: Int,
+
     var ncode: String,
 
     var title: String,
