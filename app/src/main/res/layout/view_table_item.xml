@@ -9,6 +9,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
   <data>
+
+    <import type="android.R"/>
+
     <variable
         name="viewModel"
         type="com.ayatk.biblio.viewmodel.NovelTableItemViewModel"/>
@@ -17,7 +20,10 @@
   <android.support.constraint.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="?attr/selectableItemBackground"
+      android:background="@{viewModel.novelTable.isChapter ? @color/grey300 : 0}"
+      android:clickable="@{!viewModel.novelTable.isChapter}"
+      android:focusable="@{!viewModel.novelTable.isChapter}"
+      android:foreground="?attr/selectableItemBackground"
       android:onClick="@{viewModel::onItemClick}"
       android:padding="@dimen/space_16dp">
 
