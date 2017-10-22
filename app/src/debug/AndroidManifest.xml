@@ -4,10 +4,13 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ayatk.biblio">
 
   <application
-      android:name="com.ayatk.biblio.DebugApp"
+      android:name=".DebugApp"
       android:allowBackup="false"
-      tools:replace="android:name, android:allowBackup"/>
+      android:icon="@mipmap/ic_launcher"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      tools:replace="android:name, android:allowBackup,android:icon,android:roundIcon"/>
 </manifest>
