@@ -125,6 +125,18 @@ android {
     }
   }
 
+  variantFilter { variant ->
+    def names = variant.flavors*.name
+
+    def nightlyDebug = names.contains("nightly") && variant.buildType.name == "debug"
+    def productionDebug = names.contains("production") && variant.buildType.name == "debug"
+    // To check for a certain build type, use variant.buildType.name == "<buildType>"
+    if (nightlyDebug || productionDebug) {
+      // Gradle ignores any variants that satisfy the conditions above.
+      setIgnore(true)
+    }
+  }
+
   flavorDimensions 'tier'
 
   sourceSets {
