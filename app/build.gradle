@@ -10,7 +10,7 @@ apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'io.fabric'
 
 def APP_NAME = "biblio"
-def VERSION = "0.1.1-alpha"
+def VERSION = "0.2.0-alpha"
 def PACKAGE_NAME = "com.ayatk.biblio"
 
 // for debug info
@@ -122,6 +122,18 @@ android {
     production {
       // The actual minSdkVersion for the application.
       minSdkVersion 17
+    }
+  }
+
+  variantFilter { variant ->
+    def names = variant.flavors*.name
+
+    def nightlyDebug = names.contains("nightly") && variant.buildType.name == "debug"
+    def productionDebug = names.contains("production") && variant.buildType.name == "debug"
+    // To check for a certain build type, use variant.buildType.name == "<buildType>"
+    if (nightlyDebug || productionDebug) {
+      // Gradle ignores any variants that satisfy the conditions above.
+      setIgnore(true)
     }
   }
 

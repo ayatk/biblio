@@ -5,9 +5,11 @@
 package com.ayatk.biblio.viewmodel
 
 import android.databinding.ObservableArrayList
+import android.util.Log
 import android.view.View
 import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.data.narou.util.QueryBuilder
+import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.repository.library.LibraryRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -20,11 +22,22 @@ class SearchViewModel @Inject constructor(
     private val narouClient: NarouClient,
     private val libraryRepository: LibraryRepository) : ViewModel {
 
+  init {
+    libraryRepository.findAll()
+        .subscribeOn(Schedulers.io())
+        .subscribe(
+            { libraries -> this.libraries = libraries },
+            { t -> Log.e("SearchViewModel", t.toString()) }
+        )
+  }
+
   private val compositeDisposable = CompositeDisposable()
 
   val searchResult = ObservableArrayList<SearchResultItemViewModel>()
 
   val searchResultVisibility: BehaviorSubject<Int> = BehaviorSubject.createDefault(View.GONE)
+
+  var libraries = listOf<Library>()
 
   override fun destroy() {
     searchResultVisibility.onComplete()
@@ -37,7 +50,8 @@ class SearchViewModel @Inject constructor(
       searchResultVisibility.onNext(View.VISIBLE)
       val builtQuery = QueryBuilder().searchWords(query).size(100).build()
       compositeDisposable.clear()
-      compositeDisposable.add(narouClient.getNovel(builtQuery).subscribeOn(Schedulers.io())
+      compositeDisposable.add(narouClient.getNovel(builtQuery)
+          .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
           .map({ novels -> convertToViewModel(novels) })
           .subscribe(
@@ -56,6 +70,6 @@ class SearchViewModel @Inject constructor(
   }
 
   private fun convertToViewModel(novels: List<Novel>): List<SearchResultItemViewModel> {
-    return novels.map { novel -> SearchResultItemViewModel(novel, libraryRepository) }
+    return novels.map { novel -> SearchResultItemViewModel(libraries, novel, libraryRepository) }
   }
 }
