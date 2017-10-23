@@ -10,6 +10,8 @@
 
   <data>
 
+    <import type="android.view.View"/>
+
     <variable
         name="viewModel"
         type="com.ayatk.biblio.viewmodel.SearchResultItemViewModel"/>
@@ -96,14 +98,30 @@
         app:layout_constraintStart_toEndOf="@+id/read_progress"
         tools:text="連載中"/>
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/add_library"
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="@{viewModel::onClickAddLibrary}"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_book_plus_black_24_vector"/>
+        app:layout_constraintEnd_toEndOf="parent">
+
+      <android.support.v7.widget.AppCompatImageView
+          android:id="@+id/add_library"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:onClick="@{viewModel::onClickAddLibrary}"
+          android:visibility="@{viewModel.downloadVisibility}"
+          app:srcCompat="@drawable/ic_book_plus_gray600_24_vector"
+          tools:visibility="visible"/>
+
+      <android.support.v7.widget.AppCompatImageView
+          android:id="@+id/download_done"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:visibility="@{viewModel.downloadedVisibility}"
+          app:srcCompat="@drawable/ic_check_green_24_vector"
+          tools:visibility="visible"/>
+
+    </FrameLayout>
 
   </android.support.constraint.ConstraintLayout>
 
