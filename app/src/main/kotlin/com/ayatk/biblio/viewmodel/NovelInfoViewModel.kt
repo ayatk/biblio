@@ -7,8 +7,10 @@ package com.ayatk.biblio.viewmodel
 import android.app.AlertDialog
 import android.content.Context
 import android.databinding.BaseObservable
+import android.databinding.Bindable
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.ayatk.biblio.BR
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.repository.library.LibraryRepository
@@ -17,8 +19,7 @@ import com.ayatk.biblio.view.helper.Navigator
 import mabbas007.tagsedittext.TagsEditText
 
 class NovelInfoViewModel
-constructor(private val context: Context,
-            private val navigator: Navigator,
+constructor(private val navigator: Navigator,
             private val libraryRepository: LibraryRepository,
             val novel: Novel) : BaseObservable(), ViewModel {
 
@@ -48,9 +49,20 @@ constructor(private val context: Context,
 //    }
 //  }
 
+  @Bindable
+  var tags = listOf<String>()
+
   fun lastUpdate(): String = FORMAT_yyyyMMdd_kkmm_JP.format(novel.lastUpdateDate)
 
   fun url(): String = novel.publisher.url + novel.code.toLowerCase()
+
+  fun start() {
+    libraryRepository.find(novel)
+        .subscribe({ library ->
+          tags = library.tag
+          notifyPropertyChanged(BR.tags)
+        })
+  }
 
   fun onClickWriter(@Suppress("UNUSED_PARAMETER") view: View) {
     navigator.navigateToWebPage("http://mypage.syosetu.com/" + novel.writerId)
@@ -60,7 +72,7 @@ constructor(private val context: Context,
     navigator.navigateToWebPage("http://ncode.syosetu.com/" + novel.code.toLowerCase())
   }
 
-  fun onClickUserTag(@Suppress("UNUSED_PARAMETER") view: View) {
+  fun onClickUserTag(context: Context) {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
     val editView = TagsEditText(context)
@@ -71,8 +83,9 @@ constructor(private val context: Context,
         .setTitle("タグの追加")
         .setView(editView)
         .setPositiveButton("OK") { _, _ ->
-          libraryRepository.save(Library(novel = novel, tag = editView.tags))
-              .subscribe()
+          libraryRepository.save(Library(novel = novel, tag = editView.tags)).subscribe()
+          tags = editView.tags
+          notifyPropertyChanged(BR.tags)
           imm.hideSoftInputFromWindow(editView.windowToken, 0)
         }
         .setNegativeButton("キャンセル") { _, _ ->
@@ -82,11 +95,7 @@ constructor(private val context: Context,
 
 
     libraryRepository.find(novel)
-        .subscribe(
-            { library ->
-              editView.setTags(*library.tag.toTypedArray())
-            }
-        )
+        .subscribe({ library -> editView.setTags(*library.tag.toTypedArray()) })
 
     dialog.show()
     editView.requestFocus()
