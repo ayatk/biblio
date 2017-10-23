@@ -10,7 +10,7 @@ apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'io.fabric'
 
 def APP_NAME = "biblio"
-def VERSION = "0.1.1-alpha"
+def VERSION = "0.2.0-alpha"
 def PACKAGE_NAME = "com.ayatk.biblio"
 
 // for debug info
