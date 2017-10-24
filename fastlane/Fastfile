@@ -13,7 +13,7 @@ platform :android do
     deploygate(
         api_token: ENV['DEPLOY_GATE_API_KEY'],
         user: 'ayatk',
-        apk: "./app/build/outputs/apk/nightly/release/biblio-v#{ENV['VERSION']}.apk",
+        apk: "#{ENV['ROOT_DIR']}/app/build/outputs/apk/nightly/release/biblio-v#{ENV['VERSION']}.apk",
         message: "Build #{ENV['CIRCLE_BUILD_NUM']}",
         release_note: "Build #{ENV['CIRCLE_BUILD_NUM']}",
         distribution_key: '3f542ebaa365a1893d3467b34eb27c0a77ca67a7'
@@ -25,7 +25,7 @@ platform :android do
     gradle(task: 'assembleProductionRelease')
     supply(
         track: 'alpha',
-        apk: "./app/build/outputs/apk/production/release/biblio-v#{ENV['VERSION']}.apk"
+        apk: "#{ENV['ROOT_DIR']}/app/build/outputs/apk/production/release/biblio-v#{ENV['VERSION']}.apk"
     )
   end
 
