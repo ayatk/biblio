@@ -1,0 +1,2 @@
+json_key_file "./google-play-service.json"
+package_name "com.ayatk.biblio" # e.g. com.krausefx.app

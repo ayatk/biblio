@@ -37,7 +37,6 @@ jobs:
           command: |
             openssl aes-256-cbc -d -k $SIGNATURE_DECRYPT_KEY -in signature.tar.gz.enc -out signature.tar.gz
             tar -zxvf signature.tar.gz
-            mv google-services.json app/
       - run:
           name: Run Tests
           command: ./gradlew lint test -PdisablePreDex
@@ -53,5 +52,4 @@ jobs:
           name: Deploy to DeployGate
           command: |
             [ "$CIRCLE_BRANCH" != "master" ] && exit
-            ./gradlew assembleNightlyRelease -PdisablePreDex
-            ./deploy.sh
+            bundle exec fastlane nightly
