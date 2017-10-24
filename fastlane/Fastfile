@@ -28,7 +28,7 @@ platform :android do
     gradle(task: "assembleProductionRelease")
     supply(
       track: 'alpha'
-      apk: "./app/build/outputs/apk/production/release/biblio-v#{version}.apk",
+      apk: "./app/build/outputs/apk/production/release/biblio-v#{version}.apk"
     )
   end
 
