@@ -51,5 +51,4 @@ jobs:
       - deploy:
           name: Deploy to DeployGate
           command: |
-#            [ "$CIRCLE_BRANCH" != "master" ] && exit
             bundle exec fastlane nightly
