@@ -8,6 +8,11 @@ jobs:
       JVM_OPTS: -Xmx4G -Dkotlin.incremental=false
     steps:
       - checkout
+      - run:
+          name: Init
+          command: |
+            export ROOT_DIR=`git rev-parse --show-toplevel`
+            export VERSION=`grep "def VERSION" $ROOT_DIR/app/build.gradle | sed -E 's/.*"(.+)"$/\1/'`
       # install fastlane
       - restore_cache:
           key: gems-{{ checksum "Gemfile.lock" }}
