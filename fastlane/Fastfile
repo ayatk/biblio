@@ -27,7 +27,7 @@ platform :android do
   lane :alpha do
     gradle(task: "assembleProductionRelease")
     supply(
-      track: 'alpha'
+      track: 'alpha',
       apk: "./app/build/outputs/apk/production/release/biblio-v#{version}.apk"
     )
   end
