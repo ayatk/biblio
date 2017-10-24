@@ -1,0 +1,55 @@
+fastlane_version "2.62.0"
+
+default_platform :android
+
+root_dir = `git rev-parse --show-toplevel`
+version = `grep "def VERSION" #{root_dir}/app/build.gradle | sed -E 's/.*"(.+)"$/\1/'`
+
+platform :android do
+  before_all do
+    ENV["SLACK_URL"] = " https://hooks.slack.com/services/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"
+  end
+
+  desc "Submit a new Nightly Build to DeployGate"
+  lane :nightly do
+    gradle(task: "assembleNightlyRelease")
+    deploygate(
+      api_token: ENV['DEPLOY_GATE_API_KEY'],
+      user: "ayatk",
+      apk: "./app/build/outputs/apk/nightly/release/biblio-v#{version}.apk",
+      message: "Build #{ENV['CIRCLE_BUILD_NUM']}",
+      release_note: "Build #{ENV['CIRCLE_BUILD_NUM']}",
+      distribution_key: "3f542ebaa365a1893d3467b34eb27c0a77ca67a7"
+    )
+  end
+
+  desc "Deploy a new Alpha Release to the Google Play"
+  lane :alpha do
+    gradle(task: "assembleProductionRelease")
+    supply(
+      track: 'alpha'
+      apk: "./app/build/outputs/apk/production/release/biblio-v#{version}.apk",
+    )
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do
+    gradle(task: "assembleRelease")
+    supply
+  end
+
+  # You can define as many lanes as you want
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+    slack(
+      message: "Successfully deployed new App Update."
+    )
+  end
+
+  error do |lane, exception|
+    slack(
+      message: exception.message,
+      success: false
+    )
+  end
+end
