@@ -8,6 +8,15 @@ jobs:
       JVM_OPTS: -Xmx4G -Dkotlin.incremental=false
     steps:
       - checkout
+      # install fastlane
+      - restore_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      # exec Android test and build
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
