@@ -148,7 +148,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/img_tag"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:tags="@{viewModel.novel.novelTags}"/>
 
       </android.support.constraint.ConstraintLayout>
 
@@ -156,7 +157,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground"
-          android:onClick="@{viewModel::onClickUserTag}"
+          android:onClick="@{() -> viewModel.onClickUserTag(context)}"
           android:padding="@dimen/space_16dp">
 
         <ImageView
@@ -181,7 +182,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_user_tag"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:tags="@{viewModel.tags}"/>
 
       </android.support.constraint.ConstraintLayout>
 

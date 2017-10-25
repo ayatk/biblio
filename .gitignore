@@ -12,4 +12,5 @@
 app.release.jks
 app/google-services.json
 secret.properties
+google-play-service.json
 signature.tar.gz

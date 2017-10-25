@@ -8,6 +8,15 @@ jobs:
       JVM_OPTS: -Xmx4G -Dkotlin.incremental=false
     steps:
       - checkout
+      # install fastlane
+      - restore_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      # exec Android test and build
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
@@ -28,7 +37,6 @@ jobs:
           command: |
             openssl aes-256-cbc -d -k $SIGNATURE_DECRYPT_KEY -in signature.tar.gz.enc -out signature.tar.gz
             tar -zxvf signature.tar.gz
-            mv google-services.json app/
       - run:
           name: Run Tests
           command: ./gradlew lint test -PdisablePreDex
@@ -44,5 +52,13 @@ jobs:
           name: Deploy to DeployGate
           command: |
             [ "$CIRCLE_BRANCH" != "master" ] && exit
-            ./gradlew assembleNightlyRelease -PdisablePreDex
-            ./deploy.sh
+            export ROOT_DIR=`git rev-parse --show-toplevel`
+            export VERSION=`grep "def VERSION" $ROOT_DIR/app/build.gradle | sed -E 's/.*"(.+)"$/\1/'`
+            bundle exec fastlane android nightly
+      - deploy:
+          name: Deploy to Google Play
+          command: |
+            [ "$CIRCLE_BRANCH" != "production" ] && exit
+            export ROOT_DIR=`git rev-parse --show-toplevel`
+            export VERSION=`grep "def VERSION" $ROOT_DIR/app/build.gradle | sed -E 's/.*"(.+)"$/\1/'`
+            bundle exec fastlane android deploy
