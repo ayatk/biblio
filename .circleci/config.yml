@@ -55,7 +55,7 @@ jobs:
             export ROOT_DIR=`git rev-parse --show-toplevel`
             export VERSION=`grep "def VERSION" $ROOT_DIR/app/build.gradle | sed -E 's/.*"(.+)"$/\1/'`
             bundle exec fastlane android nightly
-       - deploy:
+      - deploy:
           name: Deploy to Google Play
           command: |
             [ "$CIRCLE_BRANCH" != "production" ] && exit
