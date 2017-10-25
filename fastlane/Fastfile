@@ -23,13 +23,9 @@ platform :android do
   desc 'Deploy a new version to the Google Play'
   lane :deploy do
     track = ENV['VERSION'].dup
-    track =~ %r{\d\.\d\.\d-(.+?)/}
-    if track == ''
-      track = 'production'
-    end
     gradle(task: 'assembleProductionRelease')
     supply(
-        track: track,
+        track: track[/\d+\.\d+\.\d+-(\w*\d*)/, 1] || 'production',
         apk: "#{ENV['ROOT_DIR']}/app/build/outputs/apk/production/release/biblio-v#{ENV['VERSION']}.apk"
     )
   end
