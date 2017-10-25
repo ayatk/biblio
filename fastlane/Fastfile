@@ -20,19 +20,18 @@ platform :android do
     )
   end
 
-  desc 'Deploy a new Alpha Release to the Google Play'
-  lane :alpha do
-    gradle(task: 'assembleProductionRelease')
-    supply(
-        track: 'alpha',
-        apk: "#{ENV['ROOT_DIR']}/app/build/outputs/apk/production/release/biblio-v#{ENV['VERSION']}.apk"
-    )
-  end
-
   desc 'Deploy a new version to the Google Play'
   lane :deploy do
-    gradle(task: 'assembleRelease')
-    supply
+    track = ENV['VERSION'].dup
+    track =~ %r{\d\.\d\.\d-(.+?)/}
+    if track == ''
+      track = 'production'
+    end
+    gradle(task: 'assembleProductionRelease')
+    supply(
+        track: track,
+        apk: "#{ENV['ROOT_DIR']}/app/build/outputs/apk/production/release/biblio-v#{ENV['VERSION']}.apk"
+    )
   end
 
   # You can define as many lanes as you want
