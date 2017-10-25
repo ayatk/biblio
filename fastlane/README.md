@@ -35,11 +35,6 @@ xcode-select --install
 fastlane android nightly
 ```
 Submit a new Nightly Build to DeployGate
-### android alpha
-```
-fastlane android alpha
-```
-Deploy a new Alpha Release to the Google Play
 ### android deploy
 ```
 fastlane android deploy
