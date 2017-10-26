@@ -15,5 +15,5 @@ class FragmentModule(private val fragment: Fragment) {
 
   @Provides
   @FragmentScope
-  fun provideFragmentManager(): FragmentManager = fragment.fragmentManager
+  fun provideFragmentManager(): FragmentManager = fragment.fragmentManager!!
 }
