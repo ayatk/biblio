@@ -9,9 +9,5 @@
 * あらかじめ小説をダウンロードしておくと、オフラインの状態でも読むことができます
 * その他は頑張って開発中
 
-## Develop
-
-**Android Gradle Plugin 3.0-beta を使っているため Android Studio 3.0-beta でのみビルドが可能です**
-
 ## License
 Copyright 2016-2017 Aya Tokikaze
