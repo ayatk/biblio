@@ -35,7 +35,7 @@ class WebActivity : BaseActivity() {
     private val EXTRA_TITLE = "TITLE"
     private val EXTRA_URL = "URL"
 
-    fun createIntent(context: Context, title: String, url: String): Intent {
+    fun createIntent(context: Context?, title: String, url: String): Intent {
       return Intent(context, WebActivity::class.java).apply {
         putExtra(EXTRA_TITLE, title)
         putExtra(EXTRA_URL, url)

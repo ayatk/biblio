@@ -28,7 +28,7 @@ class NovelInfoFragment : BaseFragment() {
   lateinit var libraryRepository: LibraryRepository
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(arguments.getParcelable(BUNDLE_ARGS_NOVEL))
+    Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL))
   }
 
   private lateinit var viewModel: NovelInfoViewModel
