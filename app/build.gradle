@@ -10,7 +10,7 @@ apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'io.fabric'
 
 def APP_NAME = "biblio"
-def VERSION = "0.2.1-alpha"
+def VERSION = "0.2.2-alpha"
 def PACKAGE_NAME = "com.ayatk.biblio"
 
 // for debug info
@@ -31,6 +31,7 @@ def RELEASE_KEY_PASSWORD = (System.getenv("RELEASE_KEY_PASSWORD") != null) ?
 def FABRIC_API_KEY = (System.getenv("FABRIC_API_KEY") != null) ?
     System.getenv("FABRIC_API_KEY") : ""
 
+def MIN_SDK_VERSION = 19
 
 def secretPropsFile = file("$rootDir/secret.properties")
 if (secretPropsFile.canRead()) {
@@ -43,13 +44,13 @@ if (secretPropsFile.canRead()) {
 }
 
 android {
-  compileSdkVersion 26
-  buildToolsVersion '26.0.2'
+  compileSdkVersion 27
+  buildToolsVersion '27.0.0'
 
   defaultConfig {
     applicationId PACKAGE_NAME
-    minSdkVersion 17
-    targetSdkVersion 26
+    minSdkVersion MIN_SDK_VERSION
+    targetSdkVersion 27
     versionCode BUILD_NUM.toInteger()
     versionName VERSION
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -115,13 +116,13 @@ android {
     }
     // use deploygate
     nightly {
-      minSdkVersion 17
+      minSdkVersion MIN_SDK_VERSION
       applicationId "${PACKAGE_NAME}.nightly"
       versionName "${VERSION}-nightly"
     }
     production {
       // The actual minSdkVersion for the application.
-      minSdkVersion 17
+      minSdkVersion MIN_SDK_VERSION
     }
   }
 
@@ -185,7 +186,7 @@ android {
   }
 }
 
-ext.supportLibVersion = '26.1.0'
+ext.supportLibVersion = '27.0.0'
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -199,7 +200,7 @@ dependencies {
   implementation "com.android.support:preference-v7:${supportLibVersion}"
   implementation "com.android.support:preference-v14:${supportLibVersion}"
   implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-  kapt "com.android.databinding:compiler:3.0.0-rc2"
+  kapt "com.android.databinding:compiler:3.0.0"
 
   // Android Architecture Components
   implementation "android.arch.lifecycle:runtime:1.0.3"
@@ -217,11 +218,11 @@ dependencies {
   implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
 
   // Dependency Injection
-  implementation 'com.google.dagger:dagger:2.11'
-  kapt 'com.google.dagger:dagger-compiler:2.11'
+  implementation 'com.google.dagger:dagger:2.12'
+  kapt 'com.google.dagger:dagger-compiler:2.12'
 
   // ReactiveX
-  implementation 'io.reactivex.rxjava2:rxjava:2.1.4'
+  implementation 'io.reactivex.rxjava2:rxjava:2.1.5'
   implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
   implementation 'io.reactivex.rxjava2:rxkotlin:2.1.0'
 
@@ -256,7 +257,7 @@ dependencies {
   debugImplementation 'com.tomoima.debot:debot:2.0.3'
   releaseImplementation 'com.tomoima.debot:debot-no-op:2.0.3'
   debugImplementation 'jp.wasabeef:takt:1.0.5'
-  implementation('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+  implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
     transitive = true
   }
 

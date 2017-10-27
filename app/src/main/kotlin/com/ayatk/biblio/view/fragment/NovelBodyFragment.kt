@@ -27,11 +27,11 @@ class NovelBodyFragment : BaseFragment() {
   private lateinit var binding: FragmentNovelBodyBinding
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(arguments.getParcelable(BUNDLE_ARGS_NOVEL))
+    Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL))
   }
 
   private val page: Int by lazy {
-    arguments.getInt(BUNDLE_ARGS_NOVEL_PAGE)
+    arguments?.getInt(BUNDLE_ARGS_NOVEL_PAGE) ?: 1
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
