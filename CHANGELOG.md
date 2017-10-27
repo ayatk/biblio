@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 0.2.2-alpha - 2017-10-27
+### Changed
+- Android 8.1(API 27)に対応 #46
+- Android Studio3.0に対応 #46
+- シェア的な面からJelly Beanをサポートから外した #47
+- Apache v2 Licenseを適用 #43
+
+### Fixed
+- デプロイ時の正規表現を修正 #41
+
 ## 0.2.1-alpha - 2017-10-25
 ### Changed
 - fastlaneでリリースの自動化を行った #39
