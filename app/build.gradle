@@ -31,6 +31,7 @@ def RELEASE_KEY_PASSWORD = (System.getenv("RELEASE_KEY_PASSWORD") != null) ?
 def FABRIC_API_KEY = (System.getenv("FABRIC_API_KEY") != null) ?
     System.getenv("FABRIC_API_KEY") : ""
 
+def MIN_SDK_VERSION = 19
 
 def secretPropsFile = file("$rootDir/secret.properties")
 if (secretPropsFile.canRead()) {
@@ -48,7 +49,7 @@ android {
 
   defaultConfig {
     applicationId PACKAGE_NAME
-    minSdkVersion 17
+    minSdkVersion MIN_SDK_VERSION
     targetSdkVersion 27
     versionCode BUILD_NUM.toInteger()
     versionName VERSION
@@ -115,13 +116,13 @@ android {
     }
     // use deploygate
     nightly {
-      minSdkVersion 17
+      minSdkVersion MIN_SDK_VERSION
       applicationId "${PACKAGE_NAME}.nightly"
       versionName "${VERSION}-nightly"
     }
     production {
       // The actual minSdkVersion for the application.
-      minSdkVersion 17
+      minSdkVersion MIN_SDK_VERSION
     }
   }
 
