@@ -220,6 +220,9 @@ dependencies {
   // Dependency Injection
   implementation 'com.google.dagger:dagger:2.13'
   kapt 'com.google.dagger:dagger-compiler:2.13'
+  implementation 'com.google.dagger:dagger-android:2.13'
+  kapt 'com.google.dagger:dagger-android-processor:2.13'
+  implementation 'com.google.dagger:dagger-android-support:2.13'
 
   // ReactiveX
   implementation 'io.reactivex.rxjava2:rxjava:2.1.6'
