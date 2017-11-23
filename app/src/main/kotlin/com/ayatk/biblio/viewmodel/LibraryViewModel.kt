@@ -15,7 +15,7 @@ import com.ayatk.biblio.pref.DefaultPrefsWrapper
 import com.ayatk.biblio.repository.library.LibraryRepository
 import com.ayatk.biblio.repository.novel.NovelRepository
 import com.ayatk.biblio.repository.novel.NovelTableRepository
-import com.ayatk.biblio.view.helper.Navigator
+import com.ayatk.biblio.ui.helper.Navigator
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.toObservable

@@ -5,14 +5,14 @@
 package com.ayatk.biblio.di
 
 import com.ayatk.biblio.di.scope.FragmentScope
-import com.ayatk.biblio.view.fragment.BookmarkFragment
-import com.ayatk.biblio.view.fragment.LibraryFragment
-import com.ayatk.biblio.view.fragment.NovelBodyFragment
-import com.ayatk.biblio.view.fragment.NovelInfoFragment
-import com.ayatk.biblio.view.fragment.NovelTableFragment
-import com.ayatk.biblio.view.fragment.RankingFragment
-import com.ayatk.biblio.view.fragment.SearchFragment
-import com.ayatk.biblio.view.fragment.SettingFragment
+import com.ayatk.biblio.ui.fragment.BookmarkFragment
+import com.ayatk.biblio.ui.fragment.LibraryFragment
+import com.ayatk.biblio.ui.fragment.NovelBodyFragment
+import com.ayatk.biblio.ui.fragment.NovelInfoFragment
+import com.ayatk.biblio.ui.fragment.NovelTableFragment
+import com.ayatk.biblio.ui.fragment.RankingFragment
+import com.ayatk.biblio.ui.fragment.SearchFragment
+import com.ayatk.biblio.ui.fragment.SettingFragment
 import dagger.Subcomponent
 
 @FragmentScope

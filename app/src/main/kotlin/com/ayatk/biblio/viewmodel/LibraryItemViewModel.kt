@@ -10,7 +10,7 @@ import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.pref.DefaultPrefs
 import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm
-import com.ayatk.biblio.view.helper.Navigator
+import com.ayatk.biblio.ui.helper.Navigator
 
 class LibraryItemViewModel
 constructor(private val navigator: Navigator,

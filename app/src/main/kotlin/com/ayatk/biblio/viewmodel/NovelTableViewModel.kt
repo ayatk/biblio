@@ -9,7 +9,7 @@ import android.databinding.ObservableArrayList
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelTable
 import com.ayatk.biblio.repository.novel.NovelTableRepository
-import com.ayatk.biblio.view.helper.Navigator
+import com.ayatk.biblio.ui.helper.Navigator
 import io.reactivex.android.schedulers.AndroidSchedulers
 import timber.log.Timber
 import javax.inject.Inject
