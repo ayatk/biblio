@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.ui.fragment
+package com.ayatk.biblio.ui.detail.table
 
 import android.content.Context
 import android.databinding.ObservableList
@@ -16,10 +16,9 @@ import com.ayatk.biblio.R.layout
 import com.ayatk.biblio.databinding.FragmentNovelTableBinding
 import com.ayatk.biblio.databinding.ViewTableItemBinding
 import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.ui.BaseFragment
 import com.ayatk.biblio.ui.util.customview.BindingHolder
 import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
-import com.ayatk.biblio.viewmodel.NovelTableItemViewModel
-import com.ayatk.biblio.viewmodel.NovelTableViewModel
 import org.parceler.Parcels
 import javax.inject.Inject
 
@@ -31,7 +30,8 @@ class NovelTableFragment : BaseFragment() {
   private lateinit var binding: FragmentNovelTableBinding
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL))
+    Parcels.unwrap<Novel>(arguments?.getParcelable(
+        BUNDLE_ARGS_NOVEL))
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -67,7 +67,8 @@ class NovelTableFragment : BaseFragment() {
     fun newInstance(novel: Novel): NovelTableFragment {
       return NovelTableFragment().apply {
         arguments = Bundle().apply {
-          putParcelable(BUNDLE_ARGS_NOVEL, Parcels.wrap(novel))
+          putParcelable(
+              BUNDLE_ARGS_NOVEL, Parcels.wrap(novel))
         }
       }
     }

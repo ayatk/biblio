@@ -1,14 +1,15 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.viewmodel
+package com.ayatk.biblio.ui.detail.table
 
 import android.databinding.BaseObservable
 import android.view.View
 import com.ayatk.biblio.model.NovelTable
-import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm
+import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.ui.util.helper.Navigator
+import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm
 
 class NovelTableItemViewModel(
     private val navigator: Navigator,

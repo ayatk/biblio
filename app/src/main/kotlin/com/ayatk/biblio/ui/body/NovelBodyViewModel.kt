@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.viewmodel
+package com.ayatk.biblio.ui.body
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
@@ -10,6 +10,7 @@ import com.ayatk.biblio.BR
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelBody
 import com.ayatk.biblio.repository.novel.NovelBodyRepository
+import com.ayatk.biblio.ui.ViewModel
 import javax.inject.Inject
 
 class NovelBodyViewModel

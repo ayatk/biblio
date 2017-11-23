@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.ui.activity
+package com.ayatk.biblio.ui.home
 
 import android.content.Context
 import android.content.Intent
@@ -14,6 +14,8 @@ import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityMainBinding
 import com.ayatk.biblio.pref.DefaultPrefs
+import com.ayatk.biblio.ui.BaseActivity
+import com.ayatk.biblio.ui.search.SearchActivity
 import com.ayatk.biblio.ui.util.Page
 import com.ayatk.biblio.ui.util.helper.BottomNavigationViewHelper
 
@@ -51,7 +53,8 @@ class HomeActivity : BaseActivity() {
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
-      R.id.nav_search -> startActivity(SearchActivity.createIntent(this))
+      R.id.nav_search -> startActivity(
+          SearchActivity.createIntent(this))
     }
     return super.onOptionsItemSelected(item)
   }

@@ -1,13 +1,12 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.ui.fragment
+package com.ayatk.biblio.ui
 
 import android.support.v4.app.Fragment
 import com.ayatk.biblio.di.FragmentComponent
 import com.ayatk.biblio.di.FragmentModule
-import com.ayatk.biblio.ui.activity.BaseActivity
 
 open class BaseFragment : Fragment() {
 

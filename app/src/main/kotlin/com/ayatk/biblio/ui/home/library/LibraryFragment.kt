@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.ui.fragment
+package com.ayatk.biblio.ui.home.library
 
 import android.content.Context
 import android.databinding.ObservableList
@@ -15,10 +15,9 @@ import android.view.ViewGroup
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.FragmentLibraryBinding
 import com.ayatk.biblio.databinding.ViewLibraryItemBinding
+import com.ayatk.biblio.ui.BaseFragment
 import com.ayatk.biblio.ui.util.customview.BindingHolder
 import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
-import com.ayatk.biblio.viewmodel.LibraryItemViewModel
-import com.ayatk.biblio.viewmodel.LibraryViewModel
 import javax.inject.Inject
 
 class LibraryFragment : BaseFragment() {

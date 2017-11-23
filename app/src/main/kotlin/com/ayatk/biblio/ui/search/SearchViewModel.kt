@@ -2,7 +2,7 @@
  * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.viewmodel
+package com.ayatk.biblio.ui.search
 
 import android.databinding.ObservableArrayList
 import android.util.Log
@@ -12,6 +12,7 @@ import com.ayatk.biblio.data.narou.util.QueryBuilder
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.repository.library.LibraryRepository
+import com.ayatk.biblio.ui.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -70,6 +71,8 @@ class SearchViewModel @Inject constructor(
   }
 
   private fun convertToViewModel(novels: List<Novel>): List<SearchResultItemViewModel> {
-    return novels.map { novel -> SearchResultItemViewModel(libraries, novel, libraryRepository) }
+    return novels.map { novel ->
+      SearchResultItemViewModel(libraries, novel, libraryRepository)
+    }
   }
 }

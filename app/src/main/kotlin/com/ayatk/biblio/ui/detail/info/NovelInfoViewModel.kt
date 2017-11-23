@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.viewmodel
+package com.ayatk.biblio.ui.detail.info
 
 import android.app.AlertDialog
 import android.content.Context
@@ -14,8 +14,9 @@ import com.ayatk.biblio.BR
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.repository.library.LibraryRepository
-import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm_JP
+import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.ui.util.helper.Navigator
+import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm_JP
 import mabbas007.tagsedittext.TagsEditText
 
 class NovelInfoViewModel

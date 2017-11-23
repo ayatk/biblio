@@ -1,14 +1,15 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.viewmodel
+package com.ayatk.biblio.ui.detail.table
 
 import android.databinding.BaseObservable
 import android.databinding.ObservableArrayList
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelTable
 import com.ayatk.biblio.repository.novel.NovelTableRepository
+import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.ui.util.helper.Navigator
 import io.reactivex.android.schedulers.AndroidSchedulers
 import timber.log.Timber
@@ -36,7 +37,9 @@ constructor(private val navigator: Navigator,
   }
 
   private fun convertToViewModel(novelTables: List<NovelTable>): List<NovelTableItemViewModel> {
-    return novelTables.map { novelTable -> NovelTableItemViewModel(navigator, novelTable) }
+    return novelTables.map { novelTable ->
+      NovelTableItemViewModel(navigator, novelTable)
+    }
   }
 
   private fun renderLibraries(novelTableItemViewModels: List<NovelTableItemViewModel>) {

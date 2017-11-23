@@ -9,11 +9,10 @@ import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.view.MenuItem
 import com.ayatk.biblio.R
-import com.ayatk.biblio.ui.fragment.BookmarkFragment
-import com.ayatk.biblio.ui.fragment.LibraryFragment
-import com.ayatk.biblio.ui.fragment.RankingFragment
-import com.ayatk.biblio.ui.fragment.SettingFragment
-
+import com.ayatk.biblio.ui.home.bookmark.BookmarkFragment
+import com.ayatk.biblio.ui.home.library.LibraryFragment
+import com.ayatk.biblio.ui.home.ranking.RankingFragment
+import com.ayatk.biblio.ui.home.setting.SettingFragment
 
 enum class Page constructor(
     @MenuRes val menuId: Int,

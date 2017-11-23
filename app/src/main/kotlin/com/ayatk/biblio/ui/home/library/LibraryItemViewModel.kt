@@ -1,16 +1,17 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.viewmodel
+package com.ayatk.biblio.ui.home.library
 
 import android.databinding.BaseObservable
 import android.view.View
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.pref.DefaultPrefs
-import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm
+import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.ui.util.helper.Navigator
+import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm
 
 class LibraryItemViewModel
 constructor(private val navigator: Navigator,

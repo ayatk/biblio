@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.ui.activity
+package com.ayatk.biblio.ui.license
 
 import android.content.Context
 import android.content.Intent
@@ -10,6 +10,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityWebBinding
+import com.ayatk.biblio.ui.BaseActivity
 
 class WebActivity : BaseActivity() {
 
