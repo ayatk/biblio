@@ -24,7 +24,7 @@
         android:value="${FABRIC_API_KEY}"/>
 
     <activity
-        android:name=".ui.activity.MainActivity"
+        android:name=".ui.activity.HomeActivity"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.NoActionBar">
       <intent-filter>
@@ -39,7 +39,7 @@
         android:exported="false"
         android:label="@string/novel_detail"
         android:launchMode="singleTask"
-        android:parentActivityName=".ui.activity.MainActivity"
+        android:parentActivityName=".ui.activity.HomeActivity"
         android:theme="@style/AppTheme.NoActionBar"/>
 
     <activity
