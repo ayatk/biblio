@@ -12,9 +12,7 @@ import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityWebBinding
 import com.ayatk.biblio.ui.BaseActivity
 
-class WebActivity : BaseActivity() {
-
-  private val TAG = WebActivity::class.java.simpleName
+class LicenseActivity : BaseActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -37,7 +35,7 @@ class WebActivity : BaseActivity() {
     private val EXTRA_URL = "URL"
 
     fun createIntent(context: Context?, title: String, url: String): Intent {
-      return Intent(context, WebActivity::class.java).apply {
+      return Intent(context, LicenseActivity::class.java).apply {
         putExtra(EXTRA_TITLE, title)
         putExtra(EXTRA_URL, url)
       }
