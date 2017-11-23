@@ -84,9 +84,8 @@ class NovelTableFragment : BaseFragment() {
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup, viewType: Int): BindingHolder<ViewTableItemBinding> {
-      return BindingHolder(context, parent, layout.view_table_item)
-    }
+        parent: ViewGroup, viewType: Int): BindingHolder<ViewTableItemBinding>
+        = BindingHolder(context, parent, layout.view_table_item)
 
     override fun onBindViewHolder(holder: BindingHolder<ViewTableItemBinding>, position: Int) {
       holder.binding.apply {

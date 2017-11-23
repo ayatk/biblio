@@ -78,9 +78,8 @@ class LibraryFragment : BaseFragment() {
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup, viewType: Int): BindingHolder<ViewLibraryItemBinding> {
-      return BindingHolder(context, parent, R.layout.view_library_item)
-    }
+        parent: ViewGroup, viewType: Int): BindingHolder<ViewLibraryItemBinding>
+        = BindingHolder(context, parent, R.layout.view_library_item)
 
     override fun onBindViewHolder(holder: BindingHolder<ViewLibraryItemBinding>, position: Int) {
       holder.binding.apply {
@@ -89,8 +88,7 @@ class LibraryFragment : BaseFragment() {
       }
     }
 
-    override fun getItemId(position: Int): Long {
-      return getItem(position).library.id
-    }
+    override fun getItemId(position: Int): Long
+        = getItem(position).library.id
   }
 }

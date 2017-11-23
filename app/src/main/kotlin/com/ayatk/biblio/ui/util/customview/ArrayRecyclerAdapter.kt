@@ -45,7 +45,5 @@ constructor(val context: Context, protected val list: MutableList<T>) : Recycler
     notifyItemInserted(position)
   }
 
-  override fun getItemCount(): Int {
-    return list.size
-  }
+  override fun getItemCount(): Int = list.size
 }

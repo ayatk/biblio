@@ -108,12 +108,10 @@ class NovelBodyActivity : BaseActivity() {
 
   inner class NovelBodyPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-    override fun getItem(position: Int): Fragment? {
-      return NovelBodyFragment.newInstance(novel, position + 1)
-    }
+    override fun getItem(position: Int): Fragment
+        = NovelBodyFragment.newInstance(novel, position + 1)
 
-    override fun getCount(): Int {
-      return novel.totalPages
-    }
+    override fun getCount(): Int
+        = novel.totalPages
   }
 }

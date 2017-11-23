@@ -57,10 +57,6 @@ class SearchActivity : BaseActivity() {
         object : ActionBarDrawerToggle(this, binding.drawerLayout, R.string.drawer_open,
             R.string.drawer_close) {
 
-          override fun onDrawerClosed(view: View) {
-            super.onDrawerClosed(view)
-          }
-
           override fun onDrawerOpened(drawerView: View) {
             super.onDrawerOpened(drawerView)
             searchView.clearFocus()
@@ -88,9 +84,7 @@ class SearchActivity : BaseActivity() {
 
     val menuItem = menu.findItem(R.id.action_search)
     menuItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-      override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-        return true
-      }
+      override fun onMenuItemActionExpand(item: MenuItem): Boolean = true
 
       override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
         onBackPressed()
@@ -142,9 +136,8 @@ class SearchActivity : BaseActivity() {
           context, list) {
 
     override fun onCreateViewHolder(
-        parent: ViewGroup, viewType: Int): BindingHolder<ViewSearchResultItemBinding> {
-      return BindingHolder(context, parent, layout.view_search_result_item)
-    }
+        parent: ViewGroup, viewType: Int): BindingHolder<ViewSearchResultItemBinding>
+        = BindingHolder(context, parent, layout.view_search_result_item)
 
     override fun onBindViewHolder(
         holder: BindingHolder<ViewSearchResultItemBinding>, position: Int) {

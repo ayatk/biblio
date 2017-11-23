@@ -29,9 +29,6 @@ enum class Page constructor(
   RANKING(R.id.nav_ranking, R.string.ranking, true, RankingFragment::class.java.simpleName) {
     override fun createFragment() = RankingFragment.newInstance()
   },
-  //  SEARCH(R.id.nav_search, R.string.search, true, SearchFragment::class.java.simpleName) {
-//    override fun createFragment() = SearchFragment.newInstance()
-//  },
   SETTINGS(R.id.nav_settings, R.string.setting, true, SettingFragment::class.java.simpleName) {
     override fun createFragment() = SettingFragment.newInstance()
   };
