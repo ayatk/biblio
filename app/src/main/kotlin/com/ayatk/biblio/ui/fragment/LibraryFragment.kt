@@ -15,8 +15,8 @@ import android.view.ViewGroup
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.FragmentLibraryBinding
 import com.ayatk.biblio.databinding.ViewLibraryItemBinding
-import com.ayatk.biblio.ui.customview.BindingHolder
-import com.ayatk.biblio.ui.customview.ObservableListRecyclerAdapter
+import com.ayatk.biblio.ui.util.customview.BindingHolder
+import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
 import com.ayatk.biblio.viewmodel.LibraryItemViewModel
 import com.ayatk.biblio.viewmodel.LibraryViewModel
 import javax.inject.Inject

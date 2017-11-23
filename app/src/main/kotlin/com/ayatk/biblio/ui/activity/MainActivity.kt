@@ -14,8 +14,8 @@ import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityMainBinding
 import com.ayatk.biblio.pref.DefaultPrefs
-import com.ayatk.biblio.ui.Page
-import com.ayatk.biblio.ui.helper.BottomNavigationViewHelper
+import com.ayatk.biblio.ui.util.Page
+import com.ayatk.biblio.ui.util.helper.BottomNavigationViewHelper
 
 class MainActivity : BaseActivity() {
 

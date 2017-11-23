@@ -15,7 +15,7 @@ import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.repository.library.LibraryRepository
 import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm_JP
-import com.ayatk.biblio.ui.helper.Navigator
+import com.ayatk.biblio.ui.util.helper.Navigator
 import mabbas007.tagsedittext.TagsEditText
 
 class NovelInfoViewModel

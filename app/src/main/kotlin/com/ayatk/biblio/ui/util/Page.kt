@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.ui
+package com.ayatk.biblio.ui.util
 
 import android.support.annotation.MenuRes
 import android.support.annotation.StringRes

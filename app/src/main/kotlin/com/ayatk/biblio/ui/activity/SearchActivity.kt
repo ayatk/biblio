@@ -24,8 +24,8 @@ import com.ayatk.biblio.R
 import com.ayatk.biblio.R.layout
 import com.ayatk.biblio.databinding.ActivitySearchBinding
 import com.ayatk.biblio.databinding.ViewSearchResultItemBinding
-import com.ayatk.biblio.ui.customview.BindingHolder
-import com.ayatk.biblio.ui.customview.ObservableListRecyclerAdapter
+import com.ayatk.biblio.ui.util.customview.BindingHolder
+import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
 import com.ayatk.biblio.viewmodel.SearchResultItemViewModel
 import com.ayatk.biblio.viewmodel.SearchViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -16,7 +16,7 @@ import com.ayatk.biblio.databinding.ActivityNovelDetailBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.fragment.NovelInfoFragment
 import com.ayatk.biblio.ui.fragment.NovelTableFragment
-import com.ayatk.biblio.ui.helper.Navigator
+import com.ayatk.biblio.ui.util.helper.Navigator
 import com.ayatk.biblio.viewmodel.NovelDetailViewModel
 import org.parceler.Parcels
 import javax.inject.Inject

@@ -2,7 +2,7 @@
  * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.ui.customview
+package com.ayatk.biblio.ui.util.customview
 
 import android.content.Context
 import android.databinding.DataBindingUtil
