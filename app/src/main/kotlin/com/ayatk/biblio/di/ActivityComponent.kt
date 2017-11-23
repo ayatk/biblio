@@ -5,7 +5,7 @@
 package com.ayatk.biblio.di
 
 import com.ayatk.biblio.di.scope.ActivityScope
-import com.ayatk.biblio.ui.activity.MainActivity
+import com.ayatk.biblio.ui.activity.HomeActivity
 import com.ayatk.biblio.ui.activity.NovelBodyActivity
 import com.ayatk.biblio.ui.activity.NovelDetailActivity
 import com.ayatk.biblio.ui.activity.SearchActivity
@@ -15,7 +15,7 @@ import dagger.Subcomponent
 @Subcomponent(modules = arrayOf(ActivityModule::class))
 interface ActivityComponent {
 
-  fun inject(activity: MainActivity)
+  fun inject(activity: HomeActivity)
 
   fun inject(activity: NovelDetailActivity)
 

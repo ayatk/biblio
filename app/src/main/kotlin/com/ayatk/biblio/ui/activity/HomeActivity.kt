@@ -17,7 +17,7 @@ import com.ayatk.biblio.pref.DefaultPrefs
 import com.ayatk.biblio.ui.util.Page
 import com.ayatk.biblio.ui.util.helper.BottomNavigationViewHelper
 
-class MainActivity : BaseActivity() {
+class HomeActivity : BaseActivity() {
 
   private val binding: ActivityMainBinding by lazy {
     DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
@@ -75,6 +75,6 @@ class MainActivity : BaseActivity() {
   }
 
   companion object {
-    fun createIntent(context: Context): Intent = Intent(context, MainActivity::class.java)
+    fun createIntent(context: Context): Intent = Intent(context, HomeActivity::class.java)
   }
 }
