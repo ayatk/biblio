@@ -16,8 +16,8 @@ import com.ayatk.biblio.R.layout
 import com.ayatk.biblio.databinding.FragmentNovelTableBinding
 import com.ayatk.biblio.databinding.ViewTableItemBinding
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.customview.BindingHolder
-import com.ayatk.biblio.ui.customview.ObservableListRecyclerAdapter
+import com.ayatk.biblio.ui.util.customview.BindingHolder
+import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
 import com.ayatk.biblio.viewmodel.NovelTableItemViewModel
 import com.ayatk.biblio.viewmodel.NovelTableViewModel
 import org.parceler.Parcels

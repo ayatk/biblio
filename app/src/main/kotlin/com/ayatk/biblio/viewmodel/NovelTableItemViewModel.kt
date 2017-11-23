@@ -8,7 +8,7 @@ import android.databinding.BaseObservable
 import android.view.View
 import com.ayatk.biblio.model.NovelTable
 import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm
-import com.ayatk.biblio.ui.helper.Navigator
+import com.ayatk.biblio.ui.util.helper.Navigator
 
 class NovelTableItemViewModel(
     private val navigator: Navigator,

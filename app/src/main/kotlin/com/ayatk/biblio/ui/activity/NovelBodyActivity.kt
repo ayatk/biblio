@@ -19,7 +19,7 @@ import com.ayatk.biblio.event.NovelBodySelectedEvent
 import com.ayatk.biblio.event.SubtitleChangeEvent
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.fragment.NovelBodyFragment
-import com.ayatk.biblio.ui.helper.Navigator
+import com.ayatk.biblio.ui.util.helper.Navigator
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.parceler.Parcels
