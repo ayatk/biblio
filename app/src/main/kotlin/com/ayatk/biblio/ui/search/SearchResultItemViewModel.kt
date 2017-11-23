@@ -20,7 +20,7 @@ import timber.log.Timber
 class SearchResultItemViewModel(
     libraries: List<Library>,
     val novel: Novel,
-    val libraryRepository: LibraryRepository) : BaseObservable(), ViewModel {
+    private val libraryRepository: LibraryRepository) : BaseObservable(), ViewModel {
 
   @Bindable
   var downloadVisibility: Int = View.VISIBLE

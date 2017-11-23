@@ -18,8 +18,7 @@ import com.ayatk.biblio.ui.detail.NovelDetailActivity
 import javax.inject.Inject
 
 @ActivityScope
-class Navigator @Inject
-constructor(val activity: AppCompatActivity) {
+class Navigator @Inject constructor(private val activity: AppCompatActivity) {
 
   fun navigateToNovelDetail(novel: Novel) {
     activity.startActivity(NovelDetailActivity.createIntent(activity, novel))
@@ -40,12 +39,5 @@ constructor(val activity: AppCompatActivity) {
         .build()
 
     intent.launchUrl(activity, Uri.parse(url))
-  }
-
-  interface ConfirmDialogListener {
-
-    fun onClickPositiveButton()
-
-    fun onClickNegativeButton()
   }
 }
