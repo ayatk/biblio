@@ -2,7 +2,7 @@
  * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.view.activity
+package com.ayatk.biblio.ui.activity
 
 import android.content.Context
 import android.content.Intent
@@ -14,9 +14,9 @@ import android.support.v4.app.FragmentPagerAdapter
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityNovelDetailBinding
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.view.fragment.NovelInfoFragment
-import com.ayatk.biblio.view.fragment.NovelTableFragment
-import com.ayatk.biblio.view.helper.Navigator
+import com.ayatk.biblio.ui.fragment.NovelInfoFragment
+import com.ayatk.biblio.ui.fragment.NovelTableFragment
+import com.ayatk.biblio.ui.helper.Navigator
 import com.ayatk.biblio.viewmodel.NovelDetailViewModel
 import org.parceler.Parcels
 import javax.inject.Inject

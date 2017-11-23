@@ -2,17 +2,17 @@
  * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.view
+package com.ayatk.biblio.ui
 
 import android.support.annotation.MenuRes
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.view.MenuItem
 import com.ayatk.biblio.R
-import com.ayatk.biblio.view.fragment.BookmarkFragment
-import com.ayatk.biblio.view.fragment.LibraryFragment
-import com.ayatk.biblio.view.fragment.RankingFragment
-import com.ayatk.biblio.view.fragment.SettingFragment
+import com.ayatk.biblio.ui.fragment.BookmarkFragment
+import com.ayatk.biblio.ui.fragment.LibraryFragment
+import com.ayatk.biblio.ui.fragment.RankingFragment
+import com.ayatk.biblio.ui.fragment.SettingFragment
 
 
 enum class Page constructor(

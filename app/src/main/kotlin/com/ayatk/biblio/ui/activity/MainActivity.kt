@@ -2,7 +2,7 @@
  * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.view.activity
+package com.ayatk.biblio.ui.activity
 
 import android.content.Context
 import android.content.Intent
@@ -14,8 +14,8 @@ import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityMainBinding
 import com.ayatk.biblio.pref.DefaultPrefs
-import com.ayatk.biblio.view.Page
-import com.ayatk.biblio.view.helper.BottomNavigationViewHelper
+import com.ayatk.biblio.ui.Page
+import com.ayatk.biblio.ui.helper.BottomNavigationViewHelper
 
 class MainActivity : BaseActivity() {
 

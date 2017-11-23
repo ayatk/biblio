@@ -2,7 +2,7 @@
  * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.view.activity
+package com.ayatk.biblio.ui.activity
 
 import android.content.Context
 import android.content.Intent
@@ -18,8 +18,8 @@ import com.ayatk.biblio.databinding.ActivityNovelBodyBinding
 import com.ayatk.biblio.event.NovelBodySelectedEvent
 import com.ayatk.biblio.event.SubtitleChangeEvent
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.view.fragment.NovelBodyFragment
-import com.ayatk.biblio.view.helper.Navigator
+import com.ayatk.biblio.ui.fragment.NovelBodyFragment
+import com.ayatk.biblio.ui.helper.Navigator
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.parceler.Parcels

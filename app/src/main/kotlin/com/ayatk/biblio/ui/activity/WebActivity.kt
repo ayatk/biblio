@@ -2,7 +2,7 @@
  * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.view.activity
+package com.ayatk.biblio.ui.activity
 
 import android.content.Context
 import android.content.Intent

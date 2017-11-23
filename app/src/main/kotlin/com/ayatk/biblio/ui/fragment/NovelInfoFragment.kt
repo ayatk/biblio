@@ -2,7 +2,7 @@
  * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.view.fragment
+package com.ayatk.biblio.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import com.ayatk.biblio.databinding.FragmentNovelInfoBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.repository.library.LibraryRepository
-import com.ayatk.biblio.view.helper.Navigator
+import com.ayatk.biblio.ui.helper.Navigator
 import com.ayatk.biblio.viewmodel.NovelInfoViewModel
 import org.parceler.Parcels
 import javax.inject.Inject

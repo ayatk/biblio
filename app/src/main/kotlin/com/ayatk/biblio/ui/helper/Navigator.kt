@@ -2,7 +2,7 @@
  * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.view.helper
+package com.ayatk.biblio.ui.helper
 
 import android.net.Uri
 import android.support.customtabs.CustomTabsIntent
@@ -13,8 +13,8 @@ import android.webkit.URLUtil
 import com.ayatk.biblio.R
 import com.ayatk.biblio.di.scope.ActivityScope
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.view.activity.NovelBodyActivity
-import com.ayatk.biblio.view.activity.NovelDetailActivity
+import com.ayatk.biblio.ui.activity.NovelBodyActivity
+import com.ayatk.biblio.ui.activity.NovelDetailActivity
 import javax.inject.Inject
 
 @ActivityScope

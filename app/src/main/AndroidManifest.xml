@@ -24,7 +24,7 @@
         android:value="${FABRIC_API_KEY}"/>
 
     <activity
-        android:name=".view.activity.MainActivity"
+        android:name=".ui.activity.MainActivity"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.NoActionBar">
       <intent-filter>
@@ -34,28 +34,28 @@
       </intent-filter>
     </activity>
     <activity
-        android:name=".view.activity.NovelDetailActivity"
+        android:name=".ui.activity.NovelDetailActivity"
         android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
         android:exported="false"
         android:label="@string/novel_detail"
         android:launchMode="singleTask"
-        android:parentActivityName=".view.activity.MainActivity"
+        android:parentActivityName=".ui.activity.MainActivity"
         android:theme="@style/AppTheme.NoActionBar"/>
 
     <activity
-        android:name=".view.activity.NovelBodyActivity"
+        android:name=".ui.activity.NovelBodyActivity"
         android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
         android:exported="false"
         android:label="@string/novel_detail"
         android:launchMode="singleTask"
-        android:parentActivityName=".view.activity.NovelDetailActivity"
+        android:parentActivityName=".ui.activity.NovelDetailActivity"
         android:theme="@style/AppTheme.NoActionBar"/>
 
     <activity
-        android:name=".view.activity.WebActivity"
+        android:name=".ui.activity.WebActivity"
         android:theme="@style/AppTheme.NoActionBar"/>
     <activity
-        android:name=".view.activity.SearchActivity"
+        android:name=".ui.activity.SearchActivity"
         android:theme="@style/AppTheme.NoActionBar"/>
   </application>
 
