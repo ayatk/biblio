@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.ui.activity
+package com.ayatk.biblio.ui.detail
 
 import android.content.Context
 import android.content.Intent
@@ -14,10 +14,10 @@ import android.support.v4.app.FragmentPagerAdapter
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityNovelDetailBinding
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.fragment.NovelInfoFragment
-import com.ayatk.biblio.ui.fragment.NovelTableFragment
+import com.ayatk.biblio.ui.BaseActivity
+import com.ayatk.biblio.ui.detail.info.NovelInfoFragment
+import com.ayatk.biblio.ui.detail.table.NovelTableFragment
 import com.ayatk.biblio.ui.util.helper.Navigator
-import com.ayatk.biblio.viewmodel.NovelDetailViewModel
 import org.parceler.Parcels
 import javax.inject.Inject
 
@@ -31,7 +31,8 @@ class NovelDetailActivity : BaseActivity() {
   }
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(intent.getParcelableExtra(EXTRA_NOVEL))
+    Parcels.unwrap<Novel>(intent.getParcelableExtra(
+        EXTRA_NOVEL))
   }
 
   private val viewModel: NovelDetailViewModel by lazy {

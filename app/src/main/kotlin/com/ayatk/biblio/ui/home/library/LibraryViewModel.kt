@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.viewmodel
+package com.ayatk.biblio.ui.home.library
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
@@ -15,6 +15,7 @@ import com.ayatk.biblio.pref.DefaultPrefsWrapper
 import com.ayatk.biblio.repository.library.LibraryRepository
 import com.ayatk.biblio.repository.novel.NovelRepository
 import com.ayatk.biblio.repository.novel.NovelTableRepository
+import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.ui.util.helper.Navigator
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -61,7 +62,8 @@ class LibraryViewModel
 
   private fun convertToViewModel(libraries: List<Library>): List<LibraryItemViewModel> {
     return libraries.map { library ->
-      LibraryItemViewModel(navigator, library, defaultPrefsWrapper.prefs)
+      LibraryItemViewModel(navigator, library,
+          defaultPrefsWrapper.prefs)
     }
   }
 

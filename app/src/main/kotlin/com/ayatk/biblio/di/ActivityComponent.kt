@@ -5,10 +5,10 @@
 package com.ayatk.biblio.di
 
 import com.ayatk.biblio.di.scope.ActivityScope
-import com.ayatk.biblio.ui.activity.HomeActivity
-import com.ayatk.biblio.ui.activity.NovelBodyActivity
-import com.ayatk.biblio.ui.activity.NovelDetailActivity
-import com.ayatk.biblio.ui.activity.SearchActivity
+import com.ayatk.biblio.ui.body.NovelBodyActivity
+import com.ayatk.biblio.ui.detail.NovelDetailActivity
+import com.ayatk.biblio.ui.home.HomeActivity
+import com.ayatk.biblio.ui.search.SearchActivity
 import dagger.Subcomponent
 
 @ActivityScope

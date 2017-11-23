@@ -5,14 +5,13 @@
 package com.ayatk.biblio.di
 
 import com.ayatk.biblio.di.scope.FragmentScope
-import com.ayatk.biblio.ui.fragment.BookmarkFragment
-import com.ayatk.biblio.ui.fragment.LibraryFragment
-import com.ayatk.biblio.ui.fragment.NovelBodyFragment
-import com.ayatk.biblio.ui.fragment.NovelInfoFragment
-import com.ayatk.biblio.ui.fragment.NovelTableFragment
-import com.ayatk.biblio.ui.fragment.RankingFragment
-import com.ayatk.biblio.ui.fragment.SearchFragment
-import com.ayatk.biblio.ui.fragment.SettingFragment
+import com.ayatk.biblio.ui.body.NovelBodyFragment
+import com.ayatk.biblio.ui.detail.info.NovelInfoFragment
+import com.ayatk.biblio.ui.detail.table.NovelTableFragment
+import com.ayatk.biblio.ui.home.bookmark.BookmarkFragment
+import com.ayatk.biblio.ui.home.library.LibraryFragment
+import com.ayatk.biblio.ui.home.ranking.RankingFragment
+import com.ayatk.biblio.ui.home.setting.SettingFragment
 import dagger.Subcomponent
 
 @FragmentScope
@@ -24,8 +23,6 @@ interface FragmentComponent {
   fun inject(fragment: BookmarkFragment)
 
   fun inject(fragment: RankingFragment)
-
-  fun inject(fragment: SearchFragment)
 
   fun inject(fragment: SettingFragment)
 

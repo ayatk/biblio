@@ -13,8 +13,8 @@ import android.webkit.URLUtil
 import com.ayatk.biblio.R
 import com.ayatk.biblio.di.scope.ActivityScope
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.activity.NovelBodyActivity
-import com.ayatk.biblio.ui.activity.NovelDetailActivity
+import com.ayatk.biblio.ui.body.NovelBodyActivity
+import com.ayatk.biblio.ui.detail.NovelDetailActivity
 import javax.inject.Inject
 
 @ActivityScope

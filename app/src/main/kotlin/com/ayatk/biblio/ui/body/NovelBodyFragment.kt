@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.ui.fragment
+package com.ayatk.biblio.ui.body
 
 import android.content.Context
 import android.os.Bundle
@@ -13,7 +13,7 @@ import com.ayatk.biblio.databinding.FragmentNovelBodyBinding
 import com.ayatk.biblio.event.NovelBodySelectedEvent
 import com.ayatk.biblio.event.SubtitleChangeEvent
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.viewmodel.NovelBodyViewModel
+import com.ayatk.biblio.ui.BaseFragment
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.parceler.Parcels
@@ -27,7 +27,8 @@ class NovelBodyFragment : BaseFragment() {
   private lateinit var binding: FragmentNovelBodyBinding
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL))
+    Parcels.unwrap<Novel>(arguments?.getParcelable(
+        BUNDLE_ARGS_NOVEL))
   }
 
   private val page: Int by lazy {

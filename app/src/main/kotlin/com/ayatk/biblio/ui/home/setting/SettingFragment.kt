@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.ui.fragment
+package com.ayatk.biblio.ui.home.setting
 
 import android.os.Bundle
 import android.support.v7.preference.PreferenceFragmentCompat
 import com.ayatk.biblio.BuildConfig
 import com.ayatk.biblio.R
-import com.ayatk.biblio.ui.activity.WebActivity
+import com.ayatk.biblio.ui.license.WebActivity
 
 class SettingFragment : PreferenceFragmentCompat() {
 

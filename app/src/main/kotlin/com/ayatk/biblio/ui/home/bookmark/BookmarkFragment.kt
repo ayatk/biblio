@@ -1,23 +1,24 @@
 /*
- * Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
+ * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.ui.fragment
+package com.ayatk.biblio.ui.home.bookmark
 
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ayatk.biblio.databinding.FragmentRankingBinding
+import com.ayatk.biblio.databinding.FragmentBookmarkBinding
+import com.ayatk.biblio.ui.BaseFragment
 
-class RankingFragment : BaseFragment() {
+class BookmarkFragment : BaseFragment() {
 
-  lateinit var binding: FragmentRankingBinding
+  lateinit var binding: FragmentBookmarkBinding
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                             savedInstanceState: Bundle?): View? {
-    binding = FragmentRankingBinding.inflate(inflater, container, false)
+    binding = FragmentBookmarkBinding.inflate(inflater, container, false)
     return binding.root
   }
 
@@ -27,6 +28,6 @@ class RankingFragment : BaseFragment() {
   }
 
   companion object {
-    fun newInstance(): RankingFragment = RankingFragment()
+    fun newInstance(): BookmarkFragment = BookmarkFragment()
   }
 }

@@ -14,7 +14,7 @@
 
     <variable
         name="viewModel"
-        type="com.ayatk.biblio.viewmodel.SearchResultItemViewModel"/>
+        type="com.ayatk.biblio.ui.search.SearchResultItemViewModel"/>
   </data>
 
   <android.support.constraint.ConstraintLayout

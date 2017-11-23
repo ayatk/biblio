@@ -2,7 +2,7 @@
  * Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
  */
 
-package com.ayatk.biblio.ui.activity
+package com.ayatk.biblio.ui.search
 
 import android.content.Context
 import android.content.Intent
@@ -24,10 +24,9 @@ import com.ayatk.biblio.R
 import com.ayatk.biblio.R.layout
 import com.ayatk.biblio.databinding.ActivitySearchBinding
 import com.ayatk.biblio.databinding.ViewSearchResultItemBinding
+import com.ayatk.biblio.ui.BaseActivity
 import com.ayatk.biblio.ui.util.customview.BindingHolder
 import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
-import com.ayatk.biblio.viewmodel.SearchResultItemViewModel
-import com.ayatk.biblio.viewmodel.SearchViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
