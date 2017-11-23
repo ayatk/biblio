@@ -52,7 +52,7 @@
         android:theme="@style/AppTheme.NoActionBar"/>
 
     <activity
-        android:name=".ui.license.WebActivity"
+        android:name=".ui.license.LicenseActivity"
         android:theme="@style/AppTheme.NoActionBar"/>
     <activity
         android:name=".ui.search.SearchActivity"

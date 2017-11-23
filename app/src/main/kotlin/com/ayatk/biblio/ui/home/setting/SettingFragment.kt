@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.support.v7.preference.PreferenceFragmentCompat
 import com.ayatk.biblio.BuildConfig
 import com.ayatk.biblio.R
-import com.ayatk.biblio.ui.license.WebActivity
+import com.ayatk.biblio.ui.license.LicenseActivity
 
 class SettingFragment : PreferenceFragmentCompat() {
 
@@ -16,7 +16,7 @@ class SettingFragment : PreferenceFragmentCompat() {
     addPreferencesFromResource(R.xml.pref)
 
     findPreference("oss_license")?.setOnPreferenceClickListener { _ ->
-      startActivity(WebActivity.createIntent(
+      startActivity(LicenseActivity.createIntent(
           activity, getString(R.string.pref_oss_license), "file:///android_asset/licenses.html"))
       true
     }
