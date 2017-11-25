@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Changed
+- 英語のローカライズに対応 #51
+- Dagger2のAndroid Supportに対応 #50
+
 ## 0.2.2-alpha - 2017-10-27
 ### Changed
 - Android 8.1(API 27)に対応 #46
