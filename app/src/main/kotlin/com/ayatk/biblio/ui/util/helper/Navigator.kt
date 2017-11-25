@@ -4,28 +4,26 @@
 
 package com.ayatk.biblio.ui.util.helper
 
+import android.app.Application
 import android.net.Uri
 import android.support.customtabs.CustomTabsIntent
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.webkit.URLUtil
 import com.ayatk.biblio.R
-import com.ayatk.biblio.di.scope.ActivityScope
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.body.NovelBodyActivity
 import com.ayatk.biblio.ui.detail.NovelDetailActivity
 import javax.inject.Inject
 
-@ActivityScope
-class Navigator @Inject constructor(private val activity: AppCompatActivity) {
+class Navigator @Inject constructor(private val application: Application) {
 
   fun navigateToNovelDetail(novel: Novel) {
-    activity.startActivity(NovelDetailActivity.createIntent(activity, novel))
+    application.startActivity(NovelDetailActivity.createIntent(application, novel))
   }
 
   fun navigateToNovelBody(novel: Novel, page: Int) {
-    activity.startActivity(NovelBodyActivity.createIntent(activity, novel, page))
+    application.startActivity(NovelBodyActivity.createIntent(application, novel, page))
   }
 
   fun navigateToWebPage(url: String) {
@@ -35,9 +33,9 @@ class Navigator @Inject constructor(private val activity: AppCompatActivity) {
 
     val intent = CustomTabsIntent.Builder()
         .setShowTitle(true)
-        .setToolbarColor(ContextCompat.getColor(activity, R.color.app_blue))
+        .setToolbarColor(ContextCompat.getColor(application, R.color.app_blue))
         .build()
 
-    intent.launchUrl(activity, Uri.parse(url))
+    intent.launchUrl(application, Uri.parse(url))
   }
 }

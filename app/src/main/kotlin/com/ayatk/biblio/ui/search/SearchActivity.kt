@@ -16,6 +16,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.OnScrollListener
 import android.support.v7.widget.SearchView
+import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -24,14 +25,14 @@ import com.ayatk.biblio.R
 import com.ayatk.biblio.R.layout
 import com.ayatk.biblio.databinding.ActivitySearchBinding
 import com.ayatk.biblio.databinding.ViewSearchResultItemBinding
-import com.ayatk.biblio.ui.BaseActivity
 import com.ayatk.biblio.ui.util.customview.BindingHolder
 import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
+import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 
-class SearchActivity : BaseActivity() {
+class SearchActivity : DaggerAppCompatActivity() {
 
   @Inject
   lateinit var viewModel: SearchViewModel
@@ -43,7 +44,6 @@ class SearchActivity : BaseActivity() {
   private lateinit var searchView: SearchView
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    component().inject(this)
     super.onCreate(savedInstanceState)
     overridePendingTransition(R.anim.activity_fade_enter, R.anim.activity_fade_exit)
 
@@ -123,6 +123,18 @@ class SearchActivity : BaseActivity() {
       binding.drawerLayout.closeDrawer(GravityCompat.END)
     } else {
       finish()
+    }
+  }
+
+  private fun initBackToolbar(toolbar: Toolbar) {
+    setSupportActionBar(toolbar)
+    supportActionBar?.apply {
+      title = toolbar.title
+      setDisplayHomeAsUpEnabled(true)
+      setDisplayShowHomeEnabled(true)
+      setDisplayShowTitleEnabled(true)
+      setHomeButtonEnabled(true)
+      binding.toolbar.setNavigationOnClickListener { finish() }
     }
   }
 

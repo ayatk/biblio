@@ -4,9 +4,9 @@
 
 package com.ayatk.biblio.di
 
+import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
-import com.ayatk.biblio.App
 import com.ayatk.biblio.data.dao.OrmaDatabaseWrapper
 import com.ayatk.biblio.data.narou.entity.enums.BigGenre
 import com.ayatk.biblio.data.narou.entity.enums.Genre
@@ -28,24 +28,25 @@ import javax.inject.Singleton
 
 
 @Module
-class AppModule(private val app: App) {
+class AppModule(val application: Application) {
 
   @Provides
-  fun provideApplicationContext(): Context = app
+  @Singleton
+  fun provideApplicationContext(): Application = application
 
   @Provides
-  fun provideConnectivityManager(): ConnectivityManager {
-    return app.getSystemService(Context.CONNECTIVITY_SERVICE) as (ConnectivityManager)
-  }
+  fun provideConnectivityManager(application: Application): ConnectivityManager
+      = application.getSystemService(Context.CONNECTIVITY_SERVICE) as (ConnectivityManager)
 
   @Singleton
   @Provides
-  fun provideDefaultPrefs(context: Context): DefaultPrefsWrapper = DefaultPrefsWrapper(context)
+  fun provideDefaultPrefs(application: Application): DefaultPrefsWrapper
+      = DefaultPrefsWrapper(application)
 
   @Singleton
   @Provides
-  fun provideOrmaDatabase(context: Context): OrmaDatabaseWrapper
-      = OrmaDatabaseWrapper(context)
+  fun provideOrmaDatabase(application: Application): OrmaDatabaseWrapper
+      = OrmaDatabaseWrapper(application)
 
   @Singleton
   @Provides

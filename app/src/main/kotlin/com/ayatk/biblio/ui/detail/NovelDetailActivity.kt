@@ -14,25 +14,21 @@ import android.support.v4.app.FragmentPagerAdapter
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityNovelDetailBinding
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.BaseActivity
 import com.ayatk.biblio.ui.detail.info.NovelInfoFragment
 import com.ayatk.biblio.ui.detail.table.NovelTableFragment
 import com.ayatk.biblio.ui.util.helper.Navigator
+import dagger.android.support.DaggerAppCompatActivity
 import org.parceler.Parcels
 import javax.inject.Inject
 
-class NovelDetailActivity : BaseActivity() {
-
-  @Inject
-  lateinit var navigator: Navigator
+class NovelDetailActivity : DaggerAppCompatActivity() {
 
   private val binding: ActivityNovelDetailBinding by lazy {
     DataBindingUtil.setContentView<ActivityNovelDetailBinding>(this, R.layout.activity_novel_detail)
   }
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(intent.getParcelableExtra(
-        EXTRA_NOVEL))
+    Parcels.unwrap<Novel>(intent.getParcelableExtra(EXTRA_NOVEL))
   }
 
   private val viewModel: NovelDetailViewModel by lazy {
@@ -41,7 +37,6 @@ class NovelDetailActivity : BaseActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    component().inject(this)
     binding.viewModel = viewModel
 
     initToolbar()

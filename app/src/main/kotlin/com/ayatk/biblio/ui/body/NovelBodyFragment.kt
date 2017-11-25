@@ -4,7 +4,6 @@
 
 package com.ayatk.biblio.ui.body
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,13 +12,13 @@ import com.ayatk.biblio.databinding.FragmentNovelBodyBinding
 import com.ayatk.biblio.event.NovelBodySelectedEvent
 import com.ayatk.biblio.event.SubtitleChangeEvent
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.BaseFragment
+import dagger.android.support.DaggerFragment
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.parceler.Parcels
 import javax.inject.Inject
 
-class NovelBodyFragment : BaseFragment() {
+class NovelBodyFragment : DaggerFragment() {
 
   @Inject
   lateinit var viewModel: NovelBodyViewModel
@@ -27,8 +26,7 @@ class NovelBodyFragment : BaseFragment() {
   private lateinit var binding: FragmentNovelBodyBinding
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(arguments?.getParcelable(
-        BUNDLE_ARGS_NOVEL))
+    Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL))
   }
 
   private val page: Int by lazy {
@@ -41,11 +39,6 @@ class NovelBodyFragment : BaseFragment() {
     binding.viewModel = viewModel
 
     return binding.root
-  }
-
-  override fun onAttach(context: Context?) {
-    super.onAttach(context)
-    component().inject(this)
   }
 
   override fun onResume() {

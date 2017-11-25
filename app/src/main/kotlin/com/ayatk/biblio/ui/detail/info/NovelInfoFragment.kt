@@ -4,7 +4,6 @@
 
 package com.ayatk.biblio.ui.detail.info
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,12 +11,12 @@ import android.view.ViewGroup
 import com.ayatk.biblio.databinding.FragmentNovelInfoBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.repository.library.LibraryRepository
-import com.ayatk.biblio.ui.BaseFragment
 import com.ayatk.biblio.ui.util.helper.Navigator
+import dagger.android.support.DaggerFragment
 import org.parceler.Parcels
 import javax.inject.Inject
 
-class NovelInfoFragment : BaseFragment() {
+class NovelInfoFragment : DaggerFragment() {
 
   private lateinit var binding: FragmentNovelInfoBinding
 
@@ -47,11 +46,6 @@ class NovelInfoFragment : BaseFragment() {
   override fun onResume() {
     super.onResume()
     viewModel.start()
-  }
-
-  override fun onAttach(context: Context?) {
-    super.onAttach(context)
-    component().inject(this)
   }
 
   companion object {
