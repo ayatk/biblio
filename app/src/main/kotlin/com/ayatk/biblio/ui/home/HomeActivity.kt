@@ -9,17 +9,20 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Build
 import android.os.Bundle
+import android.support.annotation.IdRes
+import android.support.annotation.LayoutRes
+import android.support.v4.app.Fragment
 import android.view.Menu
 import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityMainBinding
 import com.ayatk.biblio.pref.DefaultPrefs
-import com.ayatk.biblio.ui.BaseActivity
 import com.ayatk.biblio.ui.search.SearchActivity
 import com.ayatk.biblio.ui.util.Page
 import com.ayatk.biblio.ui.util.helper.BottomNavigationViewHelper
+import dagger.android.support.DaggerAppCompatActivity
 
-class HomeActivity : BaseActivity() {
+class HomeActivity : DaggerAppCompatActivity() {
 
   private val binding: ActivityMainBinding by lazy {
     DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
@@ -27,7 +30,6 @@ class HomeActivity : BaseActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    component().inject(this)
 
     DefaultPrefs.get(this).showTagAtLibrary
 
@@ -75,6 +77,13 @@ class HomeActivity : BaseActivity() {
     binding.toolbar.setTitle(page.titleResId)
     toggleToolbarElevation(page.toggleToolbar)
     replaceFragment(page.createFragment(), R.id.container)
+  }
+
+  private fun replaceFragment(fragment: Fragment, @IdRes @LayoutRes layoutResId: Int) {
+    supportFragmentManager.beginTransaction()
+        .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
+        .replace(layoutResId, fragment, fragment.javaClass.simpleName)
+        .commit()
   }
 
   companion object {

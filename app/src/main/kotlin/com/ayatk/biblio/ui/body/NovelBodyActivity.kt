@@ -12,20 +12,21 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
+import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityNovelBodyBinding
 import com.ayatk.biblio.event.NovelBodySelectedEvent
 import com.ayatk.biblio.event.SubtitleChangeEvent
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.BaseActivity
 import com.ayatk.biblio.ui.util.helper.Navigator
+import dagger.android.support.DaggerAppCompatActivity
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.parceler.Parcels
 import javax.inject.Inject
 
-class NovelBodyActivity : BaseActivity() {
+class NovelBodyActivity : DaggerAppCompatActivity() {
 
   @Inject
   lateinit var navigator: Navigator
@@ -35,8 +36,7 @@ class NovelBodyActivity : BaseActivity() {
   }
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(intent.getParcelableExtra(
-        EXTRA_NOVEL))
+    Parcels.unwrap<Novel>(intent.getParcelableExtra(EXTRA_NOVEL))
   }
 
   private val page: Int by lazy {
@@ -47,7 +47,6 @@ class NovelBodyActivity : BaseActivity() {
     super.onCreate(savedInstanceState)
 
     initBackToolbar(binding.toolbar)
-    component().inject(this)
 
     EventBus.getDefault().post(NovelBodySelectedEvent(page))
 
@@ -87,6 +86,17 @@ class NovelBodyActivity : BaseActivity() {
       }
     }
     return super.onOptionsItemSelected(item)
+  }
+
+  private fun initBackToolbar(toolbar: Toolbar) {
+    setSupportActionBar(toolbar)
+    supportActionBar?.apply {
+      title = toolbar.title
+      setDisplayHomeAsUpEnabled(true)
+      setDisplayShowHomeEnabled(true)
+      setDisplayShowTitleEnabled(true)
+      setHomeButtonEnabled(true)
+    }
   }
 
   @Subscribe

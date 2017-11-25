@@ -15,12 +15,12 @@ import android.view.ViewGroup
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.FragmentLibraryBinding
 import com.ayatk.biblio.databinding.ViewLibraryItemBinding
-import com.ayatk.biblio.ui.BaseFragment
 import com.ayatk.biblio.ui.util.customview.BindingHolder
 import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
+import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class LibraryFragment : BaseFragment() {
+class LibraryFragment : DaggerFragment() {
 
   lateinit var binding: FragmentLibraryBinding
 
@@ -38,11 +38,6 @@ class LibraryFragment : BaseFragment() {
     initRecyclerView()
 
     return binding.root
-  }
-
-  override fun onAttach(context: Context?) {
-    super.onAttach(context)
-    component().inject(this)
   }
 
   override fun onResume() {

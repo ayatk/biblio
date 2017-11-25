@@ -62,8 +62,7 @@ class LibraryViewModel
 
   private fun convertToViewModel(libraries: List<Library>): List<LibraryItemViewModel> {
     return libraries.map { library ->
-      LibraryItemViewModel(navigator, library,
-          defaultPrefsWrapper.prefs)
+      LibraryItemViewModel(navigator, library, defaultPrefsWrapper.prefs)
     }
   }
 

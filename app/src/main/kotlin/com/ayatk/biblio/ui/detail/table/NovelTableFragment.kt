@@ -16,13 +16,13 @@ import com.ayatk.biblio.R.layout
 import com.ayatk.biblio.databinding.FragmentNovelTableBinding
 import com.ayatk.biblio.databinding.ViewTableItemBinding
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.BaseFragment
 import com.ayatk.biblio.ui.util.customview.BindingHolder
 import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
+import dagger.android.support.DaggerFragment
 import org.parceler.Parcels
 import javax.inject.Inject
 
-class NovelTableFragment : BaseFragment() {
+class NovelTableFragment : DaggerFragment() {
 
   @Inject
   lateinit var viewModel: NovelTableViewModel
@@ -45,11 +45,6 @@ class NovelTableFragment : BaseFragment() {
   override fun onResume() {
     super.onResume()
     viewModel.start(novel)
-  }
-
-  override fun onAttach(context: Context?) {
-    super.onAttach(context)
-    component().inject(this)
   }
 
   private fun initRecyclerView() {
