@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
+  -->
+
+<resources>
+  <!-- App Info -->
+  <string name="app_name">ビブリオ</string>
+
+  <!-- Buttom Navigation -->
+  <string name="library">ライブラリ</string>
+  <string name="bookmark">しおり</string>
+  <string name="ranking">ランキング</string>
+  <string name="search">検索</string>
+  <string name="setting">設定</string>
+
+  <!-- library -->
+  <string name="empty_library">ダウンロードされた小説がありません\n\n小説を検索してライブラリに追加しましょう</string>
+  <string name="library_last_update">最終更新: %1$s</string>
+  <string name="add_novels">小説を追加</string>
+
+  <string name="series">連載中</string>
+  <string name="series_end">完結</string>
+  <string name="short_story">短編</string>
+  <string name="novel_progress">%1$d/%2$d</string>
+  <string name="novel_total_pages">全%1$d部</string>
+
+  <!-- novel detail -->
+  <string name="novel_detail">Novel Detail</string>
+  <string name="novel_index_title">目次</string>
+  <string name="novel_info_title">小説情報</string>
+
+  <!-- Genre -->
+  <string name="genre_love_diff_world">異世界 [恋愛]</string>
+  <string name="genre_love_real_world">現実世界 [恋愛]</string>
+  <string name="genre_fantasy_high">ハイファンタジー [ファンタジー]</string>
+  <string name="genre_fantasy_low">ローファンタジー [ファンタジー]</string>
+  <string name="genre_literal_pure">純文学 [文学]</string>
+  <string name="genre_literal_drama">ヒューマンドラマ [文学]</string>
+  <string name="genre_literal_history">歴史 [文学]</string>
+  <string name="genre_literal_detective">推理 [文学]</string>
+  <string name="genre_literal_horror">ホラー [文学]</string>
+  <string name="genre_literal_action">アクション [文学]</string>
+  <string name="genre_literal_comedy">コメディ [文学]</string>
+  <string name="genre_sf_vr">VRゲーム [SF]</string>
+  <string name="genre_sf_space">宇宙 [SF]</string>
+  <string name="genre_sf_science">空想科学 [SF]</string>
+  <string name="genre_sf_panic">パニック [SF]</string>
+  <string name="genre_other_fairytale">童話 [その他]</string>
+  <string name="genre_other_poem">詩 [その他]</string>
+  <string name="genre_other_essay">エッセイ [その他]</string>
+  <string name="genre_other_replay">リプレイ [その他]</string>
+  <string name="genre_other">その他 [その他]</string>
+  <string name="genre_nongenre">ノンジャンル [ノンジャンル]</string>
+
+  <!-- Sites -->
+  <string name="site_narou">小説家になろう</string>
+  <string name="site_nocturne_moonlight">ノクターン･ムーンライト</string>
+
+  <!-- Preference -->
+  <string name="pref_category_general">一般</string>
+  <string name="pref_category_other">その他</string>
+
+  <string name="pref_oss_license">オープンソースライセンス</string>
+  <string name="pref_version">バージョン</string>
+  <string name="pref_show_tag_at_library">小説一覧にタグを表示する</string>
+  <string name="close">閉じる</string>
+
+  <string name="search_hint">小説を検索</string>
+  <string name="filter">フイルター</string>
+
+  <!-- Navigation drawer -->
+  <string name="drawer_open">開く</string>
+  <string name="drawer_close">閉じる</string>
+</resources>
