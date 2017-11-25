@@ -54,7 +54,7 @@
             android:layout_marginTop="0dp"
             android:background="@drawable/tag"
             android:padding="@dimen/space_4dp"
-            android:text="@{viewModel.novel.publisher.title}"
+            android:text="@{viewModel.novel.publisher.siteName}"
             android:textSize="12sp"
             app:layout_constraintLeft_toRightOf="@+id/novel_type"
             app:layout_constraintTop_toTopOf="parent"
