@@ -64,3 +64,8 @@
     @org.greenrobot.eventbus.Subscribe <methods>;
 }
 -keep enum org.greenrobot.eventbus.ThreadMode { *; }
+
+# ----------------------------------------
+# Dagger2
+# ----------------------------------------
+-dontwarn com.google.errorprone.annotations.*
