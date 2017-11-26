@@ -28,7 +28,7 @@ class LibraryFragment : DaggerFragment() {
   lateinit var viewModel: LibraryViewModel
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                            savedInstanceState: Bundle?): View? {
+      savedInstanceState: Bundle?): View? {
     binding = FragmentLibraryBinding.inflate(inflater, container, false)
     binding.viewModel = viewModel
 
@@ -66,7 +66,8 @@ class LibraryFragment : DaggerFragment() {
   private inner class LibraryAdapter constructor(
       context: Context, list: ObservableList<LibraryItemViewModel>) :
       ObservableListRecyclerAdapter<LibraryItemViewModel, BindingHolder<ViewLibraryItemBinding>>(
-          context, list) {
+          context, list
+      ) {
 
     init {
       setHasStableIds(true)

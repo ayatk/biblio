@@ -43,7 +43,8 @@ class NovelTableRemoteDataSource
   }
 
   private fun convertNarouToModel(
-      novel: Novel, narouTables: List<NarouNovelTable>): List<NovelTable> {
+      novel: Novel, narouTables: List<NarouNovelTable>
+  ): List<NovelTable> {
     return narouTables.map {
       NovelTable(
           id = "${novel.code}-${it.id}",

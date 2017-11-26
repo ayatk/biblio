@@ -16,7 +16,7 @@ class RankingFragment : DaggerFragment() {
   lateinit var binding: FragmentRankingBinding
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                            savedInstanceState: Bundle?): View? {
+      savedInstanceState: Bundle?): View? {
     binding = FragmentRankingBinding.inflate(inflater, container, false)
     return binding.root
   }

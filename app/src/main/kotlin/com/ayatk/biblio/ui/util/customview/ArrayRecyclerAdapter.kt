@@ -8,8 +8,9 @@ import android.content.Context
 import android.support.annotation.UiThread
 import android.support.v7.widget.RecyclerView
 
-abstract class ArrayRecyclerAdapter<T, VH : RecyclerView.ViewHolder>
-constructor(val context: Context, protected val list: MutableList<T>) : RecyclerView.Adapter<VH>() {
+abstract class ArrayRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(
+    val context: Context, protected val list: MutableList<T>
+) : RecyclerView.Adapter<VH>() {
 
   @UiThread
   fun reset(items: Collection<T>) {

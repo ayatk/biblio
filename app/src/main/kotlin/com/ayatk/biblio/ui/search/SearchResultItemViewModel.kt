@@ -13,7 +13,7 @@ import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.repository.library.LibraryRepository
 import com.ayatk.biblio.ui.ViewModel
-import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm
+import com.ayatk.biblio.util.DateFormat
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
 
@@ -28,7 +28,7 @@ class SearchResultItemViewModel(
   @Bindable
   var downloadedVisibility: Int = View.GONE
 
-  val lastUpdate: String = FORMAT_yyyyMMdd_kkmm.format(novel.lastUpdateDate)
+  val lastUpdate: String = DateFormat.yyyyMMddkkmm.format(novel.lastUpdateDate)
 
   val isShortStory = novel.novelState == NovelState.SHORT_STORY
 

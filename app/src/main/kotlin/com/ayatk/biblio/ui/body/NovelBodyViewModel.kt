@@ -13,8 +13,9 @@ import com.ayatk.biblio.repository.novel.NovelBodyRepository
 import com.ayatk.biblio.ui.ViewModel
 import javax.inject.Inject
 
-class NovelBodyViewModel
-@Inject constructor(private val repository: NovelBodyRepository) : BaseObservable(), ViewModel {
+class NovelBodyViewModel @Inject constructor(
+    private val repository: NovelBodyRepository
+) : BaseObservable(), ViewModel {
 
   @Bindable
   var novelBody: NovelBody = NovelBody()

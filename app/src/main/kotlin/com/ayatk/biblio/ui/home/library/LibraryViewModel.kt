@@ -23,15 +23,17 @@ import io.reactivex.rxkotlin.toObservable
 import timber.log.Timber
 import javax.inject.Inject
 
-class LibraryViewModel
-@Inject constructor(
+class LibraryViewModel @Inject constructor(
     private val navigator: Navigator,
     private val libraryRepository: LibraryRepository,
     private val novelRepository: NovelRepository,
     private val novelTableRepository: NovelTableRepository,
-    private val defaultPrefsWrapper: DefaultPrefsWrapper) : BaseObservable(), ViewModel {
+    private val defaultPrefsWrapper: DefaultPrefsWrapper
+) : BaseObservable(), ViewModel {
 
-  private val TAG = LibraryItemViewModel::class.java.simpleName
+  companion object {
+    private val TAG = LibraryItemViewModel::class.java.simpleName
+  }
 
   var libraryViewModels = ObservableArrayList<LibraryItemViewModel>()
 
@@ -79,18 +81,22 @@ class LibraryViewModel
             { viewModel ->
               if (refresh) {
                 Publisher.values().map { pub ->
-                  novelRepository.findAll(viewModel
-                      .filter { it.library.novel.publisher == pub }
-                      .map { it.library.novel.code }, pub)
+                  novelRepository.findAll(
+                      viewModel
+                          .filter { it.library.novel.publisher == pub }
+                          .map { it.library.novel.code }, pub
+                  )
                       .subscribe()
                 }
                 viewModel.toObservable()
                     .concatMap { novelTableRepository.findAll(it.library.novel).toObservable() }
-                    .subscribe({
-                      refreshing = false
-                      novelRepository.isDirty = false
-                      novelTableRepository.isDirty = false
-                    })
+                    .subscribe(
+                        {
+                          refreshing = false
+                          novelRepository.isDirty = false
+                          novelTableRepository.isDirty = false
+                        }
+                    )
               }
               renderLibraries(viewModel)
             },

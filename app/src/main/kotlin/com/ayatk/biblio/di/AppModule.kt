@@ -12,6 +12,7 @@ import com.ayatk.biblio.data.narou.entity.enums.BigGenre
 import com.ayatk.biblio.data.narou.entity.enums.Genre
 import com.ayatk.biblio.data.narou.service.NarouApiService
 import com.ayatk.biblio.data.narou.service.NarouService
+import com.ayatk.biblio.data.narou.util.HtmlUtil
 import com.ayatk.biblio.pref.DefaultPrefsWrapper
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -46,6 +47,10 @@ class AppModule(val application: Application) {
   @Provides
   fun provideOrmaDatabase(application: Application): OrmaDatabaseWrapper
       = OrmaDatabaseWrapper(application)
+
+  @Singleton
+  @Provides
+  fun provideHtmlUtil(): HtmlUtil = HtmlUtil()
 
   @Singleton
   @Provides
@@ -88,10 +93,14 @@ class AppModule(val application: Application) {
   private fun createGson(): Gson {
     return GsonBuilder()
         .setDateFormat("yyyy-MM-dd HH:mm:ss")
-        .registerTypeAdapter(BigGenre::class.java,
-            JsonDeserializer { jsonElement, _, _ -> BigGenre.of(jsonElement.asInt) })
-        .registerTypeAdapter(Genre::class.java,
-            JsonDeserializer { jsonElement, _, _ -> Genre.of(jsonElement.asInt) })
+        .registerTypeAdapter(
+            BigGenre::class.java,
+            JsonDeserializer { jsonElement, _, _ -> BigGenre.of(jsonElement.asInt) }
+        )
+        .registerTypeAdapter(
+            Genre::class.java,
+            JsonDeserializer { jsonElement, _, _ -> Genre.of(jsonElement.asInt) }
+        )
         .create()
   }
 }

@@ -53,8 +53,10 @@ class SearchActivity : DaggerAppCompatActivity() {
         .subscribe({ visibility -> binding.searchResult.visibility = visibility })
 
     binding.drawerLayout.addDrawerListener(
-        object : ActionBarDrawerToggle(this, binding.drawerLayout, R.string.drawer_open,
-            R.string.drawer_close) {
+        object : ActionBarDrawerToggle(
+            this, binding.drawerLayout, R.string.drawer_open,
+            R.string.drawer_close
+        ) {
 
           override fun onDrawerOpened(drawerView: View) {
             super.onDrawerOpened(drawerView)
@@ -67,13 +69,15 @@ class SearchActivity : DaggerAppCompatActivity() {
       adapter = SearchResultAdapter(context, viewModel.searchResult)
       addItemDecoration(DividerItemDecoration(context, 1))
       layoutManager = LinearLayoutManager(context)
-      addOnScrollListener(object : OnScrollListener() {
-        override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
-          if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-            searchView.clearFocus()
+      addOnScrollListener(
+          object : OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+              if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                searchView.clearFocus()
+              }
+            }
           }
-        }
-      })
+      )
     }
   }
 
@@ -82,25 +86,29 @@ class SearchActivity : DaggerAppCompatActivity() {
     menuInflater.inflate(R.menu.menu_search, menu)
 
     val menuItem = menu.findItem(R.id.action_search)
-    menuItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-      override fun onMenuItemActionExpand(item: MenuItem): Boolean = true
+    menuItem.setOnActionExpandListener(
+        object : MenuItem.OnActionExpandListener {
+          override fun onMenuItemActionExpand(item: MenuItem): Boolean = true
 
-      override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-        onBackPressed()
-        return false
-      }
-    })
+          override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+            onBackPressed()
+            return false
+          }
+        }
+    )
     menuItem.expandActionView()
 
     searchView = menuItem.actionView as SearchView
-    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-      override fun onQueryTextSubmit(query: String): Boolean = onQueryTextChange(query)
+    searchView.setOnQueryTextListener(
+        object : SearchView.OnQueryTextListener {
+          override fun onQueryTextSubmit(query: String): Boolean = onQueryTextChange(query)
 
-      override fun onQueryTextChange(newText: String): Boolean {
-        viewModel.search(newText)
-        return false
-      }
-    })
+          override fun onQueryTextChange(newText: String): Boolean {
+            viewModel.search(newText)
+            return false
+          }
+        }
+    )
     return true
   }
 
@@ -144,7 +152,8 @@ class SearchActivity : DaggerAppCompatActivity() {
   private inner class SearchResultAdapter constructor(
       context: Context, list: ObservableList<SearchResultItemViewModel>) :
       ObservableListRecyclerAdapter<SearchResultItemViewModel, BindingHolder<ViewSearchResultItemBinding>>(
-          context, list) {
+          context, list
+      ) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int): BindingHolder<ViewSearchResultItemBinding>
