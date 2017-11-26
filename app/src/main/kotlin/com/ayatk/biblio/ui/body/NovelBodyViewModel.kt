@@ -20,7 +20,7 @@ class NovelBodyViewModel @Inject constructor(
   @Bindable
   var novelBody: NovelBody = NovelBody()
 
-  fun Start(novel: Novel, page: Int) {
+  fun start(novel: Novel, page: Int) {
     repository.find(novel, page)
         .subscribe(
             {
