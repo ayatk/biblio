@@ -4,6 +4,7 @@
 
 package com.ayatk.biblio.di
 
+import android.app.Application
 import com.ayatk.biblio.App
 import com.ayatk.biblio.ui.UiModule
 import dagger.BindsInstance
@@ -27,9 +28,7 @@ interface AppComponent : AndroidInjector<App> {
   @Component.Builder
   interface Builder {
     @BindsInstance
-    fun application(application: App): Builder
-
-    fun appModule(appModule: AppModule): Builder
+    fun application(application: Application): Builder
 
     fun build(): AppComponent
   }

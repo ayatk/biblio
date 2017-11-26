@@ -29,11 +29,7 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
-class AppModule(val application: Application) {
-
-  @Provides
-  @Singleton
-  fun provideApplicationContext(): Application = application
+class AppModule {
 
   @Provides
   fun provideConnectivityManager(application: Application): ConnectivityManager

@@ -4,7 +4,6 @@
 
 package com.ayatk.biblio
 
-import com.ayatk.biblio.di.AppModule
 import com.ayatk.biblio.di.DaggerAppComponent
 import com.crashlytics.android.Crashlytics
 import com.squareup.leakcanary.LeakCanary
@@ -21,12 +20,12 @@ open class App : DaggerApplication() {
     initLeakCanary()
   }
 
-  override fun applicationInjector(): AndroidInjector<out DaggerApplication>
-      = DaggerAppComponent
-      .builder()
-      .application(this)
-      .appModule(AppModule(this))
-      .build()
+  override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+    return DaggerAppComponent
+        .builder()
+        .application(this)
+        .build()
+  }
 
   private fun initLeakCanary() {
     if (LeakCanary.isInAnalyzerProcess(this)) {
