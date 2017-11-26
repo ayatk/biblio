@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
+  -->
+
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <item
+      android:id="@+id/all_download_action"
+      android:icon="@drawable/ic_file_download_white_24_vector"
+      android:title="@string/download_all"
+      app:showAsAction="collapseActionView|always"/>
+</menu>

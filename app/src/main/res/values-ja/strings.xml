@@ -53,6 +53,9 @@
   <string name="genre_other">その他 [その他]</string>
   <string name="genre_nongenre">ノンジャンル [ノンジャンル]</string>
 
+  <!-- Download -->
+  <string name="download_all">すべてダウンロード</string>
+
   <!-- Sites -->
   <string name="site_narou">小説家になろう</string>
   <string name="site_nocturne_moonlight">ノクターン･ムーンライト</string>

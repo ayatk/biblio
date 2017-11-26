@@ -52,6 +52,9 @@
   <string name="genre_other">Other [Other]</string>
   <string name="genre_nongenre">NonGenre [NonGenre]</string>
 
+  <!-- Download -->
+  <string name="download_all">Download All</string>
+
   <!-- Sites -->
   <string name="site_narou">Narou</string>
   <string name="site_nocturne_moonlight">Nocturne･Moonlight</string>

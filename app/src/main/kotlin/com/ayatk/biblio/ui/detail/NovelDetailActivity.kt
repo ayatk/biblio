@@ -11,6 +11,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.view.Menu
+import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityNovelDetailBinding
 import com.ayatk.biblio.model.Novel
@@ -48,6 +50,18 @@ class NovelDetailActivity : DaggerAppCompatActivity() {
   override fun onDestroy() {
     super.onDestroy()
     viewModel.destroy()
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    menuInflater.inflate(R.menu.menu_novel_detail, menu)
+    return super.onCreateOptionsMenu(menu)
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    when (item.itemId) {
+    //      R.id.all_download_action -> viewModel.downloadAll()
+    }
+    return super.onOptionsItemSelected(item)
   }
 
   private fun initToolbar() {
