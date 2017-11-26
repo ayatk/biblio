@@ -44,7 +44,7 @@ class NovelBodyFragment : DaggerFragment() {
   override fun onResume() {
     super.onResume()
     EventBus.getDefault().register(this)
-    viewModel.start(novel, page)
+    viewModel.Start(novel, page)
   }
 
   override fun onPause() {
