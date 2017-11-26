@@ -38,6 +38,9 @@ jobs:
             openssl aes-256-cbc -d -k $SIGNATURE_DECRYPT_KEY -in signature.tar.gz.enc -out signature.tar.gz
             tar -zxvf signature.tar.gz
       - run:
+          name: Lint
+          command: ./gradlew ktlint
+      - run:
           name: Run Tests
           command: ./gradlew lint test -PdisablePreDex
       - run:

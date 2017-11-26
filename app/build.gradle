@@ -17,8 +17,7 @@ def PACKAGE_NAME = "com.ayatk.biblio"
 def GIT_SHA = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
 def GIT_BRANCH = (System.getenv("CIRCLE_BRANCH") != null) ? System.getenv("CIRCLE_BRANCH") :
     'git rev-parse --abbrev-ref HEAD'.execute([], project.rootDir).text.trim()
-def BUILD_NUM = (System.getenv("CIRCLE_BUILD_NUM") != null) ? System.getenv("CIRCLE_BUILD_NUM") :
-    "1"
+def BUILD_NUM = (System.getenv("CIRCLE_BUILD_NUM") != null) ? System.getenv("CIRCLE_BUILD_NUM") : "1"
 def BUILD_TIME = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone("UTC"))
 
 // Keys
@@ -186,6 +185,10 @@ android {
   }
 }
 
+configurations {
+  ktlint
+}
+
 ext.supportLibVersion = '27.0.1'
 
 dependencies {
@@ -270,6 +273,27 @@ dependencies {
   testImplementation 'junit:junit:4.12'
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+
+  // Lint
+  ktlint "com.github.shyiko:ktlint:0.12.1"
+}
+
+task ktlint(type: JavaExec, group: "verification") {
+  description = "Check Kotlin code style."
+  main = "com.github.shyiko.ktlint.Main"
+  classpath = configurations.ktlint
+  args "src/**/*.kt"
+  // to generate report in checkstyle format prepend following args:
+  // "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
+  // see https://github.com/shyiko/ktlint#usage for more
+}
+check.dependsOn ktlint
+
+task ktlintFormat(type: JavaExec, group: "formatting") {
+  description = "Fix Kotlin code style deviations."
+  main = "com.github.shyiko.ktlint.Main"
+  classpath = configurations.ktlint
+  args "-F", "src/**/*.kt"
 }
 
 apply plugin: 'com.google.gms.google-services'
