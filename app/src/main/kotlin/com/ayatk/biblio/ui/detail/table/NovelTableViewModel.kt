@@ -16,11 +16,14 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class NovelTableViewModel
-@Inject
-constructor(private val navigator: Navigator,
-            private val novelTableRepository: NovelTableRepository) : BaseObservable(), ViewModel {
+@Inject constructor(
+    private val navigator: Navigator,
+    private val novelTableRepository: NovelTableRepository
+) : BaseObservable(), ViewModel {
 
-  private val TAG = NovelTableViewModel::class.java.simpleName
+  companion object {
+    private val TAG = NovelTableViewModel::class.java.simpleName
+  }
 
   var novelTableViewModels = ObservableArrayList<NovelTableItemViewModel>()
 

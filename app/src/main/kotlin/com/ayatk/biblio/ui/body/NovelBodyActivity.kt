@@ -54,17 +54,19 @@ class NovelBodyActivity : DaggerAppCompatActivity() {
     binding.novelViewPager.apply {
       adapter = NovelBodyPagerAdapter(supportFragmentManager)
       currentItem = page - 1
-      addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-        override fun onPageSelected(position: Int) {
-          EventBus.getDefault().post(NovelBodySelectedEvent(position))
-        }
+      addOnPageChangeListener(
+          object : ViewPager.OnPageChangeListener {
+            override fun onPageSelected(position: Int) {
+              EventBus.getDefault().post(NovelBodySelectedEvent(position))
+            }
 
-        override fun onPageScrolled(position: Int, positionOffset: Float,
-                                    positionOffsetPixels: Int) {
-        }
+            override fun onPageScrolled(position: Int, positionOffset: Float,
+                positionOffsetPixels: Int) {
+            }
 
-        override fun onPageScrollStateChanged(pos: Int) {}
-      })
+            override fun onPageScrollStateChanged(pos: Int) {}
+          }
+      )
     }
   }
 

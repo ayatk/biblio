@@ -38,11 +38,13 @@ class HomeActivity : DaggerAppCompatActivity() {
     }
     setSupportActionBar(binding.toolbar)
 
-    binding.bottomNav.setOnNavigationItemSelectedListener({
-      changePage(Page.forMenuId(it.itemId))
-      invalidateOptionsMenu()
-      true
-    })
+    binding.bottomNav.setOnNavigationItemSelectedListener(
+        {
+          changePage(Page.forMenuId(it.itemId))
+          invalidateOptionsMenu()
+          true
+        }
+    )
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -53,7 +55,8 @@ class HomeActivity : DaggerAppCompatActivity() {
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
       R.id.nav_search -> startActivity(
-          SearchActivity.createIntent(this))
+          SearchActivity.createIntent(this)
+      )
     }
     return super.onOptionsItemSelected(item)
   }

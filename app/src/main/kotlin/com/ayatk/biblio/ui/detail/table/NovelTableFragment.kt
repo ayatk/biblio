@@ -30,12 +30,15 @@ class NovelTableFragment : DaggerFragment() {
   private lateinit var binding: FragmentNovelTableBinding
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(arguments?.getParcelable(
-        BUNDLE_ARGS_NOVEL))
+    Parcels.unwrap<Novel>(
+        arguments?.getParcelable(
+            BUNDLE_ARGS_NOVEL
+        )
+    )
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                            savedInstanceState: Bundle?): View? {
+      savedInstanceState: Bundle?): View? {
     binding = FragmentNovelTableBinding.inflate(inflater, container, false)
     binding.viewModel = viewModel
     initRecyclerView()
@@ -63,7 +66,8 @@ class NovelTableFragment : DaggerFragment() {
       return NovelTableFragment().apply {
         arguments = Bundle().apply {
           putParcelable(
-              BUNDLE_ARGS_NOVEL, Parcels.wrap(novel))
+              BUNDLE_ARGS_NOVEL, Parcels.wrap(novel)
+          )
         }
       }
     }
@@ -72,7 +76,8 @@ class NovelTableFragment : DaggerFragment() {
   private inner class TableAdapter constructor(
       context: Context, list: ObservableList<NovelTableItemViewModel>) :
       ObservableListRecyclerAdapter<NovelTableItemViewModel, BindingHolder<ViewTableItemBinding>>(
-          context, list) {
+          context, list
+      ) {
 
     init {
       setHasStableIds(false)

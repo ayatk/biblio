@@ -51,19 +51,20 @@ class SearchViewModel @Inject constructor(
       searchResultVisibility.onNext(View.VISIBLE)
       val builtQuery = QueryBuilder().searchWords(query).size(100).build()
       compositeDisposable.clear()
-      compositeDisposable.add(narouClient.getNovel(builtQuery)
-          .subscribeOn(Schedulers.io())
-          .observeOn(AndroidSchedulers.mainThread())
-          .map({ novels -> convertToViewModel(novels) })
-          .subscribe(
-              { viewModels ->
-                if (viewModels.isNotEmpty()) {
-                  searchResult.clear()
-                  searchResult.addAll(viewModels)
-                }
-              },
-              { _ -> /* TODO: あとで頑張る */ }
-          )
+      compositeDisposable.add(
+          narouClient.getNovel(builtQuery)
+              .subscribeOn(Schedulers.io())
+              .observeOn(AndroidSchedulers.mainThread())
+              .map({ novels -> convertToViewModel(novels) })
+              .subscribe(
+                  { viewModels ->
+                    if (viewModels.isNotEmpty()) {
+                      searchResult.clear()
+                      searchResult.addAll(viewModels)
+                    }
+                  },
+                  { _ -> /* TODO: あとで頑張る */ }
+              )
       )
     } else {
       searchResultVisibility.onNext(View.GONE)

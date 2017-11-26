@@ -27,17 +27,22 @@ class NovelInfoFragment : DaggerFragment() {
   lateinit var libraryRepository: LibraryRepository
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(arguments?.getParcelable(
-        BUNDLE_ARGS_NOVEL))
+    Parcels.unwrap<Novel>(
+        arguments?.getParcelable(
+            BUNDLE_ARGS_NOVEL
+        )
+    )
   }
 
   private lateinit var viewModel: NovelInfoViewModel
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                            savedInstanceState: Bundle?): View? {
+      savedInstanceState: Bundle?): View? {
     binding = FragmentNovelInfoBinding.inflate(inflater, container, false)
-    viewModel = NovelInfoViewModel(navigator, libraryRepository,
-        novel)
+    viewModel = NovelInfoViewModel(
+        navigator, libraryRepository,
+        novel
+    )
     binding.viewModel = viewModel
 
     return binding.root
@@ -55,7 +60,8 @@ class NovelInfoFragment : DaggerFragment() {
       return NovelInfoFragment().apply {
         arguments = Bundle().apply {
           putParcelable(
-              BUNDLE_ARGS_NOVEL, Parcels.wrap(novel))
+              BUNDLE_ARGS_NOVEL, Parcels.wrap(novel)
+          )
         }
       }
     }

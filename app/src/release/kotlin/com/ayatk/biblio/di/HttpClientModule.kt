@@ -17,8 +17,10 @@ import javax.inject.Singleton
 @Module
 class HttpClientModule {
 
-  private val CACHE_FILE_NAME = "okhttp.cache"
-  private val MAX_CACHE_SIZE = (4 * 1024 * 1024).toLong()
+  companion object {
+    private val CACHE_FILE_NAME = "okhttp.cache"
+    private val MAX_CACHE_SIZE = (4 * 1024 * 1024).toLong()
+  }
 
   private val addUserAgentInterceptor = { chain: Chain ->
     val builder = chain.request().newBuilder()

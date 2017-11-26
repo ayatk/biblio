@@ -14,7 +14,7 @@ import com.ayatk.biblio.ui.home.library.LibraryFragment
 import com.ayatk.biblio.ui.home.ranking.RankingFragment
 import com.ayatk.biblio.ui.home.setting.SettingFragment
 
-enum class Page constructor(
+enum class Page(
     @MenuRes val menuId: Int,
     @StringRes val titleResId: Int,
     val toggleToolbar: Boolean,

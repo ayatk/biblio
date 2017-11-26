@@ -15,8 +15,10 @@ import javax.inject.Singleton
 
 @Singleton
 class NovelTableRepository
-@Inject constructor(private val localDataSource: NovelTableLocalDataSource,
-                    private val remoteDataSource: NovelTableRemoteDataSource) : NovelTableDataSource {
+@Inject constructor(
+    private val localDataSource: NovelTableLocalDataSource,
+    private val remoteDataSource: NovelTableRemoteDataSource
+) : NovelTableDataSource {
 
   var isDirty = false
 

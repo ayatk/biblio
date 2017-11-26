@@ -12,6 +12,13 @@ class QueryBuilder {
   // すべてjsonでResponseを要求するためout=jsonを指定
   private var query = listOf(Pair("out", "json"))
 
+  companion object {
+    private val REQUEST_MIN_NOVEL_SIZE = 1
+    private val REQUEST_MAX_NOVEL_SIZE = 500
+    private val REQUEST_MIN_START_SIZE = 1
+    private val REQUEST_MAX_START_SIZE = 2000
+  }
+
   /**
    * ncodeを指定して小説情報を取得します
    *
@@ -30,7 +37,7 @@ class QueryBuilder {
    * @return QueryBuilder
    */
   fun size(size: Int): QueryBuilder {
-    if (size !in 1..500) {
+    if (size !in REQUEST_MIN_NOVEL_SIZE..REQUEST_MAX_NOVEL_SIZE) {
       throw NarouOutOfRangeException("out of output limit (1 ~ 500)")
     }
 
@@ -46,7 +53,7 @@ class QueryBuilder {
    * @return QueryBuilder
    */
   fun start(start: Int): QueryBuilder {
-    if (start !in 1..2000) {
+    if (start !in REQUEST_MIN_START_SIZE..REQUEST_MAX_START_SIZE) {
       throw NarouOutOfRangeException("out of start number (1 ~ 2000)")
     }
 

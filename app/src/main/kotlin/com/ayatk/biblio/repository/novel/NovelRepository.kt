@@ -17,9 +17,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class NovelRepository
-@Inject constructor(private val localDataSource: NovelLocalDataSource,
-                    private val remoteDataSource: NovelRemoteDataSource) : NovelDataSource {
+class NovelRepository @Inject constructor(
+    private val localDataSource: NovelLocalDataSource,
+    private val remoteDataSource: NovelRemoteDataSource
+) : NovelDataSource {
 
   @VisibleForTesting
   private var cache: MutableMap<String, Novel> = LinkedHashMap()
@@ -39,11 +40,11 @@ class NovelRepository
       return cache[code].toMaybe()
     }
 
-    if (isDirty) {
-      return remoteDataSource.find(code, publisher)
+    return if (isDirty) {
+      remoteDataSource.find(code, publisher)
           .doOnSuccess { novel -> updateAllAsync(listOf(novel)) }
     } else {
-      return localDataSource.find(code, publisher)
+      localDataSource.find(code, publisher)
     }
   }
 
@@ -56,20 +57,18 @@ class NovelRepository
     localDataSource.delete(code)
   }
 
-  private fun hasCache(): Boolean {
-    return !cache.isEmpty()
-  }
+  private fun hasCache(): Boolean = !cache.isEmpty()
 
-  private fun hasCache(code: String): Boolean {
-    return cache.containsKey(code)
-  }
+  private fun hasCache(code: String): Boolean = cache.containsKey(code)
 
   private fun findAllFromRemote(codes: List<String>, publisher: Publisher): Single<List<Novel>> {
     return remoteDataSource.findAll(codes, publisher)
-        .doOnSuccess({ novels ->
-          refreshCache(novels)
-          updateAllAsync(novels)
-        })
+        .doOnSuccess(
+            { novels ->
+              refreshCache(novels)
+              updateAllAsync(novels)
+            }
+        )
   }
 
   private fun updateAllAsync(novels: List<Novel>) {

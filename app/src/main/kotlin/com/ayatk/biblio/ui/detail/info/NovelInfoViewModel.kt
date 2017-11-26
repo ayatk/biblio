@@ -16,53 +16,56 @@ import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.repository.library.LibraryRepository
 import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.ui.util.helper.Navigator
-import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm_JP
+import com.ayatk.biblio.util.DateFormat
 import mabbas007.tagsedittext.TagsEditText
 
-class NovelInfoViewModel
-constructor(private val navigator: Navigator,
-            private val libraryRepository: LibraryRepository,
-            val novel: Novel) : BaseObservable(), ViewModel {
+class NovelInfoViewModel(
+    private val navigator: Navigator,
+    private val libraryRepository: LibraryRepository,
+    val novel: Novel
+) : BaseObservable(), ViewModel {
 
-//  fun novelGenre(): String {
-//    when (novel.genre) {
-//      Genre.LOVE_DIFF_WORLD   -> return context.getString(R.string.genre_love_diff_world)
-//      Genre.LOVE_REAL_WORLD   -> return context.getString(R.string.genre_love_real_world)
-//      Genre.FANTASY_HIGH      -> return context.getString(R.string.genre_fantasy_high)
-//      Genre.FANTASY_LOW       -> return context.getString(R.string.genre_fantasy_low)
-//      Genre.LITERAL_COMEDY    -> return context.getString(R.string.genre_literal_comedy)
-//      Genre.LITERAL_ACTION    -> return context.getString(R.string.genre_literal_action)
-//      Genre.LITERAL_DETECTIVE -> return context.getString(R.string.genre_literal_detective)
-//      Genre.LITERAL_PURE      -> return context.getString(R.string.genre_literal_pure)
-//      Genre.LITERAL_DRAMA     -> return context.getString(R.string.genre_literal_drama)
-//      Genre.LITERAL_HISTORY   -> return context.getString(R.string.genre_literal_history)
-//      Genre.LITERAL_HORROR    -> return context.getString(R.string.genre_literal_horror)
-//      Genre.SF_VR             -> return context.getString(R.string.genre_sf_vr)
-//      Genre.SF_PANIC          -> return context.getString(R.string.genre_sf_panic)
-//      Genre.SF_SCIENCE        -> return context.getString(R.string.genre_sf_science)
-//      Genre.SF_SPACE          -> return context.getString(R.string.genre_sf_space)
-//      Genre.OTHER_ESSAY       -> return context.getString(R.string.genre_other_essay)
-//      Genre.OTHER_FAIRYTALE   -> return context.getString(R.string.genre_other_fairytale)
-//      Genre.OTHER_REPLAY      -> return context.getString(R.string.genre_other_replay)
-//      Genre.OTHER_POEM        -> return context.getString(R.string.genre_other_poem)
-//      Genre.OTHER             -> return context.getString(R.string.genre_other)
-//      Genre.NONGENRE          -> return context.getString(R.string.genre_nongenre)
-//    }
-//  }
+  //  fun novelGenre(): String {
+  //    when (novel.genre) {
+  //      Genre.LOVE_DIFF_WORLD   -> return context.getString(R.string.genre_love_diff_world)
+  //      Genre.LOVE_REAL_WORLD   -> return context.getString(R.string.genre_love_real_world)
+  //      Genre.FANTASY_HIGH      -> return context.getString(R.string.genre_fantasy_high)
+  //      Genre.FANTASY_LOW       -> return context.getString(R.string.genre_fantasy_low)
+  //      Genre.LITERAL_COMEDY    -> return context.getString(R.string.genre_literal_comedy)
+  //      Genre.LITERAL_ACTION    -> return context.getString(R.string.genre_literal_action)
+  //      Genre.LITERAL_DETECTIVE -> return context.getString(R.string.genre_literal_detective)
+  //      Genre.LITERAL_PURE      -> return context.getString(R.string.genre_literal_pure)
+  //      Genre.LITERAL_DRAMA     -> return context.getString(R.string.genre_literal_drama)
+  //      Genre.LITERAL_HISTORY   -> return context.getString(R.string.genre_literal_history)
+  //      Genre.LITERAL_HORROR    -> return context.getString(R.string.genre_literal_horror)
+  //      Genre.SF_VR             -> return context.getString(R.string.genre_sf_vr)
+  //      Genre.SF_PANIC          -> return context.getString(R.string.genre_sf_panic)
+  //      Genre.SF_SCIENCE        -> return context.getString(R.string.genre_sf_science)
+  //      Genre.SF_SPACE          -> return context.getString(R.string.genre_sf_space)
+  //      Genre.OTHER_ESSAY       -> return context.getString(R.string.genre_other_essay)
+  //      Genre.OTHER_FAIRYTALE   -> return context.getString(R.string.genre_other_fairytale)
+  //      Genre.OTHER_REPLAY      -> return context.getString(R.string.genre_other_replay)
+  //      Genre.OTHER_POEM        -> return context.getString(R.string.genre_other_poem)
+  //      Genre.OTHER             -> return context.getString(R.string.genre_other)
+  //      Genre.NONGENRE          -> return context.getString(R.string.genre_nongenre)
+  //    }
+  //  }
 
   @Bindable
   var tags = listOf<String>()
 
-  fun lastUpdate(): String = FORMAT_yyyyMMdd_kkmm_JP.format(novel.lastUpdateDate)
+  fun lastUpdate(): String = DateFormat.yyyyMMddkkmmJP.format(novel.lastUpdateDate)
 
   fun url(): String = novel.publisher.url + novel.code.toLowerCase()
 
   fun start() {
     libraryRepository.find(novel)
-        .subscribe({ library ->
-          tags = library.tag
-          notifyPropertyChanged(BR.tags)
-        })
+        .subscribe(
+            { library ->
+              tags = library.tag
+              notifyPropertyChanged(BR.tags)
+            }
+        )
   }
 
   fun onClickWriter(@Suppress("UNUSED_PARAMETER") view: View) {

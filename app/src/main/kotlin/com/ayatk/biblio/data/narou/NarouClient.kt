@@ -11,11 +11,11 @@ import com.ayatk.biblio.data.narou.entity.NarouRanking
 import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.data.narou.service.NarouApiService
 import com.ayatk.biblio.data.narou.service.NarouService
+import com.ayatk.biblio.data.narou.util.HtmlUtil
 import com.ayatk.biblio.data.narou.util.QueryTime
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm
 import io.reactivex.Single
 import org.jsoup.Jsoup
 import java.util.Date
@@ -26,6 +26,7 @@ import javax.inject.Singleton
 @Singleton
 class NarouClient
 @Inject constructor(
+    private val htmlUtil: HtmlUtil,
     private val narouApiService: NarouApiService,
     @Named("Narou") private val narouService: NarouService,
     @Named("Narou18") private val narou18Service: NarouService) {
@@ -56,7 +57,7 @@ class NarouClient
 
   fun getTableOfContents(ncode: String): Single<List<NarouNovelTable>> {
     return narouService.getTableOfContents(ncode.toLowerCase())
-        .map { s -> parseTableOfContents(ncode, s) }
+        .map { s -> htmlUtil.parseTableOfContents(ncode, s) }
   }
 
   fun getAllPages(ncode: String): Single<List<NarouNovelBody>> {
@@ -77,83 +78,10 @@ class NarouClient
   }
 
   fun getPage(ncode: String, page: Int): Single<NarouNovelBody>
-      = narouService.getPage(ncode, page).map { s -> parsePage(ncode, s, page) }
+      = narouService.getPage(ncode, page).map { s -> htmlUtil.parsePage(ncode, s, page) }
 
   fun getSSPage(ncode: String): Single<NarouNovelBody>
-      = narouService.getSSPage(ncode).map { parsePage(ncode, it, 1) }
-
-  private fun parseTableOfContents(ncode: String, body: String): List<NarouNovelTable> {
-
-    val novelTableList = arrayListOf<NarouNovelTable>()
-
-    val parseTable = Jsoup.parse(body)
-
-    // 短編小説のときは目次がないのでタイトルのNarouNovelTableを生成
-    if (parseTable.select(".index_box").isEmpty()) {
-      val title = parseTable.select(".novel_title").text()
-      val update = FORMAT_yyyyMMdd_kkmm.parse(parseTable.select("meta[name=WWWC]").attr("content"))
-      return listOf(NarouNovelTable(0, ncode, title, false, 1, update, update))
-    }
-
-    for ((index, element) in parseTable.select(".index_box").first().children().withIndex()) {
-      if (element.className() == "chapter_title") {
-        novelTableList.add(
-            NarouNovelTable(index, ncode, element.text(), true, null, null, null))
-      }
-
-      if (element.className() == "novel_sublist2") {
-        val el = element
-            .select(".subtitle a")
-            .first()
-
-        val attrs = el
-            .attr("href")
-            .split("/".toRegex())
-            .dropLastWhile(String::isEmpty).toTypedArray()
-
-        val date = FORMAT_yyyyMMdd_kkmm
-            .parse(element.select(".long_update")
-                .text()
-                .replace(" （改）", ""))
-
-        var lastUpdate = date
-        if (element.select(".long_update span").isNotEmpty()) {
-          lastUpdate = FORMAT_yyyyMMdd_kkmm.parse(
-              element.select(".long_update span")
-                  .attr("title")
-                  .replace(" 改稿", ""))
-        }
-        novelTableList.add(
-            NarouNovelTable(index, ncode, el.text(), false, Integer.parseInt(attrs[2]), date,
-                lastUpdate)
-        )
-      }
-    }
-    return novelTableList
-  }
-
-  private fun parsePage(ncode: String, body: String, page: Int): NarouNovelBody {
-    val doc = Jsoup.parse(body)
-    return NarouNovelBody(
-        ncode = ncode,
-        page = page,
-        subtitle = doc.select(if (doc.select(
-            ".novel_subtitle").isEmpty()) ".novel_title" else ".novel_subtitle").text(),
-        prevContent = getFormattedContent(if (doc.select("#novel_p").isNotEmpty()) doc.select(
-            "#novel_p")[0].text() else ""),
-        content = getFormattedContent(doc.select("#novel_honbun").html()),
-        afterContent = getFormattedContent(if (doc.select("#novel_a").isNotEmpty()) doc.select(
-            "#novel_a").text() else "")
-    )
-  }
-
-  private fun getFormattedContent(content: String): String {
-    return content
-        .replace("\n", "")
-        .replace("<br */?>".toRegex(), "\n")
-        .trim { it <= '　' }
-        .replace("</?(ru?by?|rt|rp)>".toRegex(), "")
-  }
+      = narouService.getSSPage(ncode).map { htmlUtil.parsePage(ncode, it, 1) }
 
   private fun convertNarouNovelToNovel(
       narouNovels: List<NarouNovel>, publisher: Publisher): List<Novel> {

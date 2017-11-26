@@ -9,22 +9,25 @@ import android.view.View
 import com.ayatk.biblio.model.NovelTable
 import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.ui.util.helper.Navigator
-import com.ayatk.biblio.util.FORMAT_yyyyMMdd_kkmm
+import com.ayatk.biblio.util.DateFormat
 
 class NovelTableItemViewModel(
     private val navigator: Navigator,
-    val novelTable: NovelTable) : BaseObservable(), ViewModel {
+    val novelTable: NovelTable
+) : BaseObservable(), ViewModel {
 
   val lastUpdate: String =
       if (novelTable.publishDate == null) ""
-      else FORMAT_yyyyMMdd_kkmm.format(novelTable.publishDate)
+      else DateFormat.yyyyMMddkkmm.format(novelTable.publishDate)
 
   override fun destroy() {}
 
   fun onItemClick(@Suppress("UNUSED_PARAMETER") view: View) {
     if (!novelTable.isChapter) {
-      navigator.navigateToNovelBody(novelTable.novel,
-          requireNotNull(novelTable.page, { "ページ番号がはいってないぞい" }))
+      navigator.navigateToNovelBody(
+          novelTable.novel,
+          requireNotNull(novelTable.page, { "ページ番号がはいってないぞい" })
+      )
     }
   }
 }
