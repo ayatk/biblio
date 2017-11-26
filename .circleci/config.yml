@@ -32,10 +32,6 @@ jobs:
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
           name: Decrypt signature
           command: |
@@ -57,6 +53,10 @@ jobs:
           destination: reports
       - store_test_results:
           path: app/build/test-results
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - deploy:
           name: Deploy to DeployGate
           command: |
