@@ -4,19 +4,19 @@
 
 package com.ayatk.biblio.repository.novel
 
-import com.ayatk.biblio.data.dao.OrmaDatabaseWrapper
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelBody
+import com.ayatk.biblio.model.OrmaDatabase
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class NovelBodyLocalDataSource
-@Inject constructor(private val orma: OrmaDatabaseWrapper) : NovelBodyDataSource {
+@Inject constructor(private val orma: OrmaDatabase) : NovelBodyDataSource {
 
   override fun find(novel: Novel, page: Int): Single<List<NovelBody>> {
-    return orma.db.selectFromNovelBody()
+    return orma.selectFromNovelBody()
         .novelEq(novel)
         .pageEq(page)
         .executeAsObservable()
@@ -25,13 +25,13 @@ class NovelBodyLocalDataSource
   }
 
   override fun save(novelBody: NovelBody): Completable {
-    return orma.db.transactionAsCompletable {
-      orma.db.insertIntoNovelBody(novelBody)
+    return orma.transactionAsCompletable {
+      orma.insertIntoNovelBody(novelBody)
     }.subscribeOn(Schedulers.io())
   }
 
   override fun deleteAll(novel: Novel): Single<Int> {
-    return orma.db.deleteFromNovelBody()
+    return orma.deleteFromNovelBody()
         .novelEq(novel)
         .executeAsSingle()
         .subscribeOn(Schedulers.io())

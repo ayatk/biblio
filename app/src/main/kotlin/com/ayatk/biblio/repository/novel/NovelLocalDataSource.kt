@@ -4,8 +4,8 @@
 
 package com.ayatk.biblio.repository.novel
 
-import com.ayatk.biblio.data.dao.OrmaDatabaseWrapper
 import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.model.OrmaDatabase
 import com.ayatk.biblio.model.enums.Publisher
 import io.reactivex.Completable
 import io.reactivex.Maybe
@@ -14,10 +14,10 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class NovelLocalDataSource
-@Inject constructor(private val orma: OrmaDatabaseWrapper) : NovelDataSource {
+@Inject constructor(private val orma: OrmaDatabase) : NovelDataSource {
 
   override fun findAll(codes: List<String>, publisher: Publisher): Single<List<Novel>> {
-    return orma.db.selectFromNovel()
+    return orma.selectFromNovel()
         .publisherEq(publisher)
         .executeAsObservable()
         .toList()
@@ -25,7 +25,7 @@ class NovelLocalDataSource
   }
 
   override fun find(code: String, publisher: Publisher): Maybe<Novel> {
-    return orma.db.selectFromNovel()
+    return orma.selectFromNovel()
         .codeEq(code)
         .publisherEq(publisher)
         .executeAsObservable()
@@ -34,13 +34,13 @@ class NovelLocalDataSource
   }
 
   override fun save(novel: Novel): Completable {
-    return orma.db.transactionAsCompletable {
-      orma.db.relationOfNovel().upsert(novel)
+    return orma.transactionAsCompletable {
+      orma.relationOfNovel().upsert(novel)
     }.subscribeOn(Schedulers.io())
   }
 
   override fun delete(code: String) {
-    orma.db.relationOfNovel()
+    orma.relationOfNovel()
         .deleter()
         .codeEq(code)
         .execute()
