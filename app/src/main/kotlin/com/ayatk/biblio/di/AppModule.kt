@@ -7,13 +7,14 @@ package com.ayatk.biblio.di
 import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
-import com.ayatk.biblio.data.dao.OrmaDatabaseWrapper
 import com.ayatk.biblio.data.narou.entity.enums.BigGenre
 import com.ayatk.biblio.data.narou.entity.enums.Genre
 import com.ayatk.biblio.data.narou.service.NarouApiService
 import com.ayatk.biblio.data.narou.service.NarouService
 import com.ayatk.biblio.data.narou.util.HtmlUtil
-import com.ayatk.biblio.pref.DefaultPrefsWrapper
+import com.ayatk.biblio.model.OrmaDatabase
+import com.ayatk.biblio.pref.DefaultPrefs
+import com.github.gfx.android.orma.AccessThreadConstraint
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer
@@ -40,13 +41,17 @@ class AppModule(val application: Application) {
 
   @Singleton
   @Provides
-  fun provideDefaultPrefs(application: Application): DefaultPrefsWrapper
-      = DefaultPrefsWrapper(application)
+  fun provideDefaultPrefs(application: Application): DefaultPrefs
+      = DefaultPrefs.get(application)
 
   @Singleton
   @Provides
-  fun provideOrmaDatabase(application: Application): OrmaDatabaseWrapper
-      = OrmaDatabaseWrapper(application)
+  fun provideOrmaDatabase(application: Application): OrmaDatabase {
+    return OrmaDatabase.builder(application)
+        .writeOnMainThread(AccessThreadConstraint.FATAL)
+        .readOnMainThread(AccessThreadConstraint.FATAL)
+        .build()
+  }
 
   @Singleton
   @Provides

@@ -159,6 +159,11 @@ android {
     enabled = true
   }
 
+  kapt {
+    // NonExistentClass Errorを無視
+    correctErrorTypes = true
+  }
+
   lintOptions {
     textReport true
     textOutput 'stdout'

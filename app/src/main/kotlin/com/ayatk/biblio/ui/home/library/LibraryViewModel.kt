@@ -11,7 +11,7 @@ import android.view.View
 import com.ayatk.biblio.BR
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.pref.DefaultPrefsWrapper
+import com.ayatk.biblio.pref.DefaultPrefs
 import com.ayatk.biblio.repository.library.LibraryRepository
 import com.ayatk.biblio.repository.novel.NovelRepository
 import com.ayatk.biblio.repository.novel.NovelTableRepository
@@ -28,7 +28,7 @@ class LibraryViewModel @Inject constructor(
     private val libraryRepository: LibraryRepository,
     private val novelRepository: NovelRepository,
     private val novelTableRepository: NovelTableRepository,
-    private val defaultPrefsWrapper: DefaultPrefsWrapper
+    private val defaultPrefs: DefaultPrefs
 ) : BaseObservable(), ViewModel {
 
   companion object {
@@ -64,7 +64,7 @@ class LibraryViewModel @Inject constructor(
 
   private fun convertToViewModel(libraries: List<Library>): List<LibraryItemViewModel> {
     return libraries.map { library ->
-      LibraryItemViewModel(navigator, library, defaultPrefsWrapper.prefs)
+      LibraryItemViewModel(navigator, library, defaultPrefs)
     }
   }
 
