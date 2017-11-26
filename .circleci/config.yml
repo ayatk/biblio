@@ -6,6 +6,7 @@ jobs:
       - image: circleci/android:api-26-alpha
     environment:
       JVM_OPTS: -Xmx4G -Dkotlin.incremental=false
+      REVIEWDOG_VERSION: 0.9.8
     steps:
       - checkout
       # install fastlane
@@ -16,6 +17,9 @@ jobs:
           key: gems-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+      - run:
+          name: Install Reviewdog
+          command: curl -fSL https://github.com/haya14busa/reviewdog/releases/download/$REVIEWDOG_VERSION/reviewdog_linux_amd64 -o reviewdog && chmod +x ./reviewdog
       # exec Android test and build
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
@@ -41,6 +45,7 @@ jobs:
           name: Lint
           command: |
             ./gradlew ktlint detektCheck
+            cat build/reports/detekt/detekt-checkstyle.xml| reviewdog -f=checkstyle -diff="git diff master" -name="detekt" -ci="circle-ci"
       - run:
           name: Run Tests
           command: ./gradlew lint test -PdisablePreDex
