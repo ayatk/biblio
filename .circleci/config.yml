@@ -39,7 +39,8 @@ jobs:
             tar -zxvf signature.tar.gz
       - run:
           name: Lint
-          command: ./gradlew ktlint
+          command: |
+            ./gradlew ktlint detektCheck
       - run:
           name: Run Tests
           command: ./gradlew lint test -PdisablePreDex
