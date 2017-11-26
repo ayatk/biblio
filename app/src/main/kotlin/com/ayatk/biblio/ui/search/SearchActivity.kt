@@ -31,7 +31,6 @@ import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
-
 class SearchActivity : DaggerAppCompatActivity() {
 
   @Inject

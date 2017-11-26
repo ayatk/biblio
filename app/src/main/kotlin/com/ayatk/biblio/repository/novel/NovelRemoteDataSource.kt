@@ -24,7 +24,7 @@ class NovelRemoteDataSource
       return Single.create { listOf<Novel>() }
     }
     when (publisher) {
-      Publisher.NAROU              -> {
+      Publisher.NAROU -> {
         return client
             .getNovel(QueryBuilder().ncode(*codes.toTypedArray()).build())
             .subscribeOn(Schedulers.io())

@@ -12,7 +12,6 @@ import com.ayatk.biblio.model.enums.Publisher
 import com.github.gfx.android.orma.annotation.StaticTypeAdapter
 import com.github.gfx.android.orma.annotation.StaticTypeAdapters
 
-
 @StaticTypeAdapters(
     StaticTypeAdapter(
         targetType = BigGenre::class,
