@@ -20,8 +20,12 @@ import com.ayatk.biblio.ui.detail.info.NovelInfoFragment
 import com.ayatk.biblio.ui.detail.table.NovelTableFragment
 import dagger.android.support.DaggerAppCompatActivity
 import org.parceler.Parcels
+import javax.inject.Inject
 
 class NovelDetailActivity : DaggerAppCompatActivity() {
+
+  @Inject
+  lateinit var viewModel: NovelDetailViewModel
 
   private val binding: ActivityNovelDetailBinding by lazy {
     DataBindingUtil.setContentView<ActivityNovelDetailBinding>(this, R.layout.activity_novel_detail)
@@ -31,12 +35,9 @@ class NovelDetailActivity : DaggerAppCompatActivity() {
     Parcels.unwrap<Novel>(intent.getParcelableExtra(EXTRA_NOVEL))
   }
 
-  private val viewModel: NovelDetailViewModel by lazy {
-    NovelDetailViewModel(novel)
-  }
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    viewModel.novel = novel
     binding.viewModel = viewModel
 
     initToolbar()
@@ -59,7 +60,7 @@ class NovelDetailActivity : DaggerAppCompatActivity() {
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
-    //      R.id.all_download_action -> viewModel.downloadAll()
+      R.id.all_download_action -> viewModel.downloadAll()
     }
     return super.onOptionsItemSelected(item)
   }
