@@ -22,5 +22,9 @@ data class Library(
 
     @Column(indexed = true)
     @Setter("tag")
-    var tag: List<String> = listOf()
+    var tag: List<String> = listOf(),
+
+    @Column(indexed = true, defaultExpr = "0")
+    @Setter("lastReadPage")
+    var lastReadPage: Int = 0
 )

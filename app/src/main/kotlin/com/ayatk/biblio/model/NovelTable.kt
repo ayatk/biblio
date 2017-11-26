@@ -25,6 +25,14 @@ data class NovelTable(
     @Setter("title")
     var title: String,
 
+    @Column(indexed = true, defaultExpr = "false")
+    @Setter("isDownload")
+    val isDownload: Boolean = false,
+
+    @Column(defaultExpr = "false")
+    @Setter("isRead")
+    val isRead: Boolean = false,
+
     @Column(indexed = true)
     @Setter("isChapter")
     var isChapter: Boolean,
