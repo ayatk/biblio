@@ -16,7 +16,6 @@ import io.reactivex.rxkotlin.toSingle
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-
 class NovelBodyRemoteDataSource
 @Inject constructor(private val client: NarouClient) : NovelBodyDataSource {
 

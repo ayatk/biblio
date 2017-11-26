@@ -16,10 +16,8 @@ import com.ayatk.biblio.databinding.ActivityNovelDetailBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.detail.info.NovelInfoFragment
 import com.ayatk.biblio.ui.detail.table.NovelTableFragment
-import com.ayatk.biblio.ui.util.helper.Navigator
 import dagger.android.support.DaggerAppCompatActivity
 import org.parceler.Parcels
-import javax.inject.Inject
 
 class NovelDetailActivity : DaggerAppCompatActivity() {
 

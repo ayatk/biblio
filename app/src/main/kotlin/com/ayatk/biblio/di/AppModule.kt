@@ -26,7 +26,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import javax.inject.Named
 import javax.inject.Singleton
 
-
 @Module
 class AppModule(val application: Application) {
 

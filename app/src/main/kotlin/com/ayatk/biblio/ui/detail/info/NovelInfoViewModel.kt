@@ -94,7 +94,6 @@ constructor(private val navigator: Navigator,
         }
         .create()
 
-
     libraryRepository.find(novel)
         .subscribe({ library -> editView.setTags(*library.tag.toTypedArray()) })
 

@@ -57,5 +57,4 @@ enum class Page constructor(
       throw AssertionError("no menu enum found for the id. you forgot to implement?")
     }
   }
-
 }

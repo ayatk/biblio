@@ -40,7 +40,7 @@ class QueryBuilderTest {
     val throwNums = arrayOf(
         0, // zero
         -1, // negative value
-        501  // over value
+        501 // over value
     )
 
     throwNums.forEach {
@@ -65,7 +65,7 @@ class QueryBuilderTest {
     val throwNums = arrayOf(
         0, // zero
         -1, // negative value
-        2001  // over value
+        2001 // over value
     )
 
     throwNums.forEach {
@@ -126,6 +126,5 @@ class QueryBuilderTest {
 
     assertThat(ans.plus(Pair("ispickup", "1")), `is`(QueryBuilder().pickup(true).build()))
     assertThat(ans.plus(Pair("ispickup", "0")), `is`(QueryBuilder().pickup(false).build()))
-
   }
 }

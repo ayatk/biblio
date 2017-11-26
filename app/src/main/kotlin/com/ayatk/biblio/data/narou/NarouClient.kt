@@ -45,11 +45,11 @@ class NarouClient
   fun getRanking(date: Date, rankingType: RankingType): Single<List<NarouRanking>> {
     var dateStr = ""
     when (rankingType) {
-      RankingType.DAILY   -> dateStr = QueryTime.day2String(date)
-      RankingType.WEEKLY  -> dateStr = QueryTime.day2Tuesday(date)
+      RankingType.DAILY -> dateStr = QueryTime.day2String(date)
+      RankingType.WEEKLY -> dateStr = QueryTime.day2Tuesday(date)
       RankingType.MONTHLY -> dateStr = QueryTime.day2MonthOne(date)
       RankingType.QUARTET -> dateStr = QueryTime.day2MonthOne(date)
-      RankingType.ALL     -> IllegalArgumentException("Not arrowed ALL type request")
+      RankingType.ALL -> IllegalArgumentException("Not arrowed ALL type request")
     }
     return narouApiService.getRanking(dateStr + rankingType.type)
   }

@@ -21,5 +21,4 @@ abstract class HomeModule {
 
   @ContributesAndroidInjector
   abstract fun contributeRankingFragment(): RankingFragment
-
 }

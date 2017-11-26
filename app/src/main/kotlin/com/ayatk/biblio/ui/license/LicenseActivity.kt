@@ -32,7 +32,6 @@ class LicenseActivity : AppCompatActivity() {
     binding.webView.loadUrl(url)
   }
 
-
   private fun initBackToolbar(toolbar: Toolbar) {
     setSupportActionBar(toolbar)
     supportActionBar?.apply {
