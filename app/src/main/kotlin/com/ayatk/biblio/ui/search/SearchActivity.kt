@@ -158,8 +158,8 @@ class SearchActivity : DaggerAppCompatActivity() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
-    ): BindingHolder<ViewSearchResultItemBinding>
-        = BindingHolder(context, parent, layout.view_search_result_item)
+    ): BindingHolder<ViewSearchResultItemBinding> =
+        BindingHolder(context, parent, layout.view_search_result_item)
 
     override fun onBindViewHolder(
         holder: BindingHolder<ViewSearchResultItemBinding>, position: Int

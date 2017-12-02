@@ -41,6 +41,9 @@ jobs:
           name: Lint
           command: |
             ./gradlew ktlint detektCheck
+            if [ -e build/reports/ktlint/ktlint.xml ]; then
+              cat build/reports/ktlint/ktlint.xml | ./reviewdog -f=checkstyle -diff="git diff master" -name="ktlint" -ci="circle-ci"
+            fi
             cat build/reports/detekt/detekt-checkstyle.xml| ./reviewdog -f=checkstyle -diff="git diff master" -name="detekt" -ci="circle-ci"
       - run:
           name: Run Tests

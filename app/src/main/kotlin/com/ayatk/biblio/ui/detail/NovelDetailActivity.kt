@@ -89,14 +89,14 @@ class NovelDetailActivity : DaggerAppCompatActivity() {
 
   inner class NovelDetailPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-    override fun getItem(position: Int): Fragment
-        = NovelDetailPage.values()[position].createFragment(novel)
+    override fun getItem(position: Int): Fragment =
+        NovelDetailPage.values()[position].createFragment(novel)
 
-    override fun getCount(): Int
-        = NovelDetailPage.values().size
+    override fun getCount(): Int =
+        NovelDetailPage.values().size
 
-    override fun getPageTitle(position: Int): CharSequence
-        = getString(NovelDetailPage.values()[position].title)
+    override fun getPageTitle(position: Int): CharSequence =
+        getString(NovelDetailPage.values()[position].title)
   }
 
   private enum class NovelDetailPage(val title: Int) {

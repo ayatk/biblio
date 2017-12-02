@@ -5,8 +5,7 @@
   -->
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <RelativeLayout
       android:layout_width="match_parent"
@@ -41,12 +40,10 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="start"
         android:background="@color/nav_background"
-        android:elevation="@dimen/elevation_4dp"
         app:elevation="@dimen/elevation_4dp"
         app:itemIconTint="@color/bottom_navigation_item"
         app:itemTextColor="@color/bottom_navigation_item"
-        app:menu="@menu/buttom_nav"
-        tools:targetApi="lollipop"/>
+        app:menu="@menu/buttom_nav"/>
 
   </RelativeLayout>
 </layout>
