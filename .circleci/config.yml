@@ -10,14 +10,6 @@ jobs:
       REVIEWDOG_VERSION: 0.9.8
     steps:
       - checkout
-      # install fastlane
-      - restore_cache:
-          key: gems-{{ checksum "Gemfile.lock" }}
-      - run: bundle install --path vendor/bundle
-      - save_cache:
-          key: gems-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
       - run:
           name: Install Reviewdog
           command: curl -fSL https://github.com/haya14busa/reviewdog/releases/download/$REVIEWDOG_VERSION/reviewdog_linux_amd64 -o reviewdog && chmod +x ./reviewdog
@@ -61,6 +53,25 @@ jobs:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
+  deploy:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-26-alpha
+    environment:
+      JVM_OPTS: -Xmx4G -Dkotlin.incremental=false
+    steps:
+      - checkout
+      # install fastlane
+      - restore_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - deploy:
           name: Deploy to DeployGate
           command: |
@@ -75,6 +86,10 @@ jobs:
             export ROOT_DIR=`git rev-parse --show-toplevel`
             export VERSION=`grep "def VERSION" $ROOT_DIR/app/build.gradle | sed -E 's/.*"(.+)"$/\1/'`
             bundle exec fastlane android deploy
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
 workflows:
   version: 2
@@ -82,3 +97,6 @@ workflows:
   build_test_deploy:
     jobs:
       - build
+      - deploy:
+        requires:
+          - build
