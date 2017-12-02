@@ -3,8 +3,13 @@
 ## Unreleased
 
 ### Changed
+- Support API をLollipop以上に変更 #62 
 - 英語のローカライズに対応 #51
 - Dagger2のAndroid Supportに対応 #50
+
+### Fixed
+- リソースの整理 #62
+- Dagger2の処理をいい感じにした #61
 
 ## 0.2.2-alpha - 2017-10-27
 ### Changed
