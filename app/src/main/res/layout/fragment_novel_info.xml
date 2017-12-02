@@ -119,9 +119,8 @@
       <android.support.constraint.ConstraintLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:background="@drawable/clickable"
+          android:background="?attr/selectableItemBackground"
           android:padding="@dimen/space_16dp">
-
 
         <ImageView
             android:id="@+id/img_tag"
@@ -190,7 +189,7 @@
       <android.support.constraint.ConstraintLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:background="@drawable/clickable"
+          android:background="?attr/selectableItemBackground"
           android:padding="@dimen/space_16dp">
 
         <ImageView
