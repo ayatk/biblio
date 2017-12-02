@@ -28,8 +28,8 @@ class RepositoryModule {
 
   @Singleton
   @Provides
-  fun provideLibraryRepository(localDataSource: LibraryLocalDataSource): LibraryDataSource
-      = LibraryRepository(localDataSource)
+  fun provideLibraryRepository(localDataSource: LibraryLocalDataSource): LibraryDataSource =
+      LibraryRepository(localDataSource)
 
   @Singleton
   @Provides

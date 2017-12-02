@@ -122,10 +122,10 @@ class NovelBodyActivity : DaggerAppCompatActivity() {
 
   inner class NovelBodyPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-    override fun getItem(position: Int): Fragment
-        = NovelBodyFragment.newInstance(novel, position + 1)
+    override fun getItem(position: Int): Fragment =
+        NovelBodyFragment.newInstance(novel, position + 1)
 
-    override fun getCount(): Int
-        = novel.totalPages
+    override fun getCount(): Int =
+        novel.totalPages
   }
 }

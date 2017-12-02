@@ -32,13 +32,13 @@ import javax.inject.Singleton
 class AppModule {
 
   @Provides
-  fun provideConnectivityManager(application: Application): ConnectivityManager
-      = application.getSystemService(Context.CONNECTIVITY_SERVICE) as (ConnectivityManager)
+  fun provideConnectivityManager(application: Application): ConnectivityManager =
+      application.getSystemService(Context.CONNECTIVITY_SERVICE) as (ConnectivityManager)
 
   @Singleton
   @Provides
-  fun provideDefaultPrefs(application: Application): DefaultPrefs
-      = DefaultPrefs.get(application)
+  fun provideDefaultPrefs(application: Application): DefaultPrefs =
+      DefaultPrefs.get(application)
 
   @Singleton
   @Provides
