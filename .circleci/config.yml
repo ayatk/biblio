@@ -1,4 +1,5 @@
 version: 2
+
 jobs:
   build:
     working_directory: ~/code
@@ -74,3 +75,10 @@ jobs:
             export ROOT_DIR=`git rev-parse --show-toplevel`
             export VERSION=`grep "def VERSION" $ROOT_DIR/app/build.gradle | sed -E 's/.*"(.+)"$/\1/'`
             bundle exec fastlane android deploy
+
+workflows:
+  version: 2
+
+  build_test_deploy:
+    jobs:
+      - build
