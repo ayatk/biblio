@@ -4,6 +4,8 @@
 
 package com.ayatk.biblio
 
+import android.content.Context
+import android.support.multidex.MultiDex
 import com.ayatk.biblio.di.DaggerAppComponent
 import com.crashlytics.android.Crashlytics
 import com.squareup.leakcanary.LeakCanary
@@ -12,6 +14,11 @@ import dagger.android.support.DaggerApplication
 import io.fabric.sdk.android.Fabric
 
 open class App : DaggerApplication() {
+
+  override fun attachBaseContext(context: Context) {
+    super.attachBaseContext(context)
+    MultiDex.install(this)
+  }
 
   override fun onCreate() {
     super.onCreate()
