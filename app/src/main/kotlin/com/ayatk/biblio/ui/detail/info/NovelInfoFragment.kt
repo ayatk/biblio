@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ayatk.biblio.databinding.FragmentNovelInfoBinding
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.repository.library.LibraryRepository
+import com.ayatk.biblio.repository.library.LibraryDataSource
 import com.ayatk.biblio.ui.util.helper.Navigator
 import dagger.android.support.DaggerFragment
 import org.parceler.Parcels
@@ -24,25 +24,19 @@ class NovelInfoFragment : DaggerFragment() {
   lateinit var navigator: Navigator
 
   @Inject
-  lateinit var libraryRepository: LibraryRepository
+  lateinit var libraryDataSource: LibraryDataSource
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(
-        arguments?.getParcelable(
-            BUNDLE_ARGS_NOVEL
-        )
-    )
+    Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL))
   }
 
   private lateinit var viewModel: NovelInfoViewModel
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+  override fun onCreateView(
+      inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+  ): View? {
     binding = FragmentNovelInfoBinding.inflate(inflater, container, false)
-    viewModel = NovelInfoViewModel(
-        navigator, libraryRepository,
-        novel
-    )
+    viewModel = NovelInfoViewModel(navigator, libraryDataSource, novel)
     binding.viewModel = viewModel
 
     return binding.root

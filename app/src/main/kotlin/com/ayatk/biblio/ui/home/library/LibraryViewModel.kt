@@ -12,7 +12,7 @@ import com.ayatk.biblio.BR
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.pref.DefaultPrefs
-import com.ayatk.biblio.repository.library.LibraryRepository
+import com.ayatk.biblio.repository.library.LibraryDataSource
 import com.ayatk.biblio.repository.novel.NovelRepository
 import com.ayatk.biblio.repository.novel.NovelTableRepository
 import com.ayatk.biblio.ui.ViewModel
@@ -25,7 +25,7 @@ import javax.inject.Inject
 
 class LibraryViewModel @Inject constructor(
     private val navigator: Navigator,
-    private val libraryRepository: LibraryRepository,
+    private val libraryDataSource: LibraryDataSource,
     private val novelRepository: NovelRepository,
     private val novelTableRepository: NovelTableRepository,
     private val defaultPrefs: DefaultPrefs
@@ -57,7 +57,7 @@ class LibraryViewModel @Inject constructor(
   }
 
   private fun loadLibraries(): Single<List<Library>> {
-    return libraryRepository.findAll()
+    return libraryDataSource.findAll()
         // 最終更新日時順でソート
         .map({ libraries -> libraries.sortedByDescending { (_, novel) -> novel.lastUpdateDate } })
   }

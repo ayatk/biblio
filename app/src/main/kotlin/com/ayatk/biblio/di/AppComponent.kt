@@ -17,6 +17,7 @@ import javax.inject.Singleton
     modules = arrayOf(
         AndroidSupportInjectionModule::class,
         AppModule::class,
+        RepositoryModule::class,
         HttpClientModule::class,
         UiModule::class
     )

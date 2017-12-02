@@ -9,12 +9,8 @@ import com.ayatk.biblio.model.Novel
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class LibraryRepository
-@Inject constructor(private val localDataSource: LibraryLocalDataSource) : LibraryDataSource {
+class LibraryRepository(private val localDataSource: LibraryLocalDataSource) : LibraryDataSource {
 
   private var cachedLibrary = emptyMap<String, Library>()
 

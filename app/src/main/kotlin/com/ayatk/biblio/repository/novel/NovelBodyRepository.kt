@@ -9,10 +9,8 @@ import com.ayatk.biblio.model.NovelBody
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.rxkotlin.toSingle
-import javax.inject.Inject
 
-class NovelBodyRepository
-@Inject constructor(
+class NovelBodyRepository(
     private val localDataSource: NovelBodyLocalDataSource,
     private val remoteDataSource: NovelBodyRemoteDataSource
 ) : NovelBodyDataSource {

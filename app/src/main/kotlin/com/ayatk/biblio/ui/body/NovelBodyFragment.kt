@@ -33,8 +33,10 @@ class NovelBodyFragment : DaggerFragment() {
     arguments?.getInt(BUNDLE_ARGS_NOVEL_PAGE) ?: 1
   }
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+  override fun onCreateView(
+      inflater: LayoutInflater, container: ViewGroup?,
+      savedInstanceState: Bundle?
+  ): View? {
     binding = FragmentNovelBodyBinding.inflate(inflater, container, false)
     binding.viewModel = viewModel
 

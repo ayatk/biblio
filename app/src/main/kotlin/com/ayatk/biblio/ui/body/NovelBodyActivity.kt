@@ -60,8 +60,10 @@ class NovelBodyActivity : DaggerAppCompatActivity() {
               EventBus.getDefault().post(NovelBodySelectedEvent(position))
             }
 
-            override fun onPageScrolled(position: Int, positionOffset: Float,
-                positionOffsetPixels: Int) {
+            override fun onPageScrolled(
+                position: Int, positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
             }
 
             override fun onPageScrollStateChanged(pos: Int) {}
