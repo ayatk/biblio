@@ -78,11 +78,11 @@ class NarouClient
     }
   }
 
-  fun getPage(ncode: String, page: Int): Single<NarouNovelBody>
-      = narouService.getPage(ncode, page).map { s -> htmlUtil.parsePage(ncode, s, page) }
+  fun getPage(ncode: String, page: Int): Single<NarouNovelBody> =
+      narouService.getPage(ncode, page).map { s -> htmlUtil.parsePage(ncode, s, page) }
 
-  fun getSSPage(ncode: String): Single<NarouNovelBody>
-      = narouService.getSSPage(ncode).map { htmlUtil.parsePage(ncode, it, 1) }
+  fun getSSPage(ncode: String): Single<NarouNovelBody> =
+      narouService.getSSPage(ncode).map { htmlUtil.parsePage(ncode, it, 1) }
 
   private fun convertNarouNovelToNovel(
       narouNovels: List<NarouNovel>, publisher: Publisher
