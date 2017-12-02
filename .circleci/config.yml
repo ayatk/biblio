@@ -90,7 +90,7 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
-  deploy:
+  deploy-nightly:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-26-alpha
@@ -108,33 +108,75 @@ jobs:
             - vendor/bundle
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Set License
+          command: |
+            mkdir -p $ANDROID_HOME/licenses
+            echo -e "d56f5187479451eabf01fb78af6dfcb131a6481e" > $ANDROID_HOME/licenses/android-sdk-license
+            echo -e "84831b9409646a918e30573bab4c9c91346d8abd" > $ANDROID_HOME/licenses/android-sdk-preview-license
       - deploy:
           name: Deploy to DeployGate
           command: |
-            [ "$CIRCLE_BRANCH" != "master" ] && exit
             export ROOT_DIR=`git rev-parse --show-toplevel`
             export VERSION=`grep "def VERSION" $ROOT_DIR/app/build.gradle | sed -E 's/.*"(.+)"$/\1/'`
             bundle exec fastlane android nightly
-      - deploy:
-          name: Deploy to Google Play
-          command: |
-            [ "$CIRCLE_BRANCH" != "production" ] && exit
-            export ROOT_DIR=`git rev-parse --show-toplevel`
-            export VERSION=`grep "def VERSION" $ROOT_DIR/app/build.gradle | sed -E 's/.*"(.+)"$/\1/'`
-            bundle exec fastlane android deploy
       - save_cache:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
+  deploy-production:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-26-alpha
+    environment:
+      JVM_OPTS: -Xmx4G -Dkotlin.incremental=false
+    steps:
+      - checkout
+      # install fastlane
+      - restore_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Set License
+          command: |
+            mkdir -p $ANDROID_HOME/licenses
+            echo -e "d56f5187479451eabf01fb78af6dfcb131a6481e" > $ANDROID_HOME/licenses/android-sdk-license
+            echo -e "84831b9409646a918e30573bab4c9c91346d8abd" > $ANDROID_HOME/licenses/android-sdk-preview-license
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - deploy:
+          name: Deploy to Google Play
+          command: |
+            export ROOT_DIR=`git rev-parse --show-toplevel`
+            export VERSION=`grep "def VERSION" $ROOT_DIR/app/build.gradle | sed -E 's/.*"(.+)"$/\1/'`
+            bundle exec fastlane android deploy
+
 workflows:
   version: 2
 
-  build_test_deploy:
+  build-test-and-deploy:
     jobs:
       - build
       - test
-      - deploy:
+      - deploy-nightly:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build
+            - test
+      - deploy-production:
+          filters:
+            branches:
+              only: production
           requires:
             - build
             - test
