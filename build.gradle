@@ -7,7 +7,7 @@
 apply plugin: "io.gitlab.arturbosch.detekt"
 
 buildscript {
-  ext.kotlin_version = '1.1.60'
+  ext.kotlin_version = '1.2.0'
 
   repositories {
     jcenter()

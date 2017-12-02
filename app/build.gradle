@@ -189,7 +189,7 @@ configurations {
   ktlint
 }
 
-ext.supportLibVersion = '27.0.1'
+ext.supportLibVersion = '27.0.2'
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -203,7 +203,7 @@ dependencies {
   implementation "com.android.support:preference-v7:${supportLibVersion}"
   implementation "com.android.support:preference-v14:${supportLibVersion}"
   implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-  kapt "com.android.databinding:compiler:3.0.0"
+  kapt "com.android.databinding:compiler:3.0.1"
 
   // Android Architecture Components
   implementation "android.arch.lifecycle:runtime:1.0.3"
@@ -217,8 +217,8 @@ dependencies {
   implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
   implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
   implementation 'com.google.code.gson:gson:2.8.2'
-  implementation 'com.squareup.okhttp3:okhttp:3.9.0'
-  implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+  implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+  implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
 
   // Dependency Injection
   implementation 'com.google.dagger:dagger:2.13'
@@ -228,9 +228,9 @@ dependencies {
   implementation 'com.google.dagger:dagger-android-support:2.13'
 
   // ReactiveX
-  implementation 'io.reactivex.rxjava2:rxjava:2.1.6'
+  implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
   implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-  implementation 'io.reactivex.rxjava2:rxkotlin:2.1.0'
+  implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
 
   // O/R Mapping
   implementation 'com.github.gfx.android.orma:orma:4.2.5'
@@ -241,7 +241,7 @@ dependencies {
   kapt 'com.rejasupotaro:kvs-schema-compiler:5.0.1'
 
   // Jsoup
-  implementation 'org.jsoup:jsoup:1.11.1'
+  implementation 'org.jsoup:jsoup:1.11.2'
 
   // UI
   implementation 'com.google.android:flexbox:0.3.1'
@@ -263,7 +263,7 @@ dependencies {
   debugImplementation 'com.tomoima.debot:debot:2.0.3'
   releaseImplementation 'com.tomoima.debot:debot-no-op:2.0.3'
   debugImplementation 'jp.wasabeef:takt:1.0.5'
-  implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+  implementation('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
     transitive = true
   }
 
@@ -275,7 +275,7 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 
   // Lint
-  ktlint "com.github.shyiko:ktlint:0.12.1"
+  ktlint "com.github.shyiko:ktlint:0.14.0"
 }
 
 task ktlint(type: JavaExec, group: "verification") {
