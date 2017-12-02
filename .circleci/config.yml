@@ -6,17 +6,41 @@ jobs:
       - image: circleci/android:api-26-alpha
     environment:
       JVM_OPTS: -Xmx4G -Dkotlin.incremental=false
+    steps:
+      # exec Android test and build
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Set License
+          command: |
+            mkdir -p $ANDROID_HOME/licenses
+            echo -e "d56f5187479451eabf01fb78af6dfcb131a6481e" > $ANDROID_HOME/licenses/android-sdk-license
+            echo -e "84831b9409646a918e30573bab4c9c91346d8abd" > $ANDROID_HOME/licenses/android-sdk-preview-license
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - run:
+          name: Decrypt signature
+          command: |
+            openssl aes-256-cbc -d -k $SIGNATURE_DECRYPT_KEY -in signature.tar.gz.enc -out signature.tar.gz
+            tar -zxvf signature.tar.gz
+      - run:
+          name: Build APK
+          command: ./gradlew assembleProductionRelease -PdisablePreDex
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
+  test:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-26-alpha
+    environment:
+      JVM_OPTS: -Xmx4G -Dkotlin.incremental=false
       REVIEWDOG_VERSION: 0.9.8
     steps:
       - checkout
-      # install fastlane
-      - restore_cache:
-          key: gems-{{ checksum "Gemfile.lock" }}
-      - run: bundle install --path vendor/bundle
-      - save_cache:
-          key: gems-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
       - run:
           name: Install Reviewdog
           command: curl -fSL https://github.com/haya14busa/reviewdog/releases/download/$REVIEWDOG_VERSION/reviewdog_linux_amd64 -o reviewdog && chmod +x ./reviewdog
@@ -40,26 +64,55 @@ jobs:
       - run:
           name: Lint
           command: |
+            set +e
             ./gradlew ktlint detektCheck
+            set -e
+      - run:
+          name: Report Lint
+          command: |
             if [ -e build/reports/ktlint/ktlint.xml ]; then
               cat build/reports/ktlint/ktlint.xml | ./reviewdog -f=checkstyle -diff="git diff master" -name="ktlint" -ci="circle-ci"
             fi
-            cat build/reports/detekt/detekt-checkstyle.xml| ./reviewdog -f=checkstyle -diff="git diff master" -name="detekt" -ci="circle-ci"
+            if [ -e build/reports/detekt/detekt-checkstyle.xml ]; then
+              cat build/reports/detekt/detekt-checkstyle.xml | ./reviewdog -f=checkstyle -diff="git diff master" -name="detekt" -ci="circle-ci"
+            fi
       - run:
           name: Run Tests
           command: ./gradlew lint test -PdisablePreDex
-      - run:
-          name: Build APK
-          command: ./gradlew assembleProductionRelease -PdisablePreDex
       - store_artifacts:
           path: app/build/reports
           destination: reports
       - store_test_results:
           path: app/build/test-results
+
+  deploy:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-26-alpha
+    environment:
+      JVM_OPTS: -Xmx4G -Dkotlin.incremental=false
+    steps:
+      - checkout
+      # install fastlane
+      - restore_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+      - run: bundle install --path vendor/bundle
       - save_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
           paths:
-            - ~/.gradle
+            - vendor/bundle
+      # exec Android test and build
+      - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Set License
+          command: |
+            mkdir -p $ANDROID_HOME/licenses
+            echo -e "d56f5187479451eabf01fb78af6dfcb131a6481e" > $ANDROID_HOME/licenses/android-sdk-license
+            echo -e "84831b9409646a918e30573bab4c9c91346d8abd" > $ANDROID_HOME/licenses/android-sdk-preview-license
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
       - deploy:
           name: Deploy to DeployGate
           command: |
@@ -74,3 +127,14 @@ jobs:
             export ROOT_DIR=`git rev-parse --show-toplevel`
             export VERSION=`grep "def VERSION" $ROOT_DIR/app/build.gradle | sed -E 's/.*"(.+)"$/\1/'`
             bundle exec fastlane android deploy
+
+workflows:
+  version: 2
+  build-test-and-deploy:
+    jobs:
+      - build
+      - test
+      - deploy:
+        requires:
+          - build
+          - test
