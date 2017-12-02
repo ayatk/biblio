@@ -114,6 +114,16 @@ jobs:
             mkdir -p $ANDROID_HOME/licenses
             echo -e "d56f5187479451eabf01fb78af6dfcb131a6481e" > $ANDROID_HOME/licenses/android-sdk-license
             echo -e "84831b9409646a918e30573bab4c9c91346d8abd" > $ANDROID_HOME/licenses/android-sdk-preview-license
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+
+      - run:
+          name: Decrypt signature
+          command: |
+            openssl aes-256-cbc -d -k $SIGNATURE_DECRYPT_KEY -in signature.tar.gz.enc -out signature.tar.gz
+            tar -zxvf signature.tar.gz
+
       - deploy:
           name: Deploy to DeployGate
           command: |
@@ -152,6 +162,11 @@ jobs:
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
+      - run:
+          name: Decrypt signature
+          command: |
+            openssl aes-256-cbc -d -k $SIGNATURE_DECRYPT_KEY -in signature.tar.gz.enc -out signature.tar.gz
+            tar -zxvf signature.tar.gz
       - deploy:
           name: Deploy to Google Play
           command: |
