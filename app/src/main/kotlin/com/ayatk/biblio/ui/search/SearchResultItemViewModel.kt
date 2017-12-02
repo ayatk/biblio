@@ -11,7 +11,7 @@ import com.ayatk.biblio.BR
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.NovelState
-import com.ayatk.biblio.repository.library.LibraryRepository
+import com.ayatk.biblio.repository.library.LibraryDataSource
 import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.util.DateFormat
 import io.reactivex.rxkotlin.subscribeBy
@@ -20,7 +20,8 @@ import timber.log.Timber
 class SearchResultItemViewModel(
     libraries: List<Library>,
     val novel: Novel,
-    private val libraryRepository: LibraryRepository) : BaseObservable(), ViewModel {
+    private val libraryDataSource: LibraryDataSource
+) : BaseObservable(), ViewModel {
 
   @Bindable
   var downloadVisibility: Int = View.VISIBLE
@@ -42,7 +43,7 @@ class SearchResultItemViewModel(
   }
 
   fun View.onClickAddLibrary() {
-    libraryRepository.save(Library(novel = novel, tag = listOf()))
+    libraryDataSource.save(Library(novel = novel, tag = listOf()))
         .doOnSubscribe {
           downloadVisibility = View.GONE
           notifyPropertyChanged(BR.downloadVisibility)

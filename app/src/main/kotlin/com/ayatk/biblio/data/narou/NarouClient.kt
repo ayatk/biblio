@@ -29,7 +29,8 @@ class NarouClient
     private val htmlUtil: HtmlUtil,
     private val narouApiService: NarouApiService,
     @Named("Narou") private val narouService: NarouService,
-    @Named("Narou18") private val narou18Service: NarouService) {
+    @Named("Narou18") private val narou18Service: NarouService
+) {
 
   fun getNovel(query: Map<String, String>): Single<List<Novel>> {
     return narouApiService.getNovel(query)
@@ -84,7 +85,8 @@ class NarouClient
       = narouService.getSSPage(ncode).map { htmlUtil.parsePage(ncode, it, 1) }
 
   private fun convertNarouNovelToNovel(
-      narouNovels: List<NarouNovel>, publisher: Publisher): List<Novel> {
+      narouNovels: List<NarouNovel>, publisher: Publisher
+  ): List<Novel> {
     return narouNovels.map {
       Novel(
           publisher = publisher,

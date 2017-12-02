@@ -21,22 +21,26 @@ abstract class ObservableListRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(
           }
 
           override fun onItemRangeChanged(
-              contributorViewModels: ObservableList<T>, i: Int, i1: Int) {
+              contributorViewModels: ObservableList<T>, i: Int, i1: Int
+          ) {
             notifyItemRangeChanged(i, i1)
           }
 
           override fun onItemRangeInserted(
-              contributorViewModels: ObservableList<T>, i: Int, i1: Int) {
+              contributorViewModels: ObservableList<T>, i: Int, i1: Int
+          ) {
             notifyItemRangeInserted(i, i1)
           }
 
           override fun onItemRangeMoved(
-              contributorViewModels: ObservableList<T>, i: Int, i1: Int, i2: Int) {
+              contributorViewModels: ObservableList<T>, i: Int, i1: Int, i2: Int
+          ) {
             notifyItemMoved(i, i1)
           }
 
           override fun onItemRangeRemoved(
-              contributorViewModels: ObservableList<T>, i: Int, i1: Int) {
+              contributorViewModels: ObservableList<T>, i: Int, i1: Int
+          ) {
             notifyItemRangeRemoved(i, i1)
           }
         }

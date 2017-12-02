@@ -9,24 +9,25 @@ import android.databinding.Bindable
 import com.ayatk.biblio.BR
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelBody
-import com.ayatk.biblio.repository.novel.NovelBodyRepository
+import com.ayatk.biblio.repository.novel.NovelBodyDataSource
 import com.ayatk.biblio.ui.ViewModel
 import javax.inject.Inject
 
 class NovelBodyViewModel @Inject constructor(
-    private val repository: NovelBodyRepository
+    private val novelBodyDataSource: NovelBodyDataSource
 ) : BaseObservable(), ViewModel {
 
   @Bindable
   var novelBody: NovelBody = NovelBody()
 
   fun start(novel: Novel, page: Int) {
-    repository.find(novel, page)
+    novelBodyDataSource.find(novel, page)
         .subscribe(
             {
               novelBody = it.first()
               notifyPropertyChanged(BR.novelBody)
             },
+            // TODO: 2017/11/26 エラーを握りつぶしマン
             {}
         )
   }

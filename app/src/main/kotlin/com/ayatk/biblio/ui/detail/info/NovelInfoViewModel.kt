@@ -13,7 +13,7 @@ import android.view.inputmethod.InputMethodManager
 import com.ayatk.biblio.BR
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.repository.library.LibraryRepository
+import com.ayatk.biblio.repository.library.LibraryDataSource
 import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.ui.util.helper.Navigator
 import com.ayatk.biblio.util.DateFormat
@@ -21,7 +21,7 @@ import mabbas007.tagsedittext.TagsEditText
 
 class NovelInfoViewModel(
     private val navigator: Navigator,
-    private val libraryRepository: LibraryRepository,
+    private val libraryDataSource: LibraryDataSource,
     val novel: Novel
 ) : BaseObservable(), ViewModel {
 
@@ -59,7 +59,7 @@ class NovelInfoViewModel(
   fun url(): String = novel.publisher.url + novel.code.toLowerCase()
 
   fun start() {
-    libraryRepository.find(novel)
+    libraryDataSource.find(novel)
         .subscribe(
             { library ->
               tags = library.tag
@@ -76,6 +76,7 @@ class NovelInfoViewModel(
     navigator.navigateToWebPage("http://ncode.syosetu.com/" + novel.code.toLowerCase())
   }
 
+  // TODO: 2017/11/26 context持ってるのでFragmentに移動させる
   fun onClickUserTag(context: Context) {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
@@ -87,7 +88,7 @@ class NovelInfoViewModel(
         .setTitle("タグの追加")
         .setView(editView)
         .setPositiveButton("OK") { _, _ ->
-          libraryRepository.save(Library(novel = novel, tag = editView.tags)).subscribe()
+          libraryDataSource.save(Library(novel = novel, tag = editView.tags)).subscribe()
           tags = editView.tags
           notifyPropertyChanged(BR.tags)
           imm.hideSoftInputFromWindow(editView.windowToken, 0)
@@ -97,7 +98,7 @@ class NovelInfoViewModel(
         }
         .create()
 
-    libraryRepository.find(novel)
+    libraryDataSource.find(novel)
         .subscribe({ library -> editView.setTags(*library.tag.toTypedArray()) })
 
     dialog.show()

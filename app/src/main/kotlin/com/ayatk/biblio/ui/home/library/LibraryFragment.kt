@@ -27,8 +27,10 @@ class LibraryFragment : DaggerFragment() {
   @Inject
   lateinit var viewModel: LibraryViewModel
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+  override fun onCreateView(
+      inflater: LayoutInflater, container: ViewGroup?,
+      savedInstanceState: Bundle?
+  ): View? {
     binding = FragmentLibraryBinding.inflate(inflater, container, false)
     binding.viewModel = viewModel
 
@@ -64,7 +66,8 @@ class LibraryFragment : DaggerFragment() {
   }
 
   private inner class LibraryAdapter constructor(
-      context: Context, list: ObservableList<LibraryItemViewModel>) :
+      context: Context, list: ObservableList<LibraryItemViewModel>
+  ) :
       ObservableListRecyclerAdapter<LibraryItemViewModel, BindingHolder<ViewLibraryItemBinding>>(
           context, list
       ) {
@@ -74,7 +77,8 @@ class LibraryFragment : DaggerFragment() {
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup, viewType: Int): BindingHolder<ViewLibraryItemBinding>
+        parent: ViewGroup, viewType: Int
+    ): BindingHolder<ViewLibraryItemBinding>
         = BindingHolder(context, parent, R.layout.view_library_item)
 
     override fun onBindViewHolder(holder: BindingHolder<ViewLibraryItemBinding>, position: Int) {

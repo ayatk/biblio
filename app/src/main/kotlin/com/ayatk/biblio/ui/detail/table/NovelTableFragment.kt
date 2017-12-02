@@ -37,8 +37,10 @@ class NovelTableFragment : DaggerFragment() {
     )
   }
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+  override fun onCreateView(
+      inflater: LayoutInflater, container: ViewGroup?,
+      savedInstanceState: Bundle?
+  ): View? {
     binding = FragmentNovelTableBinding.inflate(inflater, container, false)
     binding.viewModel = viewModel
     initRecyclerView()
@@ -74,7 +76,8 @@ class NovelTableFragment : DaggerFragment() {
   }
 
   private inner class TableAdapter constructor(
-      context: Context, list: ObservableList<NovelTableItemViewModel>) :
+      context: Context, list: ObservableList<NovelTableItemViewModel>
+  ) :
       ObservableListRecyclerAdapter<NovelTableItemViewModel, BindingHolder<ViewTableItemBinding>>(
           context, list
       ) {
@@ -84,7 +87,8 @@ class NovelTableFragment : DaggerFragment() {
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup, viewType: Int): BindingHolder<ViewTableItemBinding>
+        parent: ViewGroup, viewType: Int
+    ): BindingHolder<ViewTableItemBinding>
         = BindingHolder(context, parent, layout.view_table_item)
 
     override fun onBindViewHolder(holder: BindingHolder<ViewTableItemBinding>, position: Int) {
