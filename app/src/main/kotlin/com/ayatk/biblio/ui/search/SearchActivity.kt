@@ -9,6 +9,7 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.databinding.ObservableList
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.DividerItemDecoration
@@ -65,9 +66,12 @@ class SearchActivity : DaggerAppCompatActivity() {
         }
     )
 
+    val divider = DividerItemDecoration(this, 1)
+    ContextCompat.getDrawable(this, R.drawable.divider)?.let { divider.setDrawable(it) }
+
     binding.searchResult.apply {
       adapter = SearchResultAdapter(context, viewModel.searchResult)
-      addItemDecoration(DividerItemDecoration(context, 1))
+      addItemDecoration(divider)
       layoutManager = LinearLayoutManager(context)
       addOnScrollListener(
           object : OnScrollListener() {

@@ -7,11 +7,13 @@ package com.ayatk.biblio.ui.detail.table
 import android.content.Context
 import android.databinding.ObservableList
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ayatk.biblio.R
 import com.ayatk.biblio.R.layout
 import com.ayatk.biblio.databinding.FragmentNovelTableBinding
 import com.ayatk.biblio.databinding.ViewTableItemBinding
@@ -53,10 +55,13 @@ class NovelTableFragment : DaggerFragment() {
   }
 
   private fun initRecyclerView() {
+    val divider = DividerItemDecoration(context, 1)
+    ContextCompat.getDrawable(context!!, R.drawable.divider)?.let { divider.setDrawable(it) }
+
     binding.recyclerView.apply {
       adapter = TableAdapter(context, viewModel.novelTableViewModels)
       setHasFixedSize(true)
-      addItemDecoration(DividerItemDecoration(context, 1))
+      addItemDecoration(divider)
       layoutManager = LinearLayoutManager(context)
     }
   }
