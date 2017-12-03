@@ -35,6 +35,12 @@
       <com.ayatk.biblio.ui.util.customview.NovelInfoCellView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          app:setCellIcon="@drawable/ic_num_24"
+          app:setCellText="@{viewModel.novel.code}"/>
+
+      <com.ayatk.biblio.ui.util.customview.NovelInfoCellView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground"
           android:onClick="@{viewModel::onClickWriter}"
           app:setCellIcon="@drawable/ic_writer_grey600_24_vector"
