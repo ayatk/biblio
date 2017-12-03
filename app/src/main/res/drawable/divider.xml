@@ -7,8 +7,6 @@
     android:shape="rectangle">
 
   <solid android:color="@color/grey300"/>
-  <size
-      android:height="@dimen/line_1dp"
-      android:width="@dimen/line_1dp"/>
+  <size android:height="0.7dp"/>
 
 </shape>
