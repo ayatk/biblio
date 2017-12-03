@@ -8,6 +8,7 @@
 - Dagger2のAndroid Supportに対応 #50
 
 ### Fixed
+- UIの修正 #66
 - リソースの整理 #62
 - Dagger2の処理をいい感じにした #61
 
