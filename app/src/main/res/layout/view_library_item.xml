@@ -12,7 +12,7 @@
 
     <variable
         name="viewModel"
-        type="com.ayatk.biblio.viewmodel.LibraryItemViewModel"/>
+        type="com.ayatk.biblio.ui.home.library.LibraryItemViewModel"/>
   </data>
 
   <android.support.constraint.ConstraintLayout
@@ -69,9 +69,8 @@
         android:layout_marginEnd="0dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/tag"
         android:padding="@dimen/space_4dp"
-        android:text="@{viewModel.library.novel.publisher.title}"
+        android:text="@{viewModel.library.novel.publisher.siteName}"
         android:textSize="12sp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/novel_title"
@@ -99,27 +98,38 @@
         app:layout_constraintRight_toLeftOf="@+id/publisher"
         tools:text="連載中"/>
 
-    <com.google.android.flexbox.FlexboxLayout
-        android:id="@+id/tag_container"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:visibility="@{viewModel.showTag ? android.view.View.VISIBLE : android.view.View.GONE}"
-        app:flexDirection="row"
-        app:flexWrap="wrap"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/publisher"
-        app:tags="@{viewModel.library.tag}">
+        app:layout_constraintTop_toBottomOf="@+id/publisher">
 
-      <TextView
+      <ImageView
           android:id="@+id/tag_icon"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:drawablePadding="@dimen/icon_space_4dp"
-          android:drawableStart="@drawable/ic_tag_multiple_grey400_18_vector"/>
+          android:layout_gravity="center"
+          android:layout_marginEnd="@dimen/icon_space_4dp"
+          android:contentDescription="tag_icon"
+          android:src="@drawable/ic_tag_multiple_grey400_20_vector"/>
 
-    </com.google.android.flexbox.FlexboxLayout>
+      <com.google.android.flexbox.FlexboxLayout
+          android:id="@+id/tag_container"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="-2dp"
+          android:layout_marginTop="-2dp"
+          android:layout_weight="1"
+          app:flexDirection="row"
+          app:flexWrap="wrap"
+          app:tags="@{viewModel.library.tag}">
+
+      </com.google.android.flexbox.FlexboxLayout>
+    </LinearLayout>
+
 
   </android.support.constraint.ConstraintLayout>
 

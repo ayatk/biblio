@@ -13,7 +13,7 @@
 
     <variable
         name="viewModel"
-        type="com.ayatk.biblio.viewmodel.NovelBodyViewModel"/>
+        type="com.ayatk.biblio.ui.body.NovelBodyViewModel"/>
 
   </data>
 

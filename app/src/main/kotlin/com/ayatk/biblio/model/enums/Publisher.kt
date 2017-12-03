@@ -4,12 +4,15 @@
 
 package com.ayatk.biblio.model.enums
 
-enum class Publisher(val title: String, val url: String) {
+import android.support.annotation.StringRes
+import com.ayatk.biblio.R
+
+enum class Publisher(@StringRes val siteName: Int, val url: String) {
   // なろう
-  NAROU("小説家になろう", "http://ncode.syosetu.com/"),
+  NAROU(R.string.site_narou, "http://ncode.syosetu.com/"),
 
   // ノクターンとムーンライト
-  NOCTURNE_MOONLIGHT("ノクターン･ムーンライト", "http://novel18.syosetu.com/"),
+  NOCTURNE_MOONLIGHT(R.string.site_nocturne_moonlight, "http://novel18.syosetu.com/"),
 
   // ハーメルン
   // HAMELN("ハーメルン", "https://novel.syosetu.org/"),

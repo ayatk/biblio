@@ -4,9 +4,9 @@
 
 package com.ayatk.biblio.repository.novel
 
-import com.ayatk.biblio.data.dao.OrmaDatabaseWrapper
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelTable
+import com.ayatk.biblio.model.OrmaDatabase
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
@@ -14,10 +14,10 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class NovelTableLocalDataSource
-@Inject constructor(val orma: OrmaDatabaseWrapper) : NovelTableDataSource {
+@Inject constructor(val orma: OrmaDatabase) : NovelTableDataSource {
 
   override fun findAll(novel: Novel): Single<List<NovelTable>> {
-    return orma.db.selectFromNovelTable()
+    return orma.selectFromNovelTable()
         .novelEq(novel)
         .executeAsObservable()
         .toList()
@@ -25,7 +25,7 @@ class NovelTableLocalDataSource
   }
 
   override fun find(novel: Novel, page: Int): Maybe<NovelTable> {
-    return orma.db.selectFromNovelTable()
+    return orma.selectFromNovelTable()
         .novelEq(novel)
         .page(page.toLong())
         .executeAsObservable()
@@ -34,15 +34,15 @@ class NovelTableLocalDataSource
   }
 
   override fun save(novelTables: List<NovelTable>): Completable {
-    return orma.db.transactionAsCompletable {
+    return orma.transactionAsCompletable {
       novelTables.map {
-        orma.db.relationOfNovelTable().upsert(it)
+        orma.relationOfNovelTable().upsert(it)
       }
     }.subscribeOn(Schedulers.io())
   }
 
   override fun delete(novel: Novel): Single<Int> {
-    return orma.db.relationOfNovelTable()
+    return orma.relationOfNovelTable()
         .deleter()
         .novelEq(novel)
         .executeAsSingle()

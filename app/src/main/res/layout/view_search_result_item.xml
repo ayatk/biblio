@@ -14,7 +14,7 @@
 
     <variable
         name="viewModel"
-        type="com.ayatk.biblio.viewmodel.SearchResultItemViewModel"/>
+        type="com.ayatk.biblio.ui.search.SearchResultItemViewModel"/>
   </data>
 
   <android.support.constraint.ConstraintLayout
@@ -70,7 +70,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/tag"
         android:padding="@dimen/space_4dp"
-        android:text="@{viewModel.novel.publisher.title}"
+        android:text="@{viewModel.novel.publisher.siteName}"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/novel_type"
         app:layout_constraintTop_toBottomOf="@+id/novel_title"

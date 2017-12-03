@@ -4,15 +4,17 @@
 
 package com.ayatk.biblio.di
 
+import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
-import com.ayatk.biblio.App
-import com.ayatk.biblio.data.dao.OrmaDatabaseWrapper
 import com.ayatk.biblio.data.narou.entity.enums.BigGenre
 import com.ayatk.biblio.data.narou.entity.enums.Genre
 import com.ayatk.biblio.data.narou.service.NarouApiService
 import com.ayatk.biblio.data.narou.service.NarouService
-import com.ayatk.biblio.pref.DefaultPrefsWrapper
+import com.ayatk.biblio.data.narou.util.HtmlUtil
+import com.ayatk.biblio.model.OrmaDatabase
+import com.ayatk.biblio.pref.DefaultPrefs
+import com.github.gfx.android.orma.AccessThreadConstraint
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer
@@ -26,26 +28,30 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import javax.inject.Named
 import javax.inject.Singleton
 
-
 @Module
-class AppModule(private val app: App) {
+class AppModule {
 
   @Provides
-  fun provideApplicationContext(): Context = app
+  fun provideConnectivityManager(application: Application): ConnectivityManager =
+      application.getSystemService(Context.CONNECTIVITY_SERVICE) as (ConnectivityManager)
 
+  @Singleton
   @Provides
-  fun provideConnectivityManager(): ConnectivityManager {
-    return app.getSystemService(Context.CONNECTIVITY_SERVICE) as (ConnectivityManager)
+  fun provideDefaultPrefs(application: Application): DefaultPrefs =
+      DefaultPrefs.get(application)
+
+  @Singleton
+  @Provides
+  fun provideOrmaDatabase(application: Application): OrmaDatabase {
+    return OrmaDatabase.builder(application)
+        .writeOnMainThread(AccessThreadConstraint.FATAL)
+        .readOnMainThread(AccessThreadConstraint.FATAL)
+        .build()
   }
 
   @Singleton
   @Provides
-  fun provideDefaultPrefs(context: Context): DefaultPrefsWrapper = DefaultPrefsWrapper(context)
-
-  @Singleton
-  @Provides
-  fun provideOrmaDatabase(context: Context): OrmaDatabaseWrapper
-      = OrmaDatabaseWrapper(context)
+  fun provideHtmlUtil(): HtmlUtil = HtmlUtil()
 
   @Singleton
   @Provides
@@ -88,10 +94,14 @@ class AppModule(private val app: App) {
   private fun createGson(): Gson {
     return GsonBuilder()
         .setDateFormat("yyyy-MM-dd HH:mm:ss")
-        .registerTypeAdapter(BigGenre::class.java,
-            JsonDeserializer { jsonElement, _, _ -> BigGenre.of(jsonElement.asInt) })
-        .registerTypeAdapter(Genre::class.java,
-            JsonDeserializer { jsonElement, _, _ -> Genre.of(jsonElement.asInt) })
+        .registerTypeAdapter(
+            BigGenre::class.java,
+            JsonDeserializer { jsonElement, _, _ -> BigGenre.of(jsonElement.asInt) }
+        )
+        .registerTypeAdapter(
+            Genre::class.java,
+            JsonDeserializer { jsonElement, _, _ -> Genre.of(jsonElement.asInt) }
+        )
         .create()
   }
 }

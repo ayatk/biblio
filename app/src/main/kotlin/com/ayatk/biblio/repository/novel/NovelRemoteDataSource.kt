@@ -23,15 +23,15 @@ class NovelRemoteDataSource
     if (codes.isEmpty()) {
       return Single.create { listOf<Novel>() }
     }
-    when (publisher) {
-      Publisher.NAROU              -> {
-        return client
+    return when (publisher) {
+      Publisher.NAROU -> {
+        client
             .getNovel(QueryBuilder().ncode(*codes.toTypedArray()).build())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
       }
       Publisher.NOCTURNE_MOONLIGHT -> {
-        return client
+        client
             .getNovel18(QueryBuilder().ncode(*codes.toTypedArray()).build())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -46,11 +46,7 @@ class NovelRemoteDataSource
         .singleElement()
   }
 
-  override fun save(novel: Novel): Completable {
-    return Completable.create { /* no-op */ }
-  }
+  override fun save(novel: Novel): Completable = Completable.create {}
 
-  override fun delete(code: String) {
-    /* no-op */
-  }
+  override fun delete(code: String) {}
 }

@@ -11,7 +11,7 @@
 
     <variable
         name="viewModel"
-        type="com.ayatk.biblio.viewmodel.LibraryViewModel"/>
+        type="com.ayatk.biblio.ui.home.library.LibraryViewModel"/>
   </data>
 
   <FrameLayout

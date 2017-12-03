@@ -9,7 +9,7 @@
   <data>
     <variable
         name="viewModel"
-        type="com.ayatk.biblio.viewmodel.NovelTableViewModel"/>
+        type="com.ayatk.biblio.ui.detail.table.NovelTableViewModel"/>
   </data>
 
   <android.support.v7.widget.RecyclerView

@@ -9,19 +9,19 @@ import com.ayatk.biblio.model.NovelBody
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.rxkotlin.toSingle
-import javax.inject.Inject
 
-class NovelBodyRepository
-@Inject constructor(private val localDataSource: NovelBodyLocalDataSource,
-                    private val remoteDataSource: NovelBodyRemoteDataSource) : NovelBodyDataSource {
+class NovelBodyRepository(
+    private val localDataSource: NovelBodyLocalDataSource,
+    private val remoteDataSource: NovelBodyRemoteDataSource
+) : NovelBodyDataSource {
 
   override fun find(novel: Novel, page: Int): Single<List<NovelBody>> {
     return localDataSource.find(novel, page)
         .flatMap {
           if (it.isEmpty()) {
-            return@flatMap findToRemote(novel, page)
+            findToRemote(novel, page)
           }
-          return@flatMap it.toSingle()
+          it.toSingle()
         }
   }
 

@@ -10,15 +10,14 @@ apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'io.fabric'
 
 def APP_NAME = "biblio"
-def VERSION = "0.2.2-alpha"
+def VERSION = "0.2.3-alpha"
 def PACKAGE_NAME = "com.ayatk.biblio"
 
 // for debug info
 def GIT_SHA = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
 def GIT_BRANCH = (System.getenv("CIRCLE_BRANCH") != null) ? System.getenv("CIRCLE_BRANCH") :
     'git rev-parse --abbrev-ref HEAD'.execute([], project.rootDir).text.trim()
-def BUILD_NUM = (System.getenv("CIRCLE_BUILD_NUM") != null) ? System.getenv("CIRCLE_BUILD_NUM") :
-    "1"
+def BUILD_NUM = (System.getenv("CIRCLE_BUILD_NUM") != null) ? System.getenv("CIRCLE_BUILD_NUM") : "1"
 def BUILD_TIME = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone("UTC"))
 
 // Keys
@@ -31,7 +30,7 @@ def RELEASE_KEY_PASSWORD = (System.getenv("RELEASE_KEY_PASSWORD") != null) ?
 def FABRIC_API_KEY = (System.getenv("FABRIC_API_KEY") != null) ?
     System.getenv("FABRIC_API_KEY") : ""
 
-def MIN_SDK_VERSION = 19
+def MIN_SDK_VERSION = 21 // Lollipop
 
 def secretPropsFile = file("$rootDir/secret.properties")
 if (secretPropsFile.canRead()) {
@@ -45,7 +44,7 @@ if (secretPropsFile.canRead()) {
 
 android {
   compileSdkVersion 27
-  buildToolsVersion '27.0.0'
+  buildToolsVersion '27.0.1'
 
   defaultConfig {
     applicationId PACKAGE_NAME
@@ -108,12 +107,7 @@ android {
   }
 
   productFlavors {
-    develop {
-      // dev utilizes minSDKVersion = 21 to allow the Android gradle plugin
-      // to pre-dex each module and produce an APK that can be tested on
-      // Android Lollipop without time consuming dex merging processes.
-      minSdkVersion 24
-    }
+    develop {}
     // use deploygate
     nightly {
       minSdkVersion MIN_SDK_VERSION
@@ -160,6 +154,11 @@ android {
     enabled = true
   }
 
+  kapt {
+    // NonExistentClass Errorを無視
+    correctErrorTypes = true
+  }
+
   lintOptions {
     textReport true
     textOutput 'stdout'
@@ -186,7 +185,11 @@ android {
   }
 }
 
-ext.supportLibVersion = '27.0.0'
+configurations {
+  ktlint
+}
+
+ext.supportLibVersion = '27.0.2'
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -200,13 +203,13 @@ dependencies {
   implementation "com.android.support:preference-v7:${supportLibVersion}"
   implementation "com.android.support:preference-v14:${supportLibVersion}"
   implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-  kapt "com.android.databinding:compiler:3.0.0"
+  kapt "com.android.databinding:compiler:3.0.1"
 
   // Android Architecture Components
   implementation "android.arch.lifecycle:runtime:1.0.3"
-  implementation "android.arch.lifecycle:extensions:1.0.0-rc1"
-  implementation "android.arch.lifecycle:reactivestreams:1.0.0-rc1"
-  kapt "android.arch.lifecycle:compiler:1.0.0-rc1"
+  implementation "android.arch.lifecycle:extensions:1.0.0"
+  implementation "android.arch.lifecycle:reactivestreams:1.0.0"
+  kapt "android.arch.lifecycle:compiler:1.0.0"
 
   // Network
   implementation 'com.squareup.retrofit2:retrofit:2.3.0'
@@ -214,15 +217,18 @@ dependencies {
   implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
   implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
   implementation 'com.google.code.gson:gson:2.8.2'
-  implementation 'com.squareup.okhttp3:okhttp:3.9.0'
-  implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+  implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+  implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
 
   // Dependency Injection
-  implementation 'com.google.dagger:dagger:2.12'
-  kapt 'com.google.dagger:dagger-compiler:2.12'
+  implementation 'com.google.dagger:dagger:2.13'
+  kapt 'com.google.dagger:dagger-compiler:2.13'
+  implementation 'com.google.dagger:dagger-android:2.13'
+  kapt 'com.google.dagger:dagger-android-processor:2.13'
+  implementation 'com.google.dagger:dagger-android-support:2.13'
 
   // ReactiveX
-  implementation 'io.reactivex.rxjava2:rxjava:2.1.5'
+  implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
   implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
   implementation 'io.reactivex.rxjava2:rxkotlin:2.1.0'
 
@@ -235,7 +241,7 @@ dependencies {
   kapt 'com.rejasupotaro:kvs-schema-compiler:5.0.1'
 
   // Jsoup
-  implementation 'org.jsoup:jsoup:1.10.3'
+  implementation 'org.jsoup:jsoup:1.11.2'
 
   // UI
   implementation 'com.google.android:flexbox:0.3.1'
@@ -250,14 +256,14 @@ dependencies {
   debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.1'
   releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
   testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
-  implementation 'com.jakewharton.timber:timber:4.5.1'
+  implementation 'com.jakewharton.timber:timber:4.6.0'
   debugImplementation 'com.facebook.stetho:stetho:1.5.0'
   debugImplementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
   debugImplementation 'com.facebook.stetho:stetho-timber:1.5.0@aar'
   debugImplementation 'com.tomoima.debot:debot:2.0.3'
   releaseImplementation 'com.tomoima.debot:debot-no-op:2.0.3'
   debugImplementation 'jp.wasabeef:takt:1.0.5'
-  implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+  implementation('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
     transitive = true
   }
 
@@ -267,6 +273,24 @@ dependencies {
   testImplementation 'junit:junit:4.12'
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+
+  // Lint
+  ktlint "com.github.shyiko:ktlint:0.14.0"
+}
+
+task ktlint(type: JavaExec, group: "verification") {
+  description = "Check Kotlin code style."
+  main = "com.github.shyiko.ktlint.Main"
+  classpath = configurations.ktlint
+  args "src/**/*.kt", "--reporter=plain", "--reporter=checkstyle,output=${project.buildDir}/reports/ktlint/ktlint.xml"
+}
+check.dependsOn ktlint
+
+task ktlintFormat(type: JavaExec, group: "formatting") {
+  description = "Fix Kotlin code style deviations."
+  main = "com.github.shyiko.ktlint.Main"
+  classpath = configurations.ktlint
+  args "-F", "src/**/*.kt"
 }
 
 apply plugin: 'com.google.gms.google-services'

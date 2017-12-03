@@ -4,7 +4,7 @@
 
 package com.ayatk.biblio.di
 
-import android.content.Context
+import android.app.Application
 import com.ayatk.biblio.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -17,8 +17,10 @@ import javax.inject.Singleton
 @Module
 class HttpClientModule {
 
-  private val CACHE_FILE_NAME = "okhttp.cache"
-  private val MAX_CACHE_SIZE = (4 * 1024 * 1024).toLong()
+  companion object {
+    private val CACHE_FILE_NAME = "okhttp.cache"
+    private val MAX_CACHE_SIZE = (4 * 1024 * 1024).toLong()
+  }
 
   private val addUserAgentInterceptor = { chain: Chain ->
     val builder = chain.request().newBuilder()
@@ -28,8 +30,8 @@ class HttpClientModule {
 
   @Singleton
   @Provides
-  fun provideHttpClient(context: Context): OkHttpClient {
-    val cacheDir = File(context.cacheDir, CACHE_FILE_NAME)
+  fun provideHttpClient(application: Application): OkHttpClient {
+    val cacheDir = File(application.cacheDir, CACHE_FILE_NAME)
     val cache = Cache(cacheDir, MAX_CACHE_SIZE)
 
     val c = OkHttpClient
