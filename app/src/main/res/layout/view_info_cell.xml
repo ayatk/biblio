@@ -22,7 +22,7 @@
       android:tint="@color/grey600"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      tools:src="@drawable/ic_num_black_24_vector"/>
+      tools:src="@drawable/ic_num_24"/>
 
   <TextView
       android:id="@+id/text_view"
