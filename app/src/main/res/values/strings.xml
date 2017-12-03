@@ -71,4 +71,5 @@
   <!-- Navigation drawer -->
   <string name="drawer_open">Open</string>
   <string name="drawer_close">Close</string>
+  <string name="suggest_add_user_tag">Tap to add tags.</string>
 </resources>

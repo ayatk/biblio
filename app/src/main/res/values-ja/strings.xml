@@ -72,4 +72,5 @@
   <!-- Navigation drawer -->
   <string name="drawer_open">開く</string>
   <string name="drawer_close">閉じる</string>
+  <string name="suggest_add_user_tag">タップしてタグを追加しましょう</string>
 </resources>
