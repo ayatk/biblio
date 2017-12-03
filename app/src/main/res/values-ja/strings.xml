@@ -20,7 +20,7 @@
   <string name="add_novels">小説を追加</string>
 
   <string name="series">連載中</string>
-  <string name="series_end">完結</string>
+  <string name="series_end">完結済み</string>
   <string name="short_story">短編</string>
   <string name="novel_progress">%1$d/%2$d</string>
   <string name="novel_total_pages">全%1$d部</string>
