@@ -9,6 +9,8 @@
 
   <data>
 
+    <import type="android.view.View"/>
+
     <variable
         name="viewModel"
         type="com.ayatk.biblio.ui.detail.info.NovelInfoViewModel"/>
@@ -115,6 +117,20 @@
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_tag_multiple_grey600_24_vector"/>
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/suggest_add_user_tag"
+            android:textColor="@color/grey500"
+            android:visibility="@{viewModel.tags.isEmpty() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_user_tag"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/user_tag_container"
             android:layout_width="0dp"
@@ -123,6 +139,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
+            android:visibility="@{viewModel.tags.isEmpty() ? View.GONE : View.VISIBLE}"
             app:flexDirection="row"
             app:flexWrap="wrap"
             app:layout_constraintBottom_toBottomOf="parent"
