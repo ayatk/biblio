@@ -9,6 +9,7 @@ import android.databinding.BindingAdapter
 import android.databinding.BindingConversion
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
+import android.widget.FrameLayout
 import android.widget.TextView
 import com.ayatk.biblio.R
 import com.google.android.flexbox.FlexboxLayout
@@ -26,9 +27,10 @@ object DataBindingHelper {
     val inflater = this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     tags.map {
       val tagItem = inflater.inflate(R.layout.view_tag, null)
+      val frameLayout = tagItem.findViewById<FrameLayout>(R.id.tag_container)
       val textView = tagItem.findViewById<TextView>(R.id.tag)
       textView.text = it
-      this.addView(textView)
+      this.addView(frameLayout)
     }
   }
 }

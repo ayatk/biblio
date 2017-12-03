@@ -9,10 +9,10 @@
   <solid android:color="@null"/>
 
   <padding
-      android:bottom="6dp"
-      android:left="@dimen/space_12dp"
-      android:right="@dimen/space_12dp"
-      android:top="6dp"/>
+      android:bottom="4dp"
+      android:left="8dp"
+      android:right="8dp"
+      android:top="4dp"/>
 
   <stroke
       android:color="@color/grey500"
