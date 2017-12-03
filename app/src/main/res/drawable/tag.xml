@@ -3,11 +3,19 @@
   ~ Copyright (c) 2016-2017 Aya Tokikaze. All Rights Reserved.
   -->
 
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
   <solid android:color="@null"/>
+
+  <padding
+      android:bottom="6dp"
+      android:left="@dimen/space_12dp"
+      android:right="@dimen/space_12dp"
+      android:top="6dp"/>
+
   <stroke
-      android:color="@color/grey200"
+      android:color="@color/grey500"
       android:width="@dimen/tag_border_width"/>
   <corners android:radius="@dimen/tag_radius"/>
 
