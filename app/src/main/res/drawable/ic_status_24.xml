@@ -1,0 +1,14 @@
+<!--
+  ~ Copyright (c) 2016-2017. Aya Tokikaze. All Rights Reserved.
+  -->
+
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="24dp"
+    android:viewportHeight="24.0"
+    android:viewportWidth="24.0"
+    android:width="24dp">
+  <path
+      android:fillColor="#FF000000"
+      android:pathData="M6,2C4.301,2 3,3.301 3,5L3,19C3,20.699 4.301,22 6,22L10,22L10,20L6,20C5.398,20 5,19.602 5,19L5,5C5,4.398 5.398,4 6,4L16,4C16.602,4 17,4.398 17,5L17,12.594L19,10.594L19,5C19,3.301 17.699,2 16,2ZM20.188,12C20.086,12 19.914,12.086 19.813,12.188L19,13L21,15L21.813,14.188C22.012,13.988 22.012,13.602 21.813,13.5L20.5,12.188C20.5,11.988 20.289,12 20.188,12ZM18.5,13.5L12,20L12,22L14,22L20.5,15.5Z"/>
+</vector>
