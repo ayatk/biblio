@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+## 0.2.3-alpha - 2017-12-04
 ### Changed
 - Support API をLollipop以上に変更 #62 
 - 英語のローカライズに対応 #51
