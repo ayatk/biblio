@@ -19,9 +19,9 @@ class NovelBodyRepository(
     return localDataSource.find(novel, page)
         .flatMap {
           if (it.isEmpty()) {
-            findToRemote(novel, page)
+            return@flatMap findToRemote(novel, page)
           }
-          it.toSingle()
+          return@flatMap it.toSingle()
         }
   }
 
