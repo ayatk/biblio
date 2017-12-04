@@ -19,7 +19,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:background="?attr/selectableItemBackground"
-      android:onClick="@{viewModel::onItemClick}"
+      android:onClick="@{() -> viewModel.onItemClick(context)}"
       android:padding="@dimen/space_16dp">
 
     <TextView

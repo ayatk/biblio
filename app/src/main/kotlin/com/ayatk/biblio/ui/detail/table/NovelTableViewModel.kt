@@ -10,14 +10,12 @@ import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelTable
 import com.ayatk.biblio.repository.novel.NovelTableRepository
 import com.ayatk.biblio.ui.ViewModel
-import com.ayatk.biblio.ui.util.helper.Navigator
 import io.reactivex.android.schedulers.AndroidSchedulers
 import timber.log.Timber
 import javax.inject.Inject
 
 class NovelTableViewModel
 @Inject constructor(
-    private val navigator: Navigator,
     private val novelTableRepository: NovelTableRepository
 ) : BaseObservable(), ViewModel {
 
@@ -41,7 +39,7 @@ class NovelTableViewModel
 
   private fun convertToViewModel(novelTables: List<NovelTable>): List<NovelTableItemViewModel> {
     return novelTables.map { novelTable ->
-      NovelTableItemViewModel(navigator, novelTable)
+      NovelTableItemViewModel(novelTable)
     }
   }
 

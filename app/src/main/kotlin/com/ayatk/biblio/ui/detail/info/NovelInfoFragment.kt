@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import com.ayatk.biblio.databinding.FragmentNovelInfoBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.repository.library.LibraryDataSource
-import com.ayatk.biblio.ui.util.helper.Navigator
 import dagger.android.support.DaggerFragment
 import org.parceler.Parcels
 import javax.inject.Inject
@@ -19,9 +18,6 @@ import javax.inject.Inject
 class NovelInfoFragment : DaggerFragment() {
 
   private lateinit var binding: FragmentNovelInfoBinding
-
-  @Inject
-  lateinit var navigator: Navigator
 
   @Inject
   lateinit var libraryDataSource: LibraryDataSource
@@ -36,7 +32,7 @@ class NovelInfoFragment : DaggerFragment() {
       inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
   ): View? {
     binding = FragmentNovelInfoBinding.inflate(inflater, container, false)
-    viewModel = NovelInfoViewModel(navigator, libraryDataSource, novel)
+    viewModel = NovelInfoViewModel(libraryDataSource, novel)
     binding.viewModel = viewModel
 
     return binding.root
