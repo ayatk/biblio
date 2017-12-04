@@ -44,7 +44,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground"
-          android:onClick="@{viewModel::onClickWriter}"
+          android:onClick="@{() -> viewModel.onClickWriter(context)}"
           app:setCellIcon="@drawable/ic_writer_grey600_24_vector"
           app:setCellText="@{viewModel.novel.writer}"/>
 
@@ -160,7 +160,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground"
-          android:onClick="@{viewModel::onClickNovelPage}"
+          android:onClick="@{() -> viewModel.onClickNovelPage(context)}"
           app:setCellIcon="@drawable/ic_earth_grey600_24_vector"
           app:setCellText="@{viewModel.url}"/>
 

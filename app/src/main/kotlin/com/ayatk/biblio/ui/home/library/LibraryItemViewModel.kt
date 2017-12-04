@@ -4,8 +4,8 @@
 
 package com.ayatk.biblio.ui.home.library
 
+import android.content.Context
 import android.databinding.BaseObservable
-import android.view.View
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.pref.DefaultPrefs
@@ -14,7 +14,6 @@ import com.ayatk.biblio.ui.util.helper.Navigator
 import com.ayatk.biblio.util.DateFormat
 
 class LibraryItemViewModel(
-    private val navigator: Navigator,
     val library: Library,
     defaultPrefs: DefaultPrefs
 ) : BaseObservable(), ViewModel {
@@ -27,7 +26,7 @@ class LibraryItemViewModel(
 
   override fun destroy() {}
 
-  fun onItemClick(@Suppress("UNUSED_PARAMETER") view: View) {
-    navigator.navigateToNovelDetail(library.novel)
+  fun onItemClick(context: Context) {
+    Navigator.navigateToNovelDetail(context, library.novel)
   }
 }

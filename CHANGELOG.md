@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 0.2.4-alpha - 2017-12-04
+### Fixed
+- application contextでstartActivityをしようとして怒られたので修正 #68
+- flatMap内でreturnができていなかったので取得するとelementが0で落ちる問題を修正 #68
+
 ## 0.2.3-alpha - 2017-12-04
 ### Changed
 - Support API をLollipop以上に変更 #62 
