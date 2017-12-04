@@ -24,7 +24,7 @@
       android:clickable="@{!viewModel.novelTable.isChapter}"
       android:focusable="@{!viewModel.novelTable.isChapter}"
       android:foreground="?attr/selectableItemBackground"
-      android:onClick="@{viewModel::onItemClick}"
+      android:onClick="@{() -> viewModel.onItemClick(context)}"
       android:padding="@dimen/space_16dp">
 
     <TextView

@@ -4,17 +4,14 @@
 
 package com.ayatk.biblio.ui.detail.table
 
+import android.content.Context
 import android.databinding.BaseObservable
-import android.view.View
 import com.ayatk.biblio.model.NovelTable
 import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.ui.util.helper.Navigator
 import com.ayatk.biblio.util.DateFormat
 
-class NovelTableItemViewModel(
-    private val navigator: Navigator,
-    val novelTable: NovelTable
-) : BaseObservable(), ViewModel {
+class NovelTableItemViewModel(val novelTable: NovelTable) : BaseObservable(), ViewModel {
 
   val lastUpdate: String =
       if (novelTable.publishDate == null) ""
@@ -22,10 +19,9 @@ class NovelTableItemViewModel(
 
   override fun destroy() {}
 
-  fun onItemClick(@Suppress("UNUSED_PARAMETER") view: View) {
+  fun onItemClick(context: Context) {
     if (!novelTable.isChapter) {
-      navigator.navigateToNovelBody(
-          novelTable.novel,
+      Navigator.navigateToNovelBody(context, novelTable.novel,
           requireNotNull(novelTable.page, { "ページ番号がはいってないぞい" })
       )
     }

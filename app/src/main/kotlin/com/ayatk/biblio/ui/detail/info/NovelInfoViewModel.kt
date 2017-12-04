@@ -8,7 +8,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.databinding.BaseObservable
 import android.databinding.Bindable
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.ayatk.biblio.BR
 import com.ayatk.biblio.model.Library
@@ -20,7 +19,6 @@ import com.ayatk.biblio.util.DateFormat
 import mabbas007.tagsedittext.TagsEditText
 
 class NovelInfoViewModel(
-    private val navigator: Navigator,
     private val libraryDataSource: LibraryDataSource,
     val novel: Novel
 ) : BaseObservable(), ViewModel {
@@ -68,12 +66,12 @@ class NovelInfoViewModel(
         )
   }
 
-  fun onClickWriter(@Suppress("UNUSED_PARAMETER") view: View) {
-    navigator.navigateToWebPage("http://mypage.syosetu.com/" + novel.writerId)
+  fun onClickWriter(context: Context) {
+    Navigator.navigateToWebPage(context, "http://mypage.syosetu.com/" + novel.writerId)
   }
 
-  fun onClickNovelPage(@Suppress("UNUSED_PARAMETER") view: View) {
-    navigator.navigateToWebPage("http://ncode.syosetu.com/" + novel.code.toLowerCase())
+  fun onClickNovelPage(context: Context) {
+    Navigator.navigateToWebPage(context, "http://ncode.syosetu.com/" + novel.code.toLowerCase())
   }
 
   // TODO: 2017/11/26 context持ってるのでFragmentに移動させる

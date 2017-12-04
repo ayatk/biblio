@@ -16,7 +16,6 @@ import com.ayatk.biblio.repository.library.LibraryDataSource
 import com.ayatk.biblio.repository.novel.NovelRepository
 import com.ayatk.biblio.repository.novel.NovelTableRepository
 import com.ayatk.biblio.ui.ViewModel
-import com.ayatk.biblio.ui.util.helper.Navigator
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.toObservable
@@ -24,7 +23,6 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class LibraryViewModel @Inject constructor(
-    private val navigator: Navigator,
     private val libraryDataSource: LibraryDataSource,
     private val novelRepository: NovelRepository,
     private val novelTableRepository: NovelTableRepository,
@@ -64,7 +62,7 @@ class LibraryViewModel @Inject constructor(
 
   private fun convertToViewModel(libraries: List<Library>): List<LibraryItemViewModel> {
     return libraries.map { library ->
-      LibraryItemViewModel(navigator, library, defaultPrefs)
+      LibraryItemViewModel(library, defaultPrefs)
     }
   }
 

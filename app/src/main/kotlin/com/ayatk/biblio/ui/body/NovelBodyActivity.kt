@@ -19,17 +19,12 @@ import com.ayatk.biblio.databinding.ActivityNovelBodyBinding
 import com.ayatk.biblio.event.NovelBodySelectedEvent
 import com.ayatk.biblio.event.SubtitleChangeEvent
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.util.helper.Navigator
 import dagger.android.support.DaggerAppCompatActivity
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.parceler.Parcels
-import javax.inject.Inject
 
 class NovelBodyActivity : DaggerAppCompatActivity() {
-
-  @Inject
-  lateinit var navigator: Navigator
 
   val binding: ActivityNovelBodyBinding by lazy {
     DataBindingUtil.setContentView<ActivityNovelBodyBinding>(this, R.layout.activity_novel_body)
