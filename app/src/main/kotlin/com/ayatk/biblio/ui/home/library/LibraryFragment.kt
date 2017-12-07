@@ -83,10 +83,7 @@ class LibraryFragment : DaggerFragment() {
 
   private inner class LibraryAdapter constructor(
       context: Context, list: ObservableList<LibraryItemViewModel>
-  ) :
-      ObservableListRecyclerAdapter<LibraryItemViewModel, BindingHolder<ViewLibraryItemBinding>>(
-          context, list
-      ) {
+  ) : ObservableListRecyclerAdapter<LibraryItemViewModel, BindingHolder<ViewLibraryItemBinding>>(context, list) {
 
     init {
       setHasStableIds(true)

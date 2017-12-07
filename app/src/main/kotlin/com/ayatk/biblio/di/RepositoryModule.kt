@@ -16,6 +16,7 @@
 
 package com.ayatk.biblio.di
 
+import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.repository.library.LibraryDataSource
 import com.ayatk.biblio.repository.library.LibraryLocalDataSource
 import com.ayatk.biblio.repository.library.LibraryRepository
@@ -31,6 +32,8 @@ import com.ayatk.biblio.repository.novel.NovelTableDataSource
 import com.ayatk.biblio.repository.novel.NovelTableLocalDataSource
 import com.ayatk.biblio.repository.novel.NovelTableRemoteDataSource
 import com.ayatk.biblio.repository.novel.NovelTableRepository
+import com.ayatk.biblio.repository.ranking.RankingDataSource
+import com.ayatk.biblio.repository.ranking.RankingRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -63,4 +66,9 @@ class RepositoryModule {
       local: NovelTableLocalDataSource,
       remote: NovelTableRemoteDataSource
   ): NovelTableDataSource = NovelTableRepository(local, remote)
+
+  @Singleton
+  @Provides
+  fun provideRankingRemoteDataSource(client: NarouClient): RankingDataSource =
+      RankingRemoteDataSource(client)
 }

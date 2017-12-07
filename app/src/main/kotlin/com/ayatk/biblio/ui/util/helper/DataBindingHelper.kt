@@ -21,9 +21,13 @@ import android.databinding.BindingAdapter
 import android.databinding.BindingConversion
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.ayatk.biblio.R
+import com.ayatk.biblio.model.Ranking
 import com.google.android.flexbox.FlexboxLayout
 
 object DataBindingHelper {
@@ -43,6 +47,31 @@ object DataBindingHelper {
       val textView = tagItem.findViewById<TextView>(R.id.tag)
       textView.text = it
       this.addView(frameLayout)
+    }
+  }
+
+  @JvmStatic
+  @BindingAdapter("addRankingItems")
+  fun LinearLayout.addRankingItems(rankings: List<Ranking>) {
+    this.removeAllViews()
+    val inflater = this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    rankings.map {
+      val rankingItem = inflater.inflate(R.layout.view_ranking_top_item, null)
+      val rank = rankingItem.findViewById<ImageView>(R.id.rank)
+      val rankText = rankingItem.findViewById<TextView>(R.id.rank_text)
+      // ランキングのイメージ
+      if (it.rank <= 3) {
+        rankText.visibility = View.GONE
+      } else {
+        rankText.text = it.rank.toString()
+        rank.setImageResource(android.R.color.transparent)
+      }
+
+      val title = rankingItem.findViewById<TextView>(R.id.novel_title)
+      title.text = it.novel.title
+      val author = rankingItem.findViewById<TextView>(R.id.novel_author)
+      author.text = it.novel.writer
+      this.addView(rankingItem)
     }
   }
 }
