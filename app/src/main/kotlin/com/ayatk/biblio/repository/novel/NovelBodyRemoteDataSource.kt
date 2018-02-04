@@ -9,10 +9,10 @@ import com.ayatk.biblio.data.narou.entity.NarouNovelBody
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelBody
 import com.ayatk.biblio.model.enums.NovelState
+import com.ayatk.biblio.util.toSingle
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.toSingle
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 

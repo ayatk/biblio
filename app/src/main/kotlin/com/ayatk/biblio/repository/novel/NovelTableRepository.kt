@@ -6,10 +6,10 @@ package com.ayatk.biblio.repository.novel
 
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelTable
+import com.ayatk.biblio.util.toSingle
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
-import io.reactivex.rxkotlin.toSingle
 import javax.inject.Inject
 import javax.inject.Singleton
 

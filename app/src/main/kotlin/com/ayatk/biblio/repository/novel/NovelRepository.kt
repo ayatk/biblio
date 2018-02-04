@@ -7,11 +7,11 @@ package com.ayatk.biblio.repository.novel
 import android.support.annotation.VisibleForTesting
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.Publisher
+import com.ayatk.biblio.util.toMaybe
+import com.ayatk.biblio.util.toSingle
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
-import io.reactivex.rxkotlin.toMaybe
-import io.reactivex.rxkotlin.toSingle
 import java.util.LinkedHashMap
 import javax.inject.Inject
 import javax.inject.Singleton

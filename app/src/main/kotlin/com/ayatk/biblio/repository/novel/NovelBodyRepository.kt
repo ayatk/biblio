@@ -6,9 +6,9 @@ package com.ayatk.biblio.repository.novel
 
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelBody
+import com.ayatk.biblio.util.toSingle
 import io.reactivex.Completable
 import io.reactivex.Single
-import io.reactivex.rxkotlin.toSingle
 
 class NovelBodyRepository(
     private val localDataSource: NovelBodyLocalDataSource,
