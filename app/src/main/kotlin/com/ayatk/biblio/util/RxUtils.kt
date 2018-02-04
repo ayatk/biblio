@@ -20,4 +20,10 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 
 fun <T : Any> T.toSingle(): Single<T> = Single.just(this)
-fun <T : Any> T?.toMaybe(): Maybe<T> = Maybe.create { s -> if (this != null) s.onSuccess(this); s.onComplete() }
+
+fun <T : Any> T?.toMaybe(): Maybe<T> = Maybe.create { s ->
+  if (this != null) {
+    s.onSuccess(this)
+  }
+  s.onComplete()
+}
