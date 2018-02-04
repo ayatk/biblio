@@ -36,7 +36,7 @@
   name: firebase
   skip: true
 
-- artifact: com.google.dagger:dagger:+
+- artifact: com.google.dagger:+:+
   name: Dagger
   year: 2012
   copyrightHolder: The Dagger Authors
