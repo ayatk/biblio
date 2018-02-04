@@ -22,9 +22,9 @@
       android:title="@string/ranking"/>
 
   <!--<item-->
-      <!--android:id="@+id/nav_search"-->
-      <!--android:icon="@drawable/ic_search_black_24_vector"-->
-      <!--android:title="@string/search"/>-->
+  <!--android:id="@+id/nav_search"-->
+  <!--android:icon="@drawable/ic_search_black_24_vector"-->
+  <!--android:title="@string/search"/>-->
 
   <item
       android:id="@+id/nav_settings"
