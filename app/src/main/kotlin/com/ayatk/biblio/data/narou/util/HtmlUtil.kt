@@ -91,8 +91,8 @@ class HtmlUtil {
         page = page,
         subtitle = doc.select(
             if (doc.select(
-                ".novel_subtitle"
-            ).isEmpty()) ".novel_title" else ".novel_subtitle"
+                    ".novel_subtitle"
+                ).isEmpty()) ".novel_title" else ".novel_subtitle"
         ).text(),
         prevContent = getFormattedContent(
             if (doc.select("#novel_p").isNotEmpty()) doc.select(

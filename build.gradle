@@ -19,7 +19,7 @@
 apply plugin: "io.gitlab.arturbosch.detekt"
 
 buildscript {
-  ext.kotlin_version = '1.2.0'
+  ext.kotlin_version = '1.2.21'
 
   repositories {
     jcenter()
@@ -32,8 +32,8 @@ buildscript {
   dependencies {
     classpath 'com.android.tools.build:gradle:3.0.1'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}"
-    classpath 'com.google.gms:google-services:3.1.0'
-    classpath 'com.cookpad.android.licensetools:license-tools-plugin:0.23.0'
+    classpath 'com.google.gms:google-services:3.1.1'
+    classpath 'com.cookpad.android.licensetools:license-tools-plugin:1.2.0'
     classpath 'com.github.ben-manes:gradle-versions-plugin:0.17.0'
     classpath 'io.fabric.tools:gradle:1.+'
     classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.0.0.RC5-5"
@@ -59,7 +59,7 @@ allprojects {
 }
 
 detekt {
-  version = "1.0.0.RC5-5"
+  version = "1.0.0.RC6-3"
   profile("main") {
     input = "$projectDir/app"
     config = "$projectDir/detekt.yml"
