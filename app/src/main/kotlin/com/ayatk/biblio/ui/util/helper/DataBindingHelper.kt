@@ -81,9 +81,15 @@ object DataBindingHelper {
       }
 
       val title = rankingItem.findViewById<TextView>(R.id.novel_title)
-      title.text = it.novel.title
       val author = rankingItem.findViewById<TextView>(R.id.novel_author)
-      author.text = it.novel.writer
+      if (it.novel.title.isEmpty()) {
+        title.text = "この小説は見ることができません"
+        author.text = ""
+      } else {
+        title.text = it.novel.title
+        author.text = it.novel.writer
+      }
+
       this.addView(rankingItem)
     }
   }

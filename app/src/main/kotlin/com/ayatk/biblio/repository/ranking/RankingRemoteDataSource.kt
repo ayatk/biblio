@@ -71,7 +71,7 @@ class RankingRemoteDataSource @Inject constructor(
     return rank.map {
       Ranking(
           rank = it.rank,
-          novel = novels.first { novel -> novel.code == it.ncode },
+          novel = novels.firstOrNull { novel -> novel.code == it.ncode } ?: Novel(),
           point = it.pt
       )
     }
