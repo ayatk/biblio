@@ -28,6 +28,7 @@ import com.ayatk.biblio.databinding.ActivityNovelDetailBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.detail.info.NovelInfoFragment
 import com.ayatk.biblio.ui.detail.table.NovelTableFragment
+import com.ayatk.biblio.ui.util.initBackToolbar
 import dagger.android.support.DaggerAppCompatActivity
 import org.parceler.Parcels
 
@@ -49,7 +50,7 @@ class NovelDetailActivity : DaggerAppCompatActivity() {
     super.onCreate(savedInstanceState)
     binding.viewModel = viewModel
 
-    initToolbar()
+    initBackToolbar(this, binding.toolbar)
 
     // ViewPager
     val viewPager = binding.containerPager
@@ -60,17 +61,6 @@ class NovelDetailActivity : DaggerAppCompatActivity() {
   override fun onDestroy() {
     super.onDestroy()
     viewModel.destroy()
-  }
-
-  private fun initToolbar() {
-    setSupportActionBar(binding.toolbar)
-    supportActionBar?.run {
-      setDisplayHomeAsUpEnabled(true)
-      setDisplayShowHomeEnabled(true)
-      setDisplayShowTitleEnabled(false)
-      setHomeButtonEnabled(true)
-      binding.toolbar.setNavigationOnClickListener { finish() }
-    }
   }
 
   companion object {

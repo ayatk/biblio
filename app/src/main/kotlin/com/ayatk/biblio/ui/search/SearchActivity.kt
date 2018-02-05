@@ -40,6 +40,7 @@ import com.ayatk.biblio.databinding.ActivitySearchBinding
 import com.ayatk.biblio.databinding.ViewSearchResultItemBinding
 import com.ayatk.biblio.ui.util.customview.BindingHolder
 import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
+import com.ayatk.biblio.ui.util.initBackToolbar
 import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
@@ -59,7 +60,7 @@ class SearchActivity : DaggerAppCompatActivity() {
     super.onCreate(savedInstanceState)
     overridePendingTransition(R.anim.activity_fade_enter, R.anim.activity_fade_exit)
 
-    initBackToolbar(binding.toolbar)
+    initBackToolbar(this, binding.toolbar)
 
     viewModel.searchResultVisibility
         .observeOn(AndroidSchedulers.mainThread())
@@ -146,18 +147,6 @@ class SearchActivity : DaggerAppCompatActivity() {
       binding.drawerLayout.closeDrawer(GravityCompat.END)
     } else {
       finish()
-    }
-  }
-
-  private fun initBackToolbar(toolbar: Toolbar) {
-    setSupportActionBar(toolbar)
-    supportActionBar?.apply {
-      title = toolbar.title
-      setDisplayHomeAsUpEnabled(true)
-      setDisplayShowHomeEnabled(true)
-      setDisplayShowTitleEnabled(true)
-      setHomeButtonEnabled(true)
-      binding.toolbar.setNavigationOnClickListener { finish() }
     }
   }
 

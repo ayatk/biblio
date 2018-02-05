@@ -24,13 +24,13 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
-import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityNovelBodyBinding
 import com.ayatk.biblio.event.NovelBodySelectedEvent
 import com.ayatk.biblio.event.SubtitleChangeEvent
 import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.ui.util.initBackToolbar
 import dagger.android.support.DaggerAppCompatActivity
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -53,7 +53,7 @@ class NovelBodyActivity : DaggerAppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    initBackToolbar(binding.toolbar)
+    initBackToolbar(this, binding.toolbar)
 
     EventBus.getDefault().post(NovelBodySelectedEvent(page))
 
@@ -97,17 +97,6 @@ class NovelBodyActivity : DaggerAppCompatActivity() {
       }
     }
     return super.onOptionsItemSelected(item)
-  }
-
-  private fun initBackToolbar(toolbar: Toolbar) {
-    setSupportActionBar(toolbar)
-    supportActionBar?.apply {
-      title = toolbar.title
-      setDisplayHomeAsUpEnabled(true)
-      setDisplayShowHomeEnabled(true)
-      setDisplayShowTitleEnabled(true)
-      setHomeButtonEnabled(true)
-    }
   }
 
   @Subscribe
