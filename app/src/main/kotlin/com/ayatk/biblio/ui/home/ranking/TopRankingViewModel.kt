@@ -27,7 +27,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class RankingViewModel @Inject constructor(
+class TopRankingViewModel @Inject constructor(
     private val dataSource: RankingDataSource
 ) : BaseObservable(), ViewModel {
 

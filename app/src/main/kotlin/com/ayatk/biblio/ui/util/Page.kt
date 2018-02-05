@@ -23,7 +23,7 @@ import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.ui.home.bookmark.BookmarkFragment
 import com.ayatk.biblio.ui.home.library.LibraryFragment
-import com.ayatk.biblio.ui.home.ranking.RankingFragment
+import com.ayatk.biblio.ui.home.ranking.TopRankingFragment
 import com.ayatk.biblio.ui.home.setting.SettingFragment
 
 enum class Page(
@@ -38,8 +38,8 @@ enum class Page(
   BOOKMARK(R.id.nav_bookmark, R.string.bookmark, true, BookmarkFragment::class.java.simpleName) {
     override fun createFragment() = BookmarkFragment.newInstance()
   },
-  RANKING(R.id.nav_ranking, R.string.ranking, true, RankingFragment::class.java.simpleName) {
-    override fun createFragment() = RankingFragment.newInstance()
+  RANKING(R.id.nav_ranking, R.string.ranking, true, TopRankingFragment::class.java.simpleName) {
+    override fun createFragment() = TopRankingFragment.newInstance()
   },
   SETTINGS(R.id.nav_settings, R.string.setting, true, SettingFragment::class.java.simpleName) {
     override fun createFragment() = SettingFragment.newInstance()

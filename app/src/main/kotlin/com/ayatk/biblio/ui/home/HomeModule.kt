@@ -18,7 +18,7 @@ package com.ayatk.biblio.ui.home
 
 import com.ayatk.biblio.ui.home.bookmark.BookmarkFragment
 import com.ayatk.biblio.ui.home.library.LibraryFragment
-import com.ayatk.biblio.ui.home.ranking.RankingFragment
+import com.ayatk.biblio.ui.home.ranking.TopRankingFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -32,5 +32,5 @@ abstract class HomeModule {
   abstract fun contributeBookmarkFragment(): BookmarkFragment
 
   @ContributesAndroidInjector
-  abstract fun contributeRankingFragment(): RankingFragment
+  abstract fun contributeRankingFragment(): TopRankingFragment
 }

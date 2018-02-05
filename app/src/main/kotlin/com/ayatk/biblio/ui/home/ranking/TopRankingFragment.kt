@@ -24,12 +24,12 @@ import com.ayatk.biblio.databinding.FragmentRankingBinding
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class RankingFragment : DaggerFragment() {
+class TopRankingFragment : DaggerFragment() {
 
   lateinit var binding: FragmentRankingBinding
 
   @Inject
-  lateinit var viewModel: RankingViewModel
+  lateinit var viewModel: TopRankingViewModel
 
   override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -42,6 +42,6 @@ class RankingFragment : DaggerFragment() {
   }
 
   companion object {
-    fun newInstance(): RankingFragment = RankingFragment()
+    fun newInstance(): TopRankingFragment = TopRankingFragment()
   }
 }
