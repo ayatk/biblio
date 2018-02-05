@@ -20,6 +20,7 @@ import android.content.Context
 import android.databinding.BindingAdapter
 import android.databinding.BindingConversion
 import android.graphics.drawable.ColorDrawable
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
@@ -60,11 +61,23 @@ object DataBindingHelper {
       val rank = rankingItem.findViewById<ImageView>(R.id.rank)
       val rankText = rankingItem.findViewById<TextView>(R.id.rank_text)
       // ランキングのイメージ
-      if (it.rank <= 3) {
-        rankText.visibility = View.GONE
-      } else {
-        rankText.text = it.rank.toString()
-        rank.setImageResource(android.R.color.transparent)
+      when (it.rank) {
+        1 -> {
+          rankText.visibility = View.GONE
+          rank.setColorFilter(ContextCompat.getColor(context, R.color.gold))
+        }
+        2 -> {
+          rankText.visibility = View.GONE
+          rank.setColorFilter(ContextCompat.getColor(context, R.color.silver))
+        }
+        3 -> {
+          rankText.visibility = View.GONE
+          rank.setColorFilter(ContextCompat.getColor(context, R.color.bronze))
+        }
+        else -> {
+          rankText.text = it.rank.toString()
+          rank.setImageResource(android.R.color.transparent)
+        }
       }
 
       val title = rankingItem.findViewById<TextView>(R.id.novel_title)
