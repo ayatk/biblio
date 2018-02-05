@@ -62,7 +62,7 @@
           <LinearLayout
               android:id="@+id/ranking_container"
               android:layout_width="match_parent"
-              android:layout_height="300dp"
+              android:layout_height="wrap_content"
               android:divider="@drawable/divider"
               android:orientation="vertical"
               android:showDividers="middle"
@@ -119,7 +119,7 @@
 
           <LinearLayout
               android:layout_width="match_parent"
-              android:layout_height="300dp"
+              android:layout_height="wrap_content"
               android:divider="@drawable/divider"
               android:orientation="vertical"
               android:showDividers="middle"
@@ -176,7 +176,7 @@
 
           <LinearLayout
               android:layout_width="match_parent"
-              android:layout_height="300dp"
+              android:layout_height="wrap_content"
               android:divider="@drawable/divider"
               android:orientation="vertical"
               android:showDividers="middle"
@@ -233,7 +233,7 @@
 
           <LinearLayout
               android:layout_width="match_parent"
-              android:layout_height="300dp"
+              android:layout_height="wrap_content"
               android:divider="@drawable/divider"
               android:orientation="vertical"
               android:showDividers="middle"
