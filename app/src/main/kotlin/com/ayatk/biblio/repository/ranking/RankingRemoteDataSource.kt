@@ -24,6 +24,7 @@ import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
 import io.reactivex.Single
+import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
 
@@ -32,7 +33,13 @@ class RankingRemoteDataSource @Inject constructor(
 ) : RankingDataSource {
 
   override fun getDailyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> {
-    return narouClient.getRanking(Date(), RankingType.DAILY)
+    val today = Calendar.getInstance()
+    // 午前6時以前にその日のランキングを取得するとエラーで死ぬので前日のランキングを取得
+    if (today.get(Calendar.HOUR_OF_DAY) < 6) {
+      today.add(Calendar.DATE, -1)
+    }
+
+    return narouClient.getRanking(today.time, RankingType.DAILY)
         .flatMap {
           val codes = it.map { it.ncode }.drop(range.first).take(range.count())
           narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
@@ -41,7 +48,13 @@ class RankingRemoteDataSource @Inject constructor(
   }
 
   override fun getWeeklyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> {
-    return narouClient.getRanking(Date(), RankingType.WEEKLY)
+    val today = Calendar.getInstance()
+    // 午前6時以前にその日のランキングを取得するとエラーで死ぬので前週のランキングを取得
+    if (today.get(Calendar.HOUR_OF_DAY) < 6) {
+      today.add(Calendar.DATE, -1)
+    }
+
+    return narouClient.getRanking(today.time, RankingType.WEEKLY)
         .flatMap {
           val codes = it.map { it.ncode }.drop(range.first).take(range.count())
           narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
