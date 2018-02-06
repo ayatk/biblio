@@ -50,13 +50,11 @@ class HomeActivity : DaggerAppCompatActivity() {
     }
     setSupportActionBar(binding.toolbar)
 
-    binding.bottomNav.setOnNavigationItemSelectedListener(
-        {
-          changePage(Page.forMenuId(it.itemId))
-          invalidateOptionsMenu()
-          true
-        }
-    )
+    binding.bottomNav.setOnNavigationItemSelectedListener({
+      changePage(Page.forMenuId(it.itemId))
+      invalidateOptionsMenu()
+      true
+    })
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
