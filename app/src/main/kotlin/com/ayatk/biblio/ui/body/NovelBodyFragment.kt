@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.os.bundleOf
 import com.ayatk.biblio.databinding.FragmentNovelBodyBinding
 import com.ayatk.biblio.event.NovelBodySelectedEvent
 import com.ayatk.biblio.event.SubtitleChangeEvent
@@ -79,10 +80,10 @@ class NovelBodyFragment : DaggerFragment() {
 
     fun newInstance(novel: Novel, page: Int): NovelBodyFragment {
       return NovelBodyFragment().apply {
-        arguments = Bundle().apply {
-          putParcelable(BUNDLE_ARGS_NOVEL, Parcels.wrap(novel))
-          putInt(BUNDLE_ARGS_NOVEL_PAGE, page)
-        }
+        arguments = bundleOf(
+            BUNDLE_ARGS_NOVEL to Parcels.wrap(novel),
+            BUNDLE_ARGS_NOVEL_PAGE to page
+        )
       }
     }
   }

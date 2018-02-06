@@ -49,10 +49,7 @@ enum class Page(
 
   companion object {
 
-    fun forMenuId(item: MenuItem): Page {
-      val id = item.itemId
-      return forMenuId(id)
-    }
+    fun forMenuId(item: MenuItem): Page = forMenuId(item.itemId)
 
     fun forMenuId(@MenuRes id: Int): Page {
       values()

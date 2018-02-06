@@ -25,6 +25,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.os.bundleOf
 import com.ayatk.biblio.R
 import com.ayatk.biblio.R.layout
 import com.ayatk.biblio.databinding.FragmentNovelTableBinding
@@ -44,10 +45,7 @@ class NovelTableFragment : DaggerFragment() {
   private lateinit var binding: FragmentNovelTableBinding
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(
-        arguments?.getParcelable(
-            BUNDLE_ARGS_NOVEL
-        )
+    Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL)
     )
   }
 
@@ -83,11 +81,7 @@ class NovelTableFragment : DaggerFragment() {
 
     fun newInstance(novel: Novel): NovelTableFragment {
       return NovelTableFragment().apply {
-        arguments = Bundle().apply {
-          putParcelable(
-              BUNDLE_ARGS_NOVEL, Parcels.wrap(novel)
-          )
-        }
+        arguments = bundleOf(BUNDLE_ARGS_NOVEL to Parcels.wrap(novel))
       }
     }
   }

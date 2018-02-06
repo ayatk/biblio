@@ -17,8 +17,8 @@
 package com.ayatk.biblio.di
 
 import android.app.Application
-import android.content.Context
 import android.net.ConnectivityManager
+import androidx.content.systemService
 import com.ayatk.biblio.data.narou.entity.enums.BigGenre
 import com.ayatk.biblio.data.narou.entity.enums.Genre
 import com.ayatk.biblio.data.narou.service.NarouApiService
@@ -45,7 +45,7 @@ class AppModule {
 
   @Provides
   fun provideConnectivityManager(application: Application): ConnectivityManager =
-      application.getSystemService(Context.CONNECTIVITY_SERVICE) as (ConnectivityManager)
+      application.systemService<ConnectivityManager>()
 
   @Singleton
   @Provides

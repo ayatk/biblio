@@ -21,6 +21,7 @@ import android.content.Context
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.view.inputmethod.InputMethodManager
+import androidx.content.systemService
 import com.ayatk.biblio.BR
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
@@ -88,7 +89,7 @@ class NovelInfoViewModel(
 
   // TODO: 2017/11/26 context持ってるのでFragmentに移動させる
   fun onClickUserTag(context: Context) {
-    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    val imm = context.systemService<InputMethodManager>()
 
     val editView = TagsEditText(context)
 

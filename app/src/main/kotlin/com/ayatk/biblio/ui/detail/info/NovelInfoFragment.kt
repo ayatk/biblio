@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.os.bundleOf
 import com.ayatk.biblio.databinding.FragmentNovelInfoBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.repository.library.LibraryDataSource
@@ -60,11 +61,7 @@ class NovelInfoFragment : DaggerFragment() {
 
     fun newInstance(novel: Novel): NovelInfoFragment {
       return NovelInfoFragment().apply {
-        arguments = Bundle().apply {
-          putParcelable(
-              BUNDLE_ARGS_NOVEL, Parcels.wrap(novel)
-          )
-        }
+        arguments = bundleOf(BUNDLE_ARGS_NOVEL to Parcels.wrap(novel))
       }
     }
   }

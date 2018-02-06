@@ -20,6 +20,14 @@
   license: The Apache Software License, Version 2.0
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
 
+- artifact: androidx.core:core-ktx:+
+  name: Android KTX Core
+  year: 2018
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/android/kotlin-extensions
+
 - artifact: com.github.gfx.android.orma:+:+
   name: Android Orma Database
   year: 2015
