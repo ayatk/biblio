@@ -223,6 +223,9 @@ dependencies {
   implementation "android.arch.lifecycle:reactivestreams:1.1.0"
   kapt "android.arch.lifecycle:compiler:1.1.0"
 
+  // androidx
+  implementation 'androidx.core:core-ktx:0.1'
+
   // Network
   implementation 'com.squareup.retrofit2:retrofit:2.3.0'
   implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
