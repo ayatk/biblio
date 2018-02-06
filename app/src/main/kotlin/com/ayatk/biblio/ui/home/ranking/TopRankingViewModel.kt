@@ -31,6 +31,10 @@ class TopRankingViewModel @Inject constructor(
     private val dataSource: RankingDataSource
 ) : BaseObservable(), ViewModel {
 
+  companion object {
+      private const val TOP_RANK_RANGE = 5
+  }
+
   @Bindable
   var daily: MutableList<Ranking> = mutableListOf()
 
@@ -44,7 +48,7 @@ class TopRankingViewModel @Inject constructor(
   var quarter: MutableList<Ranking> = mutableListOf()
 
   fun start() {
-    dataSource.getDailyRank(Publisher.NAROU, 0 until 5)
+    dataSource.getDailyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ ranks ->
@@ -53,7 +57,7 @@ class TopRankingViewModel @Inject constructor(
           notifyPropertyChanged(BR.daily)
         })
 
-    dataSource.getWeeklyRank(Publisher.NAROU, 0 until 5)
+    dataSource.getWeeklyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ ranks ->
@@ -62,7 +66,7 @@ class TopRankingViewModel @Inject constructor(
           notifyPropertyChanged(BR.weekly)
         })
 
-    dataSource.getMonthlyRank(Publisher.NAROU, 0 until 5)
+    dataSource.getMonthlyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ ranks ->
@@ -71,7 +75,7 @@ class TopRankingViewModel @Inject constructor(
           notifyPropertyChanged(BR.monthly)
         })
 
-    dataSource.getQuarterRank(Publisher.NAROU, 0 until 5)
+    dataSource.getQuarterRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ ranks ->

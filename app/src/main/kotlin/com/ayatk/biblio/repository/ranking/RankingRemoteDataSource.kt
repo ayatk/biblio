@@ -32,10 +32,14 @@ class RankingRemoteDataSource @Inject constructor(
     private val narouClient: NarouClient
 ) : RankingDataSource {
 
+  companion object {
+    private const val EARLY_MORNING = 6
+  }
+
   override fun getDailyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> {
     val today = Calendar.getInstance()
     // 午前6時以前にその日のランキングを取得するとエラーで死ぬので前日のランキングを取得
-    if (today.get(Calendar.HOUR_OF_DAY) < 6) {
+    if (today.get(Calendar.HOUR_OF_DAY) < EARLY_MORNING) {
       today.add(Calendar.DATE, -1)
     }
 
@@ -50,7 +54,7 @@ class RankingRemoteDataSource @Inject constructor(
   override fun getWeeklyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> {
     val today = Calendar.getInstance()
     // 午前6時以前にその日のランキングを取得するとエラーで死ぬので前週のランキングを取得
-    if (today.get(Calendar.HOUR_OF_DAY) < 6) {
+    if (today.get(Calendar.HOUR_OF_DAY) < EARLY_MORNING) {
       today.add(Calendar.DATE, -1)
     }
 

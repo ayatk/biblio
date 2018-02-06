@@ -33,6 +33,10 @@ import com.google.android.flexbox.FlexboxLayout
 
 object DataBindingHelper {
 
+  private const val GOLD_RANK = 1
+  private const val SILVER_RANK = 2
+  private const val BRONZE_RANK = 3
+
   @JvmStatic
   @BindingConversion
   fun convertColorToDrawable(color: Int): ColorDrawable = ColorDrawable(color)
@@ -62,15 +66,15 @@ object DataBindingHelper {
       val rankText = rankingItem.findViewById<TextView>(R.id.rank_text)
       // ランキングのイメージ
       when (it.rank) {
-        1 -> {
+        GOLD_RANK -> {
           rankText.visibility = View.GONE
           rank.setColorFilter(ContextCompat.getColor(context, R.color.gold))
         }
-        2 -> {
+        SILVER_RANK -> {
           rankText.visibility = View.GONE
           rank.setColorFilter(ContextCompat.getColor(context, R.color.silver))
         }
-        3 -> {
+        BRONZE_RANK -> {
           rankText.visibility = View.GONE
           rank.setColorFilter(ContextCompat.getColor(context, R.color.bronze))
         }
