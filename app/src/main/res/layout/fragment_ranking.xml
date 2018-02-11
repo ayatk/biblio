@@ -84,6 +84,7 @@
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
                 android:padding="8dp"
+                android:onClick="@{() -> viewModel.onClickDailyRank(context)}"
                 android:text="@string/ranking_read_more"
                 android:textColor="@color/app_blue"/>
 
@@ -140,6 +141,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{() -> viewModel.onClickWeeklyRank(context)}"
                 android:padding="8dp"
                 android:text="@string/ranking_read_more"
                 android:textColor="@color/app_blue"/>
@@ -196,6 +198,7 @@
                 android:background="@android:color/transparent"
                 android:clickable="true"
                 android:focusable="true"
+                android:onClick="@{() -> viewModel.onClickMonthlyRank(context)}"
                 android:foreground="?attr/selectableItemBackground"
                 android:padding="8dp"
                 android:text="@string/ranking_read_more"
@@ -254,6 +257,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{() -> viewModel.onClickQuarterRank(context)}"
                 android:padding="8dp"
                 android:text="@string/ranking_read_more"
                 android:textColor="@color/app_blue"/>
@@ -309,6 +313,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:clickable="true"
+                android:onClick="@{() -> viewModel.onClickAllRank(context)}"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
                 android:padding="8dp"

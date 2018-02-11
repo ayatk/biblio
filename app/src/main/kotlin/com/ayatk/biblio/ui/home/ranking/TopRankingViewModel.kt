@@ -16,13 +16,16 @@
 
 package com.ayatk.biblio.ui.home.ranking
 
+import android.content.Context
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import com.ayatk.biblio.BR
+import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.repository.ranking.RankingDataSource
 import com.ayatk.biblio.ui.ViewModel
+import com.ayatk.biblio.ui.ranking.RankingActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
@@ -34,7 +37,7 @@ class TopRankingViewModel @Inject constructor(
 ) : BaseObservable(), ViewModel {
 
   companion object {
-      private const val TOP_RANK_RANGE = 5
+    private const val TOP_RANK_RANGE = 5
   }
 
   private val compositeDisposable = CompositeDisposable()
@@ -104,6 +107,26 @@ class TopRankingViewModel @Inject constructor(
           notifyPropertyChanged(BR.all)
         })
         .addTo(compositeDisposable)
+  }
+
+  fun onClickDailyRank(context: Context) {
+    context.startActivity(RankingActivity.createIntent(context, RankingType.DAILY))
+  }
+
+  fun onClickWeeklyRank(context: Context) {
+    context.startActivity(RankingActivity.createIntent(context, RankingType.WEEKLY))
+  }
+
+  fun onClickMonthlyRank(context: Context) {
+    context.startActivity(RankingActivity.createIntent(context, RankingType.MONTHLY))
+  }
+
+  fun onClickQuarterRank(context: Context) {
+    context.startActivity(RankingActivity.createIntent(context, RankingType.QUARTET))
+  }
+
+  fun onClickAllRank(context: Context) {
+    context.startActivity(RankingActivity.createIntent(context, RankingType.ALL))
   }
 
   override fun destroy() {
