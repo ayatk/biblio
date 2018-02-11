@@ -28,6 +28,7 @@ import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.databinding.ActivityRankingBinding
 import com.ayatk.biblio.ui.util.initBackToolbar
 import com.ayatk.biblio.util.ext.extraOf
+import com.ayatk.biblio.util.ext.integer
 import dagger.android.support.DaggerAppCompatActivity
 
 class RankingActivity : DaggerAppCompatActivity() {
@@ -47,7 +48,7 @@ class RankingActivity : DaggerAppCompatActivity() {
 
     binding.rankingViewPager.apply {
       adapter = RankingPagerAdapter(supportFragmentManager)
-      pageMargin = 16
+      pageMargin = context.integer(R.integer.pager_margin)
       currentItem = rankingType.ordinal
     }
 
