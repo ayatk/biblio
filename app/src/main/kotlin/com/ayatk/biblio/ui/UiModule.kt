@@ -23,6 +23,8 @@ import com.ayatk.biblio.ui.detail.NovelDetailActivity
 import com.ayatk.biblio.ui.detail.NovelDetailModule
 import com.ayatk.biblio.ui.home.HomeActivity
 import com.ayatk.biblio.ui.home.HomeModule
+import com.ayatk.biblio.ui.ranking.RankingActivity
+import com.ayatk.biblio.ui.ranking.RankingModule
 import com.ayatk.biblio.ui.search.SearchActivity
 import dagger.Binds
 import dagger.Module
@@ -45,4 +47,7 @@ internal abstract class UiModule {
 
   @ContributesAndroidInjector
   internal abstract fun contributeSearchActivity(): SearchActivity
+
+  @ContributesAndroidInjector(modules = [RankingModule::class])
+  abstract fun contributeRankingActivity(): RankingActivity
 }

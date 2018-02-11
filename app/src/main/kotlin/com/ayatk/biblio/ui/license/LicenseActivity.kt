@@ -21,9 +21,9 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityWebBinding
+import com.ayatk.biblio.ui.util.initBackToolbar
 
 class LicenseActivity : AppCompatActivity() {
 
@@ -39,21 +39,9 @@ class LicenseActivity : AppCompatActivity() {
 
     binding.toolbar.title = title
 
-    initBackToolbar(binding.toolbar)
+    initBackToolbar(this, binding.toolbar)
     // WebViewによる表示
     binding.webView.loadUrl(url)
-  }
-
-  private fun initBackToolbar(toolbar: Toolbar) {
-    setSupportActionBar(toolbar)
-    supportActionBar?.apply {
-      title = toolbar.title
-      setDisplayHomeAsUpEnabled(true)
-      setDisplayShowHomeEnabled(true)
-      setDisplayShowTitleEnabled(true)
-      setHomeButtonEnabled(true)
-      binding.toolbar.setNavigationOnClickListener { finish() }
-    }
   }
 
   companion object {

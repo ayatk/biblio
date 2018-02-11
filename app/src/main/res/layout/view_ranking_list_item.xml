@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016-2018 ayatk.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+  <data>
+
+    <variable
+        name="viewModel"
+        type="com.ayatk.biblio.ui.ranking.RankingItemViewModel"/>
+  </data>
+
+  <android.support.constraint.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="?attr/selectableItemBackground"
+      android:onClick="@{() -> viewModel.onItemClick(context)}"
+      android:padding="@dimen/space_16dp">
+
+    <ImageView
+        android:id="@+id/rank"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_crown_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rankingIcon="@{viewModel.ranking}"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/rank_text"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:gravity="center"
+        android:textSize="@dimen/text_16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rankingText="@{viewModel.ranking}"
+        tools:text="123"/>
+
+    <TextView
+        android:id="@+id/novel_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="@{viewModel.ranking.novel.title}"
+        app:layout_constraintRight_toLeftOf="@+id/last_update"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="悪役令嬢、庶民に堕ちる"
+        app:layout_constraintStart_toEndOf="@+id/rank"
+        android:layout_marginStart="16dp"
+        android:layout_marginRight="8dp"/>
+
+    <TextView
+        android:id="@+id/novel_writer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.ranking.novel.writer}"
+        android:textColor="@color/grey500"
+        android:textSize="@dimen/text_12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/point"
+        tools:text="緋月紫砲"
+        app:layout_constraintStart_toEndOf="@+id/rank"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/last_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:text="@{viewModel.lastUpdate}"
+        android:textColor="@color/grey500"
+        android:textSize="@dimen/text_12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/novel_title"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="2017/03/01 07:00"/>
+
+    <TextView
+        android:id="@+id/read_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{String.format(@string/novel_ranking_progress, viewModel.ranking.novel.totalPages)}"
+        android:textSize="12sp"
+        android:visibility="@{viewModel.shortStory ? android.view.View.GONE : android.view.View.VISIBLE}"
+        app:layout_constraintBaseline_toBaselineOf="@+id/point"
+        app:layout_constraintRight_toLeftOf="@+id/novel_type"
+        android:layout_marginRight="8dp"/>
+
+    <TextView
+        android:id="@+id/novel_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.ranking.novel.novelState.stateName}"
+        android:textSize="12sp"
+        tools:text="連載中"
+        app:layout_constraintBaseline_toBaselineOf="@+id/point"
+        app:layout_constraintEnd_toStartOf="@+id/point"
+        android:layout_marginEnd="8dp"/>
+
+    <TextView
+        android:id="@+id/point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="@dimen/space_4dp"
+        android:text="@{String.format(@string/novel_ranking_point, viewModel.ranking.point)}"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@+id/novel_title"
+        tools:text="1234pt"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+  </android.support.constraint.ConstraintLayout>
+
+</layout>

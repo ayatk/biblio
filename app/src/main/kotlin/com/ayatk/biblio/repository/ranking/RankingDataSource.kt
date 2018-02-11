@@ -14,30 +14,21 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.entity.enums
+package com.ayatk.biblio.repository.ranking
 
-/**
- * ランキングの項目
- */
-enum class RankingType constructor(val type: String, val title: String) {
-  /**
-   * DAILY 日間ランキング
-   */
-  DAILY("-d", "日間"),
-  /**
-   * WEEKLY 週間ランキング
-   */
-  WEEKLY("-w", "週間"),
-  /**
-   * MONTHLY 月間ランキング
-   */
-  MONTHLY("-m", "月間"),
-  /**
-   * QUARTET 四半期ランキング
-   */
-  QUARTET("-q", "四半期"),
-  /**
-   * ALL 累計ランキング
-   */
-  ALL("", "累計");
+import com.ayatk.biblio.model.Ranking
+import com.ayatk.biblio.model.enums.Publisher
+import io.reactivex.Single
+
+interface RankingDataSource {
+
+  fun getDailyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>>
+
+  fun getWeeklyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>>
+
+  fun getMonthlyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>>
+
+  fun getQuarterRank(publisher: Publisher, range: IntRange): Single<List<Ranking>>
+
+  fun getAllRank(publisher: Publisher, range: IntRange): Single<List<Ranking>>
 }

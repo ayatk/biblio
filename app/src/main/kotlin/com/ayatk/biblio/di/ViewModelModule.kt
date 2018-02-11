@@ -14,30 +14,14 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.entity.enums
+package com.ayatk.biblio.di
 
-/**
- * ランキングの項目
- */
-enum class RankingType constructor(val type: String, val title: String) {
-  /**
-   * DAILY 日間ランキング
-   */
-  DAILY("-d", "日間"),
-  /**
-   * WEEKLY 週間ランキング
-   */
-  WEEKLY("-w", "週間"),
-  /**
-   * MONTHLY 月間ランキング
-   */
-  MONTHLY("-m", "月間"),
-  /**
-   * QUARTET 四半期ランキング
-   */
-  QUARTET("-q", "四半期"),
-  /**
-   * ALL 累計ランキング
-   */
-  ALL("", "累計");
+import android.arch.lifecycle.ViewModelProvider
+import dagger.Binds
+import dagger.Module
+
+@Module interface ViewModelModule {
+
+  @Binds
+  fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

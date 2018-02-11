@@ -84,4 +84,21 @@
   <string name="drawer_open">Open</string>
   <string name="drawer_close">Close</string>
   <string name="suggest_add_user_tag">Tap to add tags.</string>
+
+  <!-- Ranking -->
+  <string name="ranking_daily">Daily Ranking</string>
+  <string name="ranking_weekly">Weekly Ranking</string>
+  <string name="ranking_monthly">Monthly Ranking</string>
+  <string name="ranking_quarter">Quarter Ranking</string>
+  <string name="ranking_all">All terms Ranking</string>
+  <string name="ranking_read_more">READ MORE</string>
+
+  <string name="ranking_daily_short">Daily</string>
+  <string name="ranking_weekly_short">Weekly</string>
+  <string name="ranking_monthly_short">Monthly</string>
+  <string name="ranking_quarter_short">Quarter</string>
+  <string name="ranking_all_short">All terms</string>
+
+  <string name="novel_ranking_progress">%1$d part</string>
+  <string name="novel_ranking_point">%1$d pt</string>
 </resources>

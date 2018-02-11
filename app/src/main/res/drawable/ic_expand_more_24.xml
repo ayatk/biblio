@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
   ~ Copyright (c) 2016-2018 ayatk.
   ~
@@ -15,20 +14,14 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<resources>
-  <color name="app_red">#ff7473</color>
-  <color name="app_yellow">#ffc647</color>
-  <color name="app_blue">#47b8e0</color>
-  <color name="app_blue_dark">#3aa4ca</color>
-  <color name="app_blue_black">#34314c</color>
 
-  <!-- Navigation -->
-  <color name="nav_background">@color/white</color>
-  <color name="nav_active">@color/app_blue</color>
-  <color name="nav_inactive">@color/grey400</color>
-
-  <!-- ranking -->
-  <color name="gold">#ffd700</color>
-  <color name="silver">#c0c0c0</color>
-  <color name="bronze">#7c5830</color>
-</resources>
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="24dp"
+    android:viewportHeight="24.0"
+    android:viewportWidth="24.0"
+    android:width="24dp">
+  <path
+      android:fillColor="#FF000000"
+      android:pathData="M16.59,8.59L12,13.17 7.41,8.59 6,10l6,6 6,-6z"/>
+</vector>

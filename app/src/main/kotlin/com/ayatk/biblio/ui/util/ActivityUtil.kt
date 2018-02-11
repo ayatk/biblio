@@ -14,30 +14,21 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.entity.enums
+package com.ayatk.biblio.ui.util
 
-/**
- * ランキングの項目
- */
-enum class RankingType constructor(val type: String, val title: String) {
-  /**
-   * DAILY 日間ランキング
-   */
-  DAILY("-d", "日間"),
-  /**
-   * WEEKLY 週間ランキング
-   */
-  WEEKLY("-w", "週間"),
-  /**
-   * MONTHLY 月間ランキング
-   */
-  MONTHLY("-m", "月間"),
-  /**
-   * QUARTET 四半期ランキング
-   */
-  QUARTET("-q", "四半期"),
-  /**
-   * ALL 累計ランキング
-   */
-  ALL("", "累計");
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
+
+fun initBackToolbar(activity: AppCompatActivity, toolbar: Toolbar) {
+  activity.run {
+    setSupportActionBar(toolbar)
+    supportActionBar?.apply {
+      title = toolbar.title
+      setDisplayHomeAsUpEnabled(true)
+      setDisplayShowHomeEnabled(true)
+      setDisplayShowTitleEnabled(true)
+      setHomeButtonEnabled(true)
+      toolbar.setNavigationOnClickListener { finish() }
+    }
+  }
 }

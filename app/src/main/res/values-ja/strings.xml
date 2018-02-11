@@ -85,4 +85,21 @@
   <string name="drawer_open">開く</string>
   <string name="drawer_close">閉じる</string>
   <string name="suggest_add_user_tag">タップしてタグを追加しましょう</string>
+
+  <!-- Ranking -->
+  <string name="ranking_daily">日間ランキング</string>
+  <string name="ranking_weekly">週間ランキング</string>
+  <string name="ranking_monthly">月間ランキング</string>
+  <string name="ranking_quarter">四半期ランキング</string>
+  <string name="ranking_all">累計ランキング</string>
+  <string name="ranking_read_more">もっと見る</string>
+
+  <string name="ranking_daily_short">日間</string>
+  <string name="ranking_weekly_short">週間</string>
+  <string name="ranking_monthly_short">月間</string>
+  <string name="ranking_quarter_short">四半期</string>
+  <string name="ranking_all_short">累計</string>
+
+  <string name="novel_ranking_progress">%1$d部</string>
+  <string name="novel_ranking_point">%1$d pt</string>
 </resources>

@@ -22,20 +22,31 @@ import android.view.View
 import android.view.ViewGroup
 import com.ayatk.biblio.databinding.FragmentRankingBinding
 import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class RankingFragment : DaggerFragment() {
+class TopRankingFragment : DaggerFragment() {
 
   lateinit var binding: FragmentRankingBinding
 
+  @Inject
+  lateinit var viewModel: TopRankingViewModel
+
   override fun onCreateView(
-      inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?
+      inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
   ): View? {
     binding = FragmentRankingBinding.inflate(inflater, container, false)
+    binding.viewModel = viewModel
+    viewModel.start()
+
     return binding.root
   }
 
+  override fun onDetach() {
+    viewModel.destroy()
+    super.onDetach()
+  }
+
   companion object {
-    fun newInstance(): RankingFragment = RankingFragment()
+    fun newInstance(): TopRankingFragment = TopRankingFragment()
   }
 }
