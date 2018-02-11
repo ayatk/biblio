@@ -34,6 +34,7 @@ import com.ayatk.biblio.databinding.FragmentRankingListBinding
 import com.ayatk.biblio.databinding.ViewRankingListItemBinding
 import com.ayatk.biblio.ui.util.customview.BindingHolder
 import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
+import com.ayatk.biblio.util.ext.observeNonNull
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -69,6 +70,10 @@ class RankingListFragment : DaggerFragment() {
       addItemDecoration(divider)
       layoutManager = LinearLayoutManager(context)
     }
+
+    viewModel.progressVisibility.observeNonNull(this, { visibility ->
+      binding.progress.visibility = visibility
+    })
 
     return binding.root
   }

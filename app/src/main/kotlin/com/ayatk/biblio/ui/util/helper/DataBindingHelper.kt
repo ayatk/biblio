@@ -89,6 +89,9 @@ object DataBindingHelper {
   @JvmStatic
   @BindingAdapter("addRankingItems")
   fun LinearLayout.addRankingItems(rankings: List<Ranking>) {
+    if (rankings.isEmpty()) {
+      return
+    }
     this.removeAllViews()
     val inflater = this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     rankings.map {

@@ -66,7 +66,19 @@
               android:divider="@drawable/divider"
               android:orientation="vertical"
               android:showDividers="middle"
-              app:addRankingItems="@{viewModel.daily}"/>
+              app:addRankingItems="@{viewModel.daily}">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+              <ProgressBar
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"/>
+            </FrameLayout>
+
+          </LinearLayout>
 
           <LinearLayout
               android:layout_width="match_parent"
@@ -124,7 +136,19 @@
               android:divider="@drawable/divider"
               android:orientation="vertical"
               android:showDividers="middle"
-              app:addRankingItems="@{viewModel.weekly}"/>
+              app:addRankingItems="@{viewModel.weekly}">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+              <ProgressBar
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"/>
+            </LinearLayout>
+
+          </LinearLayout>
 
           <LinearLayout
               android:layout_width="match_parent"
@@ -182,7 +206,19 @@
               android:divider="@drawable/divider"
               android:orientation="vertical"
               android:showDividers="middle"
-              app:addRankingItems="@{viewModel.monthly}"/>
+              app:addRankingItems="@{viewModel.monthly}">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+              <ProgressBar
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"/>
+            </FrameLayout>
+
+          </LinearLayout>
 
           <LinearLayout
               android:layout_width="match_parent"
@@ -240,7 +276,19 @@
               android:divider="@drawable/divider"
               android:orientation="vertical"
               android:showDividers="middle"
-              app:addRankingItems="@{viewModel.quarter}"/>
+              app:addRankingItems="@{viewModel.quarter}">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+              <ProgressBar
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"/>
+            </FrameLayout>
+
+          </LinearLayout>
 
           <LinearLayout
               android:layout_width="match_parent"
@@ -298,7 +346,20 @@
               android:divider="@drawable/divider"
               android:orientation="vertical"
               android:showDividers="middle"
-              app:addRankingItems="@{viewModel.all}"/>
+              app:addRankingItems="@{viewModel.all}">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+              <ProgressBar
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"/>
+            </FrameLayout>
+
+          </LinearLayout>
+
 
           <LinearLayout
               android:layout_width="match_parent"

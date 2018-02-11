@@ -20,11 +20,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.ayatk.biblio.ui.ranking.RankingListFragment">
 
-  <android.support.v7.widget.RecyclerView
-      android:id="@+id/list"
-      android:name="com.ayatk.biblio.ui.ranking.RankingFragment"
+  <FrameLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      tools:listitem="@layout/view_ranking_list_item"/>
+      android:layout_height="match_parent">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:name="com.ayatk.biblio.ui.ranking.RankingFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/view_ranking_list_item"/>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="visible"/>
+  </FrameLayout>
 </layout>

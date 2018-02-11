@@ -16,8 +16,10 @@
 
 package com.ayatk.biblio.ui.ranking
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
+import android.view.View
 import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
@@ -36,6 +38,8 @@ class RankingViewModel @Inject constructor(
   private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
   var rankingItemViewModels = ObservableArrayList<RankingItemViewModel>()
+
+  var progressVisibility: MutableLiveData<Int> = MutableLiveData()
 
   // TODO: ここの処理が頭悪すぎて死ぬので絶対直す
   fun onCreate(rankingType: RankingType) {
@@ -68,6 +72,7 @@ class RankingViewModel @Inject constructor(
               { throwable -> Timber.e(throwable, "Failed to show libraries.") }
           )
           .addTo(compositeDisposable)
+
       RankingType.QUARTET -> dataSource.getQuarterRank(Publisher.NAROU, 0 until RANK_SIZE)
           .map(this::convertToViewModel)
           .subscribeOn(Schedulers.io())
@@ -77,6 +82,7 @@ class RankingViewModel @Inject constructor(
               { throwable -> Timber.e(throwable, "Failed to show libraries.") }
           )
           .addTo(compositeDisposable)
+
       RankingType.ALL -> dataSource.getAllRank(Publisher.NAROU, 0..RANK_SIZE)
           .map(this::convertToViewModel)
           .subscribeOn(Schedulers.io())
@@ -99,6 +105,7 @@ class RankingViewModel @Inject constructor(
   }
 
   private fun renderLibraries(rankingItemViewModels: List<RankingItemViewModel>) {
+    progressVisibility.value = View.GONE
     if (this.rankingItemViewModels.size != rankingItemViewModels.size) {
       this.rankingItemViewModels.clear()
       this.rankingItemViewModels.addAll(rankingItemViewModels)
@@ -106,6 +113,6 @@ class RankingViewModel @Inject constructor(
   }
 
   companion object {
-      private const val RANK_SIZE = 300
+    private const val RANK_SIZE = 300
   }
 }
