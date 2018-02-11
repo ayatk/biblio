@@ -32,4 +32,3 @@ fun Context.integer(@IntegerRes integerRes: Int): Int = resources.getInteger(int
 
 fun Context.drawable(@DrawableRes drawableRes: Int): Drawable =
     ContextCompat.getDrawable(this, drawableRes)!!
-
