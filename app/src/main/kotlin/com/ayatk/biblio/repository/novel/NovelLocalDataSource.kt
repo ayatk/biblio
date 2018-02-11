@@ -16,6 +16,7 @@
 
 package com.ayatk.biblio.repository.novel
 
+import com.ayatk.biblio.domain.repository.NovelRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.OrmaDatabase
 import com.ayatk.biblio.model.enums.Publisher
@@ -26,7 +27,8 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class NovelLocalDataSource
-@Inject constructor(private val orma: OrmaDatabase) : NovelRepository {
+@Inject constructor(private val orma: OrmaDatabase) :
+    NovelRepository {
 
   override fun findAll(codes: List<String>, publisher: Publisher): Single<List<Novel>> {
     return orma.selectFromNovel()

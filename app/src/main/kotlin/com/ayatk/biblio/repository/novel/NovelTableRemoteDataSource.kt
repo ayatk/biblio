@@ -18,6 +18,7 @@ package com.ayatk.biblio.repository.novel
 
 import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.data.narou.entity.NarouNovelTable
+import com.ayatk.biblio.domain.repository.NovelTableRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelTable
 import io.reactivex.Completable
@@ -29,7 +30,8 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class NovelTableRemoteDataSource
-@Inject constructor(val client: NarouClient) : NovelTableRepository {
+@Inject constructor(val client: NarouClient) :
+    NovelTableRepository {
 
   override fun findAll(novel: Novel): Single<List<NovelTable>> {
     return client.getTableOfContents(novel.code)

@@ -22,8 +22,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.os.bundleOf
 import com.ayatk.biblio.databinding.FragmentNovelInfoBinding
+import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.repository.library.LibraryRepository
 import dagger.android.support.DaggerFragment
 import org.parceler.Parcels
 import javax.inject.Inject

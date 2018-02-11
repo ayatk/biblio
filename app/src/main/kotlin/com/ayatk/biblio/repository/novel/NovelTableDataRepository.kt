@@ -16,6 +16,7 @@
 
 package com.ayatk.biblio.repository.novel
 
+import com.ayatk.biblio.domain.repository.NovelTableRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelTable
 import com.ayatk.biblio.util.toSingle

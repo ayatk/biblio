@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.repository.ranking
+package com.ayatk.biblio.domain.repository
 
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher

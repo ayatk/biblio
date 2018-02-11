@@ -21,9 +21,9 @@ import android.databinding.BaseObservable
 import android.databinding.Bindable
 import com.ayatk.biblio.BR
 import com.ayatk.biblio.data.narou.entity.enums.RankingType
+import com.ayatk.biblio.domain.repository.RankingRepository
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.repository.ranking.RankingRepository
 import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.ui.ranking.RankingActivity
 import io.reactivex.android.schedulers.AndroidSchedulers

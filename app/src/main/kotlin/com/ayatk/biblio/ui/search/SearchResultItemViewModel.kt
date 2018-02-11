@@ -20,10 +20,10 @@ import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.view.View
 import com.ayatk.biblio.BR
+import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.NovelState
-import com.ayatk.biblio.repository.library.LibraryRepository
 import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.util.DateFormat
 import io.reactivex.rxkotlin.subscribeBy

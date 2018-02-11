@@ -16,6 +16,7 @@
 
 package com.ayatk.biblio.repository.library
 
+import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.OrmaDatabase
@@ -28,7 +29,8 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class LibraryLocalDataSource
-@Inject constructor(private val orma: OrmaDatabase) : LibraryRepository {
+@Inject constructor(private val orma: OrmaDatabase) :
+    LibraryRepository {
 
   override fun findAll(): Single<MutableList<Library>> {
     return orma.selectFromLibrary()

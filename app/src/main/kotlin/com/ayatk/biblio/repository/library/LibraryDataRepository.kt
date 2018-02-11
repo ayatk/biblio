@@ -16,6 +16,7 @@
 
 package com.ayatk.biblio.repository.library
 
+import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import io.reactivex.Completable

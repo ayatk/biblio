@@ -21,9 +21,9 @@ import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
 import android.view.View
 import com.ayatk.biblio.data.narou.entity.enums.RankingType
+import com.ayatk.biblio.domain.repository.RankingRepository
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.repository.ranking.RankingRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo

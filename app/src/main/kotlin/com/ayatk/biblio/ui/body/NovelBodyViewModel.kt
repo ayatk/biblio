@@ -19,9 +19,9 @@ package com.ayatk.biblio.ui.body
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import com.ayatk.biblio.BR
+import com.ayatk.biblio.domain.repository.NovelBodyRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelBody
-import com.ayatk.biblio.repository.novel.NovelBodyRepository
 import com.ayatk.biblio.ui.ViewModel
 import javax.inject.Inject
 

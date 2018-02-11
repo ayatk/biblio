@@ -18,6 +18,7 @@ package com.ayatk.biblio.repository.novel
 
 import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.data.narou.entity.NarouNovelBody
+import com.ayatk.biblio.domain.repository.NovelBodyRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelBody
 import com.ayatk.biblio.model.enums.NovelState
@@ -29,7 +30,8 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class NovelBodyRemoteDataSource
-@Inject constructor(private val client: NarouClient) : NovelBodyRepository {
+@Inject constructor(private val client: NarouClient) :
+    NovelBodyRepository {
 
   override fun find(novel: Novel, page: Int): Single<List<NovelBody>> {
     return if (novel.novelState == NovelState.SHORT_STORY) {

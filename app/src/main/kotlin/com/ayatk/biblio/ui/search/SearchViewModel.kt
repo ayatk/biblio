@@ -21,9 +21,9 @@ import android.util.Log
 import android.view.View
 import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.data.narou.util.QueryBuilder
+import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.repository.library.LibraryRepository
 import com.ayatk.biblio.ui.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

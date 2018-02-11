@@ -22,9 +22,9 @@ import android.databinding.ObservableArrayList
 import android.view.View
 import com.ayatk.biblio.BR
 import com.ayatk.biblio.data.DefaultPrefs
+import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.repository.library.LibraryRepository
 import com.ayatk.biblio.repository.novel.NovelDataRepository
 import com.ayatk.biblio.repository.novel.NovelTableDataRepository
 import com.ayatk.biblio.ui.ViewModel

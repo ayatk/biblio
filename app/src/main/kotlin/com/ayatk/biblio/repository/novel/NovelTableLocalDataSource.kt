@@ -16,6 +16,7 @@
 
 package com.ayatk.biblio.repository.novel
 
+import com.ayatk.biblio.domain.repository.NovelTableRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelTable
 import com.ayatk.biblio.model.OrmaDatabase
@@ -26,7 +27,8 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class NovelTableLocalDataSource
-@Inject constructor(val orma: OrmaDatabase) : NovelTableRepository {
+@Inject constructor(val orma: OrmaDatabase) :
+    NovelTableRepository {
 
   override fun findAll(novel: Novel): Single<List<NovelTable>> {
     return orma.selectFromNovelTable()

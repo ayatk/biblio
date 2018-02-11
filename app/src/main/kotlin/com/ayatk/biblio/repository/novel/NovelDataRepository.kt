@@ -17,6 +17,7 @@
 package com.ayatk.biblio.repository.novel
 
 import android.support.annotation.VisibleForTesting
+import com.ayatk.biblio.domain.repository.NovelRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.util.toMaybe

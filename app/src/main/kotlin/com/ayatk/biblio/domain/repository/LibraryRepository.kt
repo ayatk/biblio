@@ -14,18 +14,25 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.repository.novel
+package com.ayatk.biblio.domain.repository
 
+import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.NovelBody
 import io.reactivex.Completable
+import io.reactivex.Maybe
 import io.reactivex.Single
 
-interface NovelBodyRepository {
+interface LibraryRepository {
 
-  fun find(novel: Novel, page: Int): Single<List<NovelBody>>
+  fun findAll(): Single<MutableList<Library>>
 
-  fun save(novelBody: NovelBody): Completable
+  fun find(novel: Novel): Maybe<Library>
 
-  fun deleteAll(novel: Novel): Single<Int>
+  fun save(library: Library): Completable
+
+  fun saveAll(libraries: List<Library>): Completable
+
+  fun updateAllAsync(novels: List<Novel>)
+
+  fun delete(novel: Novel): Single<Int>
 }

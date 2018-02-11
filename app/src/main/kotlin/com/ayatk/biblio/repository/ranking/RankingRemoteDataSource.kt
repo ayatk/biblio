@@ -21,6 +21,7 @@ import com.ayatk.biblio.data.narou.entity.NarouRanking
 import com.ayatk.biblio.data.narou.entity.enums.OutputOrder
 import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.data.narou.util.QueryBuilder
+import com.ayatk.biblio.domain.repository.RankingRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
