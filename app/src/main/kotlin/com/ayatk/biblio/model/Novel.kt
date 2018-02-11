@@ -106,5 +106,9 @@ data class Novel(
 
     @Column
     @Setter("isR18")
-    var isR18: Boolean = false
+    var isR18: Boolean = false,
+
+    @Column(defaultExpr = "0")
+    @Setter("point")
+    var point: Int = 0
 )
