@@ -69,6 +69,9 @@
     <activity
         android:name=".ui.search.SearchActivity"
         android:theme="@style/AppTheme.NoActionBar"/>
+    <activity
+        android:name=".ui.ranking.RankingActivity"
+        android:theme="@style/AppTheme.NoActionBar"/>
   </application>
 
 </manifest>
