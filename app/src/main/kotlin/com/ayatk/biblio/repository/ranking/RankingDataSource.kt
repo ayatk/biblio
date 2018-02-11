@@ -29,4 +29,6 @@ interface RankingDataSource {
   fun getMonthlyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>>
 
   fun getQuarterRank(publisher: Publisher, range: IntRange): Single<List<Ranking>>
+
+  fun getAllRank(publisher: Publisher, range: IntRange): Single<List<Ranking>>
 }

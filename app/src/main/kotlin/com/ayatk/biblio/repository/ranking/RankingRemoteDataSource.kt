@@ -18,6 +18,7 @@ package com.ayatk.biblio.repository.ranking
 
 import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.data.narou.entity.NarouRanking
+import com.ayatk.biblio.data.narou.entity.enums.OutputOrder
 import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.data.narou.util.QueryBuilder
 import com.ayatk.biblio.model.Novel
@@ -84,6 +85,11 @@ class RankingRemoteDataSource @Inject constructor(
         }
   }
 
+  override fun getAllRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> {
+    val query = QueryBuilder().order(OutputOrder.HYOKA_COUNT).size(range.last).build()
+    return narouClient.getNovel(query).map(this::convertNovel2Ranking)
+  }
+
   private fun convertRanking(rank: List<NarouRanking>, novels: List<Novel>): List<Ranking> {
     return rank.map {
       Ranking(
@@ -93,4 +99,9 @@ class RankingRemoteDataSource @Inject constructor(
       )
     }
   }
+
+  private fun convertNovel2Ranking(novels: List<Novel>): List<Ranking> =
+      novels.mapIndexed { index, novel ->
+        Ranking(rank = index + 1, novel = novel, point = novel.point)
+      }
 }
