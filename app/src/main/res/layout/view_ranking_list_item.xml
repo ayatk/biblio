@@ -67,7 +67,8 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="悪役令嬢、庶民に堕ちる"
         app:layout_constraintStart_toEndOf="@+id/rank"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:layout_marginRight="8dp"/>
 
     <TextView
         android:id="@+id/novel_writer"
@@ -76,7 +77,7 @@
         android:text="@{viewModel.ranking.novel.writer}"
         android:textColor="@color/grey500"
         android:textSize="@dimen/text_12sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
+        app:layout_constraintBaseline_toBaselineOf="@+id/point"
         tools:text="緋月紫砲"
         app:layout_constraintStart_toEndOf="@+id/rank"
         android:layout_marginStart="16dp"/>
@@ -94,40 +95,38 @@
         tools:text="2017/03/01 07:00"/>
 
     <TextView
-        android:id="@+id/publisher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
-        android:padding="@dimen/space_4dp"
-        android:text="@{viewModel.ranking.novel.publisher.siteName}"
-        android:textSize="12sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/novel_title"
-        tools:text="小説家になろう"/>
-
-    <TextView
         android:id="@+id/read_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="@{String.format(@string/novel_progress, 0, viewModel.ranking.novel.totalPages)}"
+        android:text="@{String.format(@string/novel_ranking_progress, viewModel.ranking.novel.totalPages)}"
         android:textSize="12sp"
         android:visibility="@{viewModel.shortStory ? android.view.View.GONE : android.view.View.VISIBLE}"
-        app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
-        app:layout_constraintRight_toLeftOf="@+id/novel_type"/>
+        app:layout_constraintBaseline_toBaselineOf="@+id/point"
+        app:layout_constraintRight_toLeftOf="@+id/novel_type"
+        android:layout_marginRight="8dp"/>
 
     <TextView
         android:id="@+id/novel_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:text="@{viewModel.ranking.novel.novelState.stateName}"
         android:textSize="12sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
-        app:layout_constraintRight_toLeftOf="@+id/publisher"
-        tools:text="連載中"/>
+        tools:text="連載中"
+        app:layout_constraintBaseline_toBaselineOf="@+id/point"
+        app:layout_constraintEnd_toStartOf="@+id/point"
+        android:layout_marginEnd="8dp"/>
+
+    <TextView
+        android:id="@+id/point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="@dimen/space_4dp"
+        android:text="@{String.format(@string/novel_ranking_point, viewModel.ranking.point)}"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@+id/novel_title"
+        tools:text="1234pt"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
   </android.support.constraint.ConstraintLayout>
 

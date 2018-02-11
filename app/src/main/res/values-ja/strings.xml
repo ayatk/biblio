@@ -99,4 +99,6 @@
   <string name="ranking_monthly_short">月間</string>
   <string name="ranking_quarter_short">四半期</string>
   <string name="ranking_all_short">累計</string>
+
+  <string name="novel_ranking_progress">%1$d部</string>
 </resources>
