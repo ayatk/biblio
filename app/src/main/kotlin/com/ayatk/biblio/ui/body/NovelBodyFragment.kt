@@ -22,9 +22,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.os.bundleOf
 import com.ayatk.biblio.databinding.FragmentNovelBodyBinding
-import com.ayatk.biblio.event.NovelBodySelectedEvent
-import com.ayatk.biblio.event.SubtitleChangeEvent
 import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.ui.UiEvent
 import dagger.android.support.DaggerFragment
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -68,9 +67,9 @@ class NovelBodyFragment : DaggerFragment() {
   }
 
   @Subscribe
-  fun onEvent(event: NovelBodySelectedEvent) {
+  fun onEvent(event: UiEvent.NovelBodySelectedEvent) {
     if (event.position + 1 == page) {
-      EventBus.getDefault().post(SubtitleChangeEvent(viewModel.novelBody.subtitle))
+      EventBus.getDefault().post(UiEvent.SubtitleChangeEvent(viewModel.novelBody.subtitle))
     }
   }
 

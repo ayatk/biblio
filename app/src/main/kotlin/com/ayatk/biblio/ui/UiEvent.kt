@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.event
+package com.ayatk.biblio.ui
 
-class SubtitleChangeEvent(val subtitle: String)
+class UiEvent {
+  class NovelBodySelectedEvent(val position: Int)
+
+  class SubtitleChangeEvent(val subtitle: String)
+}

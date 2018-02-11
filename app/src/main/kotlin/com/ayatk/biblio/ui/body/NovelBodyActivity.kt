@@ -27,9 +27,8 @@ import android.support.v4.view.ViewPager
 import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityNovelBodyBinding
-import com.ayatk.biblio.event.NovelBodySelectedEvent
-import com.ayatk.biblio.event.SubtitleChangeEvent
 import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.ui.UiEvent
 import com.ayatk.biblio.ui.util.initBackToolbar
 import dagger.android.support.DaggerAppCompatActivity
 import org.greenrobot.eventbus.EventBus
@@ -55,7 +54,7 @@ class NovelBodyActivity : DaggerAppCompatActivity() {
 
     initBackToolbar(this, binding.toolbar)
 
-    EventBus.getDefault().post(NovelBodySelectedEvent(page))
+    EventBus.getDefault().post(UiEvent.NovelBodySelectedEvent(page))
 
     // ViewPager
     binding.novelViewPager.apply {
@@ -64,7 +63,7 @@ class NovelBodyActivity : DaggerAppCompatActivity() {
       addOnPageChangeListener(
           object : ViewPager.OnPageChangeListener {
             override fun onPageSelected(position: Int) {
-              EventBus.getDefault().post(NovelBodySelectedEvent(position))
+              EventBus.getDefault().post(UiEvent.NovelBodySelectedEvent(position))
             }
 
             override fun onPageScrolled(
@@ -100,7 +99,7 @@ class NovelBodyActivity : DaggerAppCompatActivity() {
   }
 
   @Subscribe
-  fun onEvent(event: SubtitleChangeEvent) {
+  fun onEvent(event: UiEvent.SubtitleChangeEvent) {
     binding.toolbar.title = event.subtitle
   }
 
