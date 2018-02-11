@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.repository.novel
+package com.ayatk.biblio.data.datasource.novel
 
 import com.ayatk.biblio.domain.repository.NovelRepository
 import com.ayatk.biblio.model.Novel

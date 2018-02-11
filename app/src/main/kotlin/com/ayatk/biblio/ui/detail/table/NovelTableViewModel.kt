@@ -18,9 +18,9 @@ package com.ayatk.biblio.ui.detail.table
 
 import android.databinding.BaseObservable
 import android.databinding.ObservableArrayList
+import com.ayatk.biblio.data.datasource.novel.NovelTableDataSource
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelTable
-import com.ayatk.biblio.repository.novel.NovelTableDataSource
 import com.ayatk.biblio.ui.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import timber.log.Timber

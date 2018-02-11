@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.repository.ranking
+package com.ayatk.biblio.data.datasource.ranking
 
 import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.data.narou.entity.NarouRanking

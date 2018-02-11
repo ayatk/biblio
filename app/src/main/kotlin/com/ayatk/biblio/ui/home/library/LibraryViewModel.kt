@@ -22,11 +22,11 @@ import android.databinding.ObservableArrayList
 import android.view.View
 import com.ayatk.biblio.BR
 import com.ayatk.biblio.data.DefaultPrefs
+import com.ayatk.biblio.data.datasource.novel.NovelDataSource
+import com.ayatk.biblio.data.datasource.novel.NovelTableDataSource
 import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.repository.novel.NovelDataSource
-import com.ayatk.biblio.repository.novel.NovelTableDataSource
 import com.ayatk.biblio.ui.ViewModel
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers

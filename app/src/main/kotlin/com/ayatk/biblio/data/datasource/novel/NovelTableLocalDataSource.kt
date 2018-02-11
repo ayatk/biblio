@@ -14,61 +14,52 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.repository.novel
+package com.ayatk.biblio.data.datasource.novel
 
-import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.data.narou.entity.NarouNovelTable
 import com.ayatk.biblio.domain.repository.NovelTableRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelTable
+import com.ayatk.biblio.model.OrmaDatabase
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.toObservable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class NovelTableRemoteDataSource
-@Inject constructor(val client: NarouClient) :
+class NovelTableLocalDataSource
+@Inject constructor(val orma: OrmaDatabase) :
     NovelTableRepository {
 
   override fun findAll(novel: Novel): Single<List<NovelTable>> {
-    return client.getTableOfContents(novel.code)
-        .map { convertNarouToModel(novel, it) }
+    return orma.selectFromNovelTable()
+        .novelEq(novel)
+        .executeAsObservable()
+        .toList()
         .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
   }
 
   override fun find(novel: Novel, page: Int): Maybe<NovelTable> {
-    return findAll(novel)
-        .toObservable()
-        .flatMap { it.toObservable() }
-        .filter { it.page == page }
-        .singleElement()
+    return orma.selectFromNovelTable()
+        .novelEq(novel)
+        .page(page.toLong())
+        .executeAsObservable()
+        .firstElement()
+        .subscribeOn(Schedulers.io())
   }
 
   override fun save(novelTables: List<NovelTable>): Completable {
-    return Completable.create { /* no-op */ }
+    return orma.transactionAsCompletable {
+      novelTables.map {
+        orma.relationOfNovelTable().upsert(it)
+      }
+    }.subscribeOn(Schedulers.io())
   }
 
   override fun delete(novel: Novel): Single<Int> {
-    return Single.create { /* no-op */ }
-  }
-
-  private fun convertNarouToModel(
-      novel: Novel, narouTables: List<NarouNovelTable>
-  ): List<NovelTable> {
-    return narouTables.map {
-      NovelTable(
-          id = "${novel.code}-${it.id}",
-          novel = novel,
-          title = it.title,
-          isChapter = it.isChapter,
-          page = it.page,
-          publishDate = it.publishDate,
-          lastUpdate = it.lastUpdate
-      )
-    }
+    return orma.relationOfNovelTable()
+        .deleter()
+        .novelEq(novel)
+        .executeAsSingle()
+        .subscribeOn(Schedulers.io())
   }
 }

@@ -16,24 +16,24 @@
 
 package com.ayatk.biblio.di
 
+import com.ayatk.biblio.data.datasource.library.LibraryDataSource
+import com.ayatk.biblio.data.datasource.library.LibraryLocalDataSource
+import com.ayatk.biblio.data.datasource.novel.NovelBodyDataSource
+import com.ayatk.biblio.data.datasource.novel.NovelBodyLocalDataSource
+import com.ayatk.biblio.data.datasource.novel.NovelBodyRemoteDataSource
+import com.ayatk.biblio.data.datasource.novel.NovelDataSource
+import com.ayatk.biblio.data.datasource.novel.NovelLocalDataSource
+import com.ayatk.biblio.data.datasource.novel.NovelRemoteDataSource
+import com.ayatk.biblio.data.datasource.novel.NovelTableDataSource
+import com.ayatk.biblio.data.datasource.novel.NovelTableLocalDataSource
+import com.ayatk.biblio.data.datasource.novel.NovelTableRemoteDataSource
+import com.ayatk.biblio.data.datasource.ranking.RankingRemoteDataSource
 import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.domain.repository.NovelBodyRepository
 import com.ayatk.biblio.domain.repository.NovelRepository
 import com.ayatk.biblio.domain.repository.NovelTableRepository
 import com.ayatk.biblio.domain.repository.RankingRepository
-import com.ayatk.biblio.repository.library.LibraryDataSource
-import com.ayatk.biblio.repository.library.LibraryLocalDataSource
-import com.ayatk.biblio.repository.novel.NovelBodyDataSource
-import com.ayatk.biblio.repository.novel.NovelBodyLocalDataSource
-import com.ayatk.biblio.repository.novel.NovelBodyRemoteDataSource
-import com.ayatk.biblio.repository.novel.NovelDataSource
-import com.ayatk.biblio.repository.novel.NovelLocalDataSource
-import com.ayatk.biblio.repository.novel.NovelRemoteDataSource
-import com.ayatk.biblio.repository.novel.NovelTableDataSource
-import com.ayatk.biblio.repository.novel.NovelTableLocalDataSource
-import com.ayatk.biblio.repository.novel.NovelTableRemoteDataSource
-import com.ayatk.biblio.repository.ranking.RankingRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
