@@ -16,6 +16,7 @@
 
 package com.ayatk.biblio
 
+import android.annotation.SuppressLint
 import com.ayatk.biblio.di.DaggerAppComponent
 import com.crashlytics.android.Crashlytics
 import com.squareup.leakcanary.LeakCanary
@@ -23,6 +24,7 @@ import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import io.fabric.sdk.android.Fabric
 
+@SuppressLint("Registered")
 open class App : DaggerApplication() {
 
   override fun onCreate() {
