@@ -26,7 +26,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class NovelTableRepository
+class NovelTableDataRepository
 @Inject constructor(
     private val localDataSource: NovelTableLocalDataSource,
     private val remoteDataSource: NovelTableRemoteDataSource

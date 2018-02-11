@@ -29,7 +29,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class NovelRepository @Inject constructor(
+class NovelDataRepository @Inject constructor(
     private val localDataSource: NovelLocalDataSource,
     private val remoteDataSource: NovelRemoteDataSource
 ) : NovelDataSource {
