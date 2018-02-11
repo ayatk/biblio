@@ -59,6 +59,8 @@ class SearchActivity : DaggerAppCompatActivity() {
     super.onCreate(savedInstanceState)
     overridePendingTransition(R.anim.activity_fade_enter, R.anim.activity_fade_exit)
 
+    lifecycle.addObserver(viewModel)
+
     initBackToolbar(this, binding.toolbar)
 
     viewModel.searchResultVisibility

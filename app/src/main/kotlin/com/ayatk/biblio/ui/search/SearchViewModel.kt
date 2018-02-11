@@ -16,6 +16,9 @@
 
 package com.ayatk.biblio.ui.search
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.OnLifecycleEvent
 import android.databinding.ObservableArrayList
 import android.util.Log
 import android.view.View
@@ -27,6 +30,7 @@ import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
@@ -34,16 +38,7 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     private val narouClient: NarouClient,
     private val libraryRepository: LibraryRepository
-) : ViewModel {
-
-  init {
-    libraryRepository.findAll()
-        .subscribeOn(Schedulers.io())
-        .subscribe(
-            { libraries -> this.libraries = libraries },
-            { t -> Log.e("SearchViewModel", t.toString()) }
-        )
-  }
+) : ViewModel, LifecycleObserver {
 
   private val compositeDisposable = CompositeDisposable()
 
@@ -52,6 +47,16 @@ class SearchViewModel @Inject constructor(
   val searchResultVisibility: BehaviorSubject<Int> = BehaviorSubject.createDefault(View.GONE)
 
   var libraries = listOf<Library>()
+
+  @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+  fun onCreate() {
+    libraryRepository.findAll()
+        .subscribeOn(Schedulers.io())
+        .subscribe(
+            { libraries -> this.libraries = libraries },
+            { t -> Log.e("SearchViewModel", t.toString()) }
+        ).addTo(compositeDisposable)
+  }
 
   override fun destroy() {
     searchResultVisibility.onComplete()
