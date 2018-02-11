@@ -58,11 +58,6 @@ class NovelDetailActivity : DaggerAppCompatActivity() {
     binding.tab.setupWithViewPager(viewPager)
   }
 
-  override fun onDestroy() {
-    super.onDestroy()
-    viewModel.destroy()
-  }
-
   companion object {
 
     private val EXTRA_NOVEL = "extra_novel"
