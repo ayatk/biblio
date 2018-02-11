@@ -125,7 +125,8 @@ class NarouClient
           original = it.gensaku,
           isOrigin = true,
           isR15 = it.isR15 == 1,
-          isR18 = publisher == Publisher.NOCTURNE_MOONLIGHT
+          isR18 = publisher == Publisher.NOCTURNE_MOONLIGHT,
+          point = it.globalPoint
       )
     }
   }
