@@ -51,6 +51,9 @@ class TopRankingViewModel @Inject constructor(
   @Bindable
   var quarter: MutableList<Ranking> = mutableListOf()
 
+  @Bindable
+  var all: MutableList<Ranking> = mutableListOf()
+
   fun start() {
     dataSource.getDailyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .subscribeOn(Schedulers.io())
@@ -89,6 +92,16 @@ class TopRankingViewModel @Inject constructor(
           quarter.clear()
           quarter.addAll(ranks)
           notifyPropertyChanged(BR.quarter)
+        })
+        .addTo(compositeDisposable)
+
+    dataSource.getAllRank(Publisher.NAROU, 0..TOP_RANK_RANGE)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe({ ranks ->
+          all.clear()
+          all.addAll(ranks)
+          notifyPropertyChanged(BR.all)
         })
         .addTo(compositeDisposable)
   }
