@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.di
+package com.ayatk.biblio.domain.repository
 
 import com.ayatk.biblio.data.datasource.library.LibraryDataSource
 import com.ayatk.biblio.data.datasource.library.LibraryLocalDataSource
@@ -29,11 +29,6 @@ import com.ayatk.biblio.data.datasource.novel.NovelTableLocalDataSource
 import com.ayatk.biblio.data.datasource.novel.NovelTableRemoteDataSource
 import com.ayatk.biblio.data.datasource.ranking.RankingRemoteDataSource
 import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.domain.repository.LibraryRepository
-import com.ayatk.biblio.domain.repository.NovelBodyRepository
-import com.ayatk.biblio.domain.repository.NovelRepository
-import com.ayatk.biblio.domain.repository.NovelTableRepository
-import com.ayatk.biblio.domain.repository.RankingRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
