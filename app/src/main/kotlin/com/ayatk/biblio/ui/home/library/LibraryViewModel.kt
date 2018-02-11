@@ -23,7 +23,7 @@ import android.view.View
 import com.ayatk.biblio.BR
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.pref.DefaultPrefs
+import com.ayatk.biblio.data.DefaultPrefs
 import com.ayatk.biblio.repository.library.LibraryDataSource
 import com.ayatk.biblio.repository.novel.NovelRepository
 import com.ayatk.biblio.repository.novel.NovelTableRepository

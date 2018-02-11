@@ -20,7 +20,7 @@ import android.content.Context
 import android.databinding.BaseObservable
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.enums.NovelState
-import com.ayatk.biblio.pref.DefaultPrefs
+import com.ayatk.biblio.data.DefaultPrefs
 import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.ui.util.helper.Navigator
 import com.ayatk.biblio.util.DateFormat

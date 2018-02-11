@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.pref
+package com.ayatk.biblio.data
 
 import android.support.annotation.StyleRes
 import com.ayatk.biblio.BuildConfig

@@ -25,7 +25,7 @@ import com.ayatk.biblio.data.narou.service.NarouApiService
 import com.ayatk.biblio.data.narou.service.NarouService
 import com.ayatk.biblio.data.narou.util.HtmlUtil
 import com.ayatk.biblio.model.OrmaDatabase
-import com.ayatk.biblio.pref.DefaultPrefs
+import com.ayatk.biblio.data.DefaultPrefs
 import com.github.gfx.android.orma.AccessThreadConstraint
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
