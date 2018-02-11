@@ -24,6 +24,8 @@ import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.repository.ranking.RankingDataSource
 import com.ayatk.biblio.ui.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -34,6 +36,8 @@ class TopRankingViewModel @Inject constructor(
   companion object {
       private const val TOP_RANK_RANGE = 5
   }
+
+  private val compositeDisposable = CompositeDisposable()
 
   @Bindable
   var daily: MutableList<Ranking> = mutableListOf()
@@ -56,6 +60,7 @@ class TopRankingViewModel @Inject constructor(
           daily.addAll(ranks)
           notifyPropertyChanged(BR.daily)
         })
+        .addTo(compositeDisposable)
 
     dataSource.getWeeklyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .subscribeOn(Schedulers.io())
@@ -65,6 +70,7 @@ class TopRankingViewModel @Inject constructor(
           weekly.addAll(ranks)
           notifyPropertyChanged(BR.weekly)
         })
+        .addTo(compositeDisposable)
 
     dataSource.getMonthlyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .subscribeOn(Schedulers.io())
@@ -74,6 +80,7 @@ class TopRankingViewModel @Inject constructor(
           monthly.addAll(ranks)
           notifyPropertyChanged(BR.monthly)
         })
+        .addTo(compositeDisposable)
 
     dataSource.getQuarterRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .subscribeOn(Schedulers.io())
@@ -83,7 +90,10 @@ class TopRankingViewModel @Inject constructor(
           quarter.addAll(ranks)
           notifyPropertyChanged(BR.quarter)
         })
+        .addTo(compositeDisposable)
   }
 
-  override fun destroy() {}
+  override fun destroy() {
+    compositeDisposable.clear()
+  }
 }

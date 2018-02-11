@@ -41,6 +41,11 @@ class TopRankingFragment : DaggerFragment() {
     return binding.root
   }
 
+  override fun onDetach() {
+    viewModel.destroy()
+    super.onDetach()
+  }
+
   companion object {
     fun newInstance(): TopRankingFragment = TopRankingFragment()
   }
