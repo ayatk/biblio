@@ -16,33 +16,39 @@
 
 package com.ayatk.biblio.ui.body
 
-import android.databinding.BaseObservable
-import android.databinding.Bindable
-import com.ayatk.biblio.BR
+import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.ViewModel
 import com.ayatk.biblio.domain.repository.NovelBodyRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelBody
-import com.ayatk.biblio.ui.ViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
+import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 import javax.inject.Inject
 
 class NovelBodyViewModel @Inject constructor(
     private val novelBodyRepository: NovelBodyRepository
-) : BaseObservable(), ViewModel {
+) : ViewModel() {
 
-  @Bindable
-  var novelBody: NovelBody = NovelBody()
+  private val compositeDisposable = CompositeDisposable()
+
+  var novelBody = MutableLiveData<NovelBody>()
 
   fun start(novel: Novel, page: Int) {
     novelBodyRepository.find(novel, page)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
         .subscribe(
-            {
-              novelBody = it.first()
-              notifyPropertyChanged(BR.novelBody)
-            },
-            // TODO: 2017/11/26 エラーを握りつぶしマン
-            {}
+            { novelBody.postValue(it.first()) },
+            { Timber.e(it) }
         )
+        .addTo(compositeDisposable)
   }
 
-  override fun destroy() {}
+  override fun onCleared() {
+    super.onCleared()
+    compositeDisposable.clear()
+  }
 }

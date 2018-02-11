@@ -16,10 +16,15 @@
 
 package com.ayatk.biblio.ui.detail
 
+import android.arch.lifecycle.ViewModel
+import com.ayatk.biblio.di.ViewModelKey
 import com.ayatk.biblio.ui.detail.info.NovelInfoFragment
+import com.ayatk.biblio.ui.detail.info.NovelInfoViewModel
 import com.ayatk.biblio.ui.detail.table.NovelTableFragment
+import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoMap
 
 @Module
 abstract class NovelDetailModule {
@@ -29,4 +34,9 @@ abstract class NovelDetailModule {
 
   @ContributesAndroidInjector
   abstract fun contributeNovelTableFragment(): NovelTableFragment
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(NovelInfoViewModel::class)
+  abstract fun bindNovelInfoViewModel(novelInfoViewModel: NovelInfoViewModel): ViewModel
 }

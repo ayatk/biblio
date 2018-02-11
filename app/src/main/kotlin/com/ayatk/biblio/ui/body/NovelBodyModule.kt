@@ -16,12 +16,21 @@
 
 package com.ayatk.biblio.ui.body
 
+import android.arch.lifecycle.ViewModel
+import com.ayatk.biblio.di.ViewModelKey
+import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoMap
 
 @Module
 abstract class NovelBodyModule {
 
   @ContributesAndroidInjector
   abstract fun contributeNovelBodyFragment(): NovelBodyFragment
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(NovelBodyViewModel::class)
+  abstract fun bindNovelBodyViewModel(novelBodyViewModel: NovelBodyViewModel): ViewModel
 }

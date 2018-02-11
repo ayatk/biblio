@@ -16,36 +16,43 @@
 
 package com.ayatk.biblio.ui.detail.info
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.os.bundleOf
 import com.ayatk.biblio.databinding.FragmentNovelInfoBinding
-import com.ayatk.biblio.domain.repository.LibraryRepository
+import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
 import dagger.android.support.DaggerFragment
 import org.parceler.Parcels
 import javax.inject.Inject
 
 class NovelInfoFragment : DaggerFragment() {
+  @Inject
+  lateinit var viewModelFactory: ViewModelFactory
+
+  private val viewModel: NovelInfoViewModel by lazy {
+    ViewModelProviders.of(this, viewModelFactory).get(NovelInfoViewModel::class.java)
+  }
 
   private lateinit var binding: FragmentNovelInfoBinding
-
-  @Inject
-  lateinit var libraryRepository: LibraryRepository
 
   private val novel: Novel by lazy {
     Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL))
   }
 
-  private lateinit var viewModel: NovelInfoViewModel
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    viewModel.novel = novel
+  }
 
   override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
   ): View? {
     binding = FragmentNovelInfoBinding.inflate(inflater, container, false)
-    viewModel = NovelInfoViewModel(libraryRepository, novel)
+    binding.setLifecycleOwner(this)
     binding.viewModel = viewModel
 
     return binding.root

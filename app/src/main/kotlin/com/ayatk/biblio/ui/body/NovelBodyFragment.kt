@@ -16,12 +16,14 @@
 
 package com.ayatk.biblio.ui.body
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.os.bundleOf
 import com.ayatk.biblio.databinding.FragmentNovelBodyBinding
+import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.UiEvent
 import dagger.android.support.DaggerFragment
@@ -33,9 +35,13 @@ import javax.inject.Inject
 class NovelBodyFragment : DaggerFragment() {
 
   @Inject
-  lateinit var viewModel: NovelBodyViewModel
+  lateinit var viewModelFactory: ViewModelFactory
 
   private lateinit var binding: FragmentNovelBodyBinding
+
+  private val viewModel: NovelBodyViewModel by lazy {
+    ViewModelProviders.of(this, viewModelFactory).get(NovelBodyViewModel::class.java)
+  }
 
   private val novel: Novel by lazy {
     Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL))
@@ -50,6 +56,7 @@ class NovelBodyFragment : DaggerFragment() {
       savedInstanceState: Bundle?
   ): View? {
     binding = FragmentNovelBodyBinding.inflate(inflater, container, false)
+    binding.setLifecycleOwner(this)
     binding.viewModel = viewModel
 
     return binding.root
@@ -69,7 +76,7 @@ class NovelBodyFragment : DaggerFragment() {
   @Subscribe
   fun onEvent(event: UiEvent.NovelBodySelectedEvent) {
     if (event.position + 1 == page) {
-      EventBus.getDefault().post(UiEvent.SubtitleChangeEvent(viewModel.novelBody.subtitle))
+      EventBus.getDefault().post(UiEvent.SubtitleChangeEvent(viewModel.novelBody.value!!.subtitle))
     }
   }
 

@@ -18,9 +18,5 @@ package com.ayatk.biblio.ui.detail
 
 import android.databinding.BaseObservable
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.ViewModel
 
-class NovelDetailViewModel(val novel: Novel) : BaseObservable(), ViewModel {
-
-  override fun destroy() {}
-}
+class NovelDetailViewModel(val novel: Novel) : BaseObservable()
