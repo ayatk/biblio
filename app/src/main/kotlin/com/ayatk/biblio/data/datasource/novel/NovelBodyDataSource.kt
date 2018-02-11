@@ -19,35 +19,37 @@ package com.ayatk.biblio.data.datasource.novel
 import com.ayatk.biblio.domain.repository.NovelBodyRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelBody
+import com.ayatk.biblio.util.rx.SchedulerProvider
 import com.ayatk.biblio.util.toSingle
 import io.reactivex.Completable
 import io.reactivex.Single
 
 class NovelBodyDataSource(
     private val localDataSource: NovelBodyLocalDataSource,
-    private val remoteDataSource: NovelBodyRemoteDataSource
+    private val remoteDataSource: NovelBodyRemoteDataSource,
+    private val schedulerProvider: SchedulerProvider
 ) : NovelBodyRepository {
 
-  override fun find(novel: Novel, page: Int): Single<List<NovelBody>> {
-    return localDataSource.find(novel, page)
-        .flatMap {
-          if (it.isEmpty()) {
-            return@flatMap findToRemote(novel, page)
+  override fun find(novel: Novel, page: Int): Single<List<NovelBody>> =
+      localDataSource.find(novel, page)
+          .flatMap {
+            if (it.isEmpty()) {
+              return@flatMap findToRemote(novel, page)
+            }
+            return@flatMap it.toSingle()
           }
-          return@flatMap it.toSingle()
-        }
-  }
+          .subscribeOn(schedulerProvider.io())
 
-  override fun save(novelBody: NovelBody): Completable {
-    return localDataSource.save(novelBody)
-  }
+  override fun save(novelBody: NovelBody): Completable =
+      localDataSource.save(novelBody)
+          .subscribeOn(schedulerProvider.io())
 
-  override fun deleteAll(novel: Novel): Single<Int> {
-    return localDataSource.deleteAll(novel)
-  }
+  override fun deleteAll(novel: Novel): Single<Int> =
+      localDataSource.deleteAll(novel)
+          .subscribeOn(schedulerProvider.io())
 
-  private fun findToRemote(novel: Novel, page: Int): Single<List<NovelBody>> {
-    return remoteDataSource.find(novel, page)
-        .doOnSuccess { save(it.first()).subscribe() }
-  }
+  private fun findToRemote(novel: Novel, page: Int): Single<List<NovelBody>> =
+      remoteDataSource.find(novel, page)
+          .doOnSuccess { save(it.first()).subscribe() }
+          .subscribeOn(schedulerProvider.io())
 }

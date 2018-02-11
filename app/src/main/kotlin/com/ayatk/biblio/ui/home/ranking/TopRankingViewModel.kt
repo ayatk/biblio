@@ -29,7 +29,6 @@ import com.ayatk.biblio.ui.ranking.RankingActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class TopRankingViewModel @Inject constructor(
@@ -59,7 +58,6 @@ class TopRankingViewModel @Inject constructor(
 
   fun start() {
     repository.getDailyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
-        .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ ranks ->
           daily.clear()
@@ -69,7 +67,6 @@ class TopRankingViewModel @Inject constructor(
         .addTo(compositeDisposable)
 
     repository.getWeeklyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
-        .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ ranks ->
           weekly.clear()
@@ -79,7 +76,6 @@ class TopRankingViewModel @Inject constructor(
         .addTo(compositeDisposable)
 
     repository.getMonthlyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
-        .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ ranks ->
           monthly.clear()
@@ -89,7 +85,6 @@ class TopRankingViewModel @Inject constructor(
         .addTo(compositeDisposable)
 
     repository.getQuarterRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
-        .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ ranks ->
           quarter.clear()
@@ -99,7 +94,6 @@ class TopRankingViewModel @Inject constructor(
         .addTo(compositeDisposable)
 
     repository.getAllRank(Publisher.NAROU, 0..TOP_RANK_RANGE)
-        .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ ranks ->
           all.clear()

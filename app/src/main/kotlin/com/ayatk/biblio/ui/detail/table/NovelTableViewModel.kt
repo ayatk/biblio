@@ -22,31 +22,34 @@ import com.ayatk.biblio.data.datasource.novel.NovelTableDataSource
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelTable
 import com.ayatk.biblio.ui.ViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.ayatk.biblio.util.rx.SchedulerProvider
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import timber.log.Timber
 import javax.inject.Inject
 
-class NovelTableViewModel
-@Inject constructor(
-    private val novelTableDataSource: NovelTableDataSource
+class NovelTableViewModel @Inject constructor(
+    private val novelTableDataSource: NovelTableDataSource,
+    private val schedulerProvider: SchedulerProvider
 ) : BaseObservable(), ViewModel {
 
-  companion object {
-    private val TAG = NovelTableViewModel::class.java.simpleName
-  }
+  private val compositeDisposable = CompositeDisposable()
 
   var novelTableViewModels = ObservableArrayList<NovelTableItemViewModel>()
 
-  override fun destroy() {}
+  override fun destroy() {
+    compositeDisposable.clear()
+  }
 
   fun start(novel: Novel) {
     novelTableDataSource.findAll(novel)
         .map({ novelTables -> convertToViewModel(novelTables) })
-        .observeOn(AndroidSchedulers.mainThread())
+        .observeOn(schedulerProvider.ui())
         .subscribe(
             this::renderLibraries,
-            { throwable -> Timber.tag(TAG).e(throwable, "Failed to show libraries.") }
+            { throwable -> Timber.e(throwable, "Failed to show libraries.") }
         )
+        .addTo(compositeDisposable)
   }
 
   private fun convertToViewModel(novelTables: List<NovelTable>): List<NovelTableItemViewModel> {

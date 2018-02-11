@@ -19,38 +19,44 @@ package com.ayatk.biblio.data.datasource.library
 import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
+import javax.inject.Inject
 
-class LibraryDataSource(private val localDataSource: LibraryLocalDataSource) :
-    LibraryRepository {
+class LibraryDataSource @Inject constructor(
+    private val localDataSource: LibraryLocalDataSource,
+    private val schedulerProvider: SchedulerProvider
+) : LibraryRepository {
 
   private var cachedLibrary = emptyMap<String, Library>()
 
-  override fun findAll(): Single<MutableList<Library>> {
-    return localDataSource.findAll()
-  }
+  override fun findAll(): Single<MutableList<Library>> =
+      localDataSource.findAll()
+          .subscribeOn(schedulerProvider.io())
 
-  override fun find(novel: Novel): Maybe<Library> {
-    return localDataSource.find(novel)
-  }
+  override fun find(novel: Novel): Maybe<Library> =
+      localDataSource.find(novel)
+          .subscribeOn(schedulerProvider.io())
 
   override fun save(library: Library): Completable {
     cachedLibrary.plus(Pair(library.id, library))
     return localDataSource.save(library)
+        .subscribeOn(schedulerProvider.io())
   }
 
   override fun saveAll(libraries: List<Library>): Completable {
     libraries.forEach { library -> cachedLibrary.plus(Pair(library.id, library)) }
     return localDataSource.saveAll(libraries)
+        .subscribeOn(schedulerProvider.io())
   }
 
   override fun updateAllAsync(novels: List<Novel>) {
     localDataSource.updateAllAsync(novels)
   }
 
-  override fun delete(novel: Novel): Single<Int> {
-    return localDataSource.delete(novel)
-  }
+  override fun delete(novel: Novel): Single<Int> =
+      localDataSource.delete(novel)
+          .subscribeOn(schedulerProvider.io())
 }

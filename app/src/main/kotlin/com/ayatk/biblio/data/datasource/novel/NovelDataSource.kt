@@ -20,6 +20,7 @@ import android.support.annotation.VisibleForTesting
 import com.ayatk.biblio.domain.repository.NovelRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.Publisher
+import com.ayatk.biblio.util.rx.SchedulerProvider
 import com.ayatk.biblio.util.toMaybe
 import com.ayatk.biblio.util.toSingle
 import io.reactivex.Completable
@@ -32,7 +33,8 @@ import javax.inject.Singleton
 @Singleton
 class NovelDataSource @Inject constructor(
     private val localDataSource: NovelLocalDataSource,
-    private val remoteDataSource: NovelRemoteDataSource
+    private val remoteDataSource: NovelRemoteDataSource,
+    private val schedulerProvider: SchedulerProvider
 ) : NovelRepository {
 
   @VisibleForTesting
@@ -51,6 +53,7 @@ class NovelDataSource @Inject constructor(
   override fun find(code: String, publisher: Publisher): Maybe<Novel> {
     if (hasCache(code)) {
       return cache[code].toMaybe()
+          .subscribeOn(schedulerProvider.io())
     }
 
     return if (isDirty) {
@@ -59,10 +62,11 @@ class NovelDataSource @Inject constructor(
     } else {
       localDataSource.find(code, publisher)
     }
+        .subscribeOn(schedulerProvider.io())
   }
 
   override fun save(novel: Novel): Completable {
-    cache.put(novel.code, novel)
+    cache[novel.code] = novel
     return localDataSource.save(novel)
   }
 
@@ -82,6 +86,7 @@ class NovelDataSource @Inject constructor(
               updateAllAsync(novels)
             }
         )
+        .subscribeOn(schedulerProvider.io())
   }
 
   private fun updateAllAsync(novels: List<Novel>) {
@@ -97,11 +102,12 @@ class NovelDataSource @Inject constructor(
           refreshCache(novels)
           return@flatMap novels.toSingle()
         }
+        .subscribeOn(schedulerProvider.io())
   }
 
   private fun refreshCache(novels: List<Novel>) {
     cache.clear()
-    novels.forEach { novel -> cache.put(novel.code, novel) }
+    novels.forEach { novel -> cache[novel.code] = novel }
     isDirty = false
   }
 }

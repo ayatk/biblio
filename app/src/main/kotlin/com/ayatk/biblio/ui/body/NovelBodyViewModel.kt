@@ -21,15 +21,15 @@ import android.arch.lifecycle.ViewModel
 import com.ayatk.biblio.domain.repository.NovelBodyRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelBody
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
-import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
 class NovelBodyViewModel @Inject constructor(
-    private val novelBodyRepository: NovelBodyRepository
+    private val novelBodyRepository: NovelBodyRepository,
+    private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
   private val compositeDisposable = CompositeDisposable()
@@ -38,8 +38,7 @@ class NovelBodyViewModel @Inject constructor(
 
   fun start(novel: Novel, page: Int) {
     novelBodyRepository.find(novel, page)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
+        .observeOn(schedulerProvider.ui())
         .subscribe(
             { novelBody.postValue(it.first()) },
             { Timber.e(it) }

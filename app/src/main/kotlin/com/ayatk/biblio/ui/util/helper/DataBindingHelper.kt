@@ -43,7 +43,10 @@ object DataBindingHelper {
 
   @JvmStatic
   @BindingAdapter("tags")
-  fun FlexboxLayout.setTags(tags: List<String>) {
+  fun FlexboxLayout.setTags(tags: List<String>?) {
+    if (tags == null) {
+      return
+    }
     this.removeAllViews()
     val inflater = this.context.systemService<LayoutInflater>()
     tags.map {

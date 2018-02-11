@@ -28,16 +28,16 @@ import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.ViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
-import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
     private val narouClient: NarouClient,
-    private val libraryRepository: LibraryRepository
+    private val libraryRepository: LibraryRepository,
+    private val schedulerProvider: SchedulerProvider
 ) : ViewModel, LifecycleObserver {
 
   private val compositeDisposable = CompositeDisposable()
@@ -51,11 +51,12 @@ class SearchViewModel @Inject constructor(
   @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
   fun onCreate() {
     libraryRepository.findAll()
-        .subscribeOn(Schedulers.io())
+        .observeOn(schedulerProvider.ui())
         .subscribe(
             { libraries -> this.libraries = libraries },
             { t -> Log.e("SearchViewModel", t.toString()) }
-        ).addTo(compositeDisposable)
+        )
+        .addTo(compositeDisposable)
   }
 
   override fun destroy() {
@@ -69,21 +70,19 @@ class SearchViewModel @Inject constructor(
       searchResultVisibility.onNext(View.VISIBLE)
       val builtQuery = QueryBuilder().searchWords(query).size(100).build()
       compositeDisposable.clear()
-      compositeDisposable.add(
-          narouClient.getNovel(builtQuery)
-              .subscribeOn(Schedulers.io())
-              .observeOn(AndroidSchedulers.mainThread())
-              .map({ novels -> convertToViewModel(novels) })
-              .subscribe(
-                  { viewModels ->
-                    if (viewModels.isNotEmpty()) {
-                      searchResult.clear()
-                      searchResult.addAll(viewModels)
-                    }
-                  },
-                  { _ -> /* TODO: あとで頑張る */ }
-              )
-      )
+      narouClient.getNovel(builtQuery)
+          .map({ novels -> convertToViewModel(novels) })
+          .observeOn(schedulerProvider.ui())
+          .subscribe(
+              { viewModels ->
+                if (viewModels.isNotEmpty()) {
+                  searchResult.clear()
+                  searchResult.addAll(viewModels)
+                }
+              },
+              { _ -> /* TODO: あとで頑張る */ }
+          )
+          .addTo(compositeDisposable)
     } else {
       searchResultVisibility.onNext(View.GONE)
     }

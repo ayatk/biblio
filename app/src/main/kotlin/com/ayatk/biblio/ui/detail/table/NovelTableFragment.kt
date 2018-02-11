@@ -64,6 +64,11 @@ class NovelTableFragment : DaggerFragment() {
     viewModel.start(novel)
   }
 
+  override fun onDestroy() {
+    viewModel.destroy()
+    super.onDestroy()
+  }
+
   private fun initRecyclerView() {
     val divider = DividerItemDecoration(context, 1)
     ContextCompat.getDrawable(context!!, R.drawable.divider)?.let { divider.setDrawable(it) }

@@ -25,13 +25,15 @@ import com.ayatk.biblio.domain.repository.RankingRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
+import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.Single
 import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
 
 class RankingRemoteDataSource @Inject constructor(
-    private val narouClient: NarouClient
+    private val narouClient: NarouClient,
+    private val schedulerProvider: SchedulerProvider
 ) : RankingRepository {
 
   companion object {
@@ -51,6 +53,7 @@ class RankingRemoteDataSource @Inject constructor(
           narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
               .map { novel -> convertRanking(it.drop(range.first).take(range.count()), novel) }
         }
+        .subscribeOn(schedulerProvider.io())
   }
 
   override fun getWeeklyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> {
@@ -66,40 +69,41 @@ class RankingRemoteDataSource @Inject constructor(
           narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
               .map { novel -> convertRanking(it.drop(range.first).take(range.count()), novel) }
         }
+        .subscribeOn(schedulerProvider.io())
   }
 
-  override fun getMonthlyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> {
-    return narouClient.getRanking(Date(), RankingType.MONTHLY)
-        .flatMap {
-          val codes = it.map { it.ncode }.drop(range.first).take(range.count())
-          narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
-              .map { novel -> convertRanking(it.drop(range.first).take(range.count()), novel) }
-        }
-  }
+  override fun getMonthlyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> =
+      narouClient.getRanking(Date(), RankingType.MONTHLY)
+          .flatMap {
+            val codes = it.map { it.ncode }.drop(range.first).take(range.count())
+            narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
+                .map { novel -> convertRanking(it.drop(range.first).take(range.count()), novel) }
+          }
+          .subscribeOn(schedulerProvider.io())
 
-  override fun getQuarterRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> {
-    return narouClient.getRanking(Date(), RankingType.QUARTET)
-        .flatMap {
-          val codes = it.map { it.ncode }.drop(range.first).take(range.count())
-          narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
-              .map { novel -> convertRanking(it.drop(range.first).take(range.count()), novel) }
-        }
-  }
+  override fun getQuarterRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> =
+      narouClient.getRanking(Date(), RankingType.QUARTET)
+          .flatMap {
+            val codes = it.map { it.ncode }.drop(range.first).take(range.count())
+            narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
+                .map { novel -> convertRanking(it.drop(range.first).take(range.count()), novel) }
+          }
+          .subscribeOn(schedulerProvider.io())
 
   override fun getAllRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> {
     val query = QueryBuilder().order(OutputOrder.HYOKA_COUNT).size(range.last).build()
     return narouClient.getNovel(query).map(this::convertNovel2Ranking)
+        .subscribeOn(schedulerProvider.io())
   }
 
-  private fun convertRanking(rank: List<NarouRanking>, novels: List<Novel>): List<Ranking> {
-    return rank.map {
-      Ranking(
-          rank = it.rank,
-          novel = novels.firstOrNull { novel -> novel.code == it.ncode } ?: Novel(),
-          point = it.pt
-      )
-    }
-  }
+  private fun convertRanking(rank: List<NarouRanking>, novels: List<Novel>): List<Ranking> =
+      rank.map {
+        Ranking(
+            rank = it.rank,
+            novel = novels.firstOrNull { novel -> novel.code == it.ncode } ?: Novel(),
+            point = it.pt
+        )
+      }
 
   private fun convertNovel2Ranking(novels: List<Novel>): List<Ranking> =
       novels.mapIndexed { index, novel ->

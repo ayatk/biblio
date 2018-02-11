@@ -28,8 +28,10 @@ import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.ui.ViewModel
+import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.toObservable
 import timber.log.Timber
 import javax.inject.Inject
@@ -38,12 +40,11 @@ class LibraryViewModel @Inject constructor(
     private val libraryRepository: LibraryRepository,
     private val novelDataSource: NovelDataSource,
     private val novelTableDataSource: NovelTableDataSource,
-    private val defaultPrefs: DefaultPrefs
+    private val defaultPrefs: DefaultPrefs,
+    private val schedulerProvider: SchedulerProvider
 ) : BaseObservable(), ViewModel {
 
-  companion object {
-    private val TAG = LibraryItemViewModel::class.java.simpleName
-  }
+  private val compositeDisposable = CompositeDisposable()
 
   var libraryViewModels = ObservableArrayList<LibraryItemViewModel>()
 
@@ -60,7 +61,9 @@ class LibraryViewModel @Inject constructor(
       notifyPropertyChanged(BR.refreshing)
     }
 
-  override fun destroy() {}
+  override fun destroy() {
+    compositeDisposable.clear()
+  }
 
   fun onSwipeRefresh() {
     start(true)
@@ -86,7 +89,7 @@ class LibraryViewModel @Inject constructor(
 
     loadLibraries()
         .map({ library -> convertToViewModel(library) })
-        .observeOn(AndroidSchedulers.mainThread())
+        .observeOn(schedulerProvider.ui())
         .subscribe(
             { viewModel ->
               if (refresh) {
@@ -100,6 +103,7 @@ class LibraryViewModel @Inject constructor(
                 }
                 viewModel.toObservable()
                     .concatMap { novelTableDataSource.findAll(it.library.novel).toObservable() }
+                    .observeOn(schedulerProvider.ui())
                     .subscribe(
                         {
                           refreshing = false
@@ -107,11 +111,13 @@ class LibraryViewModel @Inject constructor(
                           novelTableDataSource.isDirty = false
                         }
                     )
+                    .addTo(compositeDisposable)
               }
               renderLibraries(viewModel)
             },
-            { throwable -> Timber.tag(TAG).e(throwable, "Failed to show libraries.") }
+            { throwable -> Timber.e(throwable, "Failed to show libraries.") }
         )
+        .addTo(compositeDisposable)
   }
 
   private fun renderLibraries(libraryViewModels: List<LibraryItemViewModel>) {

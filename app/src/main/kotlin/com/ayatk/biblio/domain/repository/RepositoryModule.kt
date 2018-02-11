@@ -29,6 +29,7 @@ import com.ayatk.biblio.data.datasource.novel.NovelTableLocalDataSource
 import com.ayatk.biblio.data.datasource.novel.NovelTableRemoteDataSource
 import com.ayatk.biblio.data.datasource.ranking.RankingRemoteDataSource
 import com.ayatk.biblio.data.narou.NarouClient
+import com.ayatk.biblio.util.rx.SchedulerProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -38,32 +39,41 @@ class RepositoryModule {
 
   @Singleton
   @Provides
-  fun provideLibraryRepository(localDataSource: LibraryLocalDataSource): LibraryRepository =
-      LibraryDataSource(localDataSource)
+  fun provideLibraryRepository(
+      localDataSource: LibraryLocalDataSource,
+      schedulerProvider: SchedulerProvider
+  ): LibraryRepository =
+      LibraryDataSource(localDataSource, schedulerProvider)
 
   @Singleton
   @Provides
   fun provideNovelBodyRepository(
       local: NovelBodyLocalDataSource,
-      remote: NovelBodyRemoteDataSource
-  ): NovelBodyRepository = NovelBodyDataSource(local, remote)
+      remote: NovelBodyRemoteDataSource,
+      schedulerProvider: SchedulerProvider
+  ): NovelBodyRepository = NovelBodyDataSource(local, remote, schedulerProvider)
 
   @Singleton
   @Provides
   fun provideNovelRepository(
       local: NovelLocalDataSource,
-      remote: NovelRemoteDataSource
-  ): NovelRepository = NovelDataSource(local, remote)
+      remote: NovelRemoteDataSource,
+      schedulerProvider: SchedulerProvider
+  ): NovelRepository = NovelDataSource(local, remote, schedulerProvider)
 
   @Singleton
   @Provides
   fun provideNovelTableRepository(
       local: NovelTableLocalDataSource,
-      remote: NovelTableRemoteDataSource
-  ): NovelTableRepository = NovelTableDataSource(local, remote)
+      remote: NovelTableRemoteDataSource,
+      schedulerProvider: SchedulerProvider
+  ): NovelTableRepository = NovelTableDataSource(local, remote, schedulerProvider)
 
   @Singleton
   @Provides
-  fun provideRankingRemoteDataSource(client: NarouClient): RankingRepository =
-      RankingRemoteDataSource(client)
+  fun provideRankingRemoteDataSource(
+      client: NarouClient,
+      schedulerProvider: SchedulerProvider
+  ): RankingRepository =
+      RankingRemoteDataSource(client, schedulerProvider)
 }

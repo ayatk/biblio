@@ -27,16 +27,16 @@ import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.util.helper.Navigator
 import com.ayatk.biblio.util.DateFormat
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
-import io.reactivex.schedulers.Schedulers
 import mabbas007.tagsedittext.TagsEditText
 import timber.log.Timber
 import javax.inject.Inject
 
 class NovelInfoViewModel @Inject constructor(
-    private val libraryRepository: LibraryRepository
+    private val libraryRepository: LibraryRepository,
+    private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
   private val compositeDisposable = CompositeDisposable()
@@ -51,8 +51,7 @@ class NovelInfoViewModel @Inject constructor(
 
   fun start() {
     libraryRepository.find(novel)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
+        .observeOn(schedulerProvider.ui())
         .subscribe(
             { library -> tags.postValue(library.tag) },
             Timber::e
