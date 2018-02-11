@@ -23,7 +23,7 @@ import com.ayatk.biblio.util.toSingle
 import io.reactivex.Completable
 import io.reactivex.Single
 
-class NovelBodyDataRepository(
+class NovelBodyDataSource(
     private val localDataSource: NovelBodyLocalDataSource,
     private val remoteDataSource: NovelBodyRemoteDataSource
 ) : NovelBodyRepository {

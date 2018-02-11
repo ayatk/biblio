@@ -25,8 +25,8 @@ import com.ayatk.biblio.data.DefaultPrefs
 import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.repository.novel.NovelDataRepository
-import com.ayatk.biblio.repository.novel.NovelTableDataRepository
+import com.ayatk.biblio.repository.novel.NovelDataSource
+import com.ayatk.biblio.repository.novel.NovelTableDataSource
 import com.ayatk.biblio.ui.ViewModel
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -36,8 +36,8 @@ import javax.inject.Inject
 
 class LibraryViewModel @Inject constructor(
     private val libraryRepository: LibraryRepository,
-    private val novelDataRepository: NovelDataRepository,
-    private val novelTableDataRepository: NovelTableDataRepository,
+    private val novelDataSource: NovelDataSource,
+    private val novelTableDataSource: NovelTableDataSource,
     private val defaultPrefs: DefaultPrefs
 ) : BaseObservable(), ViewModel {
 
@@ -80,8 +80,8 @@ class LibraryViewModel @Inject constructor(
 
   fun start(refresh: Boolean) {
     if (refresh) {
-      novelDataRepository.isDirty = true
-      novelTableDataRepository.isDirty = true
+      novelDataSource.isDirty = true
+      novelTableDataSource.isDirty = true
     }
 
     loadLibraries()
@@ -91,7 +91,7 @@ class LibraryViewModel @Inject constructor(
             { viewModel ->
               if (refresh) {
                 Publisher.values().map { pub ->
-                  novelDataRepository.findAll(
+                  novelDataSource.findAll(
                       viewModel
                           .filter { it.library.novel.publisher == pub }
                           .map { it.library.novel.code }, pub
@@ -99,12 +99,12 @@ class LibraryViewModel @Inject constructor(
                       .subscribe()
                 }
                 viewModel.toObservable()
-                    .concatMap { novelTableDataRepository.findAll(it.library.novel).toObservable() }
+                    .concatMap { novelTableDataSource.findAll(it.library.novel).toObservable() }
                     .subscribe(
                         {
                           refreshing = false
-                          novelDataRepository.isDirty = false
-                          novelTableDataRepository.isDirty = false
+                          novelDataSource.isDirty = false
+                          novelTableDataSource.isDirty = false
                         }
                     )
               }

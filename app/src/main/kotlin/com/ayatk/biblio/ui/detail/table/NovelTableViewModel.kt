@@ -20,7 +20,7 @@ import android.databinding.BaseObservable
 import android.databinding.ObservableArrayList
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelTable
-import com.ayatk.biblio.repository.novel.NovelTableDataRepository
+import com.ayatk.biblio.repository.novel.NovelTableDataSource
 import com.ayatk.biblio.ui.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import timber.log.Timber
@@ -28,7 +28,7 @@ import javax.inject.Inject
 
 class NovelTableViewModel
 @Inject constructor(
-    private val novelTableDataRepository: NovelTableDataRepository
+    private val novelTableDataSource: NovelTableDataSource
 ) : BaseObservable(), ViewModel {
 
   companion object {
@@ -40,7 +40,7 @@ class NovelTableViewModel
   override fun destroy() {}
 
   fun start(novel: Novel) {
-    novelTableDataRepository.findAll(novel)
+    novelTableDataSource.findAll(novel)
         .map({ novelTables -> convertToViewModel(novelTables) })
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(

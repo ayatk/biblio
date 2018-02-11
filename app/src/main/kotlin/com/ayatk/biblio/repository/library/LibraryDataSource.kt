@@ -23,7 +23,7 @@ import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
 
-class LibraryDataRepository(private val localDataSource: LibraryLocalDataSource) :
+class LibraryDataSource(private val localDataSource: LibraryLocalDataSource) :
     LibraryRepository {
 
   private var cachedLibrary = emptyMap<String, Library>()
