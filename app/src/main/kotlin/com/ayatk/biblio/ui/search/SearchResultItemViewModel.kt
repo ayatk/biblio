@@ -24,8 +24,8 @@ import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.NovelState
-import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.util.DateFormat
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
 
@@ -33,7 +33,7 @@ class SearchResultItemViewModel(
     libraries: List<Library>,
     val novel: Novel,
     private val libraryRepository: LibraryRepository
-) : BaseObservable(), ViewModel {
+) : BaseObservable() {
 
   @Bindable
   var downloadVisibility: Int = View.VISIBLE
@@ -60,17 +60,13 @@ class SearchResultItemViewModel(
           downloadVisibility = View.GONE
           notifyPropertyChanged(BR.downloadVisibility)
         }
+        .observeOn(AndroidSchedulers.mainThread())
         .subscribeBy(
             onComplete = {
               downloadedVisibility = View.VISIBLE
               notifyPropertyChanged(BR.downloadedVisibility)
             },
-            onError = { throwable ->
-              Timber.tag("SearchResultItemViewModel").e(throwable, "Failed to save libraries.")
-            }
+            onError = { e -> Timber.e(e, "Failed to save libraries.") }
         )
-  }
-
-  override fun destroy() {
   }
 }

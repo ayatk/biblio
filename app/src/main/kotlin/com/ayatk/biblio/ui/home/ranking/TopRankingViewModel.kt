@@ -16,15 +16,16 @@
 
 package com.ayatk.biblio.ui.home.ranking
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.OnLifecycleEvent
+import android.arch.lifecycle.ViewModel
 import android.content.Context
-import android.databinding.BaseObservable
-import android.databinding.Bindable
-import com.ayatk.biblio.BR
 import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.domain.repository.RankingRepository
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.ui.ranking.RankingActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -33,7 +34,7 @@ import javax.inject.Inject
 
 class TopRankingViewModel @Inject constructor(
     private val repository: RankingRepository
-) : BaseObservable(), ViewModel {
+) : ViewModel(), LifecycleObserver {
 
   companion object {
     private const val TOP_RANK_RANGE = 5
@@ -41,65 +42,37 @@ class TopRankingViewModel @Inject constructor(
 
   private val compositeDisposable = CompositeDisposable()
 
-  @Bindable
-  var daily: MutableList<Ranking> = mutableListOf()
+  var daily = MutableLiveData<List<Ranking>>()
+  var weekly = MutableLiveData<List<Ranking>>()
+  var monthly = MutableLiveData<List<Ranking>>()
+  var quarter = MutableLiveData<List<Ranking>>()
+  var all = MutableLiveData<List<Ranking>>()
 
-  @Bindable
-  var weekly: MutableList<Ranking> = mutableListOf()
-
-  @Bindable
-  var monthly: MutableList<Ranking> = mutableListOf()
-
-  @Bindable
-  var quarter: MutableList<Ranking> = mutableListOf()
-
-  @Bindable
-  var all: MutableList<Ranking> = mutableListOf()
-
+  @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
   fun start() {
     repository.getDailyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe({ ranks ->
-          daily.clear()
-          daily.addAll(ranks)
-          notifyPropertyChanged(BR.daily)
-        })
+        .subscribe(daily::postValue)
         .addTo(compositeDisposable)
 
     repository.getWeeklyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe({ ranks ->
-          weekly.clear()
-          weekly.addAll(ranks)
-          notifyPropertyChanged(BR.weekly)
-        })
+        .subscribe(weekly::postValue)
         .addTo(compositeDisposable)
 
     repository.getMonthlyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe({ ranks ->
-          monthly.clear()
-          monthly.addAll(ranks)
-          notifyPropertyChanged(BR.monthly)
-        })
+        .subscribe(monthly::postValue)
         .addTo(compositeDisposable)
 
     repository.getQuarterRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe({ ranks ->
-          quarter.clear()
-          quarter.addAll(ranks)
-          notifyPropertyChanged(BR.quarter)
-        })
+        .subscribe(quarter::postValue)
         .addTo(compositeDisposable)
 
     repository.getAllRank(Publisher.NAROU, 0..TOP_RANK_RANGE)
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe({ ranks ->
-          all.clear()
-          all.addAll(ranks)
-          notifyPropertyChanged(BR.all)
-        })
+        .subscribe(all::postValue)
         .addTo(compositeDisposable)
   }
 
@@ -123,7 +96,8 @@ class TopRankingViewModel @Inject constructor(
     context.startActivity(RankingActivity.createIntent(context, RankingType.ALL))
   }
 
-  override fun destroy() {
+  override fun onCleared() {
+    super.onCleared()
     compositeDisposable.clear()
   }
 }

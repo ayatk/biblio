@@ -16,6 +16,7 @@
 
 package com.ayatk.biblio.ui.home.library
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.databinding.ObservableList
 import android.os.Bundle
@@ -28,6 +29,7 @@ import android.view.ViewGroup
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.FragmentLibraryBinding
 import com.ayatk.biblio.databinding.ViewLibraryItemBinding
+import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.ui.util.customview.BindingHolder
 import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
 import dagger.android.support.DaggerFragment
@@ -35,16 +37,21 @@ import javax.inject.Inject
 
 class LibraryFragment : DaggerFragment() {
 
-  lateinit var binding: FragmentLibraryBinding
-
   @Inject
-  lateinit var viewModel: LibraryViewModel
+  lateinit var viewModelFactory: ViewModelFactory
+
+  private val viewModel: LibraryViewModel by lazy {
+    ViewModelProviders.of(this, viewModelFactory).get(LibraryViewModel::class.java)
+  }
+
+  lateinit var binding: FragmentLibraryBinding
 
   override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
     binding = FragmentLibraryBinding.inflate(inflater, container, false)
+    binding.setLifecycleOwner(this)
     binding.viewModel = viewModel
 
     // 色設定
@@ -58,11 +65,6 @@ class LibraryFragment : DaggerFragment() {
   override fun onResume() {
     super.onResume()
     viewModel.start(false)
-  }
-
-  override fun onDestroy() {
-    super.onDestroy()
-    viewModel.destroy()
   }
 
   private fun initRecyclerView() {

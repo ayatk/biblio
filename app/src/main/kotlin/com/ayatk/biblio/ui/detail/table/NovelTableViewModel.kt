@@ -16,12 +16,11 @@
 
 package com.ayatk.biblio.ui.detail.table
 
-import android.databinding.BaseObservable
+import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
 import com.ayatk.biblio.data.datasource.novel.NovelTableDataSource
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.NovelTable
-import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
@@ -31,13 +30,14 @@ import javax.inject.Inject
 class NovelTableViewModel @Inject constructor(
     private val novelTableDataSource: NovelTableDataSource,
     private val schedulerProvider: SchedulerProvider
-) : BaseObservable(), ViewModel {
+) : ViewModel() {
 
   private val compositeDisposable = CompositeDisposable()
 
   var novelTableViewModels = ObservableArrayList<NovelTableItemViewModel>()
 
-  override fun destroy() {
+  override fun onCleared() {
+    super.onCleared()
     compositeDisposable.clear()
   }
 

@@ -16,6 +16,7 @@
 
 package com.ayatk.biblio.ui.detail.table
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.databinding.ObservableList
 import android.os.Bundle
@@ -30,6 +31,7 @@ import com.ayatk.biblio.R
 import com.ayatk.biblio.R.layout
 import com.ayatk.biblio.databinding.FragmentNovelTableBinding
 import com.ayatk.biblio.databinding.ViewTableItemBinding
+import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.util.customview.BindingHolder
 import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
@@ -40,7 +42,11 @@ import javax.inject.Inject
 class NovelTableFragment : DaggerFragment() {
 
   @Inject
-  lateinit var viewModel: NovelTableViewModel
+  lateinit var viewModelFactory: ViewModelFactory
+
+  private val viewModel: NovelTableViewModel by lazy {
+    ViewModelProviders.of(this, viewModelFactory).get(NovelTableViewModel::class.java)
+  }
 
   private lateinit var binding: FragmentNovelTableBinding
 
@@ -54,7 +60,7 @@ class NovelTableFragment : DaggerFragment() {
       savedInstanceState: Bundle?
   ): View? {
     binding = FragmentNovelTableBinding.inflate(inflater, container, false)
-    binding.viewModel = viewModel
+    binding.setLifecycleOwner(this)
     initRecyclerView()
     return binding.root
   }
@@ -62,11 +68,6 @@ class NovelTableFragment : DaggerFragment() {
   override fun onResume() {
     super.onResume()
     viewModel.start(novel)
-  }
-
-  override fun onDestroy() {
-    viewModel.destroy()
-    super.onDestroy()
   }
 
   private fun initRecyclerView() {

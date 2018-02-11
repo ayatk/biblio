@@ -91,8 +91,8 @@ object DataBindingHelper {
 
   @JvmStatic
   @BindingAdapter("addRankingItems")
-  fun LinearLayout.addRankingItems(rankings: List<Ranking>) {
-    if (rankings.isEmpty()) {
+  fun LinearLayout.addRankingItems(rankings: List<Ranking>?) {
+    if (rankings == null || rankings.isEmpty()) {
       return
     }
     this.removeAllViews()

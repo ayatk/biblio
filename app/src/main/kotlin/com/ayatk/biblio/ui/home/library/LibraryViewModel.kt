@@ -16,18 +16,16 @@
 
 package com.ayatk.biblio.ui.home.library
 
-import android.databinding.BaseObservable
-import android.databinding.Bindable
+import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
 import android.view.View
-import com.ayatk.biblio.BR
 import com.ayatk.biblio.data.DefaultPrefs
 import com.ayatk.biblio.data.datasource.novel.NovelDataSource
 import com.ayatk.biblio.data.datasource.novel.NovelTableDataSource
 import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
@@ -42,26 +40,16 @@ class LibraryViewModel @Inject constructor(
     private val novelTableDataSource: NovelTableDataSource,
     private val defaultPrefs: DefaultPrefs,
     private val schedulerProvider: SchedulerProvider
-) : BaseObservable(), ViewModel {
+) : ViewModel() {
 
   private val compositeDisposable = CompositeDisposable()
 
   var libraryViewModels = ObservableArrayList<LibraryItemViewModel>()
+  var emptyViewVisibility = MutableLiveData<Int>()
+  var recyclerViewVisibility = MutableLiveData<Int>()
+  var refreshing = MutableLiveData<Boolean>()
 
-  @Bindable
-  var emptyViewVisibility: Int = View.GONE
-
-  @Bindable
-  var recyclerViewVisibility: Int = View.VISIBLE
-
-  @Bindable
-  var refreshing: Boolean = false
-    set(value) {
-      field = value
-      notifyPropertyChanged(BR.refreshing)
-    }
-
-  override fun destroy() {
+  override fun onCleared() {
     compositeDisposable.clear()
   }
 
@@ -106,7 +94,7 @@ class LibraryViewModel @Inject constructor(
                     .observeOn(schedulerProvider.ui())
                     .subscribe(
                         {
-                          refreshing = false
+                          refreshing.postValue(false)
                           novelDataSource.isDirty = false
                           novelTableDataSource.isDirty = false
                         }
@@ -125,9 +113,7 @@ class LibraryViewModel @Inject constructor(
       this.libraryViewModels.clear()
       this.libraryViewModels.addAll(libraryViewModels)
     }
-    this.emptyViewVisibility = if (this.libraryViewModels.size > 0) View.GONE else View.VISIBLE
-    this.recyclerViewVisibility = if (this.libraryViewModels.size > 0) View.VISIBLE else View.GONE
-    notifyPropertyChanged(BR.emptyViewVisibility)
-    notifyPropertyChanged(BR.recyclerViewVisibility)
+    this.emptyViewVisibility.postValue(if (this.libraryViewModels.size > 0) View.GONE else View.VISIBLE)
+    this.recyclerViewVisibility.postValue(if (this.libraryViewModels.size > 0) View.VISIBLE else View.GONE)
   }
 }

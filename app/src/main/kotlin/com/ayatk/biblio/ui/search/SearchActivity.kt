@@ -16,6 +16,7 @@
 
 package com.ayatk.biblio.ui.search
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -37,17 +38,21 @@ import com.ayatk.biblio.R
 import com.ayatk.biblio.R.layout
 import com.ayatk.biblio.databinding.ActivitySearchBinding
 import com.ayatk.biblio.databinding.ViewSearchResultItemBinding
+import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.ui.util.customview.BindingHolder
 import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
 import com.ayatk.biblio.ui.util.initBackToolbar
 import dagger.android.support.DaggerAppCompatActivity
-import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 class SearchActivity : DaggerAppCompatActivity() {
 
   @Inject
-  lateinit var viewModel: SearchViewModel
+  lateinit var viewModelFactory: ViewModelFactory
+
+  private val viewModel: SearchViewModel by lazy {
+    ViewModelProviders.of(this, viewModelFactory).get(SearchViewModel::class.java)
+  }
 
   private val binding: ActivitySearchBinding by lazy {
     DataBindingUtil.setContentView<ActivitySearchBinding>(this, R.layout.activity_search)
@@ -58,21 +63,17 @@ class SearchActivity : DaggerAppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     overridePendingTransition(R.anim.activity_fade_enter, R.anim.activity_fade_exit)
-
+    binding.setLifecycleOwner(this)
     lifecycle.addObserver(viewModel)
+    binding.viewModel = viewModel
 
     initBackToolbar(this, binding.toolbar)
-
-    viewModel.searchResultVisibility
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe({ visibility -> binding.searchResult.visibility = visibility })
 
     binding.drawerLayout.addDrawerListener(
         object : ActionBarDrawerToggle(
             this, binding.drawerLayout, R.string.drawer_open,
             R.string.drawer_close
         ) {
-
           override fun onDrawerOpened(drawerView: View) {
             super.onDrawerOpened(drawerView)
             searchView.clearFocus()

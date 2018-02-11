@@ -18,7 +18,9 @@ package com.ayatk.biblio.ui.search
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.OnLifecycleEvent
+import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
 import android.util.Log
 import android.view.View
@@ -27,24 +29,22 @@ import com.ayatk.biblio.data.narou.util.QueryBuilder
 import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
-import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
     private val narouClient: NarouClient,
     private val libraryRepository: LibraryRepository,
     private val schedulerProvider: SchedulerProvider
-) : ViewModel, LifecycleObserver {
+) : ViewModel(), LifecycleObserver {
 
   private val compositeDisposable = CompositeDisposable()
 
   val searchResult = ObservableArrayList<SearchResultItemViewModel>()
 
-  val searchResultVisibility: BehaviorSubject<Int> = BehaviorSubject.createDefault(View.GONE)
+  val searchResultVisibility = MutableLiveData<Int>()
 
   var libraries = listOf<Library>()
 
@@ -59,15 +59,15 @@ class SearchViewModel @Inject constructor(
         .addTo(compositeDisposable)
   }
 
-  override fun destroy() {
-    searchResultVisibility.onComplete()
+  override fun onCleared() {
+    super.onCleared()
     compositeDisposable.clear()
   }
 
   fun search(query: String) {
     val formattedQuery = query.trim { it <= ' ' }
     if (formattedQuery.isNotBlank()) {
-      searchResultVisibility.onNext(View.VISIBLE)
+      searchResultVisibility.postValue(View.VISIBLE)
       val builtQuery = QueryBuilder().searchWords(query).size(100).build()
       compositeDisposable.clear()
       narouClient.getNovel(builtQuery)
@@ -84,7 +84,7 @@ class SearchViewModel @Inject constructor(
           )
           .addTo(compositeDisposable)
     } else {
-      searchResultVisibility.onNext(View.GONE)
+      searchResultVisibility.postValue(View.GONE)
     }
   }
 

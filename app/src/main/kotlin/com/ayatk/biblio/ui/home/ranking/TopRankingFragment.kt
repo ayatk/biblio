@@ -16,34 +16,40 @@
 
 package com.ayatk.biblio.ui.home.ranking
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ayatk.biblio.databinding.FragmentRankingBinding
+import com.ayatk.biblio.di.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 class TopRankingFragment : DaggerFragment() {
 
+  @Inject
+  lateinit var viewModelFactory: ViewModelFactory
+
+  private val viewModel: TopRankingViewModel by lazy {
+    ViewModelProviders.of(this, viewModelFactory).get(TopRankingViewModel::class.java)
+  }
+
   lateinit var binding: FragmentRankingBinding
 
-  @Inject
-  lateinit var viewModel: TopRankingViewModel
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    lifecycle.addObserver(viewModel)
+  }
 
   override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
   ): View? {
     binding = FragmentRankingBinding.inflate(inflater, container, false)
+    binding.setLifecycleOwner(this)
     binding.viewModel = viewModel
-    viewModel.start()
 
     return binding.root
-  }
-
-  override fun onDetach() {
-    viewModel.destroy()
-    super.onDetach()
   }
 
   companion object {

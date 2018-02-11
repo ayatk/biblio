@@ -17,6 +17,8 @@
 package com.ayatk.biblio.ui
 
 import android.app.Activity
+import android.arch.lifecycle.ViewModel
+import com.ayatk.biblio.di.ViewModelKey
 import com.ayatk.biblio.ui.body.NovelBodyActivity
 import com.ayatk.biblio.ui.body.NovelBodyModule
 import com.ayatk.biblio.ui.detail.NovelDetailActivity
@@ -26,9 +28,11 @@ import com.ayatk.biblio.ui.home.HomeModule
 import com.ayatk.biblio.ui.ranking.RankingActivity
 import com.ayatk.biblio.ui.ranking.RankingModule
 import com.ayatk.biblio.ui.search.SearchActivity
+import com.ayatk.biblio.ui.search.SearchViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoMap
 
 @Module
 internal abstract class UiModule {
@@ -50,4 +54,9 @@ internal abstract class UiModule {
 
   @ContributesAndroidInjector(modules = [RankingModule::class])
   abstract fun contributeRankingActivity(): RankingActivity
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(SearchViewModel::class)
+  abstract fun bindSearchViewModel(searchViewModel: SearchViewModel): ViewModel
 }

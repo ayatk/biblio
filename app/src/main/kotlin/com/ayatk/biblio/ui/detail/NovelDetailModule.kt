@@ -21,6 +21,7 @@ import com.ayatk.biblio.di.ViewModelKey
 import com.ayatk.biblio.ui.detail.info.NovelInfoFragment
 import com.ayatk.biblio.ui.detail.info.NovelInfoViewModel
 import com.ayatk.biblio.ui.detail.table.NovelTableFragment
+import com.ayatk.biblio.ui.detail.table.NovelTableViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -39,4 +40,9 @@ abstract class NovelDetailModule {
   @IntoMap
   @ViewModelKey(NovelInfoViewModel::class)
   abstract fun bindNovelInfoViewModel(novelInfoViewModel: NovelInfoViewModel): ViewModel
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(NovelTableViewModel::class)
+  abstract fun bindNovelTableViewModel(novelTableViewModel: NovelTableViewModel): ViewModel
 }
