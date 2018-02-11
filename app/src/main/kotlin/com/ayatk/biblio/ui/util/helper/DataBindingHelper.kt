@@ -93,7 +93,7 @@ object DataBindingHelper {
       return
     }
     this.removeAllViews()
-    val inflater = this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    val inflater = this.context.systemService<LayoutInflater>()
     rankings.map {
       val rankingItem = inflater.inflate(R.layout.view_ranking_top_item, null)
       val rank = rankingItem.findViewById<ImageView>(R.id.rank)
