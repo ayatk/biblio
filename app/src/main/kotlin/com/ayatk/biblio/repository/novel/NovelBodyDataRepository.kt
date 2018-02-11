@@ -25,7 +25,7 @@ import io.reactivex.Single
 class NovelBodyDataRepository(
     private val localDataSource: NovelBodyLocalDataSource,
     private val remoteDataSource: NovelBodyRemoteDataSource
-) : NovelBodyDataSource {
+) : NovelBodyRepository {
 
   override fun find(novel: Novel, page: Int): Single<List<NovelBody>> {
     return localDataSource.find(novel, page)

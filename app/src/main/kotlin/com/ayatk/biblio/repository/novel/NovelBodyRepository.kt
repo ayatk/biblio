@@ -21,7 +21,7 @@ import com.ayatk.biblio.model.NovelBody
 import io.reactivex.Completable
 import io.reactivex.Single
 
-interface NovelBodyDataSource {
+interface NovelBodyRepository {
 
   fun find(novel: Novel, page: Int): Single<List<NovelBody>>
 

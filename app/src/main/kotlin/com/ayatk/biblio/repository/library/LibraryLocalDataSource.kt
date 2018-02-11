@@ -28,7 +28,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class LibraryLocalDataSource
-@Inject constructor(private val orma: OrmaDatabase) : LibraryDataSource {
+@Inject constructor(private val orma: OrmaDatabase) : LibraryRepository {
 
   override fun findAll(): Single<MutableList<Library>> {
     return orma.selectFromLibrary()

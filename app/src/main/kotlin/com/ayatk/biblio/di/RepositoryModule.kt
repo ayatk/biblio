@@ -17,23 +17,23 @@
 package com.ayatk.biblio.di
 
 import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.repository.library.LibraryDataSource
-import com.ayatk.biblio.repository.library.LibraryLocalDataSource
 import com.ayatk.biblio.repository.library.LibraryDataRepository
-import com.ayatk.biblio.repository.novel.NovelBodyDataSource
+import com.ayatk.biblio.repository.library.LibraryLocalDataSource
+import com.ayatk.biblio.repository.library.LibraryRepository
+import com.ayatk.biblio.repository.novel.NovelBodyDataRepository
 import com.ayatk.biblio.repository.novel.NovelBodyLocalDataSource
 import com.ayatk.biblio.repository.novel.NovelBodyRemoteDataSource
-import com.ayatk.biblio.repository.novel.NovelBodyDataRepository
-import com.ayatk.biblio.repository.novel.NovelDataSource
+import com.ayatk.biblio.repository.novel.NovelBodyRepository
+import com.ayatk.biblio.repository.novel.NovelDataRepository
 import com.ayatk.biblio.repository.novel.NovelLocalDataSource
 import com.ayatk.biblio.repository.novel.NovelRemoteDataSource
-import com.ayatk.biblio.repository.novel.NovelDataRepository
-import com.ayatk.biblio.repository.novel.NovelTableDataSource
+import com.ayatk.biblio.repository.novel.NovelRepository
+import com.ayatk.biblio.repository.novel.NovelTableDataRepository
 import com.ayatk.biblio.repository.novel.NovelTableLocalDataSource
 import com.ayatk.biblio.repository.novel.NovelTableRemoteDataSource
-import com.ayatk.biblio.repository.novel.NovelTableDataRepository
-import com.ayatk.biblio.repository.ranking.RankingDataSource
+import com.ayatk.biblio.repository.novel.NovelTableRepository
 import com.ayatk.biblio.repository.ranking.RankingRemoteDataSource
+import com.ayatk.biblio.repository.ranking.RankingRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -43,7 +43,7 @@ class RepositoryModule {
 
   @Singleton
   @Provides
-  fun provideLibraryRepository(localDataSource: LibraryLocalDataSource): LibraryDataSource =
+  fun provideLibraryRepository(localDataSource: LibraryLocalDataSource): LibraryRepository =
       LibraryDataRepository(localDataSource)
 
   @Singleton
@@ -51,24 +51,24 @@ class RepositoryModule {
   fun provideNovelBodyRepository(
       local: NovelBodyLocalDataSource,
       remote: NovelBodyRemoteDataSource
-  ): NovelBodyDataSource = NovelBodyDataRepository(local, remote)
+  ): NovelBodyRepository = NovelBodyDataRepository(local, remote)
 
   @Singleton
   @Provides
   fun provideNovelRepository(
       local: NovelLocalDataSource,
       remote: NovelRemoteDataSource
-  ): NovelDataSource = NovelDataRepository(local, remote)
+  ): NovelRepository = NovelDataRepository(local, remote)
 
   @Singleton
   @Provides
   fun provideNovelTableRepository(
       local: NovelTableLocalDataSource,
       remote: NovelTableRemoteDataSource
-  ): NovelTableDataSource = NovelTableDataRepository(local, remote)
+  ): NovelTableRepository = NovelTableDataRepository(local, remote)
 
   @Singleton
   @Provides
-  fun provideRankingRemoteDataSource(client: NarouClient): RankingDataSource =
+  fun provideRankingRemoteDataSource(client: NarouClient): RankingRepository =
       RankingRemoteDataSource(client)
 }

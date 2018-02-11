@@ -21,10 +21,10 @@ import android.databinding.Bindable
 import android.databinding.ObservableArrayList
 import android.view.View
 import com.ayatk.biblio.BR
+import com.ayatk.biblio.data.DefaultPrefs
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.data.DefaultPrefs
-import com.ayatk.biblio.repository.library.LibraryDataSource
+import com.ayatk.biblio.repository.library.LibraryRepository
 import com.ayatk.biblio.repository.novel.NovelDataRepository
 import com.ayatk.biblio.repository.novel.NovelTableDataRepository
 import com.ayatk.biblio.ui.ViewModel
@@ -35,7 +35,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class LibraryViewModel @Inject constructor(
-    private val libraryDataSource: LibraryDataSource,
+    private val libraryRepository: LibraryRepository,
     private val novelDataRepository: NovelDataRepository,
     private val novelTableDataRepository: NovelTableDataRepository,
     private val defaultPrefs: DefaultPrefs
@@ -67,7 +67,7 @@ class LibraryViewModel @Inject constructor(
   }
 
   private fun loadLibraries(): Single<List<Library>> {
-    return libraryDataSource.findAll()
+    return libraryRepository.findAll()
         // 最終更新日時順でソート
         .map({ libraries -> libraries.sortedByDescending { (_, novel) -> novel.lastUpdateDate } })
   }

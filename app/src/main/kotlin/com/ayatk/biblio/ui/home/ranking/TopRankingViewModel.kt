@@ -23,7 +23,7 @@ import com.ayatk.biblio.BR
 import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.repository.ranking.RankingDataSource
+import com.ayatk.biblio.repository.ranking.RankingRepository
 import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.ui.ranking.RankingActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -33,7 +33,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class TopRankingViewModel @Inject constructor(
-    private val dataSource: RankingDataSource
+    private val repository: RankingRepository
 ) : BaseObservable(), ViewModel {
 
   companion object {
@@ -58,7 +58,7 @@ class TopRankingViewModel @Inject constructor(
   var all: MutableList<Ranking> = mutableListOf()
 
   fun start() {
-    dataSource.getDailyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
+    repository.getDailyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ ranks ->
@@ -68,7 +68,7 @@ class TopRankingViewModel @Inject constructor(
         })
         .addTo(compositeDisposable)
 
-    dataSource.getWeeklyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
+    repository.getWeeklyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ ranks ->
@@ -78,7 +78,7 @@ class TopRankingViewModel @Inject constructor(
         })
         .addTo(compositeDisposable)
 
-    dataSource.getMonthlyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
+    repository.getMonthlyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ ranks ->
@@ -88,7 +88,7 @@ class TopRankingViewModel @Inject constructor(
         })
         .addTo(compositeDisposable)
 
-    dataSource.getQuarterRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
+    repository.getQuarterRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ ranks ->
@@ -98,7 +98,7 @@ class TopRankingViewModel @Inject constructor(
         })
         .addTo(compositeDisposable)
 
-    dataSource.getAllRank(Publisher.NAROU, 0..TOP_RANK_RANGE)
+    repository.getAllRank(Publisher.NAROU, 0..TOP_RANK_RANGE)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ ranks ->

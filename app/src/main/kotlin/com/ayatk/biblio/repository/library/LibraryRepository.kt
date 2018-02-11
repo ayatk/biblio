@@ -14,21 +14,25 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.repository.ranking
+package com.ayatk.biblio.repository.library
 
-import com.ayatk.biblio.model.Ranking
-import com.ayatk.biblio.model.enums.Publisher
+import com.ayatk.biblio.model.Library
+import com.ayatk.biblio.model.Novel
+import io.reactivex.Completable
+import io.reactivex.Maybe
 import io.reactivex.Single
 
-interface RankingDataSource {
+interface LibraryRepository {
 
-  fun getDailyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>>
+  fun findAll(): Single<MutableList<Library>>
 
-  fun getWeeklyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>>
+  fun find(novel: Novel): Maybe<Library>
 
-  fun getMonthlyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>>
+  fun save(library: Library): Completable
 
-  fun getQuarterRank(publisher: Publisher, range: IntRange): Single<List<Ranking>>
+  fun saveAll(libraries: List<Library>): Completable
 
-  fun getAllRank(publisher: Publisher, range: IntRange): Single<List<Ranking>>
+  fun updateAllAsync(novels: List<Novel>)
+
+  fun delete(novel: Novel): Single<Int>
 }

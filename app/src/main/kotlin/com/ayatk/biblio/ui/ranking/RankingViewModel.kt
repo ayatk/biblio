@@ -23,7 +23,7 @@ import android.view.View
 import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.repository.ranking.RankingDataSource
+import com.ayatk.biblio.repository.ranking.RankingRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
@@ -32,7 +32,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class RankingViewModel @Inject constructor(
-    private val dataSource: RankingDataSource
+    private val repository: RankingRepository
 ) : ViewModel() {
 
   private val compositeDisposable: CompositeDisposable = CompositeDisposable()
@@ -44,7 +44,7 @@ class RankingViewModel @Inject constructor(
   // TODO: ここの処理が頭悪すぎて死ぬので絶対直す
   fun onCreate(rankingType: RankingType) {
     when (rankingType) {
-      RankingType.DAILY -> dataSource.getDailyRank(Publisher.NAROU, 0 until RANK_SIZE)
+      RankingType.DAILY -> repository.getDailyRank(Publisher.NAROU, 0 until RANK_SIZE)
           .map(this::convertToViewModel)
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
@@ -53,17 +53,7 @@ class RankingViewModel @Inject constructor(
               { throwable -> Timber.e(throwable, "Failed to show libraries.") }
           )
           .addTo(compositeDisposable)
-      RankingType.WEEKLY -> dataSource.getWeeklyRank(Publisher.NAROU, 0 until RANK_SIZE)
-          .map(this::convertToViewModel)
-          .subscribeOn(Schedulers.io())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(
-              this::renderLibraries,
-              { throwable -> Timber.e(throwable, "Failed to show libraries.") }
-          )
-          .addTo(compositeDisposable)
-
-      RankingType.MONTHLY -> dataSource.getMonthlyRank(Publisher.NAROU, 0 until RANK_SIZE)
+      RankingType.WEEKLY -> repository.getWeeklyRank(Publisher.NAROU, 0 until RANK_SIZE)
           .map(this::convertToViewModel)
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
@@ -73,7 +63,7 @@ class RankingViewModel @Inject constructor(
           )
           .addTo(compositeDisposable)
 
-      RankingType.QUARTET -> dataSource.getQuarterRank(Publisher.NAROU, 0 until RANK_SIZE)
+      RankingType.MONTHLY -> repository.getMonthlyRank(Publisher.NAROU, 0 until RANK_SIZE)
           .map(this::convertToViewModel)
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
@@ -83,7 +73,17 @@ class RankingViewModel @Inject constructor(
           )
           .addTo(compositeDisposable)
 
-      RankingType.ALL -> dataSource.getAllRank(Publisher.NAROU, 0..RANK_SIZE)
+      RankingType.QUARTET -> repository.getQuarterRank(Publisher.NAROU, 0 until RANK_SIZE)
+          .map(this::convertToViewModel)
+          .subscribeOn(Schedulers.io())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(
+              this::renderLibraries,
+              { throwable -> Timber.e(throwable, "Failed to show libraries.") }
+          )
+          .addTo(compositeDisposable)
+
+      RankingType.ALL -> repository.getAllRank(Publisher.NAROU, 0..RANK_SIZE)
           .map(this::convertToViewModel)
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())

@@ -31,7 +31,7 @@ import javax.inject.Inject
 
 class RankingRemoteDataSource @Inject constructor(
     private val narouClient: NarouClient
-) : RankingDataSource {
+) : RankingRepository {
 
   companion object {
     private const val EARLY_MORNING = 6

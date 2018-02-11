@@ -17,18 +17,18 @@
 package com.ayatk.biblio.repository.novel
 
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.enums.Publisher
+import com.ayatk.biblio.model.NovelTable
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
 
-interface NovelDataSource {
+interface NovelTableRepository {
 
-  fun findAll(codes: List<String>, publisher: Publisher): Single<List<Novel>>
+  fun findAll(novel: Novel): Single<List<NovelTable>>
 
-  fun find(code: String, publisher: Publisher): Maybe<Novel>
+  fun find(novel: Novel, page: Int): Maybe<NovelTable>
 
-  fun save(novel: Novel): Completable
+  fun save(novelTables: List<NovelTable>): Completable
 
-  fun delete(code: String)
+  fun delete(novel: Novel): Single<Int>
 }

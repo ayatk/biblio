@@ -25,14 +25,14 @@ import androidx.content.systemService
 import com.ayatk.biblio.BR
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.repository.library.LibraryDataSource
+import com.ayatk.biblio.repository.library.LibraryRepository
 import com.ayatk.biblio.ui.ViewModel
 import com.ayatk.biblio.ui.util.helper.Navigator
 import com.ayatk.biblio.util.DateFormat
 import mabbas007.tagsedittext.TagsEditText
 
 class NovelInfoViewModel(
-    private val libraryDataSource: LibraryDataSource,
+    private val libraryRepository: LibraryRepository,
     val novel: Novel
 ) : BaseObservable(), ViewModel {
 
@@ -70,7 +70,7 @@ class NovelInfoViewModel(
   fun url(): String = novel.publisher.url + novel.code.toLowerCase()
 
   fun start() {
-    libraryDataSource.find(novel)
+    libraryRepository.find(novel)
         .subscribe(
             { library ->
               tags = library.tag
@@ -99,7 +99,7 @@ class NovelInfoViewModel(
         .setTitle("タグの追加")
         .setView(editView)
         .setPositiveButton("OK") { _, _ ->
-          libraryDataSource.save(Library(novel = novel, tag = editView.tags)).subscribe()
+          libraryRepository.save(Library(novel = novel, tag = editView.tags)).subscribe()
           tags = editView.tags
           notifyPropertyChanged(BR.tags)
           imm.hideSoftInputFromWindow(editView.windowToken, 0)
@@ -109,7 +109,7 @@ class NovelInfoViewModel(
         }
         .create()
 
-    libraryDataSource.find(novel)
+    libraryRepository.find(novel)
         .subscribe({ library -> editView.setTags(*library.tag.toTypedArray()) })
 
     dialog.show()

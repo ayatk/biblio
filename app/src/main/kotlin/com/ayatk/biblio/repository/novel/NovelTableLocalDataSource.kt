@@ -26,7 +26,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class NovelTableLocalDataSource
-@Inject constructor(val orma: OrmaDatabase) : NovelTableDataSource {
+@Inject constructor(val orma: OrmaDatabase) : NovelTableRepository {
 
   override fun findAll(novel: Novel): Single<List<NovelTable>> {
     return orma.selectFromNovelTable()

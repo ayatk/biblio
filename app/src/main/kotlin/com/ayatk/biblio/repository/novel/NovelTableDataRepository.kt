@@ -30,7 +30,7 @@ class NovelTableDataRepository
 @Inject constructor(
     private val localDataSource: NovelTableLocalDataSource,
     private val remoteDataSource: NovelTableRemoteDataSource
-) : NovelTableDataSource {
+) : NovelTableRepository {
 
   var isDirty = false
 

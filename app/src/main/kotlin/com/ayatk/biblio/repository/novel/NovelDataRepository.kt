@@ -32,7 +32,7 @@ import javax.inject.Singleton
 class NovelDataRepository @Inject constructor(
     private val localDataSource: NovelLocalDataSource,
     private val remoteDataSource: NovelRemoteDataSource
-) : NovelDataSource {
+) : NovelRepository {
 
   @VisibleForTesting
   private var cache: MutableMap<String, Novel> = LinkedHashMap()

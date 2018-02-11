@@ -29,7 +29,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class NovelBodyRemoteDataSource
-@Inject constructor(private val client: NarouClient) : NovelBodyDataSource {
+@Inject constructor(private val client: NarouClient) : NovelBodyRepository {
 
   override fun find(novel: Novel, page: Int): Single<List<NovelBody>> {
     return if (novel.novelState == NovelState.SHORT_STORY) {

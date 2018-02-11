@@ -29,7 +29,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class NovelRemoteDataSource
-@Inject constructor(private val client: NarouClient) : NovelDataSource {
+@Inject constructor(private val client: NarouClient) : NovelRepository {
 
   override fun findAll(codes: List<String>, publisher: Publisher): Single<List<Novel>> {
     if (codes.isEmpty()) {
