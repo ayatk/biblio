@@ -17,4 +17,6 @@
   -->
 <resources>
   <integer name="activity_transition_mills">200</integer>
+
+  <integer name="pager_margin">16</integer>
 </resources>
