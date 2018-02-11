@@ -31,5 +31,5 @@ class BindingHolder<out T : ViewDataBinding>(
     @LayoutRes layoutResId: Int
 ) : ViewHolder(LayoutInflater.from(context).inflate(layoutResId, parent, false)) {
 
-  val binding: T = DataBindingUtil.bind(itemView)
+  val binding: T = DataBindingUtil.bind(itemView)!!
 }
