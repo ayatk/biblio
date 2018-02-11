@@ -56,6 +56,37 @@ object DataBindingHelper {
   }
 
   @JvmStatic
+  @BindingAdapter("rankingIcon")
+  fun ImageView.rankingIcon(ranking: Ranking) {
+    // ランキングのイメージ
+    setImageResource(R.drawable.ic_crown_24)
+    when (ranking.rank) {
+      GOLD_RANK -> {
+        this.setColorFilter(ContextCompat.getColor(context, R.color.gold))
+      }
+      SILVER_RANK -> {
+        this.setColorFilter(ContextCompat.getColor(context, R.color.silver))
+      }
+      BRONZE_RANK -> {
+        this.setColorFilter(ContextCompat.getColor(context, R.color.bronze))
+      }
+      else -> {
+        this.setImageResource(android.R.color.transparent)
+      }
+    }
+  }
+
+  @JvmStatic
+  @BindingAdapter("rankingText")
+  fun TextView.rankingText(ranking: Ranking) {
+    this.text = ranking.rank.toString()
+    this.visibility = View.VISIBLE
+    when (ranking.rank) {
+      GOLD_RANK, SILVER_RANK, BRONZE_RANK -> this.visibility = View.GONE
+    }
+  }
+
+  @JvmStatic
   @BindingAdapter("addRankingItems")
   fun LinearLayout.addRankingItems(rankings: List<Ranking>) {
     this.removeAllViews()
@@ -64,25 +95,9 @@ object DataBindingHelper {
       val rankingItem = inflater.inflate(R.layout.view_ranking_top_item, null)
       val rank = rankingItem.findViewById<ImageView>(R.id.rank)
       val rankText = rankingItem.findViewById<TextView>(R.id.rank_text)
-      // ランキングのイメージ
-      when (it.rank) {
-        GOLD_RANK -> {
-          rankText.visibility = View.GONE
-          rank.setColorFilter(ContextCompat.getColor(context, R.color.gold))
-        }
-        SILVER_RANK -> {
-          rankText.visibility = View.GONE
-          rank.setColorFilter(ContextCompat.getColor(context, R.color.silver))
-        }
-        BRONZE_RANK -> {
-          rankText.visibility = View.GONE
-          rank.setColorFilter(ContextCompat.getColor(context, R.color.bronze))
-        }
-        else -> {
-          rankText.text = it.rank.toString()
-          rank.setImageResource(android.R.color.transparent)
-        }
-      }
+
+      rank.rankingIcon(it)
+      rankText.rankingText(it)
 
       val title = rankingItem.findViewById<TextView>(R.id.novel_title)
       val author = rankingItem.findViewById<TextView>(R.id.novel_author)
