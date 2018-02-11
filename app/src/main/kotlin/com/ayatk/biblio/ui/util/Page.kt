@@ -51,7 +51,7 @@ enum class Page(
 
     fun forMenuId(item: MenuItem): Page = forMenuId(item.itemId)
 
-    fun forMenuId(@MenuRes id: Int): Page {
+    fun forMenuId(id: Int): Page {
       values()
           .filter { it.menuId == id }
           .forEach { return it }
