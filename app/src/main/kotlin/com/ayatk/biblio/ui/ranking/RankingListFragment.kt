@@ -28,6 +28,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.os.bundleOf
 import com.ayatk.biblio.R
 import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.databinding.FragmentRankingListBinding
@@ -108,7 +109,7 @@ class RankingListFragment : DaggerFragment() {
 
     fun newInstance(rankingType: RankingType): Fragment {
       return RankingListFragment().apply {
-        arguments = Bundle().apply { putSerializable(ARG_RANKING_TYPE, rankingType) }
+        arguments = bundleOf(ARG_RANKING_TYPE to rankingType)
       }
     }
   }
