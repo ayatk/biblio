@@ -29,7 +29,7 @@ import dagger.multibindings.IntoMap
 
 @Module
 @Suppress("unused")
-interface NovelDetailModule {
+interface DetailModule {
 
   @ContributesAndroidInjector
   fun contributeInfoFragment(): InfoFragment

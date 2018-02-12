@@ -24,13 +24,13 @@ import android.text.TextUtils
 import android.webkit.URLUtil
 import com.ayatk.biblio.R
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.detail.NovelDetailActivity
+import com.ayatk.biblio.ui.detail.DetailActivity
 import com.ayatk.biblio.ui.episode.EpisodeActivity
 
 object Navigator {
 
-  fun navigateToNovelDetail(context: Context, novel: Novel) {
-    context.startActivity(NovelDetailActivity.createIntent(context, novel))
+  fun navigateToDetail(context: Context, novel: Novel) {
+    context.startActivity(DetailActivity.createIntent(context, novel))
   }
 
   fun navigateToEpisode(context: Context, novel: Novel, page: Int) {

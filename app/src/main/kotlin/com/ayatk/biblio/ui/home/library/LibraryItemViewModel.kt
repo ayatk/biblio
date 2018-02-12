@@ -36,6 +36,6 @@ class LibraryItemViewModel(
   val isShowTag: Boolean = defaultPrefs.showTagAtLibrary
 
   fun onItemClick(context: Context) {
-    Navigator.navigateToNovelDetail(context, library.novel)
+    Navigator.navigateToDetail(context, library.novel)
   }
 }

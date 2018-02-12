@@ -24,7 +24,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.ayatk.biblio.R
-import com.ayatk.biblio.databinding.ActivityNovelDetailBinding
+import com.ayatk.biblio.databinding.ActivityDetailBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.detail.index.IndexFragment
 import com.ayatk.biblio.ui.detail.info.InfoFragment
@@ -32,18 +32,18 @@ import com.ayatk.biblio.ui.util.initBackToolbar
 import dagger.android.support.DaggerAppCompatActivity
 import org.parceler.Parcels
 
-class NovelDetailActivity : DaggerAppCompatActivity() {
+class DetailActivity : DaggerAppCompatActivity() {
 
-  private val binding: ActivityNovelDetailBinding by lazy {
-    DataBindingUtil.setContentView<ActivityNovelDetailBinding>(this, R.layout.activity_novel_detail)
+  private val binding: ActivityDetailBinding by lazy {
+    DataBindingUtil.setContentView<ActivityDetailBinding>(this, R.layout.activity_detail)
   }
 
   private val novel: Novel by lazy {
     Parcels.unwrap<Novel>(intent.getParcelableExtra(EXTRA_NOVEL))
   }
 
-  private val viewModel: NovelDetailViewModel by lazy {
-    NovelDetailViewModel(novel)
+  private val viewModel: DetailViewModel by lazy {
+    DetailViewModel(novel)
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +54,7 @@ class NovelDetailActivity : DaggerAppCompatActivity() {
 
     // ViewPager
     val viewPager = binding.containerPager
-    viewPager.adapter = NovelDetailPagerAdapter(supportFragmentManager)
+    viewPager.adapter = DetailPagerAdapter(supportFragmentManager)
     binding.tab.setupWithViewPager(viewPager)
   }
 
@@ -63,25 +63,25 @@ class NovelDetailActivity : DaggerAppCompatActivity() {
     private val EXTRA_NOVEL = "extra_novel"
 
     fun createIntent(context: Context, novel: Novel): Intent {
-      val intent = Intent(context, NovelDetailActivity::class.java)
+      val intent = Intent(context, DetailActivity::class.java)
       intent.putExtra(EXTRA_NOVEL, Parcels.wrap(novel))
       return intent
     }
   }
 
-  inner class NovelDetailPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+  inner class DetailPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment =
-        NovelDetailPage.values()[position].createFragment(novel)
+        DetailPage.values()[position].createFragment(novel)
 
     override fun getCount(): Int =
-        NovelDetailPage.values().size
+        DetailPage.values().size
 
     override fun getPageTitle(position: Int): CharSequence =
-        getString(NovelDetailPage.values()[position].title)
+        getString(DetailPage.values()[position].title)
   }
 
-  private enum class NovelDetailPage(val title: Int) {
+  private enum class DetailPage(val title: Int) {
     INDEX(R.string.novel_index_title) {
       override fun createFragment(novel: Novel): Fragment = IndexFragment.newInstance(novel)
     },

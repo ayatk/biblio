@@ -19,8 +19,8 @@ package com.ayatk.biblio.ui
 import android.app.Activity
 import android.arch.lifecycle.ViewModel
 import com.ayatk.biblio.di.ViewModelKey
-import com.ayatk.biblio.ui.detail.NovelDetailActivity
-import com.ayatk.biblio.ui.detail.NovelDetailModule
+import com.ayatk.biblio.ui.detail.DetailActivity
+import com.ayatk.biblio.ui.detail.DetailModule
 import com.ayatk.biblio.ui.episode.EpisodeActivity
 import com.ayatk.biblio.ui.episode.EpisodeModule
 import com.ayatk.biblio.ui.home.HomeActivity
@@ -47,8 +47,8 @@ interface UiModule {
   @ContributesAndroidInjector(modules = [(EpisodeModule::class)])
   fun contributeEpisodeActivity(): EpisodeActivity
 
-  @ContributesAndroidInjector(modules = [(NovelDetailModule::class)])
-  fun contributeDetailActivity(): NovelDetailActivity
+  @ContributesAndroidInjector(modules = [(DetailModule::class)])
+  fun contributeDetailActivity(): DetailActivity
 
   @ContributesAndroidInjector
   fun contributeSearchActivity(): SearchActivity

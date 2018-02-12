@@ -19,4 +19,4 @@ package com.ayatk.biblio.ui.detail
 import android.databinding.BaseObservable
 import com.ayatk.biblio.model.Novel
 
-class NovelDetailViewModel(val novel: Novel) : BaseObservable()
+class DetailViewModel(val novel: Novel) : BaseObservable()
