@@ -29,8 +29,8 @@ import android.view.ViewGroup
 import androidx.os.bundleOf
 import com.ayatk.biblio.R
 import com.ayatk.biblio.R.layout
-import com.ayatk.biblio.databinding.FragmentNovelTableBinding
-import com.ayatk.biblio.databinding.ViewTableItemBinding
+import com.ayatk.biblio.databinding.FragmentIndexBinding
+import com.ayatk.biblio.databinding.ViewIndexItemBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.util.customview.BindingHolder
@@ -39,16 +39,16 @@ import dagger.android.support.DaggerFragment
 import org.parceler.Parcels
 import javax.inject.Inject
 
-class NovelTableFragment : DaggerFragment() {
+class IndexFragment : DaggerFragment() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelFactory
 
-  private val viewModel: NovelTableViewModel by lazy {
-    ViewModelProviders.of(this, viewModelFactory).get(NovelTableViewModel::class.java)
+  private val viewModel: IndexViewModel by lazy {
+    ViewModelProviders.of(this, viewModelFactory).get(IndexViewModel::class.java)
   }
 
-  private lateinit var binding: FragmentNovelTableBinding
+  private lateinit var binding: FragmentIndexBinding
 
   private val novel: Novel by lazy {
     Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL)
@@ -59,7 +59,7 @@ class NovelTableFragment : DaggerFragment() {
       inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
-    binding = FragmentNovelTableBinding.inflate(inflater, container, false)
+    binding = FragmentIndexBinding.inflate(inflater, container, false)
     binding.setLifecycleOwner(this)
     initRecyclerView()
     return binding.root
@@ -75,7 +75,7 @@ class NovelTableFragment : DaggerFragment() {
     ContextCompat.getDrawable(context!!, R.drawable.divider)?.let { divider.setDrawable(it) }
 
     binding.recyclerView.apply {
-      adapter = TableAdapter(context, viewModel.novelTableViewModels)
+      adapter = TableAdapter(context, viewModel.indexViewModels)
       setHasFixedSize(true)
       addItemDecoration(divider)
       layoutManager = LinearLayoutManager(context)
@@ -85,17 +85,17 @@ class NovelTableFragment : DaggerFragment() {
   companion object {
     private val BUNDLE_ARGS_NOVEL = "NOVEL"
 
-    fun newInstance(novel: Novel): NovelTableFragment {
-      return NovelTableFragment().apply {
+    fun newInstance(novel: Novel): IndexFragment {
+      return IndexFragment().apply {
         arguments = bundleOf(BUNDLE_ARGS_NOVEL to Parcels.wrap(novel))
       }
     }
   }
 
   private inner class TableAdapter constructor(
-      context: Context, list: ObservableList<NovelTableItemViewModel>
+      context: Context, list: ObservableList<IndexItemViewModel>
   ) :
-      ObservableListRecyclerAdapter<NovelTableItemViewModel, BindingHolder<ViewTableItemBinding>>(
+      ObservableListRecyclerAdapter<IndexItemViewModel, BindingHolder<ViewIndexItemBinding>>(
           context, list
       ) {
 
@@ -105,10 +105,10 @@ class NovelTableFragment : DaggerFragment() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
-    ): BindingHolder<ViewTableItemBinding> =
-        BindingHolder(context, parent, layout.view_table_item)
+    ): BindingHolder<ViewIndexItemBinding> =
+        BindingHolder(context, parent, layout.view_index_item)
 
-    override fun onBindViewHolder(holder: BindingHolder<ViewTableItemBinding>, position: Int) {
+    override fun onBindViewHolder(holder: BindingHolder<ViewIndexItemBinding>, position: Int) {
       holder.binding.apply {
         viewModel = getItem(position)
         executePendingBindings()

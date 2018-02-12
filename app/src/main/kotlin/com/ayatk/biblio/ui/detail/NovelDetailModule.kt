@@ -20,8 +20,8 @@ import android.arch.lifecycle.ViewModel
 import com.ayatk.biblio.di.ViewModelKey
 import com.ayatk.biblio.ui.detail.info.NovelInfoFragment
 import com.ayatk.biblio.ui.detail.info.NovelInfoViewModel
-import com.ayatk.biblio.ui.detail.table.NovelTableFragment
-import com.ayatk.biblio.ui.detail.table.NovelTableViewModel
+import com.ayatk.biblio.ui.detail.table.IndexFragment
+import com.ayatk.biblio.ui.detail.table.IndexViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -35,7 +35,7 @@ interface NovelDetailModule {
   fun contributeNovelInfoFragment(): NovelInfoFragment
 
   @ContributesAndroidInjector
-  fun contributeNovelTableFragment(): NovelTableFragment
+  fun contributeIndexFragment(): IndexFragment
 
   @Binds
   @IntoMap
@@ -44,6 +44,6 @@ interface NovelDetailModule {
 
   @Binds
   @IntoMap
-  @ViewModelKey(NovelTableViewModel::class)
-  fun bindNovelTableViewModel(novelTableViewModel: NovelTableViewModel): ViewModel
+  @ViewModelKey(IndexViewModel::class)
+  fun bindIndexViewModel(indexViewModel: IndexViewModel): ViewModel
 }

@@ -33,6 +33,6 @@ data class Bookmark(
     var novel: Novel,
 
     @Column
-    @Setter("novelTable")
-    var novelTable: NovelTable
+    @Setter("index")
+    var index: Index
 )

@@ -27,7 +27,7 @@ import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityNovelDetailBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.detail.info.NovelInfoFragment
-import com.ayatk.biblio.ui.detail.table.NovelTableFragment
+import com.ayatk.biblio.ui.detail.table.IndexFragment
 import com.ayatk.biblio.ui.util.initBackToolbar
 import dagger.android.support.DaggerAppCompatActivity
 import org.parceler.Parcels
@@ -83,7 +83,7 @@ class NovelDetailActivity : DaggerAppCompatActivity() {
 
   private enum class NovelDetailPage(val title: Int) {
     INDEX(R.string.novel_index_title) {
-      override fun createFragment(novel: Novel): Fragment = NovelTableFragment.newInstance(novel)
+      override fun createFragment(novel: Novel): Fragment = IndexFragment.newInstance(novel)
     },
     INFO(R.string.novel_info_title) {
       override fun createFragment(novel: Novel): Fragment = NovelInfoFragment.newInstance(novel)

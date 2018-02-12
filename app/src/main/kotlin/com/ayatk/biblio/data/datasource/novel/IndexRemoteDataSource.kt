@@ -17,10 +17,10 @@
 package com.ayatk.biblio.data.datasource.novel
 
 import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.data.narou.entity.NarouNovelTable
-import com.ayatk.biblio.domain.repository.NovelTableRepository
+import com.ayatk.biblio.data.narou.entity.NarouIndex
+import com.ayatk.biblio.domain.repository.IndexRepository
+import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.NovelTable
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
@@ -29,18 +29,18 @@ import io.reactivex.rxkotlin.toObservable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class NovelTableRemoteDataSource
+class IndexRemoteDataSource
 @Inject constructor(val client: NarouClient) :
-    NovelTableRepository {
+    IndexRepository {
 
-  override fun findAll(novel: Novel): Single<List<NovelTable>> {
+  override fun findAll(novel: Novel): Single<List<Index>> {
     return client.getTableOfContents(novel.code)
         .map { convertNarouToModel(novel, it) }
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
   }
 
-  override fun find(novel: Novel, page: Int): Maybe<NovelTable> {
+  override fun find(novel: Novel, page: Int): Maybe<Index> {
     return findAll(novel)
         .toObservable()
         .flatMap { it.toObservable() }
@@ -48,7 +48,7 @@ class NovelTableRemoteDataSource
         .singleElement()
   }
 
-  override fun save(novelTables: List<NovelTable>): Completable {
+  override fun save(indices: List<Index>): Completable {
     return Completable.create { /* no-op */ }
   }
 
@@ -57,10 +57,10 @@ class NovelTableRemoteDataSource
   }
 
   private fun convertNarouToModel(
-      novel: Novel, narouTables: List<NarouNovelTable>
-  ): List<NovelTable> {
+      novel: Novel, narouTables: List<NarouIndex>
+  ): List<Index> {
     return narouTables.map {
-      NovelTable(
+      Index(
           id = "${novel.code}-${it.id}",
           novel = novel,
           title = it.title,

@@ -23,7 +23,7 @@ import com.github.gfx.android.orma.annotation.Table
 import java.util.Date
 
 @Table
-data class NovelTable(
+data class Index(
 
     @PrimaryKey
     @Setter("id")

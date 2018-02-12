@@ -76,7 +76,7 @@ class EpisodeFragment : DaggerFragment() {
   @Subscribe
   fun onEvent(event: UiEvent.EpisodeSelectedEvent) {
     if (event.position + 1 == page) {
-      EventBus.getDefault().post(UiEvent.SubtitleChangeEvent(viewModel.Episode.value!!.subtitle))
+      EventBus.getDefault().post(UiEvent.SubtitleChangeEvent(viewModel.episode.value!!.subtitle))
     }
   }
 

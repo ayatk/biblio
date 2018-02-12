@@ -16,9 +16,9 @@
 
 package com.ayatk.biblio.data.datasource.novel
 
-import com.ayatk.biblio.domain.repository.NovelTableRepository
+import com.ayatk.biblio.domain.repository.IndexRepository
+import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.NovelTable
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import com.ayatk.biblio.util.toSingle
 import io.reactivex.Completable
@@ -28,36 +28,36 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class NovelTableDataSource @Inject constructor(
-    private val localDataSource: NovelTableLocalDataSource,
-    private val remoteDataSource: NovelTableRemoteDataSource,
+class IndexDataSource @Inject constructor(
+    private val localDataSource: IndexLocalDataSource,
+    private val remoteDataSource: IndexRemoteDataSource,
     private val schedulerProvider: SchedulerProvider
-) : NovelTableRepository {
+) : IndexRepository {
 
   var isDirty = false
 
-  override fun findAll(novel: Novel): Single<List<NovelTable>> =
+  override fun findAll(novel: Novel): Single<List<Index>> =
       if (isDirty) findAllFromRemote(novel) else findAllFromLocal(novel)
           .subscribeOn(schedulerProvider.io())
 
-  override fun find(novel: Novel, page: Int): Maybe<NovelTable> =
+  override fun find(novel: Novel, page: Int): Maybe<Index> =
       localDataSource.find(novel, page)
           .subscribeOn(schedulerProvider.io())
 
-  override fun save(novelTables: List<NovelTable>): Completable =
-      localDataSource.save(novelTables)
+  override fun save(indices: List<Index>): Completable =
+      localDataSource.save(indices)
           .subscribeOn(schedulerProvider.io())
 
   override fun delete(novel: Novel): Single<Int> =
       localDataSource.delete(novel)
           .subscribeOn(schedulerProvider.io())
 
-  private fun findAllFromRemote(novel: Novel): Single<List<NovelTable>> =
+  private fun findAllFromRemote(novel: Novel): Single<List<Index>> =
       remoteDataSource.findAll(novel)
           .doOnSuccess(this::updateAllAsync)
           .subscribeOn(schedulerProvider.io())
 
-  private fun findAllFromLocal(novel: Novel): Single<List<NovelTable>> =
+  private fun findAllFromLocal(novel: Novel): Single<List<Index>> =
       localDataSource.findAll(novel)
           .flatMap {
             if (it.isEmpty()) {
@@ -67,8 +67,8 @@ class NovelTableDataSource @Inject constructor(
           }
           .subscribeOn(schedulerProvider.io())
 
-  private fun updateAllAsync(novelTables: List<NovelTable>) {
-    localDataSource.save(novelTables).subscribe()
+  private fun updateAllAsync(indices: List<Index>) {
+    localDataSource.save(indices).subscribe()
     isDirty = false
   }
 }

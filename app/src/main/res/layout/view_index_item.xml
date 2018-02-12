@@ -26,15 +26,15 @@
 
     <variable
         name="viewModel"
-        type="com.ayatk.biblio.ui.detail.table.NovelTableItemViewModel"/>
+        type="com.ayatk.biblio.ui.detail.table.IndexItemViewModel"/>
   </data>
 
   <android.support.constraint.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@{viewModel.novelTable.isChapter ? @color/grey300 : 0}"
-      android:clickable="@{!viewModel.novelTable.isChapter}"
-      android:focusable="@{!viewModel.novelTable.isChapter}"
+      android:background="@{viewModel.index.isChapter ? @color/grey300 : 0}"
+      android:clickable="@{!viewModel.index.isChapter}"
+      android:focusable="@{!viewModel.index.isChapter}"
       android:foreground="?attr/selectableItemBackground"
       android:onClick="@{() -> viewModel.onItemClick(context)}"
       android:padding="@dimen/space_16dp">
@@ -46,7 +46,7 @@
         android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="@{viewModel.novelTable.title}"
+        android:text="@{viewModel.index.title}"
         android:textSize="@dimen/text_14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/publish_date"

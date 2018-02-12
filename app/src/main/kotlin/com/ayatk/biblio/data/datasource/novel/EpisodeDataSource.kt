@@ -17,8 +17,8 @@
 package com.ayatk.biblio.data.datasource.novel
 
 import com.ayatk.biblio.domain.repository.EpisodeRepository
-import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.Episode
+import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import com.ayatk.biblio.util.toSingle
 import io.reactivex.Completable

@@ -16,9 +16,9 @@
 
 package com.ayatk.biblio.data.datasource.novel
 
-import com.ayatk.biblio.domain.repository.NovelTableRepository
+import com.ayatk.biblio.domain.repository.IndexRepository
+import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.NovelTable
 import com.ayatk.biblio.model.OrmaDatabase
 import io.reactivex.Completable
 import io.reactivex.Maybe
@@ -26,20 +26,19 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class NovelTableLocalDataSource
-@Inject constructor(val orma: OrmaDatabase) :
-    NovelTableRepository {
+class IndexLocalDataSource
+@Inject constructor(val orma: OrmaDatabase) : IndexRepository {
 
-  override fun findAll(novel: Novel): Single<List<NovelTable>> {
-    return orma.selectFromNovelTable()
+  override fun findAll(novel: Novel): Single<List<Index>> {
+    return orma.selectFromIndex()
         .novelEq(novel)
         .executeAsObservable()
         .toList()
         .subscribeOn(Schedulers.io())
   }
 
-  override fun find(novel: Novel, page: Int): Maybe<NovelTable> {
-    return orma.selectFromNovelTable()
+  override fun find(novel: Novel, page: Int): Maybe<Index> {
+    return orma.selectFromIndex()
         .novelEq(novel)
         .page(page.toLong())
         .executeAsObservable()
@@ -47,16 +46,16 @@ class NovelTableLocalDataSource
         .subscribeOn(Schedulers.io())
   }
 
-  override fun save(novelTables: List<NovelTable>): Completable {
+  override fun save(indices: List<Index>): Completable {
     return orma.transactionAsCompletable {
-      novelTables.map {
-        orma.relationOfNovelTable().upsert(it)
+      indices.map {
+        orma.relationOfIndex().upsert(it)
       }
     }.subscribeOn(Schedulers.io())
   }
 
   override fun delete(novel: Novel): Single<Int> {
-    return orma.relationOfNovelTable()
+    return orma.relationOfIndex()
         .deleter()
         .novelEq(novel)
         .executeAsSingle()

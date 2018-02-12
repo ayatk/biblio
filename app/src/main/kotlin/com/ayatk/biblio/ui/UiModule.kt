@@ -19,10 +19,10 @@ package com.ayatk.biblio.ui
 import android.app.Activity
 import android.arch.lifecycle.ViewModel
 import com.ayatk.biblio.di.ViewModelKey
-import com.ayatk.biblio.ui.episode.EpisodeActivity
-import com.ayatk.biblio.ui.episode.EpisodeModule
 import com.ayatk.biblio.ui.detail.NovelDetailActivity
 import com.ayatk.biblio.ui.detail.NovelDetailModule
+import com.ayatk.biblio.ui.episode.EpisodeActivity
+import com.ayatk.biblio.ui.episode.EpisodeModule
 import com.ayatk.biblio.ui.home.HomeActivity
 import com.ayatk.biblio.ui.home.HomeModule
 import com.ayatk.biblio.ui.ranking.RankingActivity

@@ -16,9 +16,9 @@
 
 package com.ayatk.biblio.data.narou
 
-import com.ayatk.biblio.data.narou.entity.NarouNovel
 import com.ayatk.biblio.data.narou.entity.NarouEpisode
-import com.ayatk.biblio.data.narou.entity.NarouNovelTable
+import com.ayatk.biblio.data.narou.entity.NarouIndex
+import com.ayatk.biblio.data.narou.entity.NarouNovel
 import com.ayatk.biblio.data.narou.entity.NarouRanking
 import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.data.narou.service.NarouApiService
@@ -68,7 +68,7 @@ class NarouClient
     return narouApiService.getRanking(dateStr + rankingType.type)
   }
 
-  fun getTableOfContents(ncode: String): Single<List<NarouNovelTable>> {
+  fun getTableOfContents(ncode: String): Single<List<NarouIndex>> {
     return narouService.getTableOfContents(ncode.toLowerCase())
         .map { s -> htmlUtil.parseTableOfContents(ncode, s) }
   }

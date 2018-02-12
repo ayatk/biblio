@@ -18,23 +18,23 @@ package com.ayatk.biblio.ui.detail.table
 
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
-import com.ayatk.biblio.data.datasource.novel.NovelTableDataSource
+import com.ayatk.biblio.data.datasource.novel.IndexDataSource
+import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.NovelTable
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import timber.log.Timber
 import javax.inject.Inject
 
-class NovelTableViewModel @Inject constructor(
-    private val novelTableDataSource: NovelTableDataSource,
+class IndexViewModel @Inject constructor(
+    private val indexDataSource: IndexDataSource,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
   private val compositeDisposable = CompositeDisposable()
 
-  var novelTableViewModels = ObservableArrayList<NovelTableItemViewModel>()
+  var indexViewModels = ObservableArrayList<IndexItemViewModel>()
 
   override fun onCleared() {
     super.onCleared()
@@ -42,8 +42,8 @@ class NovelTableViewModel @Inject constructor(
   }
 
   fun start(novel: Novel) {
-    novelTableDataSource.findAll(novel)
-        .map({ novelTables -> convertToViewModel(novelTables) })
+    indexDataSource.findAll(novel)
+        .map({ indexes -> convertToViewModel(indexes) })
         .observeOn(schedulerProvider.ui())
         .subscribe(
             this::renderLibraries,
@@ -52,16 +52,16 @@ class NovelTableViewModel @Inject constructor(
         .addTo(compositeDisposable)
   }
 
-  private fun convertToViewModel(novelTables: List<NovelTable>): List<NovelTableItemViewModel> {
-    return novelTables.map { novelTable ->
-      NovelTableItemViewModel(novelTable)
+  private fun convertToViewModel(indices: List<Index>): List<IndexItemViewModel> {
+    return indices.map { novelTable ->
+      IndexItemViewModel(novelTable)
     }
   }
 
-  private fun renderLibraries(novelTableItemViewModels: List<NovelTableItemViewModel>) {
-    if (this.novelTableViewModels.size != novelTableItemViewModels.size) {
-      this.novelTableViewModels.clear()
-      this.novelTableViewModels.addAll(novelTableItemViewModels)
+  private fun renderLibraries(indexItemViewModels: List<IndexItemViewModel>) {
+    if (this.indexViewModels.size != indexItemViewModels.size) {
+      this.indexViewModels.clear()
+      this.indexViewModels.addAll(indexItemViewModels)
     }
   }
 }

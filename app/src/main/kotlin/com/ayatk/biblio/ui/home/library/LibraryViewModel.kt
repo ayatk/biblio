@@ -21,8 +21,8 @@ import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
 import android.view.View
 import com.ayatk.biblio.data.DefaultPrefs
+import com.ayatk.biblio.data.datasource.novel.IndexDataSource
 import com.ayatk.biblio.data.datasource.novel.NovelDataSource
-import com.ayatk.biblio.data.datasource.novel.NovelTableDataSource
 import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.enums.Publisher
@@ -37,7 +37,7 @@ import javax.inject.Inject
 class LibraryViewModel @Inject constructor(
     private val libraryRepository: LibraryRepository,
     private val novelDataSource: NovelDataSource,
-    private val novelTableDataSource: NovelTableDataSource,
+    private val indexDataSource: IndexDataSource,
     private val defaultPrefs: DefaultPrefs,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
@@ -72,7 +72,7 @@ class LibraryViewModel @Inject constructor(
   fun start(refresh: Boolean) {
     if (refresh) {
       novelDataSource.isDirty = true
-      novelTableDataSource.isDirty = true
+      indexDataSource.isDirty = true
     }
 
     loadLibraries()
@@ -90,13 +90,13 @@ class LibraryViewModel @Inject constructor(
                       .subscribe()
                 }
                 viewModel.toObservable()
-                    .concatMap { novelTableDataSource.findAll(it.library.novel).toObservable() }
+                    .concatMap { indexDataSource.findAll(it.library.novel).toObservable() }
                     .observeOn(schedulerProvider.ui())
                     .subscribe(
                         {
                           refreshing.postValue(false)
                           novelDataSource.isDirty = false
-                          novelTableDataSource.isDirty = false
+                          indexDataSource.isDirty = false
                         }
                     )
                     .addTo(compositeDisposable)

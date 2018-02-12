@@ -17,7 +17,7 @@
 package com.ayatk.biblio.data.narou.util
 
 import com.ayatk.biblio.data.narou.entity.NarouEpisode
-import com.ayatk.biblio.data.narou.entity.NarouNovelTable
+import com.ayatk.biblio.data.narou.entity.NarouIndex
 import com.ayatk.biblio.util.DateFormat
 import org.jsoup.Jsoup
 import javax.inject.Singleton
@@ -25,26 +25,26 @@ import javax.inject.Singleton
 @Singleton
 class HtmlUtil {
 
-  fun parseTableOfContents(ncode: String, body: String): List<NarouNovelTable> {
+  fun parseTableOfContents(ncode: String, body: String): List<NarouIndex> {
 
-    val novelTableList = arrayListOf<NarouNovelTable>()
+    val indexList = arrayListOf<NarouIndex>()
 
     val parseTable = Jsoup.parse(body)
 
-    // 短編小説のときは目次がないのでタイトルのNarouNovelTableを生成
+    // 短編小説のときは目次がないのでタイトルのNarouIndexを生成
     if (parseTable.select(".index_box").isEmpty()) {
       val title = parseTable.select(".novel_title").text()
       val update = DateFormat.yyyyMMddkkmm
           .parse(
               parseTable.select("meta[name=WWWC]").attr("content")
           )
-      return listOf(NarouNovelTable(0, ncode, title, false, 1, update, update))
+      return listOf(NarouIndex(0, ncode, title, false, 1, update, update))
     }
 
     for ((index, element) in parseTable.select(".index_box").first().children().withIndex()) {
       if (element.className() == "chapter_title") {
-        novelTableList.add(
-            NarouNovelTable(index, ncode, element.text(), true, null, null, null)
+        indexList.add(
+            NarouIndex(index, ncode, element.text(), true, null, null, null)
         )
       }
 
@@ -73,15 +73,15 @@ class HtmlUtil {
                   .replace(" 改稿", "")
           )
         }
-        novelTableList.add(
-            NarouNovelTable(
+        indexList.add(
+            NarouIndex(
                 index, ncode, el.text(), false, Integer.parseInt(attrs[2]), date,
                 lastUpdate
             )
         )
       }
     }
-    return novelTableList
+    return indexList
   }
 
   fun parsePage(ncode: String, body: String, page: Int): NarouEpisode {

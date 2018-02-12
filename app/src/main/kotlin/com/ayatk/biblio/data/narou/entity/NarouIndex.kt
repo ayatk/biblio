@@ -14,21 +14,23 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.domain.repository
+package com.ayatk.biblio.data.narou.entity
 
-import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.NovelTable
-import io.reactivex.Completable
-import io.reactivex.Maybe
-import io.reactivex.Single
+import java.util.Date
 
-interface NovelTableRepository {
+data class NarouIndex(
 
-  fun findAll(novel: Novel): Single<List<NovelTable>>
+    var id: Int,
 
-  fun find(novel: Novel, page: Int): Maybe<NovelTable>
+    var ncode: String,
 
-  fun save(novelTables: List<NovelTable>): Completable
+    var title: String,
 
-  fun delete(novel: Novel): Single<Int>
-}
+    var isChapter: Boolean,
+
+    var page: Int?,
+
+    var publishDate: Date?,
+
+    var lastUpdate: Date?
+)

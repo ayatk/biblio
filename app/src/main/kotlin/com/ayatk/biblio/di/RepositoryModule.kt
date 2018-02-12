@@ -21,18 +21,18 @@ import com.ayatk.biblio.data.datasource.library.LibraryLocalDataSource
 import com.ayatk.biblio.data.datasource.novel.EpisodeDataSource
 import com.ayatk.biblio.data.datasource.novel.EpisodeLocalDataSource
 import com.ayatk.biblio.data.datasource.novel.EpisodeRemoteDataSource
+import com.ayatk.biblio.data.datasource.novel.IndexDataSource
+import com.ayatk.biblio.data.datasource.novel.IndexLocalDataSource
+import com.ayatk.biblio.data.datasource.novel.IndexRemoteDataSource
 import com.ayatk.biblio.data.datasource.novel.NovelDataSource
 import com.ayatk.biblio.data.datasource.novel.NovelLocalDataSource
 import com.ayatk.biblio.data.datasource.novel.NovelRemoteDataSource
-import com.ayatk.biblio.data.datasource.novel.NovelTableDataSource
-import com.ayatk.biblio.data.datasource.novel.NovelTableLocalDataSource
-import com.ayatk.biblio.data.datasource.novel.NovelTableRemoteDataSource
 import com.ayatk.biblio.data.datasource.ranking.RankingRemoteDataSource
 import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.domain.repository.EpisodeRepository
+import com.ayatk.biblio.domain.repository.IndexRepository
 import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.domain.repository.NovelRepository
-import com.ayatk.biblio.domain.repository.NovelTableRepository
 import com.ayatk.biblio.domain.repository.RankingRepository
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import dagger.Module
@@ -68,11 +68,11 @@ class RepositoryModule {
 
   @Singleton
   @Provides
-  fun provideNovelTableRepository(
-      local: NovelTableLocalDataSource,
-      remote: NovelTableRemoteDataSource,
+  fun provideIndexRepository(
+      local: IndexLocalDataSource,
+      remote: IndexRemoteDataSource,
       schedulerProvider: SchedulerProvider
-  ): NovelTableRepository = NovelTableDataSource(local, remote, schedulerProvider)
+  ): IndexRepository = IndexDataSource(local, remote, schedulerProvider)
 
   @Singleton
   @Provides
