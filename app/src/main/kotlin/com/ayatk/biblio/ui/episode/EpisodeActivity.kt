@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.ui.body
+package com.ayatk.biblio.ui.episode
 
 import android.content.Context
 import android.content.Intent
