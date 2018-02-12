@@ -29,24 +29,25 @@ import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class HomeModule {
+@Suppress("unused")
+interface HomeModule {
 
   @ContributesAndroidInjector
-  abstract fun contributeLibraryFragment(): LibraryFragment
+  fun contributeLibraryFragment(): LibraryFragment
 
   @ContributesAndroidInjector
-  abstract fun contributeBookmarkFragment(): BookmarkFragment
+  fun contributeBookmarkFragment(): BookmarkFragment
 
   @ContributesAndroidInjector
-  abstract fun contributeRankingFragment(): TopRankingFragment
+  fun contributeRankingFragment(): TopRankingFragment
 
   @Binds
   @IntoMap
   @ViewModelKey(LibraryViewModel::class)
-  abstract fun bindLibraryViewModel(libraryViewModel: LibraryViewModel): ViewModel
+  fun bindLibraryViewModel(libraryViewModel: LibraryViewModel): ViewModel
 
   @Binds
   @IntoMap
   @ViewModelKey(TopRankingViewModel::class)
-  abstract fun bindTopRankingViewModel(topRankingViewModel: TopRankingViewModel): ViewModel
+  fun bindTopRankingViewModel(topRankingViewModel: TopRankingViewModel): ViewModel
 }

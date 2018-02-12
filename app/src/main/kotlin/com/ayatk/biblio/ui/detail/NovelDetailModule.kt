@@ -28,21 +28,22 @@ import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class NovelDetailModule {
+@Suppress("unused")
+interface NovelDetailModule {
 
   @ContributesAndroidInjector
-  abstract fun contributeNovelInfoFragment(): NovelInfoFragment
+  fun contributeNovelInfoFragment(): NovelInfoFragment
 
   @ContributesAndroidInjector
-  abstract fun contributeNovelTableFragment(): NovelTableFragment
+  fun contributeNovelTableFragment(): NovelTableFragment
 
   @Binds
   @IntoMap
   @ViewModelKey(NovelInfoViewModel::class)
-  abstract fun bindNovelInfoViewModel(novelInfoViewModel: NovelInfoViewModel): ViewModel
+  fun bindNovelInfoViewModel(novelInfoViewModel: NovelInfoViewModel): ViewModel
 
   @Binds
   @IntoMap
   @ViewModelKey(NovelTableViewModel::class)
-  abstract fun bindNovelTableViewModel(novelTableViewModel: NovelTableViewModel): ViewModel
+  fun bindNovelTableViewModel(novelTableViewModel: NovelTableViewModel): ViewModel
 }

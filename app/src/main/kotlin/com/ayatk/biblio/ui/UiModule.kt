@@ -35,28 +35,29 @@ import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
 @Module
-internal abstract class UiModule {
+@Suppress("unused")
+interface UiModule {
 
   @Binds
-  abstract fun bindActivityContext(activity: Activity): Activity
+  fun bindActivityContext(activity: Activity): Activity
 
   @ContributesAndroidInjector(modules = [(HomeModule::class)])
-  internal abstract fun contributeHomeActivity(): HomeActivity
+  fun contributeHomeActivity(): HomeActivity
 
   @ContributesAndroidInjector(modules = [(NovelBodyModule::class)])
-  internal abstract fun contributeBodyActivity(): NovelBodyActivity
+  fun contributeBodyActivity(): NovelBodyActivity
 
   @ContributesAndroidInjector(modules = [(NovelDetailModule::class)])
-  internal abstract fun contributeDetailActivity(): NovelDetailActivity
+  fun contributeDetailActivity(): NovelDetailActivity
 
   @ContributesAndroidInjector
-  internal abstract fun contributeSearchActivity(): SearchActivity
+  fun contributeSearchActivity(): SearchActivity
 
   @ContributesAndroidInjector(modules = [RankingModule::class])
-  abstract fun contributeRankingActivity(): RankingActivity
+  fun contributeRankingActivity(): RankingActivity
 
   @Binds
   @IntoMap
   @ViewModelKey(SearchViewModel::class)
-  abstract fun bindSearchViewModel(searchViewModel: SearchViewModel): ViewModel
+  fun bindSearchViewModel(searchViewModel: SearchViewModel): ViewModel
 }
