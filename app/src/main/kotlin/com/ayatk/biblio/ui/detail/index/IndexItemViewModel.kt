@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.ui.detail.table
+package com.ayatk.biblio.ui.detail.index
 
 import android.content.Context
 import android.databinding.BaseObservable

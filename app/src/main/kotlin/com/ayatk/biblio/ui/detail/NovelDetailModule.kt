@@ -20,8 +20,8 @@ import android.arch.lifecycle.ViewModel
 import com.ayatk.biblio.di.ViewModelKey
 import com.ayatk.biblio.ui.detail.info.NovelInfoFragment
 import com.ayatk.biblio.ui.detail.info.NovelInfoViewModel
-import com.ayatk.biblio.ui.detail.table.IndexFragment
-import com.ayatk.biblio.ui.detail.table.IndexViewModel
+import com.ayatk.biblio.ui.detail.index.IndexFragment
+import com.ayatk.biblio.ui.detail.index.IndexViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

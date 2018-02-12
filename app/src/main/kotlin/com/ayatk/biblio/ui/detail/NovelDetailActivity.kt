@@ -27,7 +27,7 @@ import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityNovelDetailBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.detail.info.NovelInfoFragment
-import com.ayatk.biblio.ui.detail.table.IndexFragment
+import com.ayatk.biblio.ui.detail.index.IndexFragment
 import com.ayatk.biblio.ui.util.initBackToolbar
 import dagger.android.support.DaggerAppCompatActivity
 import org.parceler.Parcels
