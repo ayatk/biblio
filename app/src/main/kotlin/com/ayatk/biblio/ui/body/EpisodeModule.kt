@@ -14,19 +14,24 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.entity
+package com.ayatk.biblio.ui.body
 
-data class NarouNovelBody(
+import android.arch.lifecycle.ViewModel
+import com.ayatk.biblio.di.ViewModelKey
+import dagger.Binds
+import dagger.Module
+import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoMap
 
-    var ncode: String,
+@Module
+@Suppress("unused")
+interface EpisodeModule {
 
-    var page: Int,
+  @ContributesAndroidInjector
+  fun contributeEpisodeFragment(): EpisodeFragment
 
-    var subtitle: String,
-
-    var prevContent: String,
-
-    var content: String,
-
-    var afterContent: String
-)
+  @Binds
+  @IntoMap
+  @ViewModelKey(EpisodeViewModel::class)
+  fun bindEpisodeViewModel(episodeViewModel: EpisodeViewModel): ViewModel
+}

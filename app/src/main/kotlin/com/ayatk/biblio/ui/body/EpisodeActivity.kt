@@ -26,7 +26,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.view.MenuItem
 import com.ayatk.biblio.R
-import com.ayatk.biblio.databinding.ActivityNovelBodyBinding
+import com.ayatk.biblio.databinding.ActivityEpisodeBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.UiEvent
 import com.ayatk.biblio.ui.util.initBackToolbar
@@ -35,10 +35,10 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.parceler.Parcels
 
-class NovelBodyActivity : DaggerAppCompatActivity() {
+class EpisodeActivity : DaggerAppCompatActivity() {
 
-  val binding: ActivityNovelBodyBinding by lazy {
-    DataBindingUtil.setContentView<ActivityNovelBodyBinding>(this, R.layout.activity_novel_body)
+  val binding: ActivityEpisodeBinding by lazy {
+    DataBindingUtil.setContentView<ActivityEpisodeBinding>(this, R.layout.activity_episode)
   }
 
   private val novel: Novel by lazy {
@@ -54,16 +54,16 @@ class NovelBodyActivity : DaggerAppCompatActivity() {
 
     initBackToolbar(this, binding.toolbar)
 
-    EventBus.getDefault().post(UiEvent.NovelBodySelectedEvent(page))
+    EventBus.getDefault().post(UiEvent.EpisodeSelectedEvent(page))
 
     // ViewPager
     binding.novelViewPager.apply {
-      adapter = NovelBodyPagerAdapter(supportFragmentManager)
+      adapter = EpisodePagerAdapter(supportFragmentManager)
       currentItem = page - 1
       addOnPageChangeListener(
           object : ViewPager.OnPageChangeListener {
             override fun onPageSelected(position: Int) {
-              EventBus.getDefault().post(UiEvent.NovelBodySelectedEvent(position))
+              EventBus.getDefault().post(UiEvent.EpisodeSelectedEvent(position))
             }
 
             override fun onPageScrolled(
@@ -108,17 +108,17 @@ class NovelBodyActivity : DaggerAppCompatActivity() {
     private val EXTRA_PAGE = "PAGE"
 
     fun createIntent(context: Context, novel: Novel, page: Int): Intent {
-      return Intent(context, NovelBodyActivity::class.java).apply {
+      return Intent(context, EpisodeActivity::class.java).apply {
         putExtra(EXTRA_NOVEL, Parcels.wrap(novel))
         putExtra(EXTRA_PAGE, page)
       }
     }
   }
 
-  inner class NovelBodyPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+  inner class EpisodePagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment =
-        NovelBodyFragment.newInstance(novel, position + 1)
+        EpisodeFragment.newInstance(novel, position + 1)
 
     override fun getCount(): Int =
         novel.totalPages

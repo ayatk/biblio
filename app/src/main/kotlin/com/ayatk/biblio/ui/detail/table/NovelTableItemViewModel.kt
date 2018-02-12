@@ -30,7 +30,7 @@ class NovelTableItemViewModel(val novelTable: NovelTable) : BaseObservable() {
 
   fun onItemClick(context: Context) {
     if (!novelTable.isChapter) {
-      Navigator.navigateToNovelBody(context, novelTable.novel,
+      Navigator.navigateToEpisode(context, novelTable.novel,
           requireNotNull(novelTable.page, { "ページ番号がはいってないぞい" })
       )
     }

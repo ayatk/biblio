@@ -18,9 +18,9 @@ package com.ayatk.biblio.di
 
 import com.ayatk.biblio.data.datasource.library.LibraryDataSource
 import com.ayatk.biblio.data.datasource.library.LibraryLocalDataSource
-import com.ayatk.biblio.data.datasource.novel.NovelBodyDataSource
-import com.ayatk.biblio.data.datasource.novel.NovelBodyLocalDataSource
-import com.ayatk.biblio.data.datasource.novel.NovelBodyRemoteDataSource
+import com.ayatk.biblio.data.datasource.novel.EpisodeDataSource
+import com.ayatk.biblio.data.datasource.novel.EpisodeLocalDataSource
+import com.ayatk.biblio.data.datasource.novel.EpisodeRemoteDataSource
 import com.ayatk.biblio.data.datasource.novel.NovelDataSource
 import com.ayatk.biblio.data.datasource.novel.NovelLocalDataSource
 import com.ayatk.biblio.data.datasource.novel.NovelRemoteDataSource
@@ -29,8 +29,8 @@ import com.ayatk.biblio.data.datasource.novel.NovelTableLocalDataSource
 import com.ayatk.biblio.data.datasource.novel.NovelTableRemoteDataSource
 import com.ayatk.biblio.data.datasource.ranking.RankingRemoteDataSource
 import com.ayatk.biblio.data.narou.NarouClient
+import com.ayatk.biblio.domain.repository.EpisodeRepository
 import com.ayatk.biblio.domain.repository.LibraryRepository
-import com.ayatk.biblio.domain.repository.NovelBodyRepository
 import com.ayatk.biblio.domain.repository.NovelRepository
 import com.ayatk.biblio.domain.repository.NovelTableRepository
 import com.ayatk.biblio.domain.repository.RankingRepository
@@ -52,11 +52,11 @@ class RepositoryModule {
 
   @Singleton
   @Provides
-  fun provideNovelBodyRepository(
-      local: NovelBodyLocalDataSource,
-      remote: NovelBodyRemoteDataSource,
+  fun provideEpisodeRepository(
+      local: EpisodeLocalDataSource,
+      remote: EpisodeRemoteDataSource,
       schedulerProvider: SchedulerProvider
-  ): NovelBodyRepository = NovelBodyDataSource(local, remote, schedulerProvider)
+  ): EpisodeRepository = EpisodeDataSource(local, remote, schedulerProvider)
 
   @Singleton
   @Provides

@@ -17,10 +17,10 @@
 package com.ayatk.biblio.data.datasource.novel
 
 import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.data.narou.entity.NarouNovelBody
-import com.ayatk.biblio.domain.repository.NovelBodyRepository
+import com.ayatk.biblio.data.narou.entity.NarouEpisode
+import com.ayatk.biblio.domain.repository.EpisodeRepository
+import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.NovelBody
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.util.toSingle
 import io.reactivex.Completable
@@ -29,25 +29,25 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class NovelBodyRemoteDataSource
+class EpisodeRemoteDataSource
 @Inject constructor(private val client: NarouClient) :
-    NovelBodyRepository {
+    EpisodeRepository {
 
-  override fun find(novel: Novel, page: Int): Single<List<NovelBody>> {
+  override fun find(novel: Novel, page: Int): Single<List<Episode>> {
     return if (novel.novelState == NovelState.SHORT_STORY) {
       client.getSSPage(novel.code)
-          .map { listOf(convertNovelBody(novel, it)) }
+          .map { listOf(convertEpisode(novel, it)) }
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
     } else {
       client.getPage(novel.code, page)
-          .map { listOf(convertNovelBody(novel, it)) }
+          .map { listOf(convertEpisode(novel, it)) }
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
     }
   }
 
-  override fun save(novelBody: NovelBody): Completable {
+  override fun save(episode: Episode): Completable {
     return Completable.create { /* no-op */ }
   }
 
@@ -55,14 +55,14 @@ class NovelBodyRemoteDataSource
     return 0.toSingle()
   }
 
-  private fun convertNovelBody(novel: Novel, novelBody: NarouNovelBody): NovelBody {
-    return NovelBody(
+  private fun convertEpisode(novel: Novel, episode: NarouEpisode): Episode {
+    return Episode(
         novel = novel,
-        page = novelBody.page,
-        subtitle = novelBody.subtitle,
-        prevContent = novelBody.prevContent,
-        content = novelBody.content,
-        afterContent = novelBody.afterContent
+        page = episode.page,
+        subtitle = episode.subtitle,
+        prevContent = episode.prevContent,
+        content = episode.content,
+        afterContent = episode.afterContent
     )
   }
 }

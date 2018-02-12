@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.data.narou.util
 
-import com.ayatk.biblio.data.narou.entity.NarouNovelBody
+import com.ayatk.biblio.data.narou.entity.NarouEpisode
 import com.ayatk.biblio.data.narou.entity.NarouNovelTable
 import com.ayatk.biblio.util.DateFormat
 import org.jsoup.Jsoup
@@ -84,9 +84,9 @@ class HtmlUtil {
     return novelTableList
   }
 
-  fun parsePage(ncode: String, body: String, page: Int): NarouNovelBody {
+  fun parsePage(ncode: String, body: String, page: Int): NarouEpisode {
     val doc = Jsoup.parse(body)
-    return NarouNovelBody(
+    return NarouEpisode(
         ncode = ncode,
         page = page,
         subtitle = doc.select(

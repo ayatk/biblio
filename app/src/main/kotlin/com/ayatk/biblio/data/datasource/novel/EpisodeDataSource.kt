@@ -16,21 +16,21 @@
 
 package com.ayatk.biblio.data.datasource.novel
 
-import com.ayatk.biblio.domain.repository.NovelBodyRepository
+import com.ayatk.biblio.domain.repository.EpisodeRepository
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.NovelBody
+import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import com.ayatk.biblio.util.toSingle
 import io.reactivex.Completable
 import io.reactivex.Single
 
-class NovelBodyDataSource(
-    private val localDataSource: NovelBodyLocalDataSource,
-    private val remoteDataSource: NovelBodyRemoteDataSource,
+class EpisodeDataSource(
+    private val localDataSource: EpisodeLocalDataSource,
+    private val remoteDataSource: EpisodeRemoteDataSource,
     private val schedulerProvider: SchedulerProvider
-) : NovelBodyRepository {
+) : EpisodeRepository {
 
-  override fun find(novel: Novel, page: Int): Single<List<NovelBody>> =
+  override fun find(novel: Novel, page: Int): Single<List<Episode>> =
       localDataSource.find(novel, page)
           .flatMap {
             if (it.isEmpty()) {
@@ -40,15 +40,15 @@ class NovelBodyDataSource(
           }
           .subscribeOn(schedulerProvider.io())
 
-  override fun save(novelBody: NovelBody): Completable =
-      localDataSource.save(novelBody)
+  override fun save(episode: Episode): Completable =
+      localDataSource.save(episode)
           .subscribeOn(schedulerProvider.io())
 
   override fun deleteAll(novel: Novel): Single<Int> =
       localDataSource.deleteAll(novel)
           .subscribeOn(schedulerProvider.io())
 
-  private fun findToRemote(novel: Novel, page: Int): Single<List<NovelBody>> =
+  private fun findToRemote(novel: Novel, page: Int): Single<List<Episode>> =
       remoteDataSource.find(novel, page)
           .doOnSuccess { save(it.first()).subscribe() }
           .subscribeOn(schedulerProvider.io())

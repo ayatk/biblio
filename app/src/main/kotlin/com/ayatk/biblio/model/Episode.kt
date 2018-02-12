@@ -25,7 +25,7 @@ import org.parceler.Parcel.Serialization
 
 @Parcel(Serialization.BEAN)
 @Table
-data class NovelBody(
+data class Episode(
 
     @PrimaryKey(autoincrement = true)
     @Setter("id")

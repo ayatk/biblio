@@ -22,7 +22,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.os.bundleOf
-import com.ayatk.biblio.databinding.FragmentNovelBodyBinding
+import com.ayatk.biblio.databinding.FragmentEpisodeBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.UiEvent
@@ -32,15 +32,15 @@ import org.greenrobot.eventbus.Subscribe
 import org.parceler.Parcels
 import javax.inject.Inject
 
-class NovelBodyFragment : DaggerFragment() {
+class EpisodeFragment : DaggerFragment() {
 
   @Inject
   lateinit var viewModelFactory: ViewModelFactory
 
-  private lateinit var binding: FragmentNovelBodyBinding
+  private lateinit var binding: FragmentEpisodeBinding
 
-  private val viewModel: NovelBodyViewModel by lazy {
-    ViewModelProviders.of(this, viewModelFactory).get(NovelBodyViewModel::class.java)
+  private val viewModel: EpisodeViewModel by lazy {
+    ViewModelProviders.of(this, viewModelFactory).get(EpisodeViewModel::class.java)
   }
 
   private val novel: Novel by lazy {
@@ -55,7 +55,7 @@ class NovelBodyFragment : DaggerFragment() {
       inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
-    binding = FragmentNovelBodyBinding.inflate(inflater, container, false)
+    binding = FragmentEpisodeBinding.inflate(inflater, container, false)
     binding.setLifecycleOwner(this)
     binding.viewModel = viewModel
 
@@ -74,9 +74,9 @@ class NovelBodyFragment : DaggerFragment() {
   }
 
   @Subscribe
-  fun onEvent(event: UiEvent.NovelBodySelectedEvent) {
+  fun onEvent(event: UiEvent.EpisodeSelectedEvent) {
     if (event.position + 1 == page) {
-      EventBus.getDefault().post(UiEvent.SubtitleChangeEvent(viewModel.novelBody.value!!.subtitle))
+      EventBus.getDefault().post(UiEvent.SubtitleChangeEvent(viewModel.Episode.value!!.subtitle))
     }
   }
 
@@ -84,8 +84,8 @@ class NovelBodyFragment : DaggerFragment() {
     private val BUNDLE_ARGS_NOVEL = "NOVEL"
     private val BUNDLE_ARGS_NOVEL_PAGE = "NOVEL_PAGE"
 
-    fun newInstance(novel: Novel, page: Int): NovelBodyFragment {
-      return NovelBodyFragment().apply {
+    fun newInstance(novel: Novel, page: Int): EpisodeFragment {
+      return EpisodeFragment().apply {
         arguments = bundleOf(
             BUNDLE_ARGS_NOVEL to Parcels.wrap(novel),
             BUNDLE_ARGS_NOVEL_PAGE to page

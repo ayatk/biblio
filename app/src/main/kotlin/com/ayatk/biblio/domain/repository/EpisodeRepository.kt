@@ -14,24 +14,18 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.ui.body
+package com.ayatk.biblio.domain.repository
 
-import android.arch.lifecycle.ViewModel
-import com.ayatk.biblio.di.ViewModelKey
-import dagger.Binds
-import dagger.Module
-import dagger.android.ContributesAndroidInjector
-import dagger.multibindings.IntoMap
+import com.ayatk.biblio.model.Episode
+import com.ayatk.biblio.model.Novel
+import io.reactivex.Completable
+import io.reactivex.Single
 
-@Module
-@Suppress("unused")
-interface NovelBodyModule {
+interface EpisodeRepository {
 
-  @ContributesAndroidInjector
-  fun contributeNovelBodyFragment(): NovelBodyFragment
+  fun find(novel: Novel, page: Int): Single<List<Episode>>
 
-  @Binds
-  @IntoMap
-  @ViewModelKey(NovelBodyViewModel::class)
-  fun bindNovelBodyViewModel(novelBodyViewModel: NovelBodyViewModel): ViewModel
+  fun save(episode: Episode): Completable
+
+  fun deleteAll(novel: Novel): Single<Int>
 }

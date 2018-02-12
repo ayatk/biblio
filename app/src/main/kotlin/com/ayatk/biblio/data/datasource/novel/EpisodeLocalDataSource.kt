@@ -16,21 +16,21 @@
 
 package com.ayatk.biblio.data.datasource.novel
 
-import com.ayatk.biblio.domain.repository.NovelBodyRepository
+import com.ayatk.biblio.domain.repository.EpisodeRepository
+import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.NovelBody
 import com.ayatk.biblio.model.OrmaDatabase
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class NovelBodyLocalDataSource
+class EpisodeLocalDataSource
 @Inject constructor(private val orma: OrmaDatabase) :
-    NovelBodyRepository {
+    EpisodeRepository {
 
-  override fun find(novel: Novel, page: Int): Single<List<NovelBody>> {
-    return orma.selectFromNovelBody()
+  override fun find(novel: Novel, page: Int): Single<List<Episode>> {
+    return orma.selectFromEpisode()
         .novelEq(novel)
         .pageEq(page)
         .executeAsObservable()
@@ -38,14 +38,14 @@ class NovelBodyLocalDataSource
         .subscribeOn(Schedulers.io())
   }
 
-  override fun save(novelBody: NovelBody): Completable {
+  override fun save(episode: Episode): Completable {
     return orma.transactionAsCompletable {
-      orma.insertIntoNovelBody(novelBody)
+      orma.insertIntoEpisode(episode)
     }.subscribeOn(Schedulers.io())
   }
 
   override fun deleteAll(novel: Novel): Single<Int> {
-    return orma.deleteFromNovelBody()
+    return orma.deleteFromEpisode()
         .novelEq(novel)
         .executeAsSingle()
         .subscribeOn(Schedulers.io())

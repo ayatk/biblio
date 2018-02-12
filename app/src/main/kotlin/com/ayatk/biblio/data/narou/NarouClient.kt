@@ -17,7 +17,7 @@
 package com.ayatk.biblio.data.narou
 
 import com.ayatk.biblio.data.narou.entity.NarouNovel
-import com.ayatk.biblio.data.narou.entity.NarouNovelBody
+import com.ayatk.biblio.data.narou.entity.NarouEpisode
 import com.ayatk.biblio.data.narou.entity.NarouNovelTable
 import com.ayatk.biblio.data.narou.entity.NarouRanking
 import com.ayatk.biblio.data.narou.entity.enums.RankingType
@@ -73,7 +73,7 @@ class NarouClient
         .map { s -> htmlUtil.parseTableOfContents(ncode, s) }
   }
 
-  fun getAllPages(ncode: String): Single<List<NarouNovelBody>> {
+  fun getAllPages(ncode: String): Single<List<NarouEpisode>> {
     return narouService.getPage(ncode.toLowerCase(), 1).map { body ->
       val page = Jsoup
           .parse(body)
@@ -82,7 +82,7 @@ class NarouClient
           .replace("^[1-9]+/".toRegex(), "")
           .toInt()
 
-      var novelList = listOf<NarouNovelBody>()
+      var novelList = listOf<NarouEpisode>()
       for (i in 1..page) {
         novelList += getPage(ncode, i).blockingGet()
       }
@@ -90,10 +90,10 @@ class NarouClient
     }
   }
 
-  fun getPage(ncode: String, page: Int): Single<NarouNovelBody> =
+  fun getPage(ncode: String, page: Int): Single<NarouEpisode> =
       narouService.getPage(ncode, page).map { s -> htmlUtil.parsePage(ncode, s, page) }
 
-  fun getSSPage(ncode: String): Single<NarouNovelBody> =
+  fun getSSPage(ncode: String): Single<NarouEpisode> =
       narouService.getSSPage(ncode).map { htmlUtil.parsePage(ncode, it, 1) }
 
   private fun convertNarouNovelToNovel(

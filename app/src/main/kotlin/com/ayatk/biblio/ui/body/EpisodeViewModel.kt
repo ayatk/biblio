@@ -18,29 +18,29 @@ package com.ayatk.biblio.ui.body
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.ayatk.biblio.domain.repository.NovelBodyRepository
+import com.ayatk.biblio.domain.repository.EpisodeRepository
+import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.NovelBody
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import timber.log.Timber
 import javax.inject.Inject
 
-class NovelBodyViewModel @Inject constructor(
-    private val novelBodyRepository: NovelBodyRepository,
+class EpisodeViewModel @Inject constructor(
+    private val episodeRepository: EpisodeRepository,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
   private val compositeDisposable = CompositeDisposable()
 
-  var novelBody = MutableLiveData<NovelBody>()
+  var episode = MutableLiveData<Episode>()
 
   fun start(novel: Novel, page: Int) {
-    novelBodyRepository.find(novel, page)
+    episodeRepository.find(novel, page)
         .observeOn(schedulerProvider.ui())
         .subscribe(
-            { novelBody.postValue(it.first()) },
+            { episode.postValue(it.first()) },
             { Timber.e(it) }
         )
         .addTo(compositeDisposable)

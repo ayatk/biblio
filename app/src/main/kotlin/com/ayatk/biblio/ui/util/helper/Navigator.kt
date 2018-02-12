@@ -24,7 +24,7 @@ import android.text.TextUtils
 import android.webkit.URLUtil
 import com.ayatk.biblio.R
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.body.NovelBodyActivity
+import com.ayatk.biblio.ui.body.EpisodeActivity
 import com.ayatk.biblio.ui.detail.NovelDetailActivity
 
 object Navigator {
@@ -33,8 +33,8 @@ object Navigator {
     context.startActivity(NovelDetailActivity.createIntent(context, novel))
   }
 
-  fun navigateToNovelBody(context: Context, novel: Novel, page: Int) {
-    context.startActivity(NovelBodyActivity.createIntent(context, novel, page))
+  fun navigateToEpisode(context: Context, novel: Novel, page: Int) {
+    context.startActivity(EpisodeActivity.createIntent(context, novel, page))
   }
 
   fun navigateToWebPage(context: Context, url: String) {

@@ -14,18 +14,19 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.domain.repository
+package com.ayatk.biblio.data.narou.entity
 
-import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.NovelBody
-import io.reactivex.Completable
-import io.reactivex.Single
+data class NarouEpisode(
 
-interface NovelBodyRepository {
+    var ncode: String,
 
-  fun find(novel: Novel, page: Int): Single<List<NovelBody>>
+    var page: Int,
 
-  fun save(novelBody: NovelBody): Completable
+    var subtitle: String,
 
-  fun deleteAll(novel: Novel): Single<Int>
-}
+    var prevContent: String,
+
+    var content: String,
+
+    var afterContent: String
+)

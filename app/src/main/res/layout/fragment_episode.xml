@@ -25,7 +25,7 @@
 
     <variable
         name="viewModel"
-        type="com.ayatk.biblio.ui.body.NovelBodyViewModel"/>
+        type="com.ayatk.biblio.ui.body.EpisodeViewModel"/>
 
   </data>
 
@@ -47,8 +47,8 @@
           android:layout_height="wrap_content"
           android:layout_marginBottom="@dimen/space_16dp"
           android:lineSpacingMultiplier="1.5"
-          android:text="@{viewModel.novelBody.prevContent}"
-          android:visibility="@{viewModel.novelBody.prevContent.isEmpty ? View.GONE : View.VISIBLE}"
+          android:text="@{viewModel.episode.prevContent}"
+          android:visibility="@{viewModel.episode.prevContent.isEmpty ? View.GONE : View.VISIBLE}"
           tools:text="筆者のまえがきだよおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおん"/>
 
       <TextView
@@ -58,7 +58,7 @@
           android:layout_marginBottom="@dimen/space_16dp"
           android:layout_marginTop="@dimen/space_16dp"
           android:lineSpacingMultiplier="1.5"
-          android:text="@{viewModel.novelBody.content}"
+          android:text="@{viewModel.episode.content}"
           tools:text="ほげhごえhごえhごえhごへごへおgへおごえ"/>
 
       <TextView
@@ -67,8 +67,8 @@
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/space_16dp"
           android:lineSpacingMultiplier="1.5"
-          android:text="@{viewModel.novelBody.afterContent}"
-          android:visibility="@{viewModel.novelBody.afterContent.isEmpty ? View.GONE : View.VISIBLE}"
+          android:text="@{viewModel.episode.afterContent}"
+          android:visibility="@{viewModel.episode.afterContent.isEmpty ? View.GONE : View.VISIBLE}"
           tools:text="あとがきだよおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおん"/>
 
     </LinearLayout>
