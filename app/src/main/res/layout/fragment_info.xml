@@ -25,7 +25,7 @@
 
     <variable
         name="viewModel"
-        type="com.ayatk.biblio.ui.detail.info.NovelInfoViewModel"/>
+        type="com.ayatk.biblio.ui.detail.info.InfoViewModel"/>
   </data>
 
   <ScrollView
@@ -40,19 +40,19 @@
         android:orientation="vertical"
         android:showDividers="middle">
 
-      <com.ayatk.biblio.ui.util.customview.NovelInfoCellView
+      <com.ayatk.biblio.ui.util.customview.InfoCellView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           app:setCellIcon="@drawable/ic_open_book_page_24"
           app:setCellText="@{viewModel.novel.story}"/>
 
-      <com.ayatk.biblio.ui.util.customview.NovelInfoCellView
+      <com.ayatk.biblio.ui.util.customview.InfoCellView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           app:setCellIcon="@drawable/ic_num_24"
           app:setCellText="@{viewModel.novel.code}"/>
 
-      <com.ayatk.biblio.ui.util.customview.NovelInfoCellView
+      <com.ayatk.biblio.ui.util.customview.InfoCellView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground"
@@ -60,13 +60,13 @@
           app:setCellIcon="@drawable/ic_writer_grey600_24_vector"
           app:setCellText="@{viewModel.novel.writer}"/>
 
-      <com.ayatk.biblio.ui.util.customview.NovelInfoCellView
+      <com.ayatk.biblio.ui.util.customview.InfoCellView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           app:setCellIcon="@drawable/ic_publish_24"
           app:setCellText="@{context.getString(viewModel.novel.publisher.siteName)}"/>
 
-      <com.ayatk.biblio.ui.util.customview.NovelInfoCellView
+      <com.ayatk.biblio.ui.util.customview.InfoCellView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           app:setCellIcon="@drawable/ic_status_24"
@@ -162,13 +162,13 @@
 
       </android.support.constraint.ConstraintLayout>
 
-      <com.ayatk.biblio.ui.util.customview.NovelInfoCellView
+      <com.ayatk.biblio.ui.util.customview.InfoCellView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           app:setCellIcon="@drawable/ic_update_grey600_24_vector"
           app:setCellText="@{viewModel.lastUpdate}"/>
 
-      <com.ayatk.biblio.ui.util.customview.NovelInfoCellView
+      <com.ayatk.biblio.ui.util.customview.InfoCellView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground"

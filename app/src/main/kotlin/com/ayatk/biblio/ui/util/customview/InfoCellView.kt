@@ -24,7 +24,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.ayatk.biblio.R
 
-class NovelInfoCellView @JvmOverloads constructor(
+class InfoCellView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -35,7 +35,7 @@ class NovelInfoCellView @JvmOverloads constructor(
   }
 
   private val array by lazy {
-    context.theme.obtainStyledAttributes(attrs, R.styleable.NovelInfoCellView, 0, 0)
+    context.theme.obtainStyledAttributes(attrs, R.styleable.InfoCellView, 0, 0)
   }
 
   private val textView by lazy {
@@ -46,13 +46,13 @@ class NovelInfoCellView @JvmOverloads constructor(
     inflater.findViewById<ImageView>(R.id.icon_view)
   }
 
-  var cellText = array.getString(R.styleable.NovelInfoCellView_setCellText)
+  var cellText = array.getString(R.styleable.InfoCellView_setCellText)
     set(value) {
       field = value
       textView.text = value
     }
 
-  var cellIcon = array.getResourceId(R.styleable.NovelInfoCellView_setCellIcon, 0)
+  var cellIcon = array.getResourceId(R.styleable.InfoCellView_setCellIcon, 0)
     set(value) {
       field = value
       iconView.setImageResource(value)

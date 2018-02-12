@@ -26,8 +26,8 @@ import android.support.v4.app.FragmentPagerAdapter
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityNovelDetailBinding
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.detail.info.NovelInfoFragment
 import com.ayatk.biblio.ui.detail.index.IndexFragment
+import com.ayatk.biblio.ui.detail.info.InfoFragment
 import com.ayatk.biblio.ui.util.initBackToolbar
 import dagger.android.support.DaggerAppCompatActivity
 import org.parceler.Parcels
@@ -86,7 +86,7 @@ class NovelDetailActivity : DaggerAppCompatActivity() {
       override fun createFragment(novel: Novel): Fragment = IndexFragment.newInstance(novel)
     },
     INFO(R.string.novel_info_title) {
-      override fun createFragment(novel: Novel): Fragment = NovelInfoFragment.newInstance(novel)
+      override fun createFragment(novel: Novel): Fragment = InfoFragment.newInstance(novel)
     };
 
     abstract fun createFragment(novel: Novel): Fragment

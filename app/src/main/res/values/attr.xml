@@ -16,7 +16,7 @@
   -->
 
 <resources>
-  <declare-styleable name="NovelInfoCellView">
+  <declare-styleable name="InfoCellView">
     <attr format="reference" name="setCellText"/>
     <attr format="reference" name="setCellIcon"/>
   </declare-styleable>

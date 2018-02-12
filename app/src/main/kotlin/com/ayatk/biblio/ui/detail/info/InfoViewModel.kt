@@ -34,7 +34,7 @@ import mabbas007.tagsedittext.TagsEditText
 import timber.log.Timber
 import javax.inject.Inject
 
-class NovelInfoViewModel @Inject constructor(
+class InfoViewModel @Inject constructor(
     private val libraryRepository: LibraryRepository,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {

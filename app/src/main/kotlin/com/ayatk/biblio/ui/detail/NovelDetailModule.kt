@@ -18,10 +18,10 @@ package com.ayatk.biblio.ui.detail
 
 import android.arch.lifecycle.ViewModel
 import com.ayatk.biblio.di.ViewModelKey
-import com.ayatk.biblio.ui.detail.info.NovelInfoFragment
-import com.ayatk.biblio.ui.detail.info.NovelInfoViewModel
 import com.ayatk.biblio.ui.detail.index.IndexFragment
 import com.ayatk.biblio.ui.detail.index.IndexViewModel
+import com.ayatk.biblio.ui.detail.info.InfoFragment
+import com.ayatk.biblio.ui.detail.info.InfoViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -32,15 +32,15 @@ import dagger.multibindings.IntoMap
 interface NovelDetailModule {
 
   @ContributesAndroidInjector
-  fun contributeNovelInfoFragment(): NovelInfoFragment
+  fun contributeInfoFragment(): InfoFragment
 
   @ContributesAndroidInjector
   fun contributeIndexFragment(): IndexFragment
 
   @Binds
   @IntoMap
-  @ViewModelKey(NovelInfoViewModel::class)
-  fun bindNovelInfoViewModel(novelInfoViewModel: NovelInfoViewModel): ViewModel
+  @ViewModelKey(InfoViewModel::class)
+  fun bindInfoViewModel(infoViewModel: InfoViewModel): ViewModel
 
   @Binds
   @IntoMap

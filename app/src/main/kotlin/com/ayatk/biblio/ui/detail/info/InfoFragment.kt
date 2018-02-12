@@ -22,22 +22,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.os.bundleOf
-import com.ayatk.biblio.databinding.FragmentNovelInfoBinding
+import com.ayatk.biblio.databinding.FragmentInfoBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
 import dagger.android.support.DaggerFragment
 import org.parceler.Parcels
 import javax.inject.Inject
 
-class NovelInfoFragment : DaggerFragment() {
+class InfoFragment : DaggerFragment() {
   @Inject
   lateinit var viewModelFactory: ViewModelFactory
 
-  private val viewModel: NovelInfoViewModel by lazy {
-    ViewModelProviders.of(this, viewModelFactory).get(NovelInfoViewModel::class.java)
+  private val viewModel: InfoViewModel by lazy {
+    ViewModelProviders.of(this, viewModelFactory).get(InfoViewModel::class.java)
   }
 
-  private lateinit var binding: FragmentNovelInfoBinding
+  private lateinit var binding: FragmentInfoBinding
 
   private val novel: Novel by lazy {
     Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL))
@@ -51,7 +51,7 @@ class NovelInfoFragment : DaggerFragment() {
   override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
   ): View? {
-    binding = FragmentNovelInfoBinding.inflate(inflater, container, false)
+    binding = FragmentInfoBinding.inflate(inflater, container, false)
     binding.setLifecycleOwner(this)
     binding.viewModel = viewModel
 
@@ -66,8 +66,8 @@ class NovelInfoFragment : DaggerFragment() {
   companion object {
     private val BUNDLE_ARGS_NOVEL = "NOVEL"
 
-    fun newInstance(novel: Novel): NovelInfoFragment {
-      return NovelInfoFragment().apply {
+    fun newInstance(novel: Novel): InfoFragment {
+      return InfoFragment().apply {
         arguments = bundleOf(BUNDLE_ARGS_NOVEL to Parcels.wrap(novel))
       }
     }
