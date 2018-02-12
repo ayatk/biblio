@@ -21,10 +21,10 @@ import com.ayatk.biblio.R
 
 enum class Publisher(@StringRes val siteName: Int, val url: String) {
   // なろう
-  NAROU(R.string.site_narou, "http://ncode.syosetu.com/"),
+  NAROU(R.string.site_narou, "https://ncode.syosetu.com/"),
 
   // ノクターンとムーンライト
-  NOCTURNE_MOONLIGHT(R.string.site_nocturne_moonlight, "http://novel18.syosetu.com/"),
+  NOCTURNE_MOONLIGHT(R.string.site_nocturne_moonlight, "https://novel18.syosetu.com/"),
 
   // ハーメルン
   // HAMELN("ハーメルン", "https://novel.syosetu.org/"),
