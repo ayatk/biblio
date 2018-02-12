@@ -22,6 +22,7 @@ import com.ayatk.biblio.R
 import com.rejasupotaro.android.kvs.annotations.Key
 import com.rejasupotaro.android.kvs.annotations.Table
 
+@Suppress("unused")
 @Table(name = "${BuildConfig.APPLICATION_ID}_preferences")
 class DefaultPrefsSchema {
 
