@@ -243,3 +243,16 @@
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
   url: http://greenrobot.org/eventbus/
 
+- artifact: com.xwray:groupie:+
+  name: groupie
+  year: 2016
+  copyrightHolder: lisawray
+  license: MIT
+  url: https://github.com/lisawray/groupie
+
+- artifact: com.xwray:groupie-databinding:+
+  name: groupie databinding
+  year: 2016
+  copyrightHolder: lisawray
+  license: MIT
+  url: https://github.com/lisawray/groupie

@@ -268,6 +268,8 @@ dependencies {
   // UI
   implementation 'com.google.android:flexbox:0.3.2'
   implementation 'com.github.mabbas007:TagsEditText:1.0.5'
+  implementation 'com.xwray:groupie:2.0.3'
+  implementation 'com.xwray:groupie-databinding:2.0.3'
 
   // Util
   implementation 'org.parceler:parceler-api:1.1.10'
