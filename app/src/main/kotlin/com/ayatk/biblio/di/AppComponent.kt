@@ -28,14 +28,14 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = arrayOf(
-        AndroidSupportInjectionModule::class,
-        AppModule::class,
-        RepositoryModule::class,
-        HttpClientModule::class,
-        UiModule::class,
-        ViewModelModule::class
-    )
+    modules = [
+      AndroidSupportInjectionModule::class,
+      AppModule::class,
+      RepositoryModule::class,
+      HttpClientModule::class,
+      UiModule::class,
+      ViewModelModule::class
+    ]
 )
 interface AppComponent : AndroidInjector<App> {
 
