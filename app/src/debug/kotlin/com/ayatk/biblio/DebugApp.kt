@@ -19,6 +19,7 @@ package com.ayatk.biblio
 import com.facebook.stetho.Stetho
 import com.tomoima.debot.DebotConfigurator
 import jp.wasabeef.takt.Takt
+import timber.log.Timber
 
 class DebugApp : App() {
   override fun onCreate() {
@@ -27,6 +28,10 @@ class DebugApp : App() {
     Stetho.initializeWithDefaults(this)
     DebotConfigurator.configureWithDefault()
     Takt.stock(this).play()
+
+    if (BuildConfig.DEBUG) {
+      Timber.plant(Timber.DebugTree())
+    }
   }
 
   override fun onTerminate() {
