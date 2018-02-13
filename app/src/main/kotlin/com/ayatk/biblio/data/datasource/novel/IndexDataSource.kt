@@ -20,7 +20,7 @@ import com.ayatk.biblio.domain.repository.IndexRepository
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.util.rx.SchedulerProvider
-import com.ayatk.biblio.util.toSingle
+import com.ayatk.biblio.util.rx.toSingle
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single

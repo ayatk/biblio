@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.util
+package com.ayatk.biblio.util.rx
 
 import io.reactivex.Maybe
 import io.reactivex.Single

@@ -21,8 +21,8 @@ import com.ayatk.biblio.domain.repository.NovelRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.util.rx.SchedulerProvider
-import com.ayatk.biblio.util.toMaybe
-import com.ayatk.biblio.util.toSingle
+import com.ayatk.biblio.util.rx.toMaybe
+import com.ayatk.biblio.util.rx.toSingle
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
