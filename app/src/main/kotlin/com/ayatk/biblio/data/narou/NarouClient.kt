@@ -56,7 +56,7 @@ class NarouClient
         .map { novels -> convertNarouNovelToNovel(novels.drop(1), Publisher.NOCTURNE_MOONLIGHT) }
   }
 
-  fun getRanking(date: Date, rankingType: NarouRankingType): Flowable<List<NarouRanking>> {
+  fun getRanking(date: Date, rankingType: NarouRankingType): Single<List<NarouRanking>> {
     var dateStr = ""
     when (rankingType) {
       NarouRankingType.DAILY -> dateStr = QueryTime.day2String(date)
