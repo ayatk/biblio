@@ -20,7 +20,6 @@ import com.ayatk.biblio.data.narou.entity.enums.BigGenre
 import com.ayatk.biblio.data.narou.entity.enums.Genre
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.model.enums.RankingType
 import com.github.gfx.android.orma.annotation.StaticTypeAdapter
 import com.github.gfx.android.orma.annotation.StaticTypeAdapters
 
@@ -36,12 +35,6 @@ import com.github.gfx.android.orma.annotation.StaticTypeAdapters
         serializedType = Int::class,
         serializer = "serializeGenre",
         deserializer = "deserializeGenre"
-    ),
-    StaticTypeAdapter(
-        targetType = RankingType::class,
-        serializedType = String::class,
-        serializer = "serializeRankingType",
-        deserializer = "deserializeRankingType"
     ),
     StaticTypeAdapter(
         targetType = Publisher::class,
@@ -68,12 +61,6 @@ object TypeAdapters {
 
   @JvmStatic
   fun deserializeGenre(id: Int): Genre = Genre.of(id)
-
-  @JvmStatic
-  fun serializeRankingType(rankingType: RankingType): String = rankingType.type
-
-  @JvmStatic
-  fun deserializeRankingType(type: String): RankingType = RankingType.valueOf(type)
 
   @JvmStatic
   fun serializePublisher(publisher: Publisher): String = publisher.name
