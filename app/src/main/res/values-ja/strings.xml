@@ -16,9 +16,6 @@
   -->
 
 <resources>
-  <!-- App Info -->
-  <string name="app_name">ビブリオ</string>
-
   <!-- Buttom Navigation -->
   <string name="library">ライブラリ</string>
   <string name="bookmark">しおり</string>

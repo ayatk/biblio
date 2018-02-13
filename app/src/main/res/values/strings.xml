@@ -16,7 +16,7 @@
 
 <resources>
   <!-- App Info -->
-  <string name="app_name">Biblio</string>
+  <string name="app_name" translatable="false">Biblio</string>
 
   <!-- Buttom Navigation -->
   <string name="library">Library</string>
