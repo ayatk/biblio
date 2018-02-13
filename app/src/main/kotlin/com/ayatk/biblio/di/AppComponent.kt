@@ -31,6 +31,7 @@ import javax.inject.Singleton
       AndroidSupportInjectionModule::class,
       AppModule::class,
       RepositoryModule::class,
+      NetworkModule::class,
       HttpClientModule::class,
       UiModule::class,
       ViewModelModule::class
