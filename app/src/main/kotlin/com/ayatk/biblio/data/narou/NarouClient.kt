@@ -20,7 +20,7 @@ import com.ayatk.biblio.data.narou.entity.NarouEpisode
 import com.ayatk.biblio.data.narou.entity.NarouIndex
 import com.ayatk.biblio.data.narou.entity.NarouNovel
 import com.ayatk.biblio.data.narou.entity.NarouRanking
-import com.ayatk.biblio.data.narou.entity.enums.RankingType
+import com.ayatk.biblio.data.narou.entity.enums.NarouRankingType
 import com.ayatk.biblio.data.narou.service.NarouApiService
 import com.ayatk.biblio.data.narou.service.NarouService
 import com.ayatk.biblio.data.narou.util.HtmlUtil
@@ -56,14 +56,14 @@ class NarouClient
         .map { novels -> convertNarouNovelToNovel(novels.drop(1), Publisher.NOCTURNE_MOONLIGHT) }
   }
 
-  fun getRanking(date: Date, rankingType: RankingType): Single<List<NarouRanking>> {
+  fun getRanking(date: Date, rankingType: NarouRankingType): Flowable<List<NarouRanking>> {
     var dateStr = ""
     when (rankingType) {
-      RankingType.DAILY -> dateStr = QueryTime.day2String(date)
-      RankingType.WEEKLY -> dateStr = QueryTime.day2Tuesday(date)
-      RankingType.MONTHLY -> dateStr = QueryTime.day2MonthOne(date)
-      RankingType.QUARTET -> dateStr = QueryTime.day2MonthOne(date)
-      RankingType.ALL -> IllegalArgumentException("Not arrowed ALL type request")
+      NarouRankingType.DAILY -> dateStr = QueryTime.day2String(date)
+      NarouRankingType.WEEKLY -> dateStr = QueryTime.day2Tuesday(date)
+      NarouRankingType.MONTHLY -> dateStr = QueryTime.day2MonthOne(date)
+      NarouRankingType.QUARTET -> dateStr = QueryTime.day2MonthOne(date)
+      NarouRankingType.ALL -> IllegalArgumentException("Not arrowed ALL type request")
     }
     return narouApiService.getRanking(dateStr + rankingType.type)
   }

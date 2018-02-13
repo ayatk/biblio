@@ -19,25 +19,25 @@ package com.ayatk.biblio.data.narou.entity.enums
 /**
  * ランキングの項目
  */
-enum class RankingType constructor(val type: String, val title: String) {
+enum class NarouRankingType constructor(val type: String) {
   /**
    * DAILY 日間ランキング
    */
-  DAILY("-d", "日間"),
+  DAILY("-d"),
   /**
    * WEEKLY 週間ランキング
    */
-  WEEKLY("-w", "週間"),
+  WEEKLY("-w"),
   /**
    * MONTHLY 月間ランキング
    */
-  MONTHLY("-m", "月間"),
+  MONTHLY("-m"),
   /**
    * QUARTET 四半期ランキング
    */
-  QUARTET("-q", "四半期"),
+  QUARTET("-q"),
   /**
    * ALL 累計ランキング
    */
-  ALL("", "累計");
+  ALL("");
 }

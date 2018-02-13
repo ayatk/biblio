@@ -18,9 +18,9 @@ package com.ayatk.biblio.data.dao
 
 import com.ayatk.biblio.data.narou.entity.enums.BigGenre
 import com.ayatk.biblio.data.narou.entity.enums.Genre
-import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.model.enums.Publisher
+import com.ayatk.biblio.model.enums.RankingType
 import com.github.gfx.android.orma.annotation.StaticTypeAdapter
 import com.github.gfx.android.orma.annotation.StaticTypeAdapters
 

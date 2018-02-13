@@ -22,10 +22,10 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.OnLifecycleEvent
 import android.arch.lifecycle.ViewModel
 import android.content.Context
-import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.domain.repository.RankingRepository
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
+import com.ayatk.biblio.model.enums.RankingType
 import com.ayatk.biblio.ui.ranking.RankingActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

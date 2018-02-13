@@ -20,10 +20,10 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
 import android.view.View
-import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.domain.repository.RankingRepository
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
+import com.ayatk.biblio.model.enums.RankingType
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo

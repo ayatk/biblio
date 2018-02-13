@@ -30,9 +30,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.os.bundleOf
 import com.ayatk.biblio.R
-import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.databinding.FragmentRankingListBinding
 import com.ayatk.biblio.databinding.ViewRankingListItemBinding
+import com.ayatk.biblio.model.enums.RankingType
 import com.ayatk.biblio.ui.util.customview.BindingHolder
 import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
 import com.ayatk.biblio.util.ext.observeNonNull

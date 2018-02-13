@@ -24,8 +24,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.ayatk.biblio.R
-import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.databinding.ActivityRankingBinding
+import com.ayatk.biblio.model.enums.RankingType
 import com.ayatk.biblio.ui.util.initBackToolbar
 import com.ayatk.biblio.util.ext.extraOf
 import com.ayatk.biblio.util.ext.integer
@@ -73,6 +73,6 @@ class RankingActivity : DaggerAppCompatActivity() {
     override fun getCount(): Int = RankingType.values().size
 
     override fun getPageTitle(position: Int): CharSequence? =
-        RankingType.values()[position].title
+        getString(RankingType.values()[position].title)
   }
 }

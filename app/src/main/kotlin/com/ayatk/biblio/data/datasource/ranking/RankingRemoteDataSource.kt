@@ -18,8 +18,8 @@ package com.ayatk.biblio.data.datasource.ranking
 
 import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.data.narou.entity.NarouRanking
+import com.ayatk.biblio.data.narou.entity.enums.NarouRankingType
 import com.ayatk.biblio.data.narou.entity.enums.OutputOrder
-import com.ayatk.biblio.data.narou.entity.enums.RankingType
 import com.ayatk.biblio.data.narou.util.QueryBuilder
 import com.ayatk.biblio.domain.repository.RankingRepository
 import com.ayatk.biblio.model.Novel
@@ -47,7 +47,7 @@ class RankingRemoteDataSource @Inject constructor(
       today.add(Calendar.DATE, -1)
     }
 
-    return narouClient.getRanking(today.time, RankingType.DAILY)
+    return narouClient.getRanking(today.time, NarouRankingType.DAILY)
         .flatMap {
           val codes = it.map { it.ncode }.drop(range.first).take(range.count())
           narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
@@ -63,7 +63,7 @@ class RankingRemoteDataSource @Inject constructor(
       today.add(Calendar.DATE, -1)
     }
 
-    return narouClient.getRanking(today.time, RankingType.WEEKLY)
+    return narouClient.getRanking(today.time, NarouRankingType.WEEKLY)
         .flatMap {
           val codes = it.map { it.ncode }.drop(range.first).take(range.count())
           narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
@@ -73,7 +73,7 @@ class RankingRemoteDataSource @Inject constructor(
   }
 
   override fun getMonthlyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> =
-      narouClient.getRanking(Date(), RankingType.MONTHLY)
+      narouClient.getRanking(Date(), NarouRankingType.MONTHLY)
           .flatMap {
             val codes = it.map { it.ncode }.drop(range.first).take(range.count())
             narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
@@ -82,7 +82,7 @@ class RankingRemoteDataSource @Inject constructor(
           .subscribeOn(schedulerProvider.io())
 
   override fun getQuarterRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> =
-      narouClient.getRanking(Date(), RankingType.QUARTET)
+      narouClient.getRanking(Date(), NarouRankingType.QUARTET)
           .flatMap {
             val codes = it.map { it.ncode }.drop(range.first).take(range.count())
             narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
