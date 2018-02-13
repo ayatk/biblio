@@ -19,6 +19,7 @@ package com.ayatk.biblio.di
 import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.domain.usecase.HomeLibraryUseCase
 import com.ayatk.biblio.domain.usecase.HomeLibraryUseCaseImpl
+import com.ayatk.biblio.util.rx.SchedulerProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -29,6 +30,7 @@ class UseCaseModule {
   @Singleton
   @Provides
   fun provideHomeLibraryUseCase(
-      repository: LibraryRepository
-  ): HomeLibraryUseCase = HomeLibraryUseCaseImpl(repository)
+      repository: LibraryRepository,
+      schedulerProvider: SchedulerProvider
+  ): HomeLibraryUseCase = HomeLibraryUseCaseImpl(repository, schedulerProvider)
 }

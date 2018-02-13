@@ -18,15 +18,23 @@ package com.ayatk.biblio.domain.usecase
 
 import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
+import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
 
 class HomeLibraryUseCaseImpl @Inject constructor(
-    private val repository: LibraryRepository
+    private val repository: LibraryRepository,
+    private val schedulerProvider: SchedulerProvider
 ) : HomeLibraryUseCase {
 
-  override val libraries: Single<List<Library>> = repository.findAll()
+  override val libraries: Single<List<Library>> =
+      repository
+          .findAll()
+          .subscribeOn(schedulerProvider.io())
 
-  override fun delete(id: Long): Completable = repository.delete(id)
+  override fun delete(id: Long): Completable =
+      repository
+          .delete(id)
+          .subscribeOn(schedulerProvider.io())
 }
