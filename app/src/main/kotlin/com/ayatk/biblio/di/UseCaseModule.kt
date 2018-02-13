@@ -14,25 +14,21 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.domain.repository
+package com.ayatk.biblio.di
 
-import com.ayatk.biblio.model.Library
-import com.ayatk.biblio.model.Novel
-import io.reactivex.Completable
-import io.reactivex.Maybe
-import io.reactivex.Single
+import com.ayatk.biblio.domain.repository.LibraryRepository
+import com.ayatk.biblio.domain.usecase.HomeLibraryUseCase
+import com.ayatk.biblio.domain.usecase.HomeLibraryUseCaseImpl
+import dagger.Module
+import dagger.Provides
+import javax.inject.Singleton
 
-interface LibraryRepository {
+@Module
+class UseCaseModule {
 
-  fun findAll(): Single<List<Library>>
-
-  fun find(novel: Novel): Maybe<Library>
-
-  fun save(library: Library): Completable
-
-  fun saveAll(libraries: List<Library>): Completable
-
-  fun updateAllAsync(novels: List<Novel>): Completable
-
-  fun delete(id: Long): Completable
+  @Singleton
+  @Provides
+  fun provideHomeLibraryUseCase(
+      repository: LibraryRepository
+  ): HomeLibraryUseCase = HomeLibraryUseCaseImpl(repository)
 }

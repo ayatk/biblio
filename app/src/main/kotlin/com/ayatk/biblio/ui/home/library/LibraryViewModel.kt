@@ -77,6 +77,7 @@ class LibraryViewModel @Inject constructor(
 
     loadLibraries()
         .map({ library -> convertToViewModel(library) })
+        .subscribeOn(schedulerProvider.io())
         .observeOn(schedulerProvider.ui())
         .subscribe(
             { viewModel ->
@@ -91,6 +92,7 @@ class LibraryViewModel @Inject constructor(
                 }
                 viewModel.toObservable()
                     .concatMap { indexDataSource.findAll(it.library.novel).toObservable() }
+                    .subscribeOn(schedulerProvider.io())
                     .observeOn(schedulerProvider.ui())
                     .subscribe(
                         {

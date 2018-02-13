@@ -24,19 +24,16 @@ import com.github.gfx.android.orma.annotation.OnConflict
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class LibraryLocalDataSource
-@Inject constructor(private val orma: OrmaDatabase) :
-    LibraryRepository {
+class LibraryLocalDataSource @Inject constructor(
+    private val orma: OrmaDatabase
+) : LibraryRepository {
 
-  override fun findAll(): Single<MutableList<Library>> {
+  override fun findAll(): Single<List<Library>> {
     return orma.selectFromLibrary()
         .executeAsObservable()
         .toList()
-        .subscribeOn(Schedulers.io())
   }
 
   override fun find(novel: Novel): Maybe<Library> {
@@ -44,43 +41,36 @@ class LibraryLocalDataSource
         .novelEq(novel)
         .executeAsObservable()
         .firstElement()
-        .subscribeOn(Schedulers.io())
   }
 
-  override fun save(library: Library): Completable {
-    return orma.transactionAsCompletable {
-      if (orma.relationOfNovel().codeEq(library.novel.code).isEmpty) {
-        orma.relationOfNovel().inserter().execute(library.novel)
-      }
-      orma.relationOfLibrary().inserter(OnConflict.REPLACE).execute(library)
-    }.subscribeOn(Schedulers.io())
-  }
-
-  override fun saveAll(libraries: List<Library>): Completable {
-    return orma.transactionAsCompletable {
-      libraries.forEach { library ->
-        if (orma.relationOfNovel().selector().codeEq(library.novel.code).isEmpty) {
+  override fun save(library: Library): Completable =
+      orma.transactionAsCompletable {
+        if (orma.relationOfNovel().codeEq(library.novel.code).isEmpty) {
           orma.relationOfNovel().inserter().execute(library.novel)
         }
         orma.relationOfLibrary().inserter(OnConflict.REPLACE).execute(library)
       }
-    }.subscribeOn(Schedulers.io())
-  }
 
-  override fun updateAllAsync(novels: List<Novel>) {
-    orma.transactionAsCompletable {
-      novels.forEach { orma.relationOfLibrary().upsert(Library(novel = it)) }
-    }
-        .subscribeOn(Schedulers.io())
-        .subscribe()
-  }
+  override fun saveAll(libraries: List<Library>): Completable =
+      orma.transactionAsCompletable {
+        libraries.forEach { library ->
+          if (orma.relationOfNovel().selector().codeEq(library.novel.code).isEmpty) {
+            orma.relationOfNovel().inserter().execute(library.novel)
+          }
+          orma.relationOfLibrary().inserter(OnConflict.REPLACE).execute(library)
+        }
+      }
 
-  override fun delete(novel: Novel): Single<Int> {
+  override fun updateAllAsync(novels: List<Novel>): Completable =
+      orma.transactionAsCompletable {
+        novels.forEach { orma.relationOfLibrary().upsert(Library(novel = it)) }
+      }
+
+  override fun delete(id: Long): Completable {
     return orma.relationOfLibrary()
         .deleter()
-        .novelEq(novel)
+        .idEq(id)
         .executeAsSingle()
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
+        .toCompletable()
   }
 }

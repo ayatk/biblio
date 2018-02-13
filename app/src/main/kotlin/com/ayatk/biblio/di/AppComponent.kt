@@ -34,6 +34,7 @@ import javax.inject.Singleton
       NetworkModule::class,
       HttpClientModule::class,
       UiModule::class,
+      UseCaseModule::class,
       ViewModelModule::class
     ]
 )

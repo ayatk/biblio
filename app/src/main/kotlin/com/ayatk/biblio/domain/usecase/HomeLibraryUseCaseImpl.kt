@@ -14,25 +14,19 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.domain.repository
+package com.ayatk.biblio.domain.usecase
 
+import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
-import com.ayatk.biblio.model.Novel
 import io.reactivex.Completable
-import io.reactivex.Maybe
 import io.reactivex.Single
+import javax.inject.Inject
 
-interface LibraryRepository {
+class HomeLibraryUseCaseImpl @Inject constructor(
+    private val repository: LibraryRepository
+) : HomeLibraryUseCase {
 
-  fun findAll(): Single<List<Library>>
+  override val libraries: Single<List<Library>> = repository.findAll()
 
-  fun find(novel: Novel): Maybe<Library>
-
-  fun save(library: Library): Completable
-
-  fun saveAll(libraries: List<Library>): Completable
-
-  fun updateAllAsync(novels: List<Novel>): Completable
-
-  fun delete(id: Long): Completable
+  override fun delete(id: Long): Completable = repository.delete(id)
 }

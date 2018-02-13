@@ -32,31 +32,24 @@ class LibraryDataSource @Inject constructor(
 
   private var cachedLibrary = emptyMap<String, Library>()
 
-  override fun findAll(): Single<MutableList<Library>> =
+  override fun findAll(): Single<List<Library>> =
       localDataSource.findAll()
-          .subscribeOn(schedulerProvider.io())
 
   override fun find(novel: Novel): Maybe<Library> =
       localDataSource.find(novel)
-          .subscribeOn(schedulerProvider.io())
 
   override fun save(library: Library): Completable {
     cachedLibrary.plus(Pair(library.id, library))
     return localDataSource.save(library)
-        .subscribeOn(schedulerProvider.io())
   }
 
   override fun saveAll(libraries: List<Library>): Completable {
     libraries.forEach { library -> cachedLibrary.plus(Pair(library.id, library)) }
     return localDataSource.saveAll(libraries)
-        .subscribeOn(schedulerProvider.io())
   }
 
-  override fun updateAllAsync(novels: List<Novel>) {
-    localDataSource.updateAllAsync(novels)
-  }
+  override fun updateAllAsync(novels: List<Novel>): Completable =
+      localDataSource.updateAllAsync(novels)
 
-  override fun delete(novel: Novel): Single<Int> =
-      localDataSource.delete(novel)
-          .subscribeOn(schedulerProvider.io())
+  override fun delete(id: Long): Completable = localDataSource.delete(id)
 }

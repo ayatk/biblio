@@ -51,6 +51,7 @@ class InfoViewModel @Inject constructor(
 
   fun start() {
     libraryRepository.find(novel)
+        .subscribeOn(schedulerProvider.io())
         .observeOn(schedulerProvider.ui())
         .subscribe(
             { library -> tags.postValue(library.tag) },
