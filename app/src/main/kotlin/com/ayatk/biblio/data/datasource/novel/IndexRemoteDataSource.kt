@@ -17,7 +17,7 @@
 package com.ayatk.biblio.data.datasource.novel
 
 import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.data.narou.entity.NarouIndex
+import com.ayatk.biblio.data.narou.entity.mapper.toIndex
 import com.ayatk.biblio.domain.repository.IndexRepository
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
@@ -33,7 +33,7 @@ class IndexRemoteDataSource
 
   override fun findAll(novel: Novel): Single<List<Index>> {
     return client.getTableOfContents(novel.code)
-        .map { convertNarouToModel(novel, it) }
+        .map { it.toIndex(novel) }
   }
 
   override fun find(novel: Novel, page: Int): Maybe<Index> {
@@ -50,21 +50,5 @@ class IndexRemoteDataSource
 
   override fun delete(novel: Novel): Single<Int> {
     return Single.create { /* no-op */ }
-  }
-
-  private fun convertNarouToModel(
-      novel: Novel, narouTables: List<NarouIndex>
-  ): List<Index> {
-    return narouTables.map {
-      Index(
-          id = "${novel.code}-${it.id}",
-          novel = novel,
-          title = it.title,
-          isChapter = it.isChapter,
-          page = it.page,
-          publishDate = it.publishDate,
-          lastUpdate = it.lastUpdate
-      )
-    }
   }
 }
