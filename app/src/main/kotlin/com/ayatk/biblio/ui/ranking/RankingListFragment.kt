@@ -18,8 +18,6 @@ package com.ayatk.biblio.ui.ranking
 
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
-import android.databinding.ObservableList
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -31,12 +29,17 @@ import android.view.ViewGroup
 import androidx.os.bundleOf
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.FragmentRankingListBinding
-import com.ayatk.biblio.databinding.ViewRankingListItemBinding
+import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.RankingType
-import com.ayatk.biblio.ui.util.customview.BindingHolder
-import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
-import com.ayatk.biblio.util.ext.observeNonNull
+import com.ayatk.biblio.ui.ranking.item.RankingItem
+import com.ayatk.biblio.util.Result
+import com.ayatk.biblio.util.ext.observe
+import com.ayatk.biblio.util.ext.setVisible
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Section
+import com.xwray.groupie.ViewHolder
 import dagger.android.support.DaggerFragment
+import timber.log.Timber
 import javax.inject.Inject
 
 class RankingListFragment : DaggerFragment() {
@@ -54,53 +57,52 @@ class RankingListFragment : DaggerFragment() {
     arguments?.getSerializable(ARG_RANKING_TYPE)!! as RankingType
   }
 
+  private val rankingSection = Section()
+  private val onClickListener = { novel: Novel ->
+    // TODO
+  }
+
   override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
     binding = FragmentRankingListBinding.inflate(inflater, container, false)
 
-    viewModel.onCreate(rankingType)
+    return binding.root
+  }
 
+  override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
+    initRecyclerView()
+
+    viewModel.rankings(rankingType).observe(this, { result ->
+      when (result) {
+        is Result.Success -> {
+          val rankings = result.data
+          rankingSection.update(rankings.map {
+            RankingItem(it, onClickListener)
+          })
+          binding.progress.setVisible(rankings.isEmpty())
+          binding.list.setVisible(rankings.isNotEmpty())
+        }
+        is Result.Failure -> {
+          Timber.e(result.e)
+        }
+      }
+    })
+  }
+
+  private fun initRecyclerView() {
     val divider = DividerItemDecoration(context, 1)
     ContextCompat.getDrawable(context!!, R.drawable.divider)?.let { divider.setDrawable(it) }
 
     binding.list.apply {
-      adapter = RankingAdapter(context, viewModel.rankingItemViewModels)
+      adapter = GroupAdapter<ViewHolder>().apply {
+        add(rankingSection)
+      }
       setHasFixedSize(true)
       addItemDecoration(divider)
       layoutManager = LinearLayoutManager(context)
-    }
-
-    viewModel.progressVisibility.observeNonNull(this, { visibility ->
-      binding.progress.visibility = visibility
-    })
-
-    return binding.root
-  }
-
-  private class RankingAdapter(
-      context: Context, list: ObservableList<RankingItemViewModel>
-  ) : ObservableListRecyclerAdapter<RankingItemViewModel, BindingHolder<ViewRankingListItemBinding>>(
-      context, list
-  ) {
-
-    init {
-      setHasStableIds(false)
-    }
-
-    override fun onCreateViewHolder(
-        parent: ViewGroup, viewType: Int
-    ): BindingHolder<ViewRankingListItemBinding> =
-        BindingHolder(context, parent, R.layout.view_ranking_list_item)
-
-    override fun onBindViewHolder(
-        holder: BindingHolder<ViewRankingListItemBinding>, position: Int
-    ) {
-      holder.binding.apply {
-        viewModel = getItem(position)
-        executePendingBindings()
-      }
     }
   }
 

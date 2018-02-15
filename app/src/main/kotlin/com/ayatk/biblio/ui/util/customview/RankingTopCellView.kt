@@ -20,12 +20,15 @@ import android.content.Context
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.content.systemService
 import com.ayatk.biblio.R
 import com.ayatk.biblio.model.Ranking
+import com.ayatk.biblio.model.enums.RankingType
+import com.ayatk.biblio.ui.ranking.RankingActivity
 import com.ayatk.biblio.ui.util.helper.DataBindingHelper.rankingIcon
 import com.ayatk.biblio.ui.util.helper.DataBindingHelper.rankingText
 
@@ -39,12 +42,14 @@ class RankingTopCellView @JvmOverloads constructor(
 
   private val container: LinearLayout
   private val titleView: TextView
+  private val readMore: Button
+  lateinit var rankingType: RankingType
 
   private val array by lazy {
     context.theme.obtainStyledAttributes(attrs, R.styleable.RankingTopCellView, 0, 0)
   }
 
-  var title = array.getString(R.styleable.RankingTopCellView_setRankingTitle)
+  private var title = array.getString(R.styleable.RankingTopCellView_setRankingTitle)
     set(value) {
       field = value
       titleView.text = value
@@ -54,7 +59,11 @@ class RankingTopCellView @JvmOverloads constructor(
     LayoutInflater.from(context).inflate(R.layout.view_ranking_top_cell, this)
     container = findViewById(R.id.ranking_container)
     titleView = findViewById(R.id.ranking_title)
+    readMore = findViewById(R.id.read_more)
     titleView.text = title
+    readMore.setOnClickListener {
+      context.startActivity(RankingActivity.createIntent(context, rankingType))
+    }
   }
 
   fun setRankings(rankings: List<Ranking>?) {

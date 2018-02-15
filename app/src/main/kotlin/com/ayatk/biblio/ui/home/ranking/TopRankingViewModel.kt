@@ -62,24 +62,4 @@ class TopRankingViewModel @Inject constructor(
         .toResult(schedulerProvider)
         .toLiveData()
   }
-
-//  fun onClickDailyRank(context: Context) {
-//    context.startActivity(RankingActivity.createIntent(context, RankingType.DAILY))
-//  }
-//
-//  fun onClickWeeklyRank(context: Context) {
-//    context.startActivity(RankingActivity.createIntent(context, RankingType.WEEKLY))
-//  }
-//
-//  fun onClickMonthlyRank(context: Context) {
-//    context.startActivity(RankingActivity.createIntent(context, RankingType.MONTHLY))
-//  }
-//
-//  fun onClickQuarterRank(context: Context) {
-//    context.startActivity(RankingActivity.createIntent(context, RankingType.QUARTET))
-//  }
-//
-//  fun onClickAllRank(context: Context) {
-//    context.startActivity(RankingActivity.createIntent(context, RankingType.ALL))
-//  }
 }

@@ -14,19 +14,21 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.ui.ranking
+package com.ayatk.biblio.domain.usecase
 
-import android.content.Context
-import android.databinding.BaseObservable
 import com.ayatk.biblio.model.Ranking
-import com.ayatk.biblio.model.enums.NovelState
-import com.ayatk.biblio.util.DateFormat
+import com.ayatk.biblio.model.enums.Publisher
+import com.ayatk.biblio.model.enums.RankingType
+import io.reactivex.Flowable
 
-class RankingItemViewModel(val ranking: Ranking) : BaseObservable() {
-  val lastUpdate: String = DateFormat.yyyyMMddkkmm.format(ranking.novel.lastUpdateDate)
-
-  val isShortStory = ranking.novel.novelState == NovelState.SHORT_STORY
-
-  fun onItemClick(context: Context) {
-  }
+interface RankingUseCase {
+  /**
+   * ランキング画面で使うランキングを取得する
+   *
+   * @param publisher ランキングを取ってくるサイト
+   * @param rankingType 日間や月間などのランキングタイプ
+   *
+   * @return 指定したランキング300件分
+   */
+  fun ranking(publisher: Publisher, rankingType: RankingType): Flowable<List<Ranking>>
 }

@@ -22,15 +22,15 @@
   <data>
 
     <variable
-        name="viewModel"
-        type="com.ayatk.biblio.ui.ranking.RankingItemViewModel"/>
+        name="ranking"
+        type="com.ayatk.biblio.model.Ranking"/>
   </data>
 
   <android.support.constraint.ConstraintLayout
+      android:id="@+id/ranking_item"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:background="?attr/selectableItemBackground"
-      android:onClick="@{() -> viewModel.onItemClick(context)}"
       android:padding="@dimen/space_16dp">
 
     <ImageView
@@ -41,7 +41,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:rankingIcon="@{viewModel.ranking}"
+        app:rankingIcon="@{ranking}"
         tools:visibility="visible"/>
 
     <TextView
@@ -53,7 +53,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:rankingText="@{viewModel.ranking}"
+        app:rankingText="@{ranking}"
         tools:text="123"/>
 
     <TextView
@@ -62,19 +62,19 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:lines="1"
-        android:text="@{viewModel.ranking.novel.title}"
-        app:layout_constraintRight_toLeftOf="@+id/last_update"
+        android:text="@{ranking.novel.title}"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="悪役令嬢、庶民に堕ちる"
         app:layout_constraintStart_toEndOf="@+id/rank"
         android:layout_marginStart="16dp"
-        android:layout_marginRight="8dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <TextView
         android:id="@+id/novel_writer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{viewModel.ranking.novel.writer}"
+        android:text="@{ranking.novel.writer}"
         android:textColor="@color/grey500"
         android:textSize="@dimen/text_12sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/point"
@@ -83,24 +83,11 @@
         android:layout_marginStart="16dp"/>
 
     <TextView
-        android:id="@+id/last_update"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:text="@{viewModel.lastUpdate}"
-        android:textColor="@color/grey500"
-        android:textSize="@dimen/text_12sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/novel_title"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:text="2017/03/01 07:00"/>
-
-    <TextView
         android:id="@+id/read_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{String.format(@string/novel_ranking_progress, viewModel.ranking.novel.totalPages)}"
+        android:text="@{String.format(@string/novel_ranking_progress, ranking.novel.totalPages)}"
         android:textSize="12sp"
-        android:visibility="@{viewModel.shortStory ? android.view.View.GONE : android.view.View.VISIBLE}"
         app:layout_constraintBaseline_toBaselineOf="@+id/point"
         app:layout_constraintRight_toLeftOf="@+id/novel_type"
         android:layout_marginRight="8dp"/>
@@ -109,7 +96,7 @@
         android:id="@+id/novel_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{viewModel.ranking.novel.novelState.stateName}"
+        android:text="@{ranking.novel.novelState.stateName}"
         android:textSize="12sp"
         tools:text="連載中"
         app:layout_constraintBaseline_toBaselineOf="@+id/point"
@@ -122,7 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:padding="@dimen/space_4dp"
-        android:text="@{String.format(@string/novel_ranking_point, viewModel.ranking.point)}"
+        android:text="@{String.format(@string/novel_ranking_point, ranking.point)}"
         android:textSize="12sp"
         app:layout_constraintTop_toBottomOf="@+id/novel_title"
         tools:text="1234pt"

@@ -14,28 +14,34 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.ui.ranking
+package com.ayatk.biblio.domain.usecase
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
-import com.ayatk.biblio.domain.usecase.RankingUseCase
+import com.ayatk.biblio.domain.repository.RankingRepository
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.model.enums.RankingType
-import com.ayatk.biblio.ui.util.toResult
-import com.ayatk.biblio.util.Result
-import com.ayatk.biblio.util.ext.toLiveData
 import com.ayatk.biblio.util.rx.SchedulerProvider
+import io.reactivex.Flowable
 import javax.inject.Inject
 
-class RankingViewModel @Inject constructor(
-    private val useCase: RankingUseCase,
+class RankingUseCaseImpl @Inject constructor(
+    private val repository: RankingRepository,
     private val schedulerProvider: SchedulerProvider
-) : ViewModel() {
+) : RankingUseCase {
 
-  fun rankings(rankingType: RankingType): LiveData<Result<List<Ranking>>> {
-    return useCase.ranking(Publisher.NAROU, rankingType)
-        .toResult(schedulerProvider)
-        .toLiveData()
+  companion object {
+    private const val RANK_SIZE = 300
+  }
+
+  override fun ranking(publisher: Publisher, rankingType: RankingType): Flowable<List<Ranking>> {
+    return when (publisher) {
+      Publisher.NAROU ->
+        repository.narouRanking(rankingType, 0 until RANK_SIZE)
+            .subscribeOn(schedulerProvider.io())
+
+      Publisher.NOCTURNE_MOONLIGHT ->
+        repository.nocturneRanking(rankingType, 0 until RANK_SIZE)
+            .subscribeOn(schedulerProvider.io())
+    }
   }
 }

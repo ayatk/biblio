@@ -17,26 +17,19 @@
 package com.ayatk.biblio.data.datasource.ranking
 
 import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.data.narou.entity.NarouRanking
 import com.ayatk.biblio.data.narou.entity.enums.NarouRankingType
 import com.ayatk.biblio.data.narou.entity.enums.OutputOrder
 import com.ayatk.biblio.data.narou.entity.mapper.toRanking
 import com.ayatk.biblio.data.narou.util.QueryBuilder
 import com.ayatk.biblio.domain.repository.RankingRepository
-import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.Ranking
-import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.model.enums.RankingType
-import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.Flowable
-import io.reactivex.Single
 import java.util.Calendar
-import java.util.Date
 import javax.inject.Inject
 
 class RankingRemoteDataSource @Inject constructor(
-    private val narouClient: NarouClient,
-    private val schedulerProvider: SchedulerProvider
+    private val narouClient: NarouClient
 ) : RankingRepository {
 
   companion object {
