@@ -32,4 +32,3 @@ fun List<NarouIndex>.toIndex(novel: Novel): List<Index> =
           lastUpdate = it.lastUpdate
       )
     }
-
