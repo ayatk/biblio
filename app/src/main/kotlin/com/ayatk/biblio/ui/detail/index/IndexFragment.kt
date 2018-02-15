@@ -30,7 +30,7 @@ import androidx.os.bundleOf
 import com.ayatk.biblio.R
 import com.ayatk.biblio.R.layout
 import com.ayatk.biblio.databinding.FragmentIndexBinding
-import com.ayatk.biblio.databinding.ViewIndexItemBinding
+import com.ayatk.biblio.databinding.ItemIndexBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.util.customview.BindingHolder
@@ -95,7 +95,7 @@ class IndexFragment : DaggerFragment() {
   private inner class TableAdapter constructor(
       context: Context, list: ObservableList<IndexItemViewModel>
   ) :
-      ObservableListRecyclerAdapter<IndexItemViewModel, BindingHolder<ViewIndexItemBinding>>(
+      ObservableListRecyclerAdapter<IndexItemViewModel, BindingHolder<ItemIndexBinding>>(
           context, list
       ) {
 
@@ -105,10 +105,10 @@ class IndexFragment : DaggerFragment() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
-    ): BindingHolder<ViewIndexItemBinding> =
-        BindingHolder(context, parent, layout.view_index_item)
+    ): BindingHolder<ItemIndexBinding> =
+        BindingHolder(context, parent, layout.item_index)
 
-    override fun onBindViewHolder(holder: BindingHolder<ViewIndexItemBinding>, position: Int) {
+    override fun onBindViewHolder(holder: BindingHolder<ItemIndexBinding>, position: Int) {
       holder.binding.apply {
         viewModel = getItem(position)
         executePendingBindings()

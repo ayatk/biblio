@@ -17,7 +17,7 @@
 package com.ayatk.biblio.ui.ranking.item
 
 import com.ayatk.biblio.R
-import com.ayatk.biblio.databinding.ViewRankingListItemBinding
+import com.ayatk.biblio.databinding.ItemRankingListBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.NovelState
@@ -27,11 +27,11 @@ import com.xwray.groupie.databinding.BindableItem
 class RankingItem(
     private val ranking: Ranking,
     private val onClickListener: (Novel) -> Unit
-) : BindableItem<ViewRankingListItemBinding>(ranking.rank.toLong()) {
+) : BindableItem<ItemRankingListBinding>(ranking.rank.toLong()) {
 
-  override fun getLayout(): Int = R.layout.view_ranking_list_item
+  override fun getLayout(): Int = R.layout.item_ranking_list
 
-  override fun bind(viewBinding: ViewRankingListItemBinding, position: Int) {
+  override fun bind(viewBinding: ItemRankingListBinding, position: Int) {
     viewBinding.ranking = ranking
     viewBinding.rankingItem.setOnClickListener {
       onClickListener(ranking.novel)

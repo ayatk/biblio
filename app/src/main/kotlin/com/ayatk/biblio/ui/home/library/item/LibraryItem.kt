@@ -18,7 +18,7 @@ package com.ayatk.biblio.ui.home.library.item
 
 import com.ayatk.biblio.R
 import com.ayatk.biblio.data.DefaultPrefs
-import com.ayatk.biblio.databinding.ViewLibraryItemBinding
+import com.ayatk.biblio.databinding.ItemLibraryBinding
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.NovelState
@@ -30,11 +30,11 @@ class LibraryItem(
     private val library: Library,
     private val defaultPrefs: DefaultPrefs,
     private val onClickListener: (Novel) -> Unit
-) : BindableItem<ViewLibraryItemBinding>(library.id) {
+) : BindableItem<ItemLibraryBinding>(library.id) {
 
-  override fun getLayout(): Int = R.layout.view_library_item
+  override fun getLayout(): Int = R.layout.item_library
 
-  override fun bind(viewBinding: ViewLibraryItemBinding, position: Int) {
+  override fun bind(viewBinding: ItemLibraryBinding, position: Int) {
     viewBinding.let {
       it.library = library
       it.libraryItem.setOnClickListener {
