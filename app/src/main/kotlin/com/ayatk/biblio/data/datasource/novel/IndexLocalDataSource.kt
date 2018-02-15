@@ -23,42 +23,35 @@ import com.ayatk.biblio.model.OrmaDatabase
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class IndexLocalDataSource
-@Inject constructor(val orma: OrmaDatabase) : IndexRepository {
+class IndexLocalDataSource @Inject constructor(
+    val orma: OrmaDatabase
+) : IndexRepository {
 
-  override fun findAll(novel: Novel): Single<List<Index>> {
-    return orma.selectFromIndex()
-        .novelEq(novel)
-        .executeAsObservable()
-        .toList()
-        .subscribeOn(Schedulers.io())
-  }
+  override fun findAll(novel: Novel): Single<List<Index>> =
+      orma.selectFromIndex()
+          .novelEq(novel)
+          .executeAsObservable()
+          .toList()
 
-  override fun find(novel: Novel, page: Int): Maybe<Index> {
-    return orma.selectFromIndex()
-        .novelEq(novel)
-        .page(page.toLong())
-        .executeAsObservable()
-        .firstElement()
-        .subscribeOn(Schedulers.io())
-  }
+  override fun find(novel: Novel, page: Int): Maybe<Index> =
+      orma.selectFromIndex()
+          .novelEq(novel)
+          .page(page.toLong())
+          .executeAsObservable()
+          .firstElement()
 
-  override fun save(indices: List<Index>): Completable {
-    return orma.transactionAsCompletable {
-      indices.map {
-        orma.relationOfIndex().upsert(it)
+  override fun save(indices: List<Index>): Completable =
+      orma.transactionAsCompletable {
+        indices.map {
+          orma.relationOfIndex().upsert(it)
+        }
       }
-    }.subscribeOn(Schedulers.io())
-  }
 
-  override fun delete(novel: Novel): Single<Int> {
-    return orma.relationOfIndex()
-        .deleter()
-        .novelEq(novel)
-        .executeAsSingle()
-        .subscribeOn(Schedulers.io())
-  }
+  override fun delete(novel: Novel): Single<Int> =
+      orma.relationOfIndex()
+          .deleter()
+          .novelEq(novel)
+          .executeAsSingle()
 }

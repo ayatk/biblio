@@ -73,6 +73,7 @@ class SearchViewModel @Inject constructor(
       compositeDisposable.clear()
       narouClient.getNovel(builtQuery)
           .map({ novels -> convertToViewModel(novels) })
+          .subscribeOn(schedulerProvider.io())
           .observeOn(schedulerProvider.ui())
           .subscribe(
               { viewModels ->

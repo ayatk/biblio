@@ -80,7 +80,10 @@ class InfoViewModel @Inject constructor(
         .setTitle("タグの追加")
         .setView(editView)
         .setPositiveButton("OK") { _, _ ->
-          libraryRepository.save(Library(novel = novel, tag = editView.tags)).subscribe()
+          libraryRepository.save(Library(novel = novel, tag = editView.tags))
+              .subscribeOn(schedulerProvider.io())
+              .observeOn(schedulerProvider.ui())
+              .subscribe()
           tags.postValue(editView.tags)
           imm.hideSoftInputFromWindow(editView.windowToken, 0)
         }
@@ -90,6 +93,8 @@ class InfoViewModel @Inject constructor(
         .create()
 
     libraryRepository.find(novel)
+        .subscribeOn(schedulerProvider.io())
+        .observeOn(schedulerProvider.ui())
         .subscribe({ library -> editView.setTags(*library.tag.toTypedArray()) })
         .addTo(compositeDisposable)
 

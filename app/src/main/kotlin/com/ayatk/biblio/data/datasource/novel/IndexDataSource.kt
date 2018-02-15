@@ -19,7 +19,6 @@ package com.ayatk.biblio.data.datasource.novel
 import com.ayatk.biblio.domain.repository.IndexRepository
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.util.rx.SchedulerProvider
 import com.ayatk.biblio.util.rx.toSingle
 import io.reactivex.Completable
 import io.reactivex.Maybe
@@ -30,32 +29,23 @@ import javax.inject.Singleton
 @Singleton
 class IndexDataSource @Inject constructor(
     private val localDataSource: IndexLocalDataSource,
-    private val remoteDataSource: IndexRemoteDataSource,
-    private val schedulerProvider: SchedulerProvider
+    private val remoteDataSource: IndexRemoteDataSource
 ) : IndexRepository {
 
   var isDirty = false
 
   override fun findAll(novel: Novel): Single<List<Index>> =
       if (isDirty) findAllFromRemote(novel) else findAllFromLocal(novel)
-          .subscribeOn(schedulerProvider.io())
 
-  override fun find(novel: Novel, page: Int): Maybe<Index> =
-      localDataSource.find(novel, page)
-          .subscribeOn(schedulerProvider.io())
+  override fun find(novel: Novel, page: Int): Maybe<Index> = localDataSource.find(novel, page)
 
-  override fun save(indices: List<Index>): Completable =
-      localDataSource.save(indices)
-          .subscribeOn(schedulerProvider.io())
+  override fun save(indices: List<Index>): Completable = localDataSource.save(indices)
 
-  override fun delete(novel: Novel): Single<Int> =
-      localDataSource.delete(novel)
-          .subscribeOn(schedulerProvider.io())
+  override fun delete(novel: Novel): Single<Int> = localDataSource.delete(novel)
 
   private fun findAllFromRemote(novel: Novel): Single<List<Index>> =
       remoteDataSource.findAll(novel)
           .doOnSuccess(this::updateAllAsync)
-          .subscribeOn(schedulerProvider.io())
 
   private fun findAllFromLocal(novel: Novel): Single<List<Index>> =
       localDataSource.findAll(novel)
@@ -65,7 +55,6 @@ class IndexDataSource @Inject constructor(
             }
             return@flatMap it.toSingle()
           }
-          .subscribeOn(schedulerProvider.io())
 
   private fun updateAllAsync(indices: List<Index>) {
     localDataSource.save(indices).subscribe()

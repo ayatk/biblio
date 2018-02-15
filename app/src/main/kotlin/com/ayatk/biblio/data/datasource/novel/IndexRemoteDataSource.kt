@@ -24,9 +24,7 @@ import com.ayatk.biblio.model.Novel
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.toObservable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class IndexRemoteDataSource
@@ -36,8 +34,6 @@ class IndexRemoteDataSource
   override fun findAll(novel: Novel): Single<List<Index>> {
     return client.getTableOfContents(novel.code)
         .map { convertNarouToModel(novel, it) }
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
   }
 
   override fun find(novel: Novel, page: Int): Maybe<Index> {
