@@ -21,17 +21,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
   <data>
-
     <variable
-        name="viewModel"
-        type="com.ayatk.biblio.ui.home.library.LibraryItemViewModel"/>
+        name="library"
+        type="com.ayatk.biblio.model.Library"/>
   </data>
 
   <android.support.constraint.ConstraintLayout
+      android:id="@+id/library_item"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:background="?attr/selectableItemBackground"
-      android:onClick="@{() -> viewModel.onItemClick(context)}"
       android:padding="@dimen/space_16dp">
 
     <TextView
@@ -43,7 +42,7 @@
         android:layout_marginTop="0dp"
         android:ellipsize="end"
         android:lines="1"
-        android:text="@{viewModel.library.novel.title}"
+        android:text="@{library.novel.title}"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/last_update"
@@ -55,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
-        android:text="@{viewModel.library.novel.writer}"
+        android:text="@{library.novel.writer}"
         android:textColor="@color/grey500"
         android:textSize="@dimen/text_12sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
@@ -67,7 +66,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="0dp"
-        android:text="@{viewModel.lastUpdate}"
         android:textColor="@color/grey500"
         android:textSize="@dimen/text_12sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/novel_title"
@@ -82,7 +80,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
         android:padding="@dimen/space_4dp"
-        android:text="@{viewModel.library.novel.publisher.siteName}"
+        android:text="@{library.novel.publisher.siteName}"
         android:textSize="12sp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/novel_title"
@@ -93,9 +91,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="@{String.format(@string/novel_progress, 0, viewModel.library.novel.totalPages)}"
+        android:text="@{String.format(@string/novel_progress, 0, library.novel.totalPages)}"
         android:textSize="12sp"
-        android:visibility="@{viewModel.shortStory ? android.view.View.GONE : android.view.View.VISIBLE}"
         app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
         app:layout_constraintRight_toLeftOf="@+id/novel_type"/>
 
@@ -104,17 +101,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="@{viewModel.library.novel.novelState.stateName}"
+        android:text="@{library.novel.novelState.stateName}"
         android:textSize="12sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
         app:layout_constraintRight_toLeftOf="@+id/publisher"
         tools:text="連載中"/>
 
     <LinearLayout
+        android:id="@+id/tag_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:visibility="@{viewModel.showTag ? android.view.View.VISIBLE : android.view.View.GONE}"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/publisher">
@@ -137,7 +134,7 @@
           android:layout_weight="1"
           app:flexDirection="row"
           app:flexWrap="wrap"
-          app:tags="@{viewModel.library.tag}">
+          app:tags="@{library.tag}">
 
       </com.google.android.flexbox.FlexboxLayout>
     </LinearLayout>

@@ -19,24 +19,20 @@ package com.ayatk.biblio.data.datasource.library
 import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Maybe
-import io.reactivex.Single
 import javax.inject.Inject
 
 class LibraryDataSource @Inject constructor(
-    private val localDataSource: LibraryLocalDataSource,
-    private val schedulerProvider: SchedulerProvider
+    private val localDataSource: LibraryLocalDataSource
 ) : LibraryRepository {
 
   private var cachedLibrary = emptyMap<String, Library>()
 
-  override fun findAll(): Single<List<Library>> =
-      localDataSource.findAll()
+  override fun findAll(): Flowable<List<Library>> = localDataSource.findAll()
 
-  override fun find(novel: Novel): Maybe<Library> =
-      localDataSource.find(novel)
+  override fun find(novel: Novel): Maybe<Library> = localDataSource.find(novel)
 
   override fun save(library: Library): Completable {
     cachedLibrary.plus(Pair(library.id, library))

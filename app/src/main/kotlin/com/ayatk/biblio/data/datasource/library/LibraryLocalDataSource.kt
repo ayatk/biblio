@@ -22,18 +22,19 @@ import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.OrmaDatabase
 import com.github.gfx.android.orma.annotation.OnConflict
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Maybe
-import io.reactivex.Single
 import javax.inject.Inject
 
 class LibraryLocalDataSource @Inject constructor(
     private val orma: OrmaDatabase
 ) : LibraryRepository {
 
-  override fun findAll(): Single<List<Library>> {
+  override fun findAll(): Flowable<List<Library>> {
     return orma.selectFromLibrary()
         .executeAsObservable()
         .toList()
+        .toFlowable()
   }
 
   override fun find(novel: Novel): Maybe<Library> {

@@ -16,37 +16,31 @@
 
 package com.ayatk.biblio.ui.home.library
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.databinding.ObservableArrayList
-import android.view.View
-import com.ayatk.biblio.data.DefaultPrefs
-import com.ayatk.biblio.data.datasource.novel.IndexDataSource
-import com.ayatk.biblio.data.datasource.novel.NovelDataSource
-import com.ayatk.biblio.domain.repository.LibraryRepository
+import com.ayatk.biblio.domain.usecase.HomeLibraryUseCase
 import com.ayatk.biblio.model.Library
-import com.ayatk.biblio.model.enums.Publisher
+import com.ayatk.biblio.ui.util.toResult
+import com.ayatk.biblio.util.Result
+import com.ayatk.biblio.util.ext.toLiveData
 import com.ayatk.biblio.util.rx.SchedulerProvider
-import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.rxkotlin.toObservable
-import timber.log.Timber
 import javax.inject.Inject
 
 class LibraryViewModel @Inject constructor(
-    private val libraryRepository: LibraryRepository,
-    private val novelDataSource: NovelDataSource,
-    private val indexDataSource: IndexDataSource,
-    private val defaultPrefs: DefaultPrefs,
+    private val useCase: HomeLibraryUseCase,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
   private val compositeDisposable = CompositeDisposable()
 
-  var libraryViewModels = ObservableArrayList<LibraryItemViewModel>()
-  var emptyViewVisibility = MutableLiveData<Int>()
-  var recyclerViewVisibility = MutableLiveData<Int>()
+  val libraries: LiveData<Result<List<Library>>> by lazy {
+    useCase.libraries
+        .toResult(schedulerProvider)
+        .toLiveData()
+  }
+
   var refreshing = MutableLiveData<Boolean>()
 
   override fun onCleared() {
@@ -54,68 +48,6 @@ class LibraryViewModel @Inject constructor(
   }
 
   fun onSwipeRefresh() {
-    start(true)
-  }
-
-  private fun loadLibraries(): Single<List<Library>> {
-    return libraryRepository.findAll()
-        // 最終更新日時順でソート
-        .map({ libraries -> libraries.sortedByDescending { (_, novel) -> novel.lastUpdateDate } })
-  }
-
-  private fun convertToViewModel(libraries: List<Library>): List<LibraryItemViewModel> {
-    return libraries.map { library ->
-      LibraryItemViewModel(library, defaultPrefs)
-    }
-  }
-
-  fun start(refresh: Boolean) {
-    if (refresh) {
-      novelDataSource.isDirty = true
-      indexDataSource.isDirty = true
-    }
-
-    loadLibraries()
-        .map({ library -> convertToViewModel(library) })
-        .subscribeOn(schedulerProvider.io())
-        .observeOn(schedulerProvider.ui())
-        .subscribe(
-            { viewModel ->
-              if (refresh) {
-                Publisher.values().map { pub ->
-                  novelDataSource.findAll(
-                      viewModel
-                          .filter { it.library.novel.publisher == pub }
-                          .map { it.library.novel.code }, pub
-                  )
-                      .subscribe()
-                }
-                viewModel.toObservable()
-                    .concatMap { indexDataSource.findAll(it.library.novel).toObservable() }
-                    .subscribeOn(schedulerProvider.io())
-                    .observeOn(schedulerProvider.ui())
-                    .subscribe(
-                        {
-                          refreshing.postValue(false)
-                          novelDataSource.isDirty = false
-                          indexDataSource.isDirty = false
-                        }
-                    )
-                    .addTo(compositeDisposable)
-              }
-              renderLibraries(viewModel)
-            },
-            { throwable -> Timber.e(throwable, "Failed to show libraries.") }
-        )
-        .addTo(compositeDisposable)
-  }
-
-  private fun renderLibraries(libraryViewModels: List<LibraryItemViewModel>) {
-    if (this.libraryViewModels != libraryViewModels) {
-      this.libraryViewModels.clear()
-      this.libraryViewModels.addAll(libraryViewModels)
-    }
-    this.emptyViewVisibility.postValue(if (this.libraryViewModels.size > 0) View.GONE else View.VISIBLE)
-    this.recyclerViewVisibility.postValue(if (this.libraryViewModels.size > 0) View.VISIBLE else View.GONE)
+    refreshing.postValue(false)
   }
 }

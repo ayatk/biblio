@@ -14,25 +14,19 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.domain.repository
+package com.ayatk.biblio.util
 
-import com.ayatk.biblio.model.Library
-import com.ayatk.biblio.model.Novel
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Maybe
+sealed class Result<T>(val inProgress: Boolean) {
 
-interface LibraryRepository {
+  class InProgress<T> : Result<T>(true)
+  data class Success<T>(var data: T) : Result<T>(false)
+  data class Failure<T>(val errorMessage: String?, val e: Throwable) : Result<T>(false)
 
-  fun findAll(): Flowable<List<Library>>
+  companion object {
+    fun <T> inProgress(): Result<T> = InProgress()
 
-  fun find(novel: Novel): Maybe<Library>
+    fun <T> success(data: T): Result<T> = Success(data)
 
-  fun save(library: Library): Completable
-
-  fun saveAll(libraries: List<Library>): Completable
-
-  fun updateAllAsync(novels: List<Novel>): Completable
-
-  fun delete(id: Long): Completable
+    fun <T> failure(errorMessage: String, e: Throwable): Result<T> = Failure(errorMessage, e)
+  }
 }

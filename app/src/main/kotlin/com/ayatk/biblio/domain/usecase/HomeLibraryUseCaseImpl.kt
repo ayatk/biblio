@@ -16,25 +16,36 @@
 
 package com.ayatk.biblio.domain.usecase
 
+import android.support.annotation.CheckResult
 import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.Completable
-import io.reactivex.Single
+import io.reactivex.Flowable
 import javax.inject.Inject
 
 class HomeLibraryUseCaseImpl @Inject constructor(
-    private val repository: LibraryRepository,
+    private val libraryRepository: LibraryRepository,
     private val schedulerProvider: SchedulerProvider
 ) : HomeLibraryUseCase {
 
-  override val libraries: Single<List<Library>> =
-      repository
+  override val libraries: Flowable<List<Library>> =
+      libraryRepository
           .findAll()
+          .map { it.sortedByDescending { it.novel.lastUpdateDate } } // 日付順でそーと
           .subscribeOn(schedulerProvider.io())
 
+//  @CheckResult
+//  override fun refresh(): Completable =
+//      libraryRepository.findAll()
+//          .flatMapCompletable {
+//
+//            libraryRepository.updateAllAsync(it.map { it.novel })
+//          }
+
+  @CheckResult
   override fun delete(id: Long): Completable =
-      repository
+      libraryRepository
           .delete(id)
           .subscribeOn(schedulerProvider.io())
 }

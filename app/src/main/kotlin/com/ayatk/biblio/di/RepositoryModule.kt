@@ -45,10 +45,8 @@ class RepositoryModule {
   @Singleton
   @Provides
   fun provideLibraryRepository(
-      localDataSource: LibraryLocalDataSource,
-      schedulerProvider: SchedulerProvider
-  ): LibraryRepository =
-      LibraryDataSource(localDataSource, schedulerProvider)
+      localDataSource: LibraryLocalDataSource
+  ): LibraryRepository = LibraryDataSource(localDataSource)
 
   @Singleton
   @Provides

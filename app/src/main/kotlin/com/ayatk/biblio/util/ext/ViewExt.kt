@@ -14,25 +14,24 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.domain.repository
+package com.ayatk.biblio.util.ext
 
-import com.ayatk.biblio.model.Library
-import com.ayatk.biblio.model.Novel
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Maybe
+import android.view.View
 
-interface LibraryRepository {
+fun View.setVisible(visible: Boolean) = if (visible) toVisible() else toGone()
 
-  fun findAll(): Flowable<List<Library>>
-
-  fun find(novel: Novel): Maybe<Library>
-
-  fun save(library: Library): Completable
-
-  fun saveAll(libraries: List<Library>): Completable
-
-  fun updateAllAsync(novels: List<Novel>): Completable
-
-  fun delete(id: Long): Completable
+fun View.toVisible() {
+  visibility = View.VISIBLE
 }
+
+fun View.toGone() {
+  visibility = View.GONE
+}
+
+fun View.toInvisible() {
+  visibility = View.INVISIBLE
+}
+
+fun View.isGone() = visibility == View.GONE
+
+fun View.isVisible() = visibility == View.VISIBLE

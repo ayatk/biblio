@@ -14,25 +14,10 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.domain.repository
+package com.ayatk.biblio.util.ext
 
-import com.ayatk.biblio.model.Library
-import com.ayatk.biblio.model.Novel
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Maybe
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.LiveDataReactiveStreams
+import org.reactivestreams.Publisher
 
-interface LibraryRepository {
-
-  fun findAll(): Flowable<List<Library>>
-
-  fun find(novel: Novel): Maybe<Library>
-
-  fun save(library: Library): Completable
-
-  fun saveAll(libraries: List<Library>): Completable
-
-  fun updateAllAsync(novels: List<Novel>): Completable
-
-  fun delete(id: Long): Completable
-}
+fun <T> Publisher<T>.toLiveData() = LiveDataReactiveStreams.fromPublisher(this) as LiveData<T>

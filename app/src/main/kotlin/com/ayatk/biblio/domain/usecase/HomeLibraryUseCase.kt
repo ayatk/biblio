@@ -16,12 +16,17 @@
 
 package com.ayatk.biblio.domain.usecase
 
+import android.support.annotation.CheckResult
 import com.ayatk.biblio.model.Library
 import io.reactivex.Completable
-import io.reactivex.Single
+import io.reactivex.Flowable
 
 interface HomeLibraryUseCase {
-  val libraries: Single<List<Library>>
+  val libraries: Flowable<List<Library>>
 
+//  @CheckResult
+//  fun refresh(): Completable
+
+  @CheckResult
   fun delete(id: Long): Completable
 }
