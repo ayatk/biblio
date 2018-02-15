@@ -21,6 +21,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import java.io.Serializable
 
+@Suppress("ComplexMethod", "NestedBlockDepth")
 fun Intent.extraOf(vararg pairs: Pair<String, Any>) = this.apply {
   for ((key, value) in pairs) {
     when (value) {
