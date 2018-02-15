@@ -17,8 +17,11 @@
 package com.ayatk.biblio.di
 
 import com.ayatk.biblio.domain.repository.LibraryRepository
+import com.ayatk.biblio.domain.repository.RankingRepository
 import com.ayatk.biblio.domain.usecase.HomeLibraryUseCase
 import com.ayatk.biblio.domain.usecase.HomeLibraryUseCaseImpl
+import com.ayatk.biblio.domain.usecase.HomeRankingUseCase
+import com.ayatk.biblio.domain.usecase.HomeRankingUseCaseImpl
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import dagger.Module
 import dagger.Provides
@@ -33,4 +36,11 @@ class UseCaseModule {
       repository: LibraryRepository,
       schedulerProvider: SchedulerProvider
   ): HomeLibraryUseCase = HomeLibraryUseCaseImpl(repository, schedulerProvider)
+
+  @Singleton
+  @Provides
+  fun provideHomeRankingUseCase(
+      repository: RankingRepository,
+      schedulerProvider: SchedulerProvider
+  ): HomeRankingUseCase = HomeRankingUseCaseImpl(repository, schedulerProvider)
 }

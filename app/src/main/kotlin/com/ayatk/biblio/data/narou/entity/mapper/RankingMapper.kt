@@ -14,15 +14,22 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.domain.repository
+package com.ayatk.biblio.data.narou.entity.mapper
 
+import com.ayatk.biblio.data.narou.entity.NarouRanking
+import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.Ranking
-import com.ayatk.biblio.model.enums.RankingType
-import io.reactivex.Flowable
 
-interface RankingRepository {
+fun List<NarouRanking>.toRanking(novels: List<Novel>): List<Ranking> =
+    map {
+      Ranking(
+          rank = it.rank,
+          novel = novels.firstOrNull { novel -> novel.code == it.ncode } ?: Novel(),
+          point = it.pt
+      )
+    }
 
-  fun narouRanking(rankingType: RankingType, range: IntRange): Flowable<List<Ranking>>
-
-  fun nocturneRanking(rankingType: RankingType, range: IntRange): Flowable<List<Ranking>>
-}
+fun List<Novel>.toRanking(): List<Ranking> =
+    mapIndexed { index, novel ->
+      Ranking(rank = index + 1, novel = novel, point = novel.point)
+    }

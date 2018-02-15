@@ -23,7 +23,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.ayatk.biblio.databinding.FragmentRankingBinding
 import com.ayatk.biblio.di.ViewModelFactory
+import com.ayatk.biblio.util.Result
+import com.ayatk.biblio.util.ext.observe
 import dagger.android.support.DaggerFragment
+import timber.log.Timber
 import javax.inject.Inject
 
 class TopRankingFragment : DaggerFragment() {
@@ -37,19 +40,72 @@ class TopRankingFragment : DaggerFragment() {
 
   lateinit var binding: FragmentRankingBinding
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    lifecycle.addObserver(viewModel)
-  }
-
   override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
   ): View? {
     binding = FragmentRankingBinding.inflate(inflater, container, false)
     binding.setLifecycleOwner(this)
-    binding.viewModel = viewModel
+
+    bind()
 
     return binding.root
+  }
+
+  private fun bind() {
+    viewModel.daily.observe(this, { result ->
+      when (result) {
+        is Result.Success -> {
+          binding.daily.setRankings(result.data)
+        }
+        is Result.Failure -> {
+          Timber.e(result.e)
+        }
+      }
+    })
+
+    viewModel.weekly.observe(this, { result ->
+      when (result) {
+        is Result.Success -> {
+          binding.weekly.setRankings(result.data)
+        }
+        is Result.Failure -> {
+          Timber.e(result.e)
+        }
+      }
+    })
+
+    viewModel.monthly.observe(this, { result ->
+      when (result) {
+        is Result.Success -> {
+          binding.monthly.setRankings(result.data)
+        }
+        is Result.Failure -> {
+          Timber.e(result.e)
+        }
+      }
+    })
+
+    viewModel.quarter.observe(this, { result ->
+      when (result) {
+        is Result.Success -> {
+          binding.quarter.setRankings(result.data)
+        }
+        is Result.Failure -> {
+          Timber.e(result.e)
+        }
+      }
+    })
+
+    viewModel.all.observe(this, { result ->
+      when (result) {
+        is Result.Success -> {
+          binding.all.setRankings(result.data)
+        }
+        is Result.Failure -> {
+          Timber.e(result.e)
+        }
+      }
+    })
   }
 
   companion object {

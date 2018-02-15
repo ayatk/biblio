@@ -16,88 +16,70 @@
 
 package com.ayatk.biblio.ui.home.ranking
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.OnLifecycleEvent
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
-import android.content.Context
-import com.ayatk.biblio.domain.repository.RankingRepository
+import com.ayatk.biblio.domain.usecase.HomeRankingUseCase
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.model.enums.RankingType
-import com.ayatk.biblio.ui.ranking.RankingActivity
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
+import com.ayatk.biblio.ui.util.toResult
+import com.ayatk.biblio.util.Result
+import com.ayatk.biblio.util.ext.toLiveData
+import com.ayatk.biblio.util.rx.SchedulerProvider
 import javax.inject.Inject
 
 class TopRankingViewModel @Inject constructor(
-    private val repository: RankingRepository
-) : ViewModel(), LifecycleObserver {
+    private val useCase: HomeRankingUseCase,
+    private val schedulerProvider: SchedulerProvider
+) : ViewModel() {
 
-  companion object {
-    private const val TOP_RANK_RANGE = 5
+  val daily: LiveData<Result<List<Ranking>>> by lazy {
+    useCase.ranking(Publisher.NAROU, RankingType.DAILY)
+        .toResult(schedulerProvider)
+        .toLiveData()
   }
 
-  private val compositeDisposable = CompositeDisposable()
-
-  var daily = MutableLiveData<List<Ranking>>()
-  var weekly = MutableLiveData<List<Ranking>>()
-  var monthly = MutableLiveData<List<Ranking>>()
-  var quarter = MutableLiveData<List<Ranking>>()
-  var all = MutableLiveData<List<Ranking>>()
-
-  @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-  fun start() {
-    repository.getDailyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(daily::postValue)
-        .addTo(compositeDisposable)
-
-    repository.getWeeklyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(weekly::postValue)
-        .addTo(compositeDisposable)
-
-    repository.getMonthlyRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(monthly::postValue)
-        .addTo(compositeDisposable)
-
-    repository.getQuarterRank(Publisher.NAROU, 0 until TOP_RANK_RANGE)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(quarter::postValue)
-        .addTo(compositeDisposable)
-
-    repository.getAllRank(Publisher.NAROU, 0..TOP_RANK_RANGE)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(all::postValue)
-        .addTo(compositeDisposable)
+  val weekly: LiveData<Result<List<Ranking>>> by lazy {
+    useCase.ranking(Publisher.NAROU, RankingType.WEEKLY)
+        .toResult(schedulerProvider)
+        .toLiveData()
   }
 
-  fun onClickDailyRank(context: Context) {
-    context.startActivity(RankingActivity.createIntent(context, RankingType.DAILY))
+  val monthly: LiveData<Result<List<Ranking>>> by lazy {
+    useCase.ranking(Publisher.NAROU, RankingType.MONTHLY)
+        .toResult(schedulerProvider)
+        .toLiveData()
   }
 
-  fun onClickWeeklyRank(context: Context) {
-    context.startActivity(RankingActivity.createIntent(context, RankingType.WEEKLY))
+  val quarter: LiveData<Result<List<Ranking>>> by lazy {
+    useCase.ranking(Publisher.NAROU, RankingType.QUARTET)
+        .toResult(schedulerProvider)
+        .toLiveData()
   }
 
-  fun onClickMonthlyRank(context: Context) {
-    context.startActivity(RankingActivity.createIntent(context, RankingType.MONTHLY))
+  val all: LiveData<Result<List<Ranking>>> by lazy {
+    useCase.ranking(Publisher.NAROU, RankingType.ALL)
+        .toResult(schedulerProvider)
+        .toLiveData()
   }
 
-  fun onClickQuarterRank(context: Context) {
-    context.startActivity(RankingActivity.createIntent(context, RankingType.QUARTET))
-  }
-
-  fun onClickAllRank(context: Context) {
-    context.startActivity(RankingActivity.createIntent(context, RankingType.ALL))
-  }
-
-  override fun onCleared() {
-    super.onCleared()
-    compositeDisposable.clear()
-  }
+//  fun onClickDailyRank(context: Context) {
+//    context.startActivity(RankingActivity.createIntent(context, RankingType.DAILY))
+//  }
+//
+//  fun onClickWeeklyRank(context: Context) {
+//    context.startActivity(RankingActivity.createIntent(context, RankingType.WEEKLY))
+//  }
+//
+//  fun onClickMonthlyRank(context: Context) {
+//    context.startActivity(RankingActivity.createIntent(context, RankingType.MONTHLY))
+//  }
+//
+//  fun onClickQuarterRank(context: Context) {
+//    context.startActivity(RankingActivity.createIntent(context, RankingType.QUARTET))
+//  }
+//
+//  fun onClickAllRank(context: Context) {
+//    context.startActivity(RankingActivity.createIntent(context, RankingType.ALL))
+//  }
 }

@@ -68,9 +68,8 @@ class RepositoryModule {
   @Provides
   fun provideIndexRepository(
       local: IndexLocalDataSource,
-      remote: IndexRemoteDataSource,
-      schedulerProvider: SchedulerProvider
-  ): IndexRepository = IndexDataSource(local, remote, schedulerProvider)
+      remote: IndexRemoteDataSource
+  ): IndexRepository = IndexDataSource(local, remote)
 
   @Singleton
   @Provides

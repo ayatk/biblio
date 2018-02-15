@@ -20,4 +20,8 @@
     <attr format="reference" name="setCellText"/>
     <attr format="reference" name="setCellIcon"/>
   </declare-styleable>
+
+  <declare-styleable name="RankingTopCellView">
+    <attr name="setRankingTitle" format="reference"/>
+  </declare-styleable>
 </resources>

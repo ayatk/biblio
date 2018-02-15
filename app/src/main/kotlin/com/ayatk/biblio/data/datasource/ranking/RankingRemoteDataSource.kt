@@ -20,12 +20,15 @@ import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.data.narou.entity.NarouRanking
 import com.ayatk.biblio.data.narou.entity.enums.NarouRankingType
 import com.ayatk.biblio.data.narou.entity.enums.OutputOrder
+import com.ayatk.biblio.data.narou.entity.mapper.toRanking
 import com.ayatk.biblio.data.narou.util.QueryBuilder
 import com.ayatk.biblio.domain.repository.RankingRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
+import com.ayatk.biblio.model.enums.RankingType
 import com.ayatk.biblio.util.rx.SchedulerProvider
+import io.reactivex.Flowable
 import io.reactivex.Single
 import java.util.Calendar
 import java.util.Date
@@ -40,73 +43,63 @@ class RankingRemoteDataSource @Inject constructor(
     private const val EARLY_MORNING = 6
   }
 
-  override fun getDailyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> {
+  override fun narouRanking(rankingType: RankingType, range: IntRange): Flowable<List<Ranking>> {
+    val narouRankingType = NarouRankingType.valueOf(rankingType.name)
     val today = Calendar.getInstance()
-    // 午前6時以前にその日のランキングを取得するとエラーで死ぬので前日のランキングを取得
-    if (today.get(Calendar.HOUR_OF_DAY) < EARLY_MORNING) {
-      today.add(Calendar.DATE, -1)
-    }
 
-    return narouClient.getRanking(today.time, NarouRankingType.DAILY)
-        .flatMap {
-          val codes = it.map { it.ncode }.drop(range.first).take(range.count())
-          narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
-              .map { novel -> convertRanking(it.drop(range.first).take(range.count()), novel) }
+    when (narouRankingType) {
+      NarouRankingType.DAILY,
+      NarouRankingType.WEEKLY -> {
+        // 午前6時以前にその日のランキングを取得するとエラーで死ぬので前日のランキングを取得
+        if (today.get(Calendar.HOUR_OF_DAY) < EARLY_MORNING) {
+          today.add(Calendar.DATE, -1)
         }
-        .subscribeOn(schedulerProvider.io())
-  }
 
-  override fun getWeeklyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> {
-    val today = Calendar.getInstance()
-    // 午前6時以前にその日のランキングを取得するとエラーで死ぬので前週のランキングを取得
-    if (today.get(Calendar.HOUR_OF_DAY) < EARLY_MORNING) {
-      today.add(Calendar.DATE, -1)
+        return narouClient.getRanking(today.time, narouRankingType)
+            .flatMap {
+              val codes = it
+                  .map { it.ncode }
+                  .drop(range.first)
+                  .take(range.count())
+
+              narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
+                  .map { novel ->
+                    it.drop(range.first)
+                        .take(range.count())
+                        .toRanking(novel)
+                  }
+            }
+            .toFlowable()
+      }
+      NarouRankingType.MONTHLY,
+      NarouRankingType.QUARTET -> {
+        return narouClient.getRanking(today.time, NarouRankingType.DAILY)
+            .flatMap {
+              val codes = it
+                  .map { it.ncode }
+                  .drop(range.first)
+                  .take(range.count())
+
+              narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
+                  .map { novel ->
+                    it.drop(range.first)
+                        .take(range.count())
+                        .toRanking(novel)
+                  }
+            }
+            .toFlowable()
+      }
+      NarouRankingType.ALL -> {
+        val query = QueryBuilder().order(OutputOrder.HYOKA_COUNT).size(range.last).build()
+        return narouClient
+            .getNovel(query)
+            .map { it.toRanking() }
+            .toFlowable()
+      }
     }
-
-    return narouClient.getRanking(today.time, NarouRankingType.WEEKLY)
-        .flatMap {
-          val codes = it.map { it.ncode }.drop(range.first).take(range.count())
-          narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
-              .map { novel -> convertRanking(it.drop(range.first).take(range.count()), novel) }
-        }
-        .subscribeOn(schedulerProvider.io())
   }
 
-  override fun getMonthlyRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> =
-      narouClient.getRanking(Date(), NarouRankingType.MONTHLY)
-          .flatMap {
-            val codes = it.map { it.ncode }.drop(range.first).take(range.count())
-            narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
-                .map { novel -> convertRanking(it.drop(range.first).take(range.count()), novel) }
-          }
-          .subscribeOn(schedulerProvider.io())
-
-  override fun getQuarterRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> =
-      narouClient.getRanking(Date(), NarouRankingType.QUARTET)
-          .flatMap {
-            val codes = it.map { it.ncode }.drop(range.first).take(range.count())
-            narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
-                .map { novel -> convertRanking(it.drop(range.first).take(range.count()), novel) }
-          }
-          .subscribeOn(schedulerProvider.io())
-
-  override fun getAllRank(publisher: Publisher, range: IntRange): Single<List<Ranking>> {
-    val query = QueryBuilder().order(OutputOrder.HYOKA_COUNT).size(range.last).build()
-    return narouClient.getNovel(query).map(this::convertNovel2Ranking)
-        .subscribeOn(schedulerProvider.io())
+  override fun nocturneRanking(rankingType: RankingType, range: IntRange): Flowable<List<Ranking>> {
+    TODO("not implemented")
   }
-
-  private fun convertRanking(rank: List<NarouRanking>, novels: List<Novel>): List<Ranking> =
-      rank.map {
-        Ranking(
-            rank = it.rank,
-            novel = novels.firstOrNull { novel -> novel.code == it.ncode } ?: Novel(),
-            point = it.pt
-        )
-      }
-
-  private fun convertNovel2Ranking(novels: List<Novel>): List<Ranking> =
-      novels.mapIndexed { index, novel ->
-        Ranking(rank = index + 1, novel = novel, point = novel.point)
-      }
 }

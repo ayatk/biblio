@@ -14,15 +14,21 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.domain.repository
+package com.ayatk.biblio.domain.usecase
 
 import com.ayatk.biblio.model.Ranking
+import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.model.enums.RankingType
 import io.reactivex.Flowable
 
-interface RankingRepository {
-
-  fun narouRanking(rankingType: RankingType, range: IntRange): Flowable<List<Ranking>>
-
-  fun nocturneRanking(rankingType: RankingType, range: IntRange): Flowable<List<Ranking>>
+interface HomeRankingUseCase {
+  /**
+   * ランキング画面で使うランキングを取得する
+   *
+   * @param publisher ランキングを取ってくるサイト
+   * @param rankingType 日間や月間などのランキングタイプ
+   *
+   * @return 指定したランキング300件分
+   */
+  fun ranking(publisher: Publisher, rankingType: RankingType): Flowable<List<Ranking>>
 }

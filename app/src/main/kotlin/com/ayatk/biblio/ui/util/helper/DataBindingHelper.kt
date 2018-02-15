@@ -24,7 +24,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.content.systemService
 import com.ayatk.biblio.R
@@ -86,36 +85,6 @@ object DataBindingHelper {
     this.visibility = View.VISIBLE
     when (ranking.rank) {
       GOLD_RANK, SILVER_RANK, BRONZE_RANK -> this.visibility = View.GONE
-    }
-  }
-
-  @JvmStatic
-  @BindingAdapter("addRankingItems")
-  fun LinearLayout.addRankingItems(rankings: List<Ranking>?) {
-    if (rankings == null || rankings.isEmpty()) {
-      return
-    }
-    this.removeAllViews()
-    val inflater = this.context.systemService<LayoutInflater>()
-    rankings.map {
-      val rankingItem = inflater.inflate(R.layout.view_ranking_top_item, null)
-      val rank = rankingItem.findViewById<ImageView>(R.id.rank)
-      val rankText = rankingItem.findViewById<TextView>(R.id.rank_text)
-
-      rank.rankingIcon(it)
-      rankText.rankingText(it)
-
-      val title = rankingItem.findViewById<TextView>(R.id.novel_title)
-      val author = rankingItem.findViewById<TextView>(R.id.novel_author)
-      if (it.novel.title.isEmpty()) {
-        title.text = "この小説は見ることができません"
-        author.text = ""
-      } else {
-        title.text = it.novel.title
-        author.text = it.novel.writer
-      }
-
-      this.addView(rankingItem)
     }
   }
 }
