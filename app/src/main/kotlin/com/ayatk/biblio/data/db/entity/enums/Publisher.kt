@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.db
+package com.ayatk.biblio.data.db.entity.enums
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+enum class Publisher {
+  // なろう
+  NAROU,
 
-@Database(
-    version = 1
-)
-@TypeConverters(Converters::class)
-abstract class AppDatabase : RoomDatabase()
+  // ノクターンとムーンライト
+  NOCTURNE_MOONLIGHT
+}

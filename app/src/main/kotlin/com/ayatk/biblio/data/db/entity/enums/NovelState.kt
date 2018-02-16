@@ -14,13 +14,10 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.db
+package com.ayatk.biblio.data.db.entity.enums
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
-
-@Database(
-    version = 1
-)
-@TypeConverters(Converters::class)
-abstract class AppDatabase : RoomDatabase()
+enum class NovelState {
+  SHORT_STORY,
+  SERIES,
+  SERIES_END
+}
