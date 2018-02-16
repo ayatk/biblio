@@ -17,7 +17,7 @@
 package com.ayatk.biblio.data.datasource.novel
 
 import android.support.annotation.VisibleForTesting
-import com.ayatk.biblio.data.db.NovelLocalDataSource
+import com.ayatk.biblio.data.db.NovelDatabase
 import com.ayatk.biblio.domain.repository.NovelRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.Publisher
@@ -33,7 +33,7 @@ import javax.inject.Singleton
 
 @Singleton
 class NovelDataSource @Inject constructor(
-    private val localDataSource: NovelLocalDataSource,
+    private val database: NovelDatabase,
     private val remoteDataSource: NovelRemoteDataSource,
     private val schedulerProvider: SchedulerProvider
 ) : NovelRepository {
@@ -61,18 +61,18 @@ class NovelDataSource @Inject constructor(
       remoteDataSource.find(code, publisher)
           .doOnSuccess { novel -> updateAllAsync(listOf(novel)) }
     } else {
-      localDataSource.find(code, publisher)
+      database.find(code, publisher)
     }
         .subscribeOn(schedulerProvider.io())
   }
 
   override fun save(novel: Novel): Completable {
     cache[novel.code] = novel
-    return localDataSource.save(novel)
+    return database.save(novel)
   }
 
   override fun delete(code: String) {
-    localDataSource.delete(code)
+    database.delete(code)
   }
 
   private fun hasCache(): Boolean = !cache.isEmpty()
@@ -91,11 +91,11 @@ class NovelDataSource @Inject constructor(
   }
 
   private fun updateAllAsync(novels: List<Novel>) {
-    novels.forEach { novel -> localDataSource.save(novel).subscribe() }
+    novels.forEach { novel -> database.save(novel).subscribe() }
   }
 
   private fun findAllFromLocal(codes: List<String>, publisher: Publisher): Single<List<Novel>> {
-    return localDataSource.findAll(codes, publisher)
+    return database.findAll(codes, publisher)
         .flatMap { novels ->
           if (novels.isEmpty()) {
             return@flatMap findAllFromRemote(codes, publisher)

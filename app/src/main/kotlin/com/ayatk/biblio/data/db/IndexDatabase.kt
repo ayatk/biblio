@@ -25,7 +25,7 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 import javax.inject.Inject
 
-class IndexLocalDataSource @Inject constructor(
+class IndexDatabase @Inject constructor(
     val orma: OrmaDatabase
 ) : IndexRepository {
 

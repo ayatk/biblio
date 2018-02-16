@@ -17,15 +17,15 @@
 package com.ayatk.biblio.di
 
 import com.ayatk.biblio.data.datasource.library.LibraryDataSource
-import com.ayatk.biblio.data.db.LibraryLocalDataSource
+import com.ayatk.biblio.data.db.LibraryDatabase
 import com.ayatk.biblio.data.datasource.novel.EpisodeDataSource
-import com.ayatk.biblio.data.db.EpisodeLocalDataSource
+import com.ayatk.biblio.data.db.EpisodeDatabase
 import com.ayatk.biblio.data.datasource.novel.EpisodeRemoteDataSource
 import com.ayatk.biblio.data.datasource.novel.IndexDataSource
-import com.ayatk.biblio.data.db.IndexLocalDataSource
+import com.ayatk.biblio.data.db.IndexDatabase
 import com.ayatk.biblio.data.datasource.novel.IndexRemoteDataSource
 import com.ayatk.biblio.data.datasource.novel.NovelDataSource
-import com.ayatk.biblio.data.db.NovelLocalDataSource
+import com.ayatk.biblio.data.db.NovelDatabase
 import com.ayatk.biblio.data.datasource.novel.NovelRemoteDataSource
 import com.ayatk.biblio.data.datasource.ranking.RankingRemoteDataSource
 import com.ayatk.biblio.data.narou.NarouClient
@@ -45,13 +45,13 @@ class RepositoryModule {
   @Singleton
   @Provides
   fun provideLibraryRepository(
-      localDataSource: LibraryLocalDataSource
-  ): LibraryRepository = LibraryDataSource(localDataSource)
+      database: LibraryDatabase
+  ): LibraryRepository = LibraryDataSource(database)
 
   @Singleton
   @Provides
   fun provideEpisodeRepository(
-      local: EpisodeLocalDataSource,
+      local: EpisodeDatabase,
       remote: EpisodeRemoteDataSource,
       schedulerProvider: SchedulerProvider
   ): EpisodeRepository = EpisodeDataSource(local, remote, schedulerProvider)
@@ -59,7 +59,7 @@ class RepositoryModule {
   @Singleton
   @Provides
   fun provideNovelRepository(
-      local: NovelLocalDataSource,
+      local: NovelDatabase,
       remote: NovelRemoteDataSource,
       schedulerProvider: SchedulerProvider
   ): NovelRepository = NovelDataSource(local, remote, schedulerProvider)
@@ -67,7 +67,7 @@ class RepositoryModule {
   @Singleton
   @Provides
   fun provideIndexRepository(
-      local: IndexLocalDataSource,
+      local: IndexDatabase,
       remote: IndexRemoteDataSource
   ): IndexRepository = IndexDataSource(local, remote)
 

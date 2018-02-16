@@ -26,7 +26,7 @@ import io.reactivex.Flowable
 import io.reactivex.Maybe
 import javax.inject.Inject
 
-class LibraryLocalDataSource @Inject constructor(
+class LibraryDatabase @Inject constructor(
     private val orma: OrmaDatabase
 ) : LibraryRepository {
 

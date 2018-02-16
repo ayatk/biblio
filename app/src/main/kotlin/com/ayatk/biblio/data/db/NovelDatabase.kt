@@ -16,38 +16,47 @@
 
 package com.ayatk.biblio.data.db
 
-import com.ayatk.biblio.domain.repository.EpisodeRepository
-import com.ayatk.biblio.model.Episode
+import com.ayatk.biblio.domain.repository.NovelRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.OrmaDatabase
+import com.ayatk.biblio.model.enums.Publisher
 import io.reactivex.Completable
+import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class EpisodeLocalDataSource
+class NovelDatabase
 @Inject constructor(private val orma: OrmaDatabase) :
-    EpisodeRepository {
+    NovelRepository {
 
-  override fun find(novel: Novel, page: Int): Single<List<Episode>> {
-    return orma.selectFromEpisode()
-        .novelEq(novel)
-        .pageEq(page)
+  override fun findAll(codes: List<String>, publisher: Publisher): Single<List<Novel>> {
+    return orma.selectFromNovel()
+        .publisherEq(publisher)
         .executeAsObservable()
         .toList()
         .subscribeOn(Schedulers.io())
   }
 
-  override fun save(episode: Episode): Completable {
+  override fun find(code: String, publisher: Publisher): Maybe<Novel> {
+    return orma.selectFromNovel()
+        .codeEq(code)
+        .publisherEq(publisher)
+        .executeAsObservable()
+        .firstElement()
+        .subscribeOn(Schedulers.io())
+  }
+
+  override fun save(novel: Novel): Completable {
     return orma.transactionAsCompletable {
-      orma.insertIntoEpisode(episode)
+      orma.relationOfNovel().upsert(novel)
     }.subscribeOn(Schedulers.io())
   }
 
-  override fun deleteAll(novel: Novel): Single<Int> {
-    return orma.deleteFromEpisode()
-        .novelEq(novel)
-        .executeAsSingle()
-        .subscribeOn(Schedulers.io())
+  override fun delete(code: String) {
+    orma.relationOfNovel()
+        .deleter()
+        .codeEq(code)
+        .execute()
   }
 }
