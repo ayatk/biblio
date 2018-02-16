@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.dao
+package com.ayatk.biblio.data.db.dao
 
 import com.ayatk.biblio.data.narou.entity.enums.BigGenre
 import com.ayatk.biblio.data.narou.entity.enums.Genre
