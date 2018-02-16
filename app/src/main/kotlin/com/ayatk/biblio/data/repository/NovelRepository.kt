@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.domain.repository
+package com.ayatk.biblio.data.repository
 
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.Publisher

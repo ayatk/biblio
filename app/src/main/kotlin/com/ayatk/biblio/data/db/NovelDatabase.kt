@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.data.db
 
-import com.ayatk.biblio.domain.repository.NovelRepository
+import com.ayatk.biblio.data.repository.NovelRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.OrmaDatabase
 import com.ayatk.biblio.model.enums.Publisher

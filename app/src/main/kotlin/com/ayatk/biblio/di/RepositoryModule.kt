@@ -29,11 +29,11 @@ import com.ayatk.biblio.data.db.NovelDatabase
 import com.ayatk.biblio.data.datasource.novel.NovelRemoteDataSource
 import com.ayatk.biblio.data.datasource.ranking.RankingRemoteDataSource
 import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.domain.repository.EpisodeRepository
-import com.ayatk.biblio.domain.repository.IndexRepository
-import com.ayatk.biblio.domain.repository.LibraryRepository
-import com.ayatk.biblio.domain.repository.NovelRepository
-import com.ayatk.biblio.domain.repository.RankingRepository
+import com.ayatk.biblio.data.repository.EpisodeRepository
+import com.ayatk.biblio.data.repository.IndexRepository
+import com.ayatk.biblio.data.repository.LibraryRepository
+import com.ayatk.biblio.data.repository.NovelRepository
+import com.ayatk.biblio.data.repository.RankingRepository
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import dagger.Module
 import dagger.Provides

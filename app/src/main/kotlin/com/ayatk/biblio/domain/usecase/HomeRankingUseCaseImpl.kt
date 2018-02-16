@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.domain.usecase
 
-import com.ayatk.biblio.domain.repository.RankingRepository
+import com.ayatk.biblio.data.repository.RankingRepository
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.model.enums.RankingType

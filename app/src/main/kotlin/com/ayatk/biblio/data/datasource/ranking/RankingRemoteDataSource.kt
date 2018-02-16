@@ -21,7 +21,7 @@ import com.ayatk.biblio.data.narou.entity.enums.NarouRankingType
 import com.ayatk.biblio.data.narou.entity.enums.OutputOrder
 import com.ayatk.biblio.data.narou.entity.mapper.toRanking
 import com.ayatk.biblio.data.narou.util.QueryBuilder
-import com.ayatk.biblio.domain.repository.RankingRepository
+import com.ayatk.biblio.data.repository.RankingRepository
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.RankingType
 import io.reactivex.Flowable

@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.data.db
 
-import com.ayatk.biblio.domain.repository.EpisodeRepository
+import com.ayatk.biblio.data.repository.EpisodeRepository
 import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.OrmaDatabase

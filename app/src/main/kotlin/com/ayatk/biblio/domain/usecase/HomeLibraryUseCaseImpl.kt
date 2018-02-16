@@ -17,7 +17,7 @@
 package com.ayatk.biblio.domain.usecase
 
 import android.support.annotation.CheckResult
-import com.ayatk.biblio.domain.repository.LibraryRepository
+import com.ayatk.biblio.data.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.Completable

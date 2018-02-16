@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.data.db
 
-import com.ayatk.biblio.domain.repository.IndexRepository
+import com.ayatk.biblio.data.repository.IndexRepository
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.OrmaDatabase

@@ -14,15 +14,21 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.domain.repository
+package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.model.Ranking
-import com.ayatk.biblio.model.enums.RankingType
-import io.reactivex.Flowable
+import com.ayatk.biblio.model.Index
+import com.ayatk.biblio.model.Novel
+import io.reactivex.Completable
+import io.reactivex.Maybe
+import io.reactivex.Single
 
-interface RankingRepository {
+interface IndexRepository {
 
-  fun narouRanking(rankingType: RankingType, range: IntRange): Flowable<List<Ranking>>
+  fun findAll(novel: Novel): Single<List<Index>>
 
-  fun nocturneRanking(rankingType: RankingType, range: IntRange): Flowable<List<Ranking>>
+  fun find(novel: Novel, page: Int): Maybe<Index>
+
+  fun save(indices: List<Index>): Completable
+
+  fun delete(novel: Novel): Single<Int>
 }

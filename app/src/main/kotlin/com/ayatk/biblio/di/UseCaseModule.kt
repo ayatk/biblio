@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.di
 
-import com.ayatk.biblio.domain.repository.LibraryRepository
-import com.ayatk.biblio.domain.repository.RankingRepository
+import com.ayatk.biblio.data.repository.LibraryRepository
+import com.ayatk.biblio.data.repository.RankingRepository
 import com.ayatk.biblio.domain.usecase.HomeLibraryUseCase
 import com.ayatk.biblio.domain.usecase.HomeLibraryUseCaseImpl
 import com.ayatk.biblio.domain.usecase.HomeRankingUseCase
