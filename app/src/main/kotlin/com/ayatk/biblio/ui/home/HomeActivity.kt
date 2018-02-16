@@ -42,7 +42,7 @@ class HomeActivity : DaggerAppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    BottomNavigationViewHelper.disableShiftingMode(binding.bottomNav)
+    binding.bottomNav.disableShiftingMode()
 
     // init fragment
     if (savedInstanceState == null) {
