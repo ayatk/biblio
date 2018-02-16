@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.datasource.novel
+package com.ayatk.biblio.data.repository
 
 import android.support.annotation.VisibleForTesting
+import com.ayatk.biblio.data.datasource.novel.NovelRemoteDataSource
 import com.ayatk.biblio.data.db.NovelDatabase
-import com.ayatk.biblio.data.repository.NovelRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.util.rx.SchedulerProvider

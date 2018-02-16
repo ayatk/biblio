@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.datasource.library
+package com.ayatk.biblio.data.repository
 
 import com.ayatk.biblio.data.db.LibraryDatabase
-import com.ayatk.biblio.data.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import io.reactivex.Completable

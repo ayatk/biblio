@@ -18,7 +18,7 @@ package com.ayatk.biblio.ui.detail.index
 
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
-import com.ayatk.biblio.data.datasource.novel.IndexDataSource
+import com.ayatk.biblio.data.repository.IndexDataSource
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.util.rx.SchedulerProvider

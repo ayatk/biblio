@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.datasource.novel
+package com.ayatk.biblio.data.repository
 
+import com.ayatk.biblio.data.datasource.novel.IndexRemoteDataSource
 import com.ayatk.biblio.data.db.IndexDatabase
-import com.ayatk.biblio.data.repository.IndexRepository
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.util.rx.toSingle
