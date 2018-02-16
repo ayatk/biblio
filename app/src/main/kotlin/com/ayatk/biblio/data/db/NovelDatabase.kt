@@ -16,44 +16,20 @@
 
 package com.ayatk.biblio.data.db
 
-import com.ayatk.biblio.data.repository.NovelRepository
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.OrmaDatabase
 import com.ayatk.biblio.model.enums.Publisher
 import io.reactivex.Completable
-import io.reactivex.Maybe
 import io.reactivex.Single
-import javax.inject.Inject
 
-class NovelDatabase @Inject constructor(
-    private val orma: OrmaDatabase
-) : NovelRepository {
+interface NovelDatabase {
 
-  override fun findAll(codes: List<String>, publisher: Publisher): Single<List<Novel>> {
-    return orma.selectFromNovel()
-        .publisherEq(publisher)
-        .executeAsObservable()
-        .toList()
-  }
+  fun findAll(vararg publishers: Publisher): Single<List<Novel>>
 
-  override fun find(code: String, publisher: Publisher): Maybe<Novel> {
-    return orma.selectFromNovel()
-        .codeEq(code)
-        .publisherEq(publisher)
-        .executeAsObservable()
-        .firstElement()
-  }
+  fun find(publisher: Publisher, vararg codes: String ): Single<List<Novel>>
 
-  override fun save(novel: Novel): Completable {
-    return orma.transactionAsCompletable {
-      orma.relationOfNovel().upsert(novel)
-    }
-  }
+  fun save(vararg novels: Novel): Completable
 
-  override fun delete(code: String) {
-    orma.relationOfNovel()
-        .deleter()
-        .codeEq(code)
-        .execute()
-  }
+  fun update(vararg novels: Novel): Completable
+
+  fun delete(vararg codes: String): Completable
 }

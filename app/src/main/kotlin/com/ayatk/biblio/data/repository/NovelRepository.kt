@@ -19,14 +19,11 @@ package com.ayatk.biblio.data.repository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.Publisher
 import io.reactivex.Completable
-import io.reactivex.Maybe
 import io.reactivex.Single
 
 interface NovelRepository {
 
   fun findAll(codes: List<String>, publisher: Publisher): Single<List<Novel>>
-
-  fun find(code: String, publisher: Publisher): Maybe<Novel>
 
   fun save(novel: Novel): Completable
 

@@ -22,33 +22,19 @@ import com.ayatk.biblio.data.repository.IndexRepository
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
 import io.reactivex.Completable
-import io.reactivex.Maybe
 import io.reactivex.Single
-import io.reactivex.rxkotlin.toObservable
 import javax.inject.Inject
 
-class IndexRemoteDataSource
-@Inject constructor(val client: NarouClient) :
-    IndexRepository {
+class IndexRemoteDataSource @Inject constructor(
+    val client: NarouClient
+) : IndexRepository {
 
   override fun findAll(novel: Novel): Single<List<Index>> {
     return client.getTableOfContents(novel.code)
         .map { it.toIndex(novel) }
   }
 
-  override fun find(novel: Novel, page: Int): Maybe<Index> {
-    return findAll(novel)
-        .toObservable()
-        .flatMap { it.toObservable() }
-        .filter { it.page == page }
-        .singleElement()
-  }
+  override fun save(indices: List<Index>): Completable = Completable.create { /* no-op */ }
 
-  override fun save(indices: List<Index>): Completable {
-    return Completable.create { /* no-op */ }
-  }
-
-  override fun delete(novel: Novel): Single<Int> {
-    return Single.create { /* no-op */ }
-  }
+  override fun delete(novel: Novel): Completable = Completable.create { /* no-op */ }
 }

@@ -16,16 +16,32 @@
 
 package com.ayatk.biblio.data.db
 
-import com.ayatk.biblio.model.Index
+import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.model.OrmaDatabase
 import io.reactivex.Completable
 import io.reactivex.Single
+import javax.inject.Inject
 
-interface IndexDatabase {
+class EpisodeDatabaseImpl @Inject constructor(
+    private val orma: OrmaDatabase
+) : EpisodeDatabase {
 
-  fun findAll(novel: Novel): Single<List<Index>>
+  override fun find(novel: Novel, page: Int): Single<List<Episode>> =
+      orma.selectFromEpisode()
+          .novelEq(novel)
+          .pageEq(page)
+          .executeAsObservable()
+          .toList()
 
-  fun save(indices: List<Index>): Completable
+  override fun save(episode: Episode): Completable =
+      orma.transactionAsCompletable {
+        orma.insertIntoEpisode(episode)
+      }
 
-  fun delete(novel: Novel): Completable
+  override fun delete(novel: Novel): Completable =
+      orma.deleteFromEpisode()
+          .novelEq(novel)
+          .executeAsSingle()
+          .toCompletable()
 }

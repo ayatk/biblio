@@ -16,78 +16,40 @@
 
 package com.ayatk.biblio.data.repository
 
-import android.support.annotation.VisibleForTesting
 import com.ayatk.biblio.data.datasource.novel.NovelRemoteDataSource
 import com.ayatk.biblio.data.db.NovelDatabase
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.util.rx.SchedulerProvider
-import com.ayatk.biblio.util.rx.toMaybe
 import com.ayatk.biblio.util.rx.toSingle
 import io.reactivex.Completable
-import io.reactivex.Maybe
 import io.reactivex.Single
-import java.util.LinkedHashMap
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class NovelRepositoryImpl @Inject constructor(
     private val database: NovelDatabase,
-    private val remoteDataSource: NovelRemoteDataSource,
-    private val schedulerProvider: SchedulerProvider
+    private val remoteDataSource: NovelRemoteDataSource
 ) : NovelRepository {
-
-  @VisibleForTesting
-  private var cache: MutableMap<String, Novel> = LinkedHashMap()
 
   var isDirty = false
 
   override fun findAll(codes: List<String>, publisher: Publisher): Single<List<Novel>> {
-    if (hasCache() && !isDirty) {
-      return ArrayList(cache.values).toSingle()
-    }
-
-    return if (isDirty) findAllFromRemote(codes, publisher) else findAllFromLocal(codes, publisher)
-  }
-
-  override fun find(code: String, publisher: Publisher): Maybe<Novel> {
-    if (hasCache(code)) {
-      return cache[code].toMaybe()
-          .subscribeOn(schedulerProvider.io())
-    }
-
     return if (isDirty) {
-      remoteDataSource.find(code, publisher)
-          .doOnSuccess { novel -> updateAllAsync(listOf(novel)) }
+      findAllFromRemote(codes, publisher)
     } else {
-      database.find(code, publisher)
+      findAllFromLocal(codes, publisher)
     }
-        .subscribeOn(schedulerProvider.io())
   }
 
-  override fun save(novel: Novel): Completable {
-    cache[novel.code] = novel
-    return database.save(novel)
-  }
+  override fun save(novel: Novel): Completable = database.save(novel)
 
   override fun delete(code: String) {
     database.delete(code)
   }
 
-  private fun hasCache(): Boolean = !cache.isEmpty()
-
-  private fun hasCache(code: String): Boolean = cache.containsKey(code)
-
   private fun findAllFromRemote(codes: List<String>, publisher: Publisher): Single<List<Novel>> {
-    return remoteDataSource.findAll(codes, publisher)
-        .doOnSuccess(
-            { novels ->
-              refreshCache(novels)
-              updateAllAsync(novels)
-            }
-        )
-        .subscribeOn(schedulerProvider.io())
+    return remoteDataSource.findAll(codes, publisher).doOnSuccess(::updateAllAsync)
   }
 
   private fun updateAllAsync(novels: List<Novel>) {
@@ -95,20 +57,13 @@ class NovelRepositoryImpl @Inject constructor(
   }
 
   private fun findAllFromLocal(codes: List<String>, publisher: Publisher): Single<List<Novel>> {
-    return database.findAll(codes, publisher)
+    return database.find(publisher, *codes.toTypedArray())
         .flatMap { novels ->
           if (novels.isEmpty()) {
-            return@flatMap findAllFromRemote(codes, publisher)
+            findAllFromRemote(codes, publisher)
+          } else {
+            novels.toSingle()
           }
-          refreshCache(novels)
-          return@flatMap novels.toSingle()
         }
-        .subscribeOn(schedulerProvider.io())
-  }
-
-  private fun refreshCache(novels: List<Novel>) {
-    cache.clear()
-    novels.forEach { novel -> cache[novel.code] = novel }
-    isDirty = false
   }
 }

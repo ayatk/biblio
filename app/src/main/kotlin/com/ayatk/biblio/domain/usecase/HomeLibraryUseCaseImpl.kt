@@ -33,6 +33,7 @@ class HomeLibraryUseCaseImpl @Inject constructor(
       libraryRepository
           .findAll()
           .map { it.sortedByDescending { it.novel.lastUpdateDate } } // 日付順でそーと
+          .toFlowable()
           .subscribeOn(schedulerProvider.io())
 
 //  @CheckResult

@@ -16,62 +16,23 @@
 
 package com.ayatk.biblio.data.db
 
-import com.ayatk.biblio.data.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.OrmaDatabase
-import com.github.gfx.android.orma.annotation.OnConflict
 import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Maybe
-import javax.inject.Inject
+import io.reactivex.Single
 
-class LibraryDatabase @Inject constructor(
-    private val orma: OrmaDatabase
-) : LibraryRepository {
+interface LibraryDatabase {
 
-  override fun findAll(): Flowable<List<Library>> {
-    return orma.selectFromLibrary()
-        .executeAsObservable()
-        .toList()
-        .toFlowable()
-  }
+  fun findAll(): Single<List<Library>>
 
-  override fun find(novel: Novel): Maybe<Library> {
-    return orma.selectFromLibrary()
-        .novelEq(novel)
-        .executeAsObservable()
-        .firstElement()
-  }
+  fun find(novel: Novel): Maybe<Library>
 
-  override fun save(library: Library): Completable =
-      orma.transactionAsCompletable {
-        if (orma.relationOfNovel().codeEq(library.novel.code).isEmpty) {
-          orma.relationOfNovel().inserter().execute(library.novel)
-        }
-        orma.relationOfLibrary().inserter(OnConflict.REPLACE).execute(library)
-      }
+  fun saveAll(novels: List<Novel>): Completable
 
-  override fun saveAll(libraries: List<Library>): Completable =
-      orma.transactionAsCompletable {
-        libraries.forEach { library ->
-          if (orma.relationOfNovel().selector().codeEq(library.novel.code).isEmpty) {
-            orma.relationOfNovel().inserter().execute(library.novel)
-          }
-          orma.relationOfLibrary().inserter(OnConflict.REPLACE).execute(library)
-        }
-      }
+  fun save(novel: Novel): Completable
 
-  override fun updateAllAsync(novels: List<Novel>): Completable =
-      orma.transactionAsCompletable {
-        novels.forEach { orma.relationOfLibrary().upsert(Library(novel = it)) }
-      }
+  fun update(library: Library): Completable
 
-  override fun delete(id: Long): Completable {
-    return orma.relationOfLibrary()
-        .deleter()
-        .idEq(id)
-        .executeAsSingle()
-        .toCompletable()
-  }
+  fun delete(id: Long): Completable
 }

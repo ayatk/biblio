@@ -22,7 +22,6 @@ import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.util.rx.toSingle
 import io.reactivex.Completable
-import io.reactivex.Maybe
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -38,11 +37,9 @@ class IndexRepositoryImpl @Inject constructor(
   override fun findAll(novel: Novel): Single<List<Index>> =
       if (isDirty) findAllFromRemote(novel) else findAllFromLocal(novel)
 
-  override fun find(novel: Novel, page: Int): Maybe<Index> = database.find(novel, page)
-
   override fun save(indices: List<Index>): Completable = database.save(indices)
 
-  override fun delete(novel: Novel): Single<Int> = database.delete(novel)
+  override fun delete(novel: Novel): Completable = database.delete(novel)
 
   private fun findAllFromRemote(novel: Novel): Single<List<Index>> =
       remoteDataSource.findAll(novel)

@@ -80,7 +80,7 @@ class InfoViewModel @Inject constructor(
         .setTitle("タグの追加")
         .setView(editView)
         .setPositiveButton("OK") { _, _ ->
-          libraryRepository.save(Library(novel = novel, tag = editView.tags))
+          libraryRepository.update(listOf(Library (novel = novel, tag = editView.tags)))
               .subscribeOn(schedulerProvider.io())
               .observeOn(schedulerProvider.ui())
               .subscribe()

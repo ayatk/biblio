@@ -19,20 +19,20 @@ package com.ayatk.biblio.data.repository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Maybe
+import io.reactivex.Single
 
 interface LibraryRepository {
 
-  fun findAll(): Flowable<List<Library>>
+  fun findAll(): Single<List<Library>>
 
   fun find(novel: Novel): Maybe<Library>
 
-  fun save(library: Library): Completable
+  fun save(novel: Novel): Completable
 
-  fun saveAll(libraries: List<Library>): Completable
+  fun saveAll(novels: List<Novel>): Completable
 
-  fun updateAllAsync(novels: List<Novel>): Completable
+  fun update(libraries: List<Library>): Completable
 
   fun delete(id: Long): Completable
 }

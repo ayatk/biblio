@@ -20,32 +20,24 @@ import com.ayatk.biblio.data.db.LibraryDatabase
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Maybe
+import io.reactivex.Single
 import javax.inject.Inject
 
 class LibraryRepositoryImpl @Inject constructor(
     private val database: LibraryDatabase
 ) : LibraryRepository {
 
-  private var cachedLibrary = emptyMap<String, Library>()
-
-  override fun findAll(): Flowable<List<Library>> = database.findAll()
+  override fun findAll(): Single<List<Library>> = database.findAll()
 
   override fun find(novel: Novel): Maybe<Library> = database.find(novel)
 
-  override fun save(library: Library): Completable {
-    cachedLibrary.plus(Pair(library.id, library))
-    return database.save(library)
-  }
+  override fun save(novel: Novel): Completable = database.save(novel)
 
-  override fun saveAll(libraries: List<Library>): Completable {
-    libraries.forEach { library -> cachedLibrary.plus(Pair(library.id, library)) }
-    return database.saveAll(libraries)
-  }
+  override fun saveAll(novels: List<Novel>): Completable = database.saveAll(novels)
 
-  override fun updateAllAsync(novels: List<Novel>): Completable =
-      database.updateAllAsync(novels)
+  override fun update(libraries: List<Library>): Completable =
+      Completable.merge(libraries.map(database::update))
 
   override fun delete(id: Long): Completable = database.delete(id)
 }

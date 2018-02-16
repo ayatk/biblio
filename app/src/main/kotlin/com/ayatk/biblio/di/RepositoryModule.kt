@@ -34,7 +34,6 @@ import com.ayatk.biblio.data.repository.NovelRepository
 import com.ayatk.biblio.data.repository.NovelRepositoryImpl
 import com.ayatk.biblio.data.repository.RankingRepository
 import com.ayatk.biblio.data.repository.RankingRepositoryImpl
-import com.ayatk.biblio.util.rx.SchedulerProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -51,25 +50,23 @@ class RepositoryModule {
   @Singleton
   @Provides
   fun provideEpisodeRepository(
-      local: EpisodeDatabase,
-      remote: EpisodeRemoteDataSource,
-      schedulerProvider: SchedulerProvider
-  ): EpisodeRepository = EpisodeRepositoryImpl(local, remote, schedulerProvider)
+      database: EpisodeDatabase,
+      remote: EpisodeRemoteDataSource
+  ): EpisodeRepository = EpisodeRepositoryImpl(database, remote)
 
   @Singleton
   @Provides
   fun provideNovelRepository(
-      local: NovelDatabase,
-      remote: NovelRemoteDataSource,
-      schedulerProvider: SchedulerProvider
-  ): NovelRepository = NovelRepositoryImpl(local, remote, schedulerProvider)
+      database: NovelDatabase,
+      remote: NovelRemoteDataSource
+  ): NovelRepository = NovelRepositoryImpl(database, remote)
 
   @Singleton
   @Provides
   fun provideIndexRepository(
-      local: IndexDatabase,
+      database: IndexDatabase,
       remote: IndexRemoteDataSource
-  ): IndexRepository = IndexRepositoryImpl(local, remote)
+  ): IndexRepository = IndexRepositoryImpl(database, remote)
 
   @Singleton
   @Provides

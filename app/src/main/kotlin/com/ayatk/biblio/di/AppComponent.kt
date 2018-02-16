@@ -32,6 +32,7 @@ import javax.inject.Singleton
       AppModule::class,
       RepositoryModule::class,
       NetworkModule::class,
+      DatabaseModule::class,
       HttpClientModule::class,
       UiModule::class,
       UseCaseModule::class,

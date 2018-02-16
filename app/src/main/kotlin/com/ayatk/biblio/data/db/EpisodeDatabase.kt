@@ -16,35 +16,16 @@
 
 package com.ayatk.biblio.data.db
 
-import com.ayatk.biblio.data.repository.EpisodeRepository
 import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.OrmaDatabase
 import io.reactivex.Completable
 import io.reactivex.Single
-import javax.inject.Inject
 
-class EpisodeDatabase @Inject constructor(
-    private val orma: OrmaDatabase
-) : EpisodeRepository {
+interface EpisodeDatabase {
 
-  override fun find(novel: Novel, page: Int): Single<List<Episode>> {
-    return orma.selectFromEpisode()
-        .novelEq(novel)
-        .pageEq(page)
-        .executeAsObservable()
-        .toList()
-  }
+  fun find(novel: Novel, page: Int): Single<List<Episode>>
 
-  override fun save(episode: Episode): Completable {
-    return orma.transactionAsCompletable {
-      orma.insertIntoEpisode(episode)
-    }
-  }
+  fun save(episode: Episode): Completable
 
-  override fun deleteAll(novel: Novel): Single<Int> {
-    return orma.deleteFromEpisode()
-        .novelEq(novel)
-        .executeAsSingle()
-  }
+  fun delete(novel: Novel): Completable
 }

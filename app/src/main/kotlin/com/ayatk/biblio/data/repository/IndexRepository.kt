@@ -19,16 +19,13 @@ package com.ayatk.biblio.data.repository
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
 import io.reactivex.Completable
-import io.reactivex.Maybe
 import io.reactivex.Single
 
 interface IndexRepository {
 
   fun findAll(novel: Novel): Single<List<Index>>
 
-  fun find(novel: Novel, page: Int): Maybe<Index>
-
   fun save(indices: List<Index>): Completable
 
-  fun delete(novel: Novel): Single<Int>
+  fun delete(novel: Novel): Completable
 }

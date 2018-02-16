@@ -56,7 +56,7 @@ class SearchResultItemViewModel(
   }
 
   fun View.onClickAddLibrary() {
-    libraryRepository.save(Library(novel = novel, tag = listOf()))
+    libraryRepository.save(novel)
         .doOnSubscribe {
           downloadVisibility = View.GONE
           notifyPropertyChanged(BR.downloadVisibility)

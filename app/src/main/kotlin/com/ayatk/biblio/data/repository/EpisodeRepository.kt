@@ -27,5 +27,5 @@ interface EpisodeRepository {
 
   fun save(episode: Episode): Completable
 
-  fun deleteAll(novel: Novel): Single<Int>
+  fun deleteAll(novel: Novel): Completable
 }
