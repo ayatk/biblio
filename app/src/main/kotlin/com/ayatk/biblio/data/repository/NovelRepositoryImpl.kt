@@ -32,7 +32,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class NovelDataSource @Inject constructor(
+class NovelRepositoryImpl @Inject constructor(
     private val database: NovelDatabase,
     private val remoteDataSource: NovelRemoteDataSource,
     private val schedulerProvider: SchedulerProvider

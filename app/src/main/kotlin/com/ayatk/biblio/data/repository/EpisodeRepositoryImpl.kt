@@ -25,7 +25,7 @@ import com.ayatk.biblio.util.rx.toSingle
 import io.reactivex.Completable
 import io.reactivex.Single
 
-class EpisodeDataSource(
+class EpisodeRepositoryImpl(
     private val database: EpisodeDatabase,
     private val remoteDataSource: EpisodeRemoteDataSource,
     private val schedulerProvider: SchedulerProvider

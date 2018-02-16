@@ -27,7 +27,7 @@ import io.reactivex.Flowable
 import java.util.Calendar
 import javax.inject.Inject
 
-class RankingRemoteDataSource @Inject constructor(
+class RankingRepositoryImpl @Inject constructor(
     private val narouClient: NarouClient
 ) : RankingRepository {
 

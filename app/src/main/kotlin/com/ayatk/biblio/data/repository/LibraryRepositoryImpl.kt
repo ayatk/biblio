@@ -24,7 +24,7 @@ import io.reactivex.Flowable
 import io.reactivex.Maybe
 import javax.inject.Inject
 
-class LibraryDataSource @Inject constructor(
+class LibraryRepositoryImpl @Inject constructor(
     private val database: LibraryDatabase
 ) : LibraryRepository {
 

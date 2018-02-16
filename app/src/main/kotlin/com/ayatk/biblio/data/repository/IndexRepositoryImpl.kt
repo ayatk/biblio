@@ -28,7 +28,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class IndexDataSource @Inject constructor(
+class IndexRepositoryImpl @Inject constructor(
     private val database: IndexDatabase,
     private val remoteDataSource: IndexRemoteDataSource
 ) : IndexRepository {
