@@ -48,4 +48,3 @@ fun BottomNavigationView.disableShiftingMode() {
     Timber.e("disableShiftingMode: Unable to change value of shift mode")
   }
 }
-
