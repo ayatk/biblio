@@ -16,6 +16,9 @@
 
 package com.ayatk.biblio.di
 
+import android.app.Application
+import android.arch.persistence.room.Room
+import com.ayatk.biblio.data.db.AppDatabase
 import com.ayatk.biblio.data.db.EpisodeDatabase
 import com.ayatk.biblio.data.db.EpisodeDatabaseImpl
 import com.ayatk.biblio.data.db.IndexDatabase
