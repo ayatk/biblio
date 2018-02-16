@@ -22,7 +22,6 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.databinding.ObservableList
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.DividerItemDecoration
@@ -42,6 +41,7 @@ import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.ui.util.customview.BindingHolder
 import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
 import com.ayatk.biblio.ui.util.initBackToolbar
+import com.ayatk.biblio.util.ext.drawable
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -82,7 +82,8 @@ class SearchActivity : DaggerAppCompatActivity() {
     )
 
     val divider = DividerItemDecoration(this, 1)
-    ContextCompat.getDrawable(this, R.drawable.divider)?.let { divider.setDrawable(it) }
+    this.drawable(R.drawable.divider)
+        .let { divider.setDrawable(it) }
 
     binding.searchResult.apply {
       adapter = SearchResultAdapter(context, viewModel.searchResult)

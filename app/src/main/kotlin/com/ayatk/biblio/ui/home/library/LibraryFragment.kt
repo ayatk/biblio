@@ -18,7 +18,6 @@ package com.ayatk.biblio.ui.home.library
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -32,6 +31,7 @@ import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.home.library.item.LibraryItem
 import com.ayatk.biblio.ui.util.helper.Navigator
 import com.ayatk.biblio.util.Result
+import com.ayatk.biblio.util.ext.drawable
 import com.ayatk.biblio.util.ext.observe
 import com.ayatk.biblio.util.ext.setVisible
 import com.xwray.groupie.GroupAdapter
@@ -99,7 +99,8 @@ class LibraryFragment : DaggerFragment() {
 
   private fun initRecyclerView() {
     val divider = DividerItemDecoration(context, 1)
-    ContextCompat.getDrawable(context!!, R.drawable.divider)?.let { divider.setDrawable(it) }
+    context!!.drawable(R.drawable.divider)
+        .let { divider.setDrawable(it) }
 
     binding.recyclerView.apply {
       adapter = GroupAdapter<ViewHolder>().apply {

@@ -20,7 +20,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.databinding.ObservableList
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -35,6 +34,7 @@ import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.util.customview.BindingHolder
 import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
+import com.ayatk.biblio.util.ext.drawable
 import dagger.android.support.DaggerFragment
 import org.parceler.Parcels
 import javax.inject.Inject
@@ -72,7 +72,8 @@ class IndexFragment : DaggerFragment() {
 
   private fun initRecyclerView() {
     val divider = DividerItemDecoration(context, 1)
-    ContextCompat.getDrawable(context!!, R.drawable.divider)?.let { divider.setDrawable(it) }
+    context!!.drawable(R.drawable.divider)
+        .let { divider.setDrawable(it) }
 
     binding.recyclerView.apply {
       adapter = TableAdapter(context, viewModel.indexViewModels)

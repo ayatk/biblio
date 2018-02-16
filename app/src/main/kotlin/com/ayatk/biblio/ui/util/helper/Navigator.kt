@@ -19,13 +19,13 @@ package com.ayatk.biblio.ui.util.helper
 import android.content.Context
 import android.net.Uri
 import android.support.customtabs.CustomTabsIntent
-import android.support.v4.content.ContextCompat
 import android.text.TextUtils
 import android.webkit.URLUtil
 import com.ayatk.biblio.R
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.detail.DetailActivity
 import com.ayatk.biblio.ui.episode.EpisodeActivity
+import com.ayatk.biblio.util.ext.color
 
 object Navigator {
 
@@ -44,7 +44,7 @@ object Navigator {
 
     val intent = CustomTabsIntent.Builder()
         .setShowTitle(true)
-        .setToolbarColor(ContextCompat.getColor(context, R.color.app_blue))
+        .setToolbarColor(context.color(R.color.app_blue))
         .build()
 
     intent.launchUrl(context, Uri.parse(url))
