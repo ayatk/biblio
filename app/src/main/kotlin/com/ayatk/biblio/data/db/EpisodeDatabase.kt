@@ -14,49 +14,40 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.datasource.novel
+package com.ayatk.biblio.data.db
 
-import com.ayatk.biblio.domain.repository.NovelRepository
+import com.ayatk.biblio.data.repository.EpisodeRepository
+import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.OrmaDatabase
-import com.ayatk.biblio.model.enums.Publisher
 import io.reactivex.Completable
-import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class NovelLocalDataSource
+class EpisodeDatabase
 @Inject constructor(private val orma: OrmaDatabase) :
-    NovelRepository {
+    EpisodeRepository {
 
-  override fun findAll(codes: List<String>, publisher: Publisher): Single<List<Novel>> {
-    return orma.selectFromNovel()
-        .publisherEq(publisher)
+  override fun find(novel: Novel, page: Int): Single<List<Episode>> {
+    return orma.selectFromEpisode()
+        .novelEq(novel)
+        .pageEq(page)
         .executeAsObservable()
         .toList()
         .subscribeOn(Schedulers.io())
   }
 
-  override fun find(code: String, publisher: Publisher): Maybe<Novel> {
-    return orma.selectFromNovel()
-        .codeEq(code)
-        .publisherEq(publisher)
-        .executeAsObservable()
-        .firstElement()
-        .subscribeOn(Schedulers.io())
-  }
-
-  override fun save(novel: Novel): Completable {
+  override fun save(episode: Episode): Completable {
     return orma.transactionAsCompletable {
-      orma.relationOfNovel().upsert(novel)
+      orma.insertIntoEpisode(episode)
     }.subscribeOn(Schedulers.io())
   }
 
-  override fun delete(code: String) {
-    orma.relationOfNovel()
-        .deleter()
-        .codeEq(code)
-        .execute()
+  override fun deleteAll(novel: Novel): Single<Int> {
+    return orma.deleteFromEpisode()
+        .novelEq(novel)
+        .executeAsSingle()
+        .subscribeOn(Schedulers.io())
   }
 }

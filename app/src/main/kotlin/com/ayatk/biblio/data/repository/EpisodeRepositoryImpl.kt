@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.datasource.novel
+package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.domain.repository.EpisodeRepository
+import com.ayatk.biblio.data.datasource.novel.EpisodeRemoteDataSource
+import com.ayatk.biblio.data.db.EpisodeDatabase
 import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.util.rx.SchedulerProvider
@@ -24,14 +25,14 @@ import com.ayatk.biblio.util.rx.toSingle
 import io.reactivex.Completable
 import io.reactivex.Single
 
-class EpisodeDataSource(
-    private val localDataSource: EpisodeLocalDataSource,
+class EpisodeRepositoryImpl(
+    private val database: EpisodeDatabase,
     private val remoteDataSource: EpisodeRemoteDataSource,
     private val schedulerProvider: SchedulerProvider
 ) : EpisodeRepository {
 
   override fun find(novel: Novel, page: Int): Single<List<Episode>> =
-      localDataSource.find(novel, page)
+      database.find(novel, page)
           .flatMap {
             if (it.isEmpty()) {
               return@flatMap findToRemote(novel, page)
@@ -41,11 +42,11 @@ class EpisodeDataSource(
           .subscribeOn(schedulerProvider.io())
 
   override fun save(episode: Episode): Completable =
-      localDataSource.save(episode)
+      database.save(episode)
           .subscribeOn(schedulerProvider.io())
 
   override fun deleteAll(novel: Novel): Single<Int> =
-      localDataSource.deleteAll(novel)
+      database.deleteAll(novel)
           .subscribeOn(schedulerProvider.io())
 
   private fun findToRemote(novel: Novel, page: Int): Single<List<Episode>> =

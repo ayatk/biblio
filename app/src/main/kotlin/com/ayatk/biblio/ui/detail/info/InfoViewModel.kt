@@ -22,7 +22,7 @@ import android.arch.lifecycle.ViewModel
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import androidx.content.systemService
-import com.ayatk.biblio.domain.repository.LibraryRepository
+import com.ayatk.biblio.data.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.util.helper.Navigator

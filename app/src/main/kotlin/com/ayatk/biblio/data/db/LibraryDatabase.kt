@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.datasource.library
+package com.ayatk.biblio.data.db
 
-import com.ayatk.biblio.domain.repository.LibraryRepository
+import com.ayatk.biblio.data.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.OrmaDatabase
@@ -26,7 +26,7 @@ import io.reactivex.Flowable
 import io.reactivex.Maybe
 import javax.inject.Inject
 
-class LibraryLocalDataSource @Inject constructor(
+class LibraryDatabase @Inject constructor(
     private val orma: OrmaDatabase
 ) : LibraryRepository {
 

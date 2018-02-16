@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.datasource.novel
+package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.domain.repository.IndexRepository
+import com.ayatk.biblio.data.datasource.novel.IndexRemoteDataSource
+import com.ayatk.biblio.data.db.IndexDatabase
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.util.rx.toSingle
@@ -27,8 +28,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class IndexDataSource @Inject constructor(
-    private val localDataSource: IndexLocalDataSource,
+class IndexRepositoryImpl @Inject constructor(
+    private val database: IndexDatabase,
     private val remoteDataSource: IndexRemoteDataSource
 ) : IndexRepository {
 
@@ -37,18 +38,18 @@ class IndexDataSource @Inject constructor(
   override fun findAll(novel: Novel): Single<List<Index>> =
       if (isDirty) findAllFromRemote(novel) else findAllFromLocal(novel)
 
-  override fun find(novel: Novel, page: Int): Maybe<Index> = localDataSource.find(novel, page)
+  override fun find(novel: Novel, page: Int): Maybe<Index> = database.find(novel, page)
 
-  override fun save(indices: List<Index>): Completable = localDataSource.save(indices)
+  override fun save(indices: List<Index>): Completable = database.save(indices)
 
-  override fun delete(novel: Novel): Single<Int> = localDataSource.delete(novel)
+  override fun delete(novel: Novel): Single<Int> = database.delete(novel)
 
   private fun findAllFromRemote(novel: Novel): Single<List<Index>> =
       remoteDataSource.findAll(novel)
           .doOnSuccess(this::updateAllAsync)
 
   private fun findAllFromLocal(novel: Novel): Single<List<Index>> =
-      localDataSource.findAll(novel)
+      database.findAll(novel)
           .flatMap {
             if (it.isEmpty()) {
               return@flatMap findAllFromRemote(novel)
@@ -57,7 +58,7 @@ class IndexDataSource @Inject constructor(
           }
 
   private fun updateAllAsync(indices: List<Index>) {
-    localDataSource.save(indices).subscribe()
+    database.save(indices).subscribe()
     isDirty = false
   }
 }

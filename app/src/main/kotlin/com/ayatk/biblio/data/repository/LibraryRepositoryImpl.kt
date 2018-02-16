@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.datasource.library
+package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.domain.repository.LibraryRepository
+import com.ayatk.biblio.data.db.LibraryDatabase
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import io.reactivex.Completable
@@ -24,28 +24,28 @@ import io.reactivex.Flowable
 import io.reactivex.Maybe
 import javax.inject.Inject
 
-class LibraryDataSource @Inject constructor(
-    private val localDataSource: LibraryLocalDataSource
+class LibraryRepositoryImpl @Inject constructor(
+    private val database: LibraryDatabase
 ) : LibraryRepository {
 
   private var cachedLibrary = emptyMap<String, Library>()
 
-  override fun findAll(): Flowable<List<Library>> = localDataSource.findAll()
+  override fun findAll(): Flowable<List<Library>> = database.findAll()
 
-  override fun find(novel: Novel): Maybe<Library> = localDataSource.find(novel)
+  override fun find(novel: Novel): Maybe<Library> = database.find(novel)
 
   override fun save(library: Library): Completable {
     cachedLibrary.plus(Pair(library.id, library))
-    return localDataSource.save(library)
+    return database.save(library)
   }
 
   override fun saveAll(libraries: List<Library>): Completable {
     libraries.forEach { library -> cachedLibrary.plus(Pair(library.id, library)) }
-    return localDataSource.saveAll(libraries)
+    return database.saveAll(libraries)
   }
 
   override fun updateAllAsync(novels: List<Novel>): Completable =
-      localDataSource.updateAllAsync(novels)
+      database.updateAllAsync(novels)
 
-  override fun delete(id: Long): Completable = localDataSource.delete(id)
+  override fun delete(id: Long): Completable = database.delete(id)
 }

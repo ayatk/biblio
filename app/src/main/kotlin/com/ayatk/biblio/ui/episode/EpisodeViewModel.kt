@@ -18,7 +18,7 @@ package com.ayatk.biblio.ui.episode
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.ayatk.biblio.domain.repository.EpisodeRepository
+import com.ayatk.biblio.data.repository.EpisodeRepository
 import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.util.rx.SchedulerProvider

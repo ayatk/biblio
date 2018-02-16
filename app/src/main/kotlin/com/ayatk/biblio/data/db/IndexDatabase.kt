@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.datasource.novel
+package com.ayatk.biblio.data.db
 
-import com.ayatk.biblio.domain.repository.IndexRepository
+import com.ayatk.biblio.data.repository.IndexRepository
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.OrmaDatabase
@@ -25,7 +25,7 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 import javax.inject.Inject
 
-class IndexLocalDataSource @Inject constructor(
+class IndexDatabase @Inject constructor(
     val orma: OrmaDatabase
 ) : IndexRepository {
 

@@ -20,7 +20,7 @@ import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.view.View
 import com.ayatk.biblio.BR
-import com.ayatk.biblio.domain.repository.LibraryRepository
+import com.ayatk.biblio.data.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.NovelState

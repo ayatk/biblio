@@ -18,7 +18,7 @@ package com.ayatk.biblio.data.datasource.novel
 
 import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.data.narou.entity.NarouEpisode
-import com.ayatk.biblio.domain.repository.EpisodeRepository
+import com.ayatk.biblio.data.repository.EpisodeRepository
 import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.NovelState
