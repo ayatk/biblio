@@ -17,6 +17,7 @@
 package com.ayatk.biblio.data.datasource.novel
 
 import android.support.annotation.VisibleForTesting
+import com.ayatk.biblio.data.db.NovelLocalDataSource
 import com.ayatk.biblio.domain.repository.NovelRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.Publisher

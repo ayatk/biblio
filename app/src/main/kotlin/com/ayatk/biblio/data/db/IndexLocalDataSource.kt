@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.datasource.novel
+package com.ayatk.biblio.data.db
 
 import com.ayatk.biblio.domain.repository.IndexRepository
 import com.ayatk.biblio.model.Index

@@ -17,15 +17,15 @@
 package com.ayatk.biblio.di
 
 import com.ayatk.biblio.data.datasource.library.LibraryDataSource
-import com.ayatk.biblio.data.datasource.library.LibraryLocalDataSource
+import com.ayatk.biblio.data.db.LibraryLocalDataSource
 import com.ayatk.biblio.data.datasource.novel.EpisodeDataSource
-import com.ayatk.biblio.data.datasource.novel.EpisodeLocalDataSource
+import com.ayatk.biblio.data.db.EpisodeLocalDataSource
 import com.ayatk.biblio.data.datasource.novel.EpisodeRemoteDataSource
 import com.ayatk.biblio.data.datasource.novel.IndexDataSource
-import com.ayatk.biblio.data.datasource.novel.IndexLocalDataSource
+import com.ayatk.biblio.data.db.IndexLocalDataSource
 import com.ayatk.biblio.data.datasource.novel.IndexRemoteDataSource
 import com.ayatk.biblio.data.datasource.novel.NovelDataSource
-import com.ayatk.biblio.data.datasource.novel.NovelLocalDataSource
+import com.ayatk.biblio.data.db.NovelLocalDataSource
 import com.ayatk.biblio.data.datasource.novel.NovelRemoteDataSource
 import com.ayatk.biblio.data.datasource.ranking.RankingRemoteDataSource
 import com.ayatk.biblio.data.narou.NarouClient

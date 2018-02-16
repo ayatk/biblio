@@ -16,6 +16,7 @@
 
 package com.ayatk.biblio.data.datasource.library
 
+import com.ayatk.biblio.data.db.LibraryLocalDataSource
 import com.ayatk.biblio.domain.repository.LibraryRepository
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel

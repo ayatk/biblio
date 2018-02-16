@@ -16,6 +16,7 @@
 
 package com.ayatk.biblio.data.datasource.novel
 
+import com.ayatk.biblio.data.db.EpisodeLocalDataSource
 import com.ayatk.biblio.domain.repository.EpisodeRepository
 import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel

@@ -16,6 +16,7 @@
 
 package com.ayatk.biblio.data.datasource.novel
 
+import com.ayatk.biblio.data.db.IndexLocalDataSource
 import com.ayatk.biblio.domain.repository.IndexRepository
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
