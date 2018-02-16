@@ -35,4 +35,7 @@ class DefaultPrefsSchema {
 
   @Key(name = "show_tag_at_library")
   val showTagAtLibrary = false
+
+  @Key(name = "home_page_state")
+  val homePageState = R.id.nav_library
 }
