@@ -44,6 +44,7 @@ class IndexViewModel @Inject constructor(
   fun start(novel: Novel) {
     indexRepositoryImpl.findAll(novel)
         .map({ indexes -> convertToViewModel(indexes) })
+        .subscribeOn(schedulerProvider.io())
         .observeOn(schedulerProvider.ui())
         .subscribe(
             this::renderLibraries,
