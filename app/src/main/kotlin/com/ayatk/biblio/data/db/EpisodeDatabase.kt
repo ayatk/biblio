@@ -22,12 +22,11 @@ import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.OrmaDatabase
 import io.reactivex.Completable
 import io.reactivex.Single
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class EpisodeDatabase
-@Inject constructor(private val orma: OrmaDatabase) :
-    EpisodeRepository {
+class EpisodeDatabase @Inject constructor(
+    private val orma: OrmaDatabase
+) : EpisodeRepository {
 
   override fun find(novel: Novel, page: Int): Single<List<Episode>> {
     return orma.selectFromEpisode()
@@ -35,19 +34,17 @@ class EpisodeDatabase
         .pageEq(page)
         .executeAsObservable()
         .toList()
-        .subscribeOn(Schedulers.io())
   }
 
   override fun save(episode: Episode): Completable {
     return orma.transactionAsCompletable {
       orma.insertIntoEpisode(episode)
-    }.subscribeOn(Schedulers.io())
+    }
   }
 
   override fun deleteAll(novel: Novel): Single<Int> {
     return orma.deleteFromEpisode()
         .novelEq(novel)
         .executeAsSingle()
-        .subscribeOn(Schedulers.io())
   }
 }

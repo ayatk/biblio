@@ -23,19 +23,17 @@ import com.ayatk.biblio.model.enums.Publisher
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class NovelDatabase
-@Inject constructor(private val orma: OrmaDatabase) :
-    NovelRepository {
+class NovelDatabase @Inject constructor(
+    private val orma: OrmaDatabase
+) : NovelRepository {
 
   override fun findAll(codes: List<String>, publisher: Publisher): Single<List<Novel>> {
     return orma.selectFromNovel()
         .publisherEq(publisher)
         .executeAsObservable()
         .toList()
-        .subscribeOn(Schedulers.io())
   }
 
   override fun find(code: String, publisher: Publisher): Maybe<Novel> {
@@ -44,13 +42,12 @@ class NovelDatabase
         .publisherEq(publisher)
         .executeAsObservable()
         .firstElement()
-        .subscribeOn(Schedulers.io())
   }
 
   override fun save(novel: Novel): Completable {
     return orma.transactionAsCompletable {
       orma.relationOfNovel().upsert(novel)
-    }.subscribeOn(Schedulers.io())
+    }
   }
 
   override fun delete(code: String) {
