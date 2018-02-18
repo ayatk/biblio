@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.data.narou.entity
 
-import com.ayatk.biblio.data.narou.entity.enums.BigGenre
-import com.ayatk.biblio.data.narou.entity.enums.Genre
+import com.ayatk.biblio.data.narou.entity.enums.NarouBigGenre
+import com.ayatk.biblio.data.narou.entity.enums.NarouGenre
 import com.google.gson.annotations.SerializedName
 import java.util.Date
 
@@ -55,17 +55,17 @@ data class NarouNovel(
 
     /**
      * 大ジャンル
-     * 詳細は[BigGenre]を参照
+     * 詳細は[NarouBigGenre]を参照
      */
     @SerializedName("biggenre")
-    var bigGenre: BigGenre,
+    var bigGenre: NarouBigGenre,
 
     /**
      * ジャンル
-     * 詳細は[Genre]を参照
+     * 詳細は[NarouGenre]を参照
      */
     @SerializedName("genre")
-    var genre: Genre,
+    var genre: NarouGenre,
 
     /**
      * 現在未使用項目(常に空文字列が返ります)

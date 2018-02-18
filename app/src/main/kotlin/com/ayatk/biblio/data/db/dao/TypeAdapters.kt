@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.data.db.dao
 
-import com.ayatk.biblio.data.narou.entity.enums.BigGenre
-import com.ayatk.biblio.data.narou.entity.enums.Genre
+import com.ayatk.biblio.data.narou.entity.enums.NarouBigGenre
+import com.ayatk.biblio.data.narou.entity.enums.NarouGenre
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.model.enums.Publisher
 import com.github.gfx.android.orma.annotation.StaticTypeAdapter
@@ -25,13 +25,13 @@ import com.github.gfx.android.orma.annotation.StaticTypeAdapters
 
 @StaticTypeAdapters(
     StaticTypeAdapter(
-        targetType = BigGenre::class,
+        targetType = NarouBigGenre::class,
         serializedType = Int::class,
         serializer = "serializeBigGenre",
         deserializer = "deserializeBigGenre"
     ),
     StaticTypeAdapter(
-        targetType = Genre::class,
+        targetType = NarouGenre::class,
         serializedType = Int::class,
         serializer = "serializeGenre",
         deserializer = "deserializeGenre"
@@ -51,16 +51,16 @@ import com.github.gfx.android.orma.annotation.StaticTypeAdapters
 )
 object TypeAdapters {
   @JvmStatic
-  fun serializeBigGenre(genre: BigGenre): Int = genre.type
+  fun serializeBigGenre(genre: NarouBigGenre): Int = genre.type
 
   @JvmStatic
-  fun deserializeBigGenre(id: Int): BigGenre = BigGenre.of(id)
+  fun deserializeBigGenre(id: Int): NarouBigGenre = NarouBigGenre.of(id)
 
   @JvmStatic
-  fun serializeGenre(genre: Genre): Int = genre.type
+  fun serializeGenre(genre: NarouGenre): Int = genre.type
 
   @JvmStatic
-  fun deserializeGenre(id: Int): Genre = Genre.of(id)
+  fun deserializeGenre(id: Int): NarouGenre = NarouGenre.of(id)
 
   @JvmStatic
   fun serializePublisher(publisher: Publisher): String = publisher.name

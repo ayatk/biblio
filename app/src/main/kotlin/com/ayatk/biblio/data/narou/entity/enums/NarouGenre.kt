@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.data.narou.entity.enums
 
-enum class Genre constructor(val type: Int) {
+enum class NarouGenre constructor(val type: Int) {
   /**
    * 101: 異世界〔恋愛〕 LOVE_DIFF_WORLD
    */
@@ -105,6 +105,6 @@ enum class Genre constructor(val type: Int) {
   // ------------------------ COMPANION OBJECTS ------------------------
 
   companion object {
-    fun of(id: Int): Genre = values().firstOrNull { it.type == id } ?: NONGENRE
+    fun of(id: Int): NarouGenre = values().firstOrNull { it.type == id } ?: NONGENRE
   }
 }

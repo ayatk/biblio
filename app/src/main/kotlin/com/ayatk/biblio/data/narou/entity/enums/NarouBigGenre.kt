@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.data.narou.entity.enums
 
-enum class BigGenre constructor(val type: Int) {
+enum class NarouBigGenre constructor(val type: Int) {
   /**
    * 1: 恋愛 LOVE
    */
@@ -45,6 +45,6 @@ enum class BigGenre constructor(val type: Int) {
   // ------------------------ COMPANION OBJECTS ------------------------
 
   companion object {
-    fun of(id: Int): BigGenre = values().firstOrNull { it.type == id } ?: OTHER
+    fun of(id: Int): NarouBigGenre = values().firstOrNull { it.type == id } ?: OTHER
   }
 }
