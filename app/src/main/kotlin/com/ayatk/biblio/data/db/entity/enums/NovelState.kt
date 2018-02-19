@@ -19,5 +19,6 @@ package com.ayatk.biblio.data.db.entity.enums
 enum class NovelState {
   SHORT_STORY,
   SERIES,
-  SERIES_END
+  SERIES_END,
+  SERIES_STOP
 }
