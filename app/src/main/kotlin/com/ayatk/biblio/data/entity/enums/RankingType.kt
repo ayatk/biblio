@@ -19,7 +19,7 @@ package com.ayatk.biblio.data.entity.enums
 /**
  * ランキングの項目
  */
-enum class RankingType constructor(val type: String) {
+enum class RankingType(val type: String) {
   /**
    * DAILY 日間ランキング
    */

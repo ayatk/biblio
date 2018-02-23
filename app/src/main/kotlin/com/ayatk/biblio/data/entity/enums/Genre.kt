@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.data.entity.enums
 
-enum class Genre constructor(val type: Int) {
+enum class Genre(val type: Int) {
   /**
    * 101: 異世界〔恋愛〕 LOVE_DIFF_WORLD
    */

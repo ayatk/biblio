@@ -19,7 +19,7 @@ package com.ayatk.biblio.data.entity.enums
 /**
  * 小説の出力順序
  */
-enum class OutputOrder constructor(val id: String) {
+enum class OutputOrder(val id: String) {
   /**
    * BOOKMARK_COUNT ブックマーク数の多い順
    */

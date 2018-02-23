@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.data.entity.enums
 
-enum class BigGenre constructor(val type: Int) {
+enum class BigGenre(val type: Int) {
   /**
    * 1: 恋愛 LOVE
    */
