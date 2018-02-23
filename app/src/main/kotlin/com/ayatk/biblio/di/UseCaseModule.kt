@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.di
 
-import com.ayatk.biblio.data.repository.LibraryRepository
+import com.ayatk.biblio.data.repository.NovelRepository
 import com.ayatk.biblio.data.repository.RankingRepository
 import com.ayatk.biblio.domain.usecase.HomeLibraryUseCase
 import com.ayatk.biblio.domain.usecase.HomeLibraryUseCaseImpl
@@ -35,7 +35,7 @@ class UseCaseModule {
   @Singleton
   @Provides
   fun provideHomeLibraryUseCase(
-      repository: LibraryRepository,
+      repository: NovelRepository,
       schedulerProvider: SchedulerProvider
   ): HomeLibraryUseCase = HomeLibraryUseCaseImpl(repository, schedulerProvider)
 
