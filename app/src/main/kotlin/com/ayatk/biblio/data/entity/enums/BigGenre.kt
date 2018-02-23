@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.db.entity.enums
+package com.ayatk.biblio.data.entity.enums
 
-enum class NovelState {
-  SHORT_STORY,
-  SERIES,
-  SERIES_END,
-  SERIES_STOP
+enum class BigGenre{
+  LOVE,
+  FANTASY,
+  LITERATURE,
+  SF,
+  NON_GENRE,
+  OTHER
 }

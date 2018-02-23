@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.db.entity.mapper
+package com.ayatk.biblio.data.entity.mapper
 
 import android.arch.persistence.room.TypeConverter
-import com.ayatk.biblio.data.db.entity.enums.BigGenre
-import com.ayatk.biblio.data.db.entity.enums.Genre
-import com.ayatk.biblio.data.db.entity.enums.NovelState
-import com.ayatk.biblio.data.db.entity.enums.Publisher
+import com.ayatk.biblio.data.entity.enums.BigGenre
+import com.ayatk.biblio.data.entity.enums.Genre
+import com.ayatk.biblio.data.entity.enums.NovelState
+import com.ayatk.biblio.data.entity.enums.Publisher
 import java.util.Date
 
 object Converters {

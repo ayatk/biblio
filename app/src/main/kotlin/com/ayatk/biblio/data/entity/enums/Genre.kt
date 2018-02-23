@@ -14,13 +14,28 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.db.entity.enums
+package com.ayatk.biblio.data.entity.enums
 
-enum class BigGenre{
-  LOVE,
-  FANTASY,
-  LITERATURE,
-  SF,
-  NON_GENRE,
-  OTHER
+enum class Genre  {
+  LOVE_DIFF_WORLD,
+  LOVE_REAL_WORLD,
+  FANTASY_HIGH,
+  FANTASY_LOW,
+  LITERAL_PURE,
+  LITERAL_DRAMA,
+  LITERAL_HISTORY,
+  LITERAL_DETECTIVE,
+  LITERAL_HORROR,
+  LITERAL_ACTION,
+  LITERAL_COMEDY,
+  SF_VR,
+  SF_SPACE,
+  SF_SCIENCE,
+  SF_PANIC,
+  OTHER_FAIRYTALE,
+  OTHER_POEM,
+  OTHER_ESSAY,
+  OTHER_REPLAY,
+  OTHER,
+  NON_GENRE
 }

@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.db.entity.enums
+package com.ayatk.biblio.data.entity.enums
 
-enum class Publisher {
-  // なろう
-  NAROU,
-
-  // ノクターンとムーンライト
-  NOCTURNE_MOONLIGHT
+enum class NovelState {
+  SHORT_STORY,
+  SERIES,
+  SERIES_END,
+  SERIES_STOP
 }
