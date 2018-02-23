@@ -20,6 +20,7 @@ import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.ForeignKey
 import android.arch.persistence.room.PrimaryKey
+import com.ayatk.biblio.data.entity.enums.ReadingState
 import java.util.Date
 import java.util.UUID
 
@@ -53,6 +54,9 @@ data class IndexEntity(
 
     @ColumnInfo(name = "chapter_id", index = true)
     var chapterId: UUID,
+
+    @ColumnInfo(name = "reading_state")
+    var readingState: ReadingState,
 
     @ColumnInfo(name = "publish_date")
     var publishDate: Date,

@@ -72,6 +72,11 @@
   <string name="genre_other">Other [Other]</string>
   <string name="genre_non_genre">NonGenre [NonGenre]</string>
 
+  <!-- Reading State -->
+  <string name="unread">Unread</string>
+  <string name="reading">Reading</string>
+  <string name="read">Read</string>
+
   <!-- Sites -->
   <string name="site_narou">Narou</string>
   <string name="site_nocturne_moonlight">Nocturne･Moonlight</string>

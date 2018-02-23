@@ -70,6 +70,11 @@
   <string name="genre_other">その他 [その他]</string>
   <string name="genre_non_genre">ノンジャンル [ノンジャンル]</string>
 
+  <!-- Reading State -->
+  <string name="unread">読んでない</string>
+  <string name="reading">読んでる</string>
+  <string name="read">読んだ</string>
+
   <!-- Sites -->
   <string name="site_narou">小説家になろう</string>
   <string name="site_nocturne_moonlight">ノクターン･ムーンライト</string>
