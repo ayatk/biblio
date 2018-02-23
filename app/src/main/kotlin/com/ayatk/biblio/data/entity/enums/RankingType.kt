@@ -16,35 +16,28 @@
 
 package com.ayatk.biblio.data.entity.enums
 
-enum class BigGenre constructor(val type: Int) {
+/**
+ * ランキングの項目
+ */
+enum class RankingType constructor(val type: String) {
   /**
-   * 1: 恋愛 LOVE
+   * DAILY 日間ランキング
    */
-  LOVE(1),
+  DAILY("-d"),
   /**
-   * 2: ファンタジー FANTASY
+   * WEEKLY 週間ランキング
    */
-  FANTASY(2),
+  WEEKLY("-w"),
   /**
-   * 3: 文学 LITERATURE
+   * MONTHLY 月間ランキング
    */
-  LITERATURE(3),
+  MONTHLY("-m"),
   /**
-   * 4: SF SF
+   * QUARTET 四半期ランキング
    */
-  SF(4),
+  QUARTET("-q"),
   /**
-   * 98: ノンジャンル NONGENRE
+   * ALL 累計ランキング
    */
-  NON_GENRE(98),
-  /**
-   * 99: その他 OTHER
-   */
-  OTHER(99);
-
-  // ------------------------ COMPANION OBJECTS ------------------------
-
-  companion object {
-    fun of(id: Int): BigGenre = values().firstOrNull { it.type == id } ?: OTHER
-  }
+  ALL("");
 }

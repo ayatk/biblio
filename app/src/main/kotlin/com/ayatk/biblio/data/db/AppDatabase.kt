@@ -19,8 +19,20 @@ package com.ayatk.biblio.data.db
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
+import com.ayatk.biblio.data.entity.BookmarkEntity
+import com.ayatk.biblio.data.entity.ChapterEntity
+import com.ayatk.biblio.data.entity.EpisodeEntity
+import com.ayatk.biblio.data.entity.IndexEntity
+import com.ayatk.biblio.data.entity.NovelEntity
 
 @Database(
+    entities = [
+      BookmarkEntity::class,
+      ChapterEntity::class,
+      EpisodeEntity::class,
+      IndexEntity::class,
+      NovelEntity::class
+    ],
     version = 1
 )
 @TypeConverters(Converters::class)

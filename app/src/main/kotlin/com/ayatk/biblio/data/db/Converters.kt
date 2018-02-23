@@ -22,6 +22,7 @@ import com.ayatk.biblio.data.entity.enums.Genre
 import com.ayatk.biblio.data.entity.enums.NovelState
 import com.ayatk.biblio.data.entity.enums.Publisher
 import java.util.Date
+import java.util.UUID
 
 object Converters {
 
@@ -56,6 +57,14 @@ object Converters {
   @JvmStatic
   @TypeConverter
   fun deserializePublisher(publisher: String): Publisher = Publisher.valueOf(publisher)
+
+  @JvmStatic
+  @TypeConverter
+  fun deserializeUUID(value: String): UUID = UUID.fromString(value)
+
+  @JvmStatic
+  @TypeConverter
+  fun serializeUUID(value: UUID): String = value.toString()
 
   @JvmStatic
   @TypeConverter
