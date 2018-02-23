@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.entity.mapper
+package com.ayatk.biblio.data.db
 
 import android.arch.persistence.room.TypeConverter
 import com.ayatk.biblio.data.entity.enums.BigGenre

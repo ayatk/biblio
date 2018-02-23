@@ -19,7 +19,6 @@ package com.ayatk.biblio.data.db
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
-import com.ayatk.biblio.data.entity.mapper.Converters
 
 @Database(
     version = 1
