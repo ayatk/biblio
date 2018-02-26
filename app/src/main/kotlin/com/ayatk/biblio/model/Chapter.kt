@@ -16,11 +16,13 @@
 
 package com.ayatk.biblio.model
 
-data class Library(
+import java.util.UUID
 
-    val id: String,
+data class Chapter(
 
-    val novel: Novel,
+    val id: UUID,
 
-    val tag: List<String>
+    val title: String,
+
+    val serialNumber: Int
 )

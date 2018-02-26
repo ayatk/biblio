@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.model
+package com.ayatk.biblio.domain.translator
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
-data class Library(
+fun List<String>.toKeywordEntity(): String = Gson().toJson(this)
 
-    val id: String,
-
-    val novel: Novel,
-
-    val tag: List<String>
-)
+fun String.toKeywordModel(): List<String> {
+  val listType = object : TypeToken<List<String>>() {}.type
+  return Gson().fromJson(this, listType)
+}

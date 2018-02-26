@@ -16,40 +16,25 @@
 
 package com.ayatk.biblio.model
 
-import com.github.gfx.android.orma.annotation.Column
-import com.github.gfx.android.orma.annotation.PrimaryKey
-import com.github.gfx.android.orma.annotation.Setter
-import com.github.gfx.android.orma.annotation.Table
+import com.ayatk.biblio.model.enums.ReadingState
 import java.util.Date
+import java.util.UUID
 
-@Table
 data class Index(
 
-    @PrimaryKey
-    @Setter("id")
-    var id: String = "",
+    val id: UUID,
 
-    @Column(indexed = true)
-    @Setter("novel")
-    var novel: Novel,
+    val novel: Novel,
 
-    @Column
-    @Setter("title")
-    var title: String,
+    val subtitle: String,
 
-    @Column(indexed = true)
-    @Setter("isChapter")
-    var isChapter: Boolean,
+    val page: Int,
 
-    @Column(indexed = true)
-    @Setter("page")
-    var page: Int?,
+    val chapter: Chapter,
 
-    @Column
-    @Setter("publishDate")
-    var publishDate: Date?,
+    val readingState: ReadingState,
 
-    @Column
-    @Setter("lastUpdate")
-    var lastUpdate: Date?
+    val publishDate: Date,
+
+    val lastUpdate: Date
 )

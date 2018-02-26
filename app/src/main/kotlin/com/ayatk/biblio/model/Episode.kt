@@ -16,42 +16,24 @@
 
 package com.ayatk.biblio.model
 
-import com.github.gfx.android.orma.annotation.Column
-import com.github.gfx.android.orma.annotation.PrimaryKey
-import com.github.gfx.android.orma.annotation.Setter
-import com.github.gfx.android.orma.annotation.Table
 import org.parceler.Parcel
 import org.parceler.Parcel.Serialization
+import java.util.UUID
 
 @Parcel(Serialization.BEAN)
-@Table
 data class Episode(
 
-    @PrimaryKey(autoincrement = true)
-    @Setter("id")
-    var id: Long = 0,
+    val id: UUID,
 
-    @Column(indexed = true)
-    @Setter("novel")
-    val novel: Novel = Novel(),
+    val novel: Novel,
 
-    @Column(indexed = true)
-    @Setter("page")
-    val page: Int = 0,
+    val page: Int,
 
-    @Column
-    @Setter("subtitle")
-    val subtitle: String = "",
+    val subtitle: String,
 
-    @Column
-    @Setter("prevContent")
-    val prevContent: String = "",
+    val prevContent: String,
 
-    @Column
-    @Setter("content")
-    val content: String = "",
+    val content: String,
 
-    @Column
-    @Setter("afterContent")
-    val afterContent: String = ""
+    val afterContent: String
 )

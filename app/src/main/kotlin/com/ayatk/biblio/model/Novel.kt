@@ -27,61 +27,61 @@ import java.util.Date
 @Parcel(Serialization.BEAN)
 data class Novel(
 
-    var code: String = "",
+    val code: String,
 
-    var title: String = "",
+    val title: String,
 
-    var userID: Int = 0,
+    val userID: Int,
 
-    var writer: String = "",
+    val writer: String,
 
-    var story: String = "",
+    val story: String,
 
-    var publisher: Publisher = Publisher.NAROU,
+    val publisher: Publisher,
 
-    var bigGenre: BigGenre = BigGenre.OTHER,
+    val bigGenre: BigGenre,
 
-    var genre: Genre = Genre.OTHER,
+    val genre: Genre,
 
-    var keyword: List<String> = listOf(),
+    val keyword: List<String>,
 
-    var novelState: NovelState = NovelState.SERIES,
+    val novelState: NovelState,
 
-    var firstUpload: Date = Date(),
+    val firstUpload: Date,
 
-    var lastUpload: Date = Date(),
+    val lastUpload: Date,
 
-    var page: Int = 0,
+    val page: Int,
 
-    var length: Int = 0,
+    val length: Int,
 
-    var readTime: Int = 0,
+    val readTime: Int,
 
-    var isR18: Boolean = false,
+    val isR18: Boolean,
 
-    var isR15: Boolean = false,
+    val isR15: Boolean,
 
-    var isBL: Boolean = false,
+    val isBL: Boolean,
 
-    var isGL: Boolean = false,
+    val isGL: Boolean,
 
-    var isCruelness: Boolean = false,
+    val isCruelness: Boolean,
 
-    var isTransmigration: Boolean = false,
+    val isTransmigration: Boolean,
 
-    var isTransfer: Boolean = false,
+    val isTransfer: Boolean,
 
-    var point: Int = 0,
+    val point: Int,
 
-    var bookmarkCount: Int = 0,
+    val bookmarkCount: Int,
 
-    var reviewCount: Int = 0,
+    val reviewCount: Int,
 
-    var ratingCount: Int = 0,
+    val ratingCount: Int,
 
-    var illustrationCount: Int = 0,
+    val illustrationCount: Int,
 
-    var conversationRate: Int = 0,
+    val conversationRate: Int,
 
-    var novelUpdatedAt: Date = Date()
+    val novelUpdatedAt: Date
 )
