@@ -21,10 +21,8 @@ import android.net.ConnectivityManager
 import androidx.content.systemService
 import com.ayatk.biblio.data.DefaultPrefs
 import com.ayatk.biblio.data.narou.util.HtmlUtil
-import com.ayatk.biblio.model.OrmaDatabase
 import com.ayatk.biblio.util.rx.AppSchedulerProvider
 import com.ayatk.biblio.util.rx.SchedulerProvider
-import com.github.gfx.android.orma.AccessThreadConstraint
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -40,15 +38,6 @@ class AppModule {
   @Provides
   fun provideDefaultPrefs(application: Application): DefaultPrefs =
       DefaultPrefs.get(application)
-
-  @Singleton
-  @Provides
-  fun provideOrmaDatabase(application: Application): OrmaDatabase {
-    return OrmaDatabase.builder(application)
-        .writeOnMainThread(AccessThreadConstraint.FATAL)
-        .readOnMainThread(AccessThreadConstraint.FATAL)
-        .build()
-  }
 
   @Singleton
   @Provides
