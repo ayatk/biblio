@@ -16,6 +16,7 @@
 
 package com.ayatk.biblio.domain.usecase
 
+import com.ayatk.biblio.data.repository.IndexRepository
 import com.ayatk.biblio.data.repository.NovelRepository
 import com.ayatk.biblio.domain.translator.toLibrary
 import com.ayatk.biblio.model.Library
@@ -26,6 +27,7 @@ import javax.inject.Inject
 
 class HomeLibraryUseCaseImpl @Inject constructor(
     private val novelRepository: NovelRepository,
+    private val indexRepository: IndexRepository,
     private val schedulerProvider: SchedulerProvider
 ) : HomeLibraryUseCase {
 

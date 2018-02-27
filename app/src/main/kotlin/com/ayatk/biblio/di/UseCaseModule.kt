@@ -35,9 +35,14 @@ class UseCaseModule {
   @Singleton
   @Provides
   fun provideHomeLibraryUseCase(
-      repository: NovelRepository,
+      novelRepository: NovelRepository,
+      indexRepository: IndexRepository,
       schedulerProvider: SchedulerProvider
-  ): HomeLibraryUseCase = HomeLibraryUseCaseImpl(repository, schedulerProvider)
+  ): HomeLibraryUseCase = HomeLibraryUseCaseImpl(
+      novelRepository,
+      indexRepository,
+      schedulerProvider
+  )
 
   @Singleton
   @Provides
