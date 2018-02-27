@@ -31,8 +31,8 @@ interface ChapterDao {
   fun getAllChapterByCode(code: String): Flowable<List<ChapterEntity>>
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insert(chapter: ChapterEntity)
+  fun insert(chapters: List<ChapterEntity>)
 
   @Delete
-  fun delete(chapter: ChapterEntity)
+  fun delete(chapters: List<ChapterEntity>)
 }

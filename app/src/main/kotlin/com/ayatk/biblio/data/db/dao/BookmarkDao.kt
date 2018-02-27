@@ -31,7 +31,7 @@ interface BookmarkDao {
   fun getAllBookmark(): Flowable<List<BookmarkEntity>>
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insert(bookmark: BookmarkEntity)
+  fun insert(bookmarks: List<BookmarkEntity>)
 
   @Delete
   fun delete(bookmark: BookmarkEntity)
