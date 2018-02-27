@@ -16,23 +16,12 @@
 
 package com.ayatk.biblio.model
 
-import com.github.gfx.android.orma.annotation.Column
-import com.github.gfx.android.orma.annotation.PrimaryKey
-import com.github.gfx.android.orma.annotation.Setter
-import com.github.gfx.android.orma.annotation.Table
-
-@Table
 data class Bookmark(
+    val id: Long,
 
-    @PrimaryKey(autoincrement = true)
-    @Setter("id")
-    var id: Long = 0,
+    val novel: Novel,
 
-    @Column(indexed = true)
-    @Setter("novel")
-    var novel: Novel,
+    val index: Index,
 
-    @Column
-    @Setter("index")
-    var index: Index
+    val memo: String
 )

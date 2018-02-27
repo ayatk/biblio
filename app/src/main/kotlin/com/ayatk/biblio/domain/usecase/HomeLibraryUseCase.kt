@@ -16,17 +16,19 @@
 
 package com.ayatk.biblio.domain.usecase
 
-import android.support.annotation.CheckResult
 import com.ayatk.biblio.model.Library
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
 interface HomeLibraryUseCase {
+
+  /**
+   * Roomからライブラリが更新されるたびにどんぶらこ〜ってデータが流れてくる
+   */
   val libraries: Flowable<List<Library>>
 
-//  @CheckResult
-//  fun refresh(): Completable
-
-  @CheckResult
-  fun delete(id: Long): Completable
+  /**
+   * 呼ばれるたびにRemoteからデータを引っ張って来てDBを更新する
+   */
+  fun update(): Completable
 }

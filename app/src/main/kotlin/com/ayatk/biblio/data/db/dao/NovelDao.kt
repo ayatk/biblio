@@ -14,22 +14,28 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.repository
+package com.ayatk.biblio.data.db.dao
 
-import com.ayatk.biblio.data.db.dao.NovelDao
+import android.arch.persistence.room.Dao
+import android.arch.persistence.room.Delete
+import android.arch.persistence.room.Insert
+import android.arch.persistence.room.OnConflictStrategy
+import android.arch.persistence.room.Query
 import com.ayatk.biblio.data.entity.NovelEntity
 import io.reactivex.Flowable
-import javax.inject.Inject
-import javax.inject.Singleton
+import io.reactivex.Maybe
 
-@Singleton
-class NovelRepositoryImpl @Inject constructor(
-    private val dao: NovelDao
-) : NovelRepository {
+@Dao
+interface NovelDao {
+  @Query("SELECT * FROM novel")
+  fun getAllNovel(): Flowable<List<NovelEntity>>
 
-  override val novels: Flowable<List<NovelEntity>> = dao.getAllNovel()
+  @Query("SELECT * FROM novel WHERE code = :code LIMIT 1")
+  fun findNovelByCode(code: String): Maybe<NovelEntity>
 
-  override fun save(novel: NovelEntity) = dao.insert(novel)
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  fun insert(novel: NovelEntity)
 
-  override fun delete(novel: NovelEntity) = dao.delete(novel)
+  @Delete
+  fun delete(novel: NovelEntity)
 }

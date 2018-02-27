@@ -16,16 +16,14 @@
 
 package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.enums.Publisher
-import io.reactivex.Completable
-import io.reactivex.Single
+import com.ayatk.biblio.data.entity.NovelEntity
+import io.reactivex.Flowable
 
 interface NovelRepository {
 
-  fun findAll(codes: List<String>, publisher: Publisher): Single<List<Novel>>
+  val novels: Flowable<List<NovelEntity>>
 
-  fun save(novel: Novel): Completable
+  fun save(novel: NovelEntity)
 
-  fun delete(code: String)
+  fun delete(novel: NovelEntity)
 }

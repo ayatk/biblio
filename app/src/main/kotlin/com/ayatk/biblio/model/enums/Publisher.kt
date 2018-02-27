@@ -20,16 +20,13 @@ import android.support.annotation.StringRes
 import com.ayatk.biblio.R
 
 enum class Publisher(@StringRes val siteName: Int, val url: String) {
-  // なろう
+  /**
+   * なろう
+   */
   NAROU(R.string.site_narou, "https://ncode.syosetu.com/"),
 
-  // ノクターンとムーンライト
-  NOCTURNE_MOONLIGHT(R.string.site_nocturne_moonlight, "https://novel18.syosetu.com/"),
-
-  // ハーメルン
-  // HAMELN("ハーメルン", "https://novel.syosetu.org/"),
-
-  // カクヨム
-  // KAKUYOMU("カクヨム", "https://kakuyomu.jp/works/");
-  // TODO: 2017/04/24  もしかしたら他のもいれるかも
+  /**
+   * ノクターンとムーンライト
+   */
+  NOCTURNE_MOONLIGHT(R.string.site_nocturne_moonlight, "https://novel18.syosetu.com/")
 }

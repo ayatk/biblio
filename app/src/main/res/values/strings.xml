@@ -32,6 +32,7 @@
 
   <string name="series">Serialized</string>
   <string name="series_end">Completion</string>
+  <string name="series_stop">Stop</string>
   <string name="short_story">Short story</string>
   <string name="novel_progress">%1$d/%2$d</string>
   <string name="novel_total_pages">%1$d part</string>
@@ -42,6 +43,13 @@
   <string name="novel_info_title">Novel info</string>
 
   <!-- Genre -->
+  <string name="big_genre_love">Love</string>
+  <string name="big_genre_fantasy">Fantasy</string>
+  <string name="big_genre_literal">Literature</string>
+  <string name="big_genre_sf">SF</string>
+  <string name="big_genre_other">Other</string>
+  <string name="big_genre_non_genre">NonGenre</string>
+
   <string name="genre_love_diff_world">Otherworldly [Love]</string>
   <string name="genre_love_real_world">Real World [Love]</string>
   <string name="genre_fantasy_high">High Fantasy [Fantasy]</string>
@@ -62,7 +70,12 @@
   <string name="genre_other_essay">Essay [Other]</string>
   <string name="genre_other_replay">Replay [Other]</string>
   <string name="genre_other">Other [Other]</string>
-  <string name="genre_nongenre">NonGenre [NonGenre]</string>
+  <string name="genre_non_genre">NonGenre [NonGenre]</string>
+
+  <!-- Reading State -->
+  <string name="unread">Unread</string>
+  <string name="reading">Reading</string>
+  <string name="read">Read</string>
 
   <!-- Sites -->
   <string name="site_narou">Narou</string>

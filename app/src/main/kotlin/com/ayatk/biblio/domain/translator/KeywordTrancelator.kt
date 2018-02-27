@@ -14,30 +14,13 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.model.enums
+package com.ayatk.biblio.domain.translator
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
-import android.support.annotation.StringRes
-import com.ayatk.biblio.R
+fun List<String>.toKeywordEntity(): String = Gson().toJson(this)
 
-enum class NovelState(@StringRes val stateName: Int) {
-
-  /**
-   * 短編
-   */
-  SHORT_STORY(R.string.short_story),
-
-  /**
-   * 連載
-   */
-  SERIES(R.string.series),
-
-  /**
-   * 完結
-   */
-  SERIES_END(R.string.series_end),
-
-  /**
-   * 連載停止
-   */
-  SERIES_STOP(R.string.series_stop)
+fun String.toKeywordModel(): List<String> {
+  val listType = object : TypeToken<List<String>>() {}.type
+  return Gson().fromJson(this, listType)
 }

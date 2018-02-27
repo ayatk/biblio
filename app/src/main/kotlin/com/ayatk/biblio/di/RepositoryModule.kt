@@ -18,11 +18,10 @@ package com.ayatk.biblio.di
 
 import com.ayatk.biblio.data.datasource.novel.EpisodeRemoteDataSource
 import com.ayatk.biblio.data.datasource.novel.IndexRemoteDataSource
-import com.ayatk.biblio.data.datasource.novel.NovelRemoteDataSource
 import com.ayatk.biblio.data.db.EpisodeDatabase
 import com.ayatk.biblio.data.db.IndexDatabase
 import com.ayatk.biblio.data.db.LibraryDatabase
-import com.ayatk.biblio.data.db.NovelDatabase
+import com.ayatk.biblio.data.db.dao.NovelDao
 import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.data.repository.EpisodeRepository
 import com.ayatk.biblio.data.repository.EpisodeRepositoryImpl
@@ -57,9 +56,8 @@ class RepositoryModule {
   @Singleton
   @Provides
   fun provideNovelRepository(
-      database: NovelDatabase,
-      remote: NovelRemoteDataSource
-  ): NovelRepository = NovelRepositoryImpl(database, remote)
+      dao: NovelDao
+  ): NovelRepository = NovelRepositoryImpl(dao)
 
   @Singleton
   @Provides

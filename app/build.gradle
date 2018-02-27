@@ -225,6 +225,9 @@ dependencies {
   kapt 'com.android.databinding:compiler:3.2.0-alpha02'
 
   // Android Architecture Components
+  implementation 'android.arch.persistence.room:runtime:1.0.0'
+  implementation 'android.arch.persistence.room:rxjava2:1.0.0'
+  kapt 'android.arch.persistence.room:compiler:1.0.0'
   implementation "android.arch.lifecycle:runtime:1.1.0"
   implementation "android.arch.lifecycle:extensions:1.1.0"
   implementation "android.arch.lifecycle:reactivestreams:1.1.0"
@@ -295,6 +298,8 @@ dependencies {
     exclude group: 'com.android.support', module: 'support-annotations'
   })
   testImplementation 'junit:junit:4.12'
+  testImplementation "android.arch.core:core-testing:1.1.0"
+  testImplementation "android.arch.persistence.room:testing:1.0.0"
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 

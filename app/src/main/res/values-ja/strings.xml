@@ -30,6 +30,7 @@
 
   <string name="series">連載中</string>
   <string name="series_end">完結済み</string>
+  <string name="series_stop">更新停止</string>
   <string name="short_story">短編</string>
   <string name="novel_progress">%1$d/%2$d</string>
   <string name="novel_total_pages">全%1$d部</string>
@@ -40,6 +41,13 @@
   <string name="novel_info_title">小説情報</string>
 
   <!-- Genre -->
+  <string name="big_genre_love">恋愛</string>
+  <string name="big_genre_fantasy">ファンタジー</string>
+  <string name="big_genre_literal">文学</string>
+  <string name="big_genre_sf">SF</string>
+  <string name="big_genre_other">その他</string>
+  <string name="big_genre_non_genre">ノンジャンル</string>
+
   <string name="genre_love_diff_world">異世界 [恋愛]</string>
   <string name="genre_love_real_world">現実世界 [恋愛]</string>
   <string name="genre_fantasy_high">ハイファンタジー [ファンタジー]</string>
@@ -60,7 +68,12 @@
   <string name="genre_other_essay">エッセイ [その他]</string>
   <string name="genre_other_replay">リプレイ [その他]</string>
   <string name="genre_other">その他 [その他]</string>
-  <string name="genre_nongenre">ノンジャンル [ノンジャンル]</string>
+  <string name="genre_non_genre">ノンジャンル [ノンジャンル]</string>
+
+  <!-- Reading State -->
+  <string name="unread">読んでない</string>
+  <string name="reading">読んでる</string>
+  <string name="read">読んだ</string>
 
   <!-- Sites -->
   <string name="site_narou">小説家になろう</string>

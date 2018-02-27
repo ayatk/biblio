@@ -14,30 +14,18 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.model.enums
+package com.ayatk.biblio.data.entity
 
-import android.support.annotation.StringRes
-import com.ayatk.biblio.R
+import com.google.gson.annotations.SerializedName
 
-enum class NovelState(@StringRes val stateName: Int) {
+data class Ranking(
 
-  /**
-   * 短編
-   */
-  SHORT_STORY(R.string.short_story),
+    @SerializedName("rank")
+    var rank: Int,
 
-  /**
-   * 連載
-   */
-  SERIES(R.string.series),
+    @SerializedName("ncode")
+    var code: String,
 
-  /**
-   * 完結
-   */
-  SERIES_END(R.string.series_end),
-
-  /**
-   * 連載停止
-   */
-  SERIES_STOP(R.string.series_stop)
-}
+    @SerializedName("pt")
+    var pt: Int
+)

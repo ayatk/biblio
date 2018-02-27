@@ -19,25 +19,8 @@ package com.ayatk.biblio.model.enums
 import android.support.annotation.StringRes
 import com.ayatk.biblio.R
 
-enum class NovelState(@StringRes val stateName: Int) {
-
-  /**
-   * 短編
-   */
-  SHORT_STORY(R.string.short_story),
-
-  /**
-   * 連載
-   */
-  SERIES(R.string.series),
-
-  /**
-   * 完結
-   */
-  SERIES_END(R.string.series_end),
-
-  /**
-   * 連載停止
-   */
-  SERIES_STOP(R.string.series_stop)
+enum class ReadingState(@StringRes val string: Int) {
+  UNREAD(R.string.unread), // 読んでない
+  READING(R.string.reading), // 読んでる
+  READ(R.string.read) // 読んだ
 }

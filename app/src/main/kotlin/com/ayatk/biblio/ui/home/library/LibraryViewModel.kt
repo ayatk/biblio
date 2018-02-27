@@ -26,6 +26,8 @@ import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.ext.toLiveData
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.subscribeBy
+import timber.log.Timber
 import javax.inject.Inject
 
 class LibraryViewModel @Inject constructor(
@@ -48,6 +50,11 @@ class LibraryViewModel @Inject constructor(
   }
 
   fun onSwipeRefresh() {
-    refreshing.postValue(false)
+    useCase.update()
+        .observeOn(schedulerProvider.ui())
+        .subscribeBy(
+            onComplete = { refreshing.postValue(false) },
+            onError = Timber::e
+        )
   }
 }

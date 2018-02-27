@@ -16,15 +16,14 @@
 
 package com.ayatk.biblio.di
 
-import com.ayatk.biblio.data.db.EpisodeDatabase
-import com.ayatk.biblio.data.db.EpisodeDatabaseImpl
-import com.ayatk.biblio.data.db.IndexDatabase
-import com.ayatk.biblio.data.db.IndexDatabaseImpl
-import com.ayatk.biblio.data.db.LibraryDatabase
-import com.ayatk.biblio.data.db.LibraryDatabaseImpl
-import com.ayatk.biblio.data.db.NovelDatabase
-import com.ayatk.biblio.data.db.NovelDatabaseImpl
-import com.ayatk.biblio.model.OrmaDatabase
+import android.app.Application
+import android.arch.persistence.room.Room
+import com.ayatk.biblio.data.db.AppDatabase
+import com.ayatk.biblio.data.db.dao.BookmarkDao
+import com.ayatk.biblio.data.db.dao.ChapterDao
+import com.ayatk.biblio.data.db.dao.EpisodeDao
+import com.ayatk.biblio.data.db.dao.IndexDao
+import com.ayatk.biblio.data.db.dao.NovelDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -34,25 +33,28 @@ class DatabaseModule {
 
   @Singleton
   @Provides
-  fun provideEpisodeDatabase(
-      orma: OrmaDatabase
-  ): EpisodeDatabase = EpisodeDatabaseImpl(orma)
+  fun provideDb(app: Application): AppDatabase =
+      Room.databaseBuilder(app, AppDatabase::class.java, "biblio.db")
+          .fallbackToDestructiveMigration()
+          .build()
 
   @Singleton
   @Provides
-  fun provideIndexDatabase(
-      orma: OrmaDatabase
-  ): IndexDatabase = IndexDatabaseImpl(orma)
+  fun provideBookmarkDao(db: AppDatabase): BookmarkDao = db.bookmarkDao()
 
   @Singleton
   @Provides
-  fun provideLibraryDatabase(
-      orma: OrmaDatabase
-  ): LibraryDatabase = LibraryDatabaseImpl(orma)
+  fun provideChapterDao(db: AppDatabase): ChapterDao = db.chapterDao()
 
   @Singleton
   @Provides
-  fun provideNovelDatabase(
-      orma: OrmaDatabase
-  ): NovelDatabase = NovelDatabaseImpl(orma)
+  fun provideEpisodeDao(db: AppDatabase): EpisodeDao = db.episodeDao()
+
+  @Singleton
+  @Provides
+  fun provideIndexDao(db: AppDatabase): IndexDao = db.indexDao()
+
+  @Singleton
+  @Provides
+  fun provideNovelDao(db: AppDatabase): NovelDao = db.novelDao()
 }

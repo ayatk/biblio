@@ -21,9 +21,9 @@ import org.parceler.Parcel
 @Parcel(Parcel.Serialization.BEAN)
 data class Ranking(
 
-    var rank: Int = 0,
+    val rank: Int,
 
-    var novel: Novel = Novel(),
+    val novel: Novel,
 
-    var point: Int = 0
+    val point: Int
 )

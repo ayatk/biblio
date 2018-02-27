@@ -14,30 +14,37 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.model.enums
+package com.ayatk.biblio.data.entity.enums
 
-import android.support.annotation.StringRes
-import com.ayatk.biblio.R
-
-enum class NovelState(@StringRes val stateName: Int) {
-
+enum class BigGenre(val type: Int) {
   /**
-   * 短編
+   * 1: 恋愛 LOVE
    */
-  SHORT_STORY(R.string.short_story),
-
+  LOVE(1),
   /**
-   * 連載
+   * 2: ファンタジー FANTASY
    */
-  SERIES(R.string.series),
-
+  FANTASY(2),
   /**
-   * 完結
+   * 3: 文学 LITERATURE
    */
-  SERIES_END(R.string.series_end),
-
+  LITERATURE(3),
   /**
-   * 連載停止
+   * 4: SF SF
    */
-  SERIES_STOP(R.string.series_stop)
+  SF(4),
+  /**
+   * 98: ノンジャンル NONGENRE
+   */
+  NON_GENRE(98),
+  /**
+   * 99: その他 OTHER
+   */
+  OTHER(99);
+
+  // ------------------------ COMPANION OBJECTS ------------------------
+
+  companion object {
+    fun of(id: Int): BigGenre = values().firstOrNull { it.type == id } ?: OTHER
+  }
 }
