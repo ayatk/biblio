@@ -18,17 +18,14 @@ package com.ayatk.biblio.di
 
 import com.ayatk.biblio.data.datasource.novel.EpisodeRemoteDataSource
 import com.ayatk.biblio.data.datasource.novel.IndexRemoteDataSource
-import com.ayatk.biblio.data.db.EpisodeDatabase
-import com.ayatk.biblio.data.db.IndexDatabase
-import com.ayatk.biblio.data.db.LibraryDatabase
+import com.ayatk.biblio.data.db.dao.EpisodeDao
+import com.ayatk.biblio.data.db.dao.IndexDao
 import com.ayatk.biblio.data.db.dao.NovelDao
 import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.data.repository.EpisodeRepository
 import com.ayatk.biblio.data.repository.EpisodeRepositoryImpl
 import com.ayatk.biblio.data.repository.IndexRepository
 import com.ayatk.biblio.data.repository.IndexRepositoryImpl
-import com.ayatk.biblio.data.repository.LibraryRepository
-import com.ayatk.biblio.data.repository.LibraryRepositoryImpl
 import com.ayatk.biblio.data.repository.NovelRepository
 import com.ayatk.biblio.data.repository.NovelRepositoryImpl
 import com.ayatk.biblio.data.repository.RankingRepository
@@ -49,9 +46,9 @@ class RepositoryModule {
   @Singleton
   @Provides
   fun provideEpisodeRepository(
-      database: EpisodeDatabase,
+      dao: EpisodeDao,
       remote: EpisodeRemoteDataSource
-  ): EpisodeRepository = EpisodeRepositoryImpl(database, remote)
+  ): EpisodeRepository = EpisodeRepositoryImpl(dao, remote)
 
   @Singleton
   @Provides
@@ -62,9 +59,9 @@ class RepositoryModule {
   @Singleton
   @Provides
   fun provideIndexRepository(
-      database: IndexDatabase,
+      dao: IndexDao,
       remote: IndexRemoteDataSource
-  ): IndexRepository = IndexRepositoryImpl(database, remote)
+  ): IndexRepository = IndexRepositoryImpl(dao, remote)
 
   @Singleton
   @Provides
