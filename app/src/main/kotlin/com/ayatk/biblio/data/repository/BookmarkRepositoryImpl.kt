@@ -33,7 +33,7 @@ class BookmarkRepositoryImpl @Inject constructor(
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 
-  override fun delete(code: String): Completable {
+  override fun delete(id: UUID): Completable {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 }

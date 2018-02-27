@@ -19,6 +19,7 @@ package com.ayatk.biblio.data.repository
 import com.ayatk.biblio.data.entity.BookmarkEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import java.util.UUID
 
 interface BookmarkRepository {
 
@@ -26,5 +27,5 @@ interface BookmarkRepository {
 
   fun save(bookmarks: List<BookmarkEntity>): Completable
 
-  fun delete(code: String): Completable
+  fun delete(id: UUID): Completable
 }
