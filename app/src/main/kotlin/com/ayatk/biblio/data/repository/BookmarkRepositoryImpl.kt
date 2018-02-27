@@ -20,20 +20,22 @@ import com.ayatk.biblio.data.db.dao.BookmarkDao
 import com.ayatk.biblio.data.entity.BookmarkEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import java.util.UUID
 import javax.inject.Inject
 
 class BookmarkRepositoryImpl @Inject constructor(
     private val dao: BookmarkDao
 ) : BookmarkRepository {
 
-  override val bookmarks: Flowable<List<BookmarkEntity>> =
-      TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+  override val bookmarks: Flowable<List<BookmarkEntity>> = dao.getAllBookmark()
 
-  override fun save(bookmarks: List<BookmarkEntity>): Completable {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
+  override fun save(bookmarks: List<BookmarkEntity>): Completable =
+      Completable.fromRunnable { dao::insert }
 
-  override fun delete(id: UUID): Completable {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
+  override fun delete(id: UUID): Completable =
+      dao.getAllBookmark()
+          .map { it.first { it.id == id } } // 基本マッチしないIDはない設計
+          .flatMapCompletable {
+            Completable.fromRunnable { dao::delete }
+          }
 }

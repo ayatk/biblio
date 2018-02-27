@@ -26,15 +26,15 @@ class ChapterRepositoryImpl @Inject constructor(
     private val dao: ChapterDao
 ) : ChapterRepository {
 
-  override fun chapter(code: String): Flowable<List<ChapterEntity>> {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
+  override fun chapter(code: String): Flowable<List<ChapterEntity>> =
+      dao.getAllChapterByCode(code)
 
-  override fun save(chapters: List<ChapterEntity>): Completable {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
+  override fun save(chapters: List<ChapterEntity>): Completable =
+      Completable.fromRunnable { dao::insert }
 
-  override fun deleteAll(code: String): Completable {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
+  override fun deleteAll(code: String): Completable =
+      dao.getAllChapterByCode(code)
+          .flatMapCompletable {
+            Completable.fromRunnable { dao::delete }
+          }
 }
