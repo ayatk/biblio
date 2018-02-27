@@ -16,9 +16,8 @@
 
 package com.ayatk.biblio.data.repository
 
+import com.ayatk.biblio.data.entity.enums.OutputOrder
 import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.data.narou.entity.enums.NarouRankingType
-import com.ayatk.biblio.data.narou.entity.enums.OutputOrder
 import com.ayatk.biblio.data.narou.entity.mapper.toRanking
 import com.ayatk.biblio.data.narou.util.QueryBuilder
 import com.ayatk.biblio.model.Ranking
@@ -26,6 +25,7 @@ import com.ayatk.biblio.model.enums.RankingType
 import io.reactivex.Flowable
 import java.util.Calendar
 import javax.inject.Inject
+import com.ayatk.biblio.data.entity.enums.RankingType as ApiRankingType
 
 class RankingRepositoryImpl @Inject constructor(
     private val narouClient: NarouClient
@@ -36,58 +36,36 @@ class RankingRepositoryImpl @Inject constructor(
   }
 
   override fun narouRanking(rankingType: RankingType, range: IntRange): Flowable<List<Ranking>> {
-    val narouRankingType = NarouRankingType.valueOf(rankingType.name)
+    val apiRankingType = ApiRankingType.valueOf(rankingType.name)
     val today = Calendar.getInstance()
 
-    when (narouRankingType) {
-      NarouRankingType.DAILY,
-      NarouRankingType.WEEKLY -> {
-        // 午前6時以前にその日のランキングを取得するとエラーで死ぬので前日のランキングを取得
-        if (today.get(Calendar.HOUR_OF_DAY) < EARLY_MORNING) {
-          today.add(Calendar.DATE, -1)
-        }
-
-        return narouClient.getRanking(today.time, narouRankingType)
-            .flatMap {
-              val codes = it
-                  .map { it.ncode }
-                  .drop(range.first)
-                  .take(range.count())
-
-              narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
-                  .map { novel ->
-                    it.drop(range.first)
-                        .take(range.count())
-                        .toRanking(novel)
-                  }
-            }
-            .toFlowable()
+    if (apiRankingType != ApiRankingType.ALL) {
+      // 午前6時以前にその日のランキングを取得するとエラーで死ぬので前日のランキングを取得
+      if (today.get(Calendar.HOUR_OF_DAY) < EARLY_MORNING) {
+        today.add(Calendar.DATE, -1)
       }
-      NarouRankingType.MONTHLY,
-      NarouRankingType.QUARTET -> {
-        return narouClient.getRanking(today.time, NarouRankingType.DAILY)
-            .flatMap {
-              val codes = it
-                  .map { it.ncode }
-                  .drop(range.first)
-                  .take(range.count())
 
-              narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
-                  .map { novel ->
-                    it.drop(range.first)
-                        .take(range.count())
-                        .toRanking(novel)
-                  }
-            }
-            .toFlowable()
-      }
-      NarouRankingType.ALL -> {
-        val query = QueryBuilder().order(OutputOrder.HYOKA_COUNT).size(range.last).build()
-        return narouClient
-            .getNovel(query)
-            .map { it.toRanking() }
-            .toFlowable()
-      }
+      return narouClient.getRanking(today.time, apiRankingType)
+          .flatMap {
+            val codes = it
+                .map { it.ncode }
+                .drop(range.first)
+                .take(range.count())
+
+            narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
+                .map { novel ->
+                  it.drop(range.first)
+                      .take(range.count())
+                      .toRanking(novel)
+                }
+          }
+          .toFlowable()
+    } else {
+      val query = QueryBuilder().order(OutputOrder.HYOKA_COUNT).size(range.last).build()
+      return narouClient
+          .getNovel(query)
+          .map { it.toRanking() }
+          .toFlowable()
     }
   }
 
