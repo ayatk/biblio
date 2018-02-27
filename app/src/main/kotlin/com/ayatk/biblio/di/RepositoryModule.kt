@@ -65,7 +65,7 @@ class RepositoryModule {
 
   @Singleton
   @Provides
-  fun provideRankingRemoteDataSource(
+  fun provideRankingRepository(
       client: NarouClient
   ): RankingRepository = RankingRepositoryImpl(client)
 }
