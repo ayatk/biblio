@@ -31,12 +31,8 @@ class NovelRepositoryImpl @Inject constructor(
   override val novels: Flowable<List<NovelEntity>> = dao.getAllNovel()
 
   override fun save(novel: NovelEntity): Completable =
-      Completable.fromRunnable {
-        dao.insert(novel)
-      }
+      Completable.fromRunnable { dao::insert }
 
   override fun delete(novel: NovelEntity): Completable =
-      Completable.fromRunnable {
-        dao.delete(novel)
-      }
+      Completable.fromRunnable { dao::delete }
 }

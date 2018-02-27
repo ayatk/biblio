@@ -32,9 +32,7 @@ class EpisodeRepositoryImpl(
   }
 
   override fun save(episode: EpisodeEntity): Completable =
-      Completable.fromCallable {
-        dao.insert(episode)
-      }
+      Completable.fromCallable { dao::insert }
 
   override fun deleteAll(code: String): Completable =
       Completable.fromRunnable {
