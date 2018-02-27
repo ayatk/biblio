@@ -23,7 +23,7 @@ import io.reactivex.Flowable
 
 interface HomeRankingUseCase {
   /**
-   * ランキング画面で使うランキングを取得する
+   * ホームのランキング画面で使うランキングを取得する
    *
    * @param publisher ランキングを取ってくるサイト
    * @param rankingType 日間や月間などのランキングタイプ
