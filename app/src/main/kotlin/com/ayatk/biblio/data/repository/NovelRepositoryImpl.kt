@@ -18,6 +18,7 @@ package com.ayatk.biblio.data.repository
 
 import com.ayatk.biblio.data.db.dao.NovelDao
 import com.ayatk.biblio.data.entity.NovelEntity
+import io.reactivex.Completable
 import io.reactivex.Flowable
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -29,7 +30,13 @@ class NovelRepositoryImpl @Inject constructor(
 
   override val novels: Flowable<List<NovelEntity>> = dao.getAllNovel()
 
-  override fun save(novel: NovelEntity) = dao.insert(novel)
+  override fun save(novel: NovelEntity): Completable =
+      Completable.fromRunnable {
+        dao.insert(novel)
+      }
 
-  override fun delete(novel: NovelEntity) = dao.delete(novel)
+  override fun delete(novel: NovelEntity): Completable =
+      Completable.fromRunnable {
+        dao.delete(novel)
+      }
 }

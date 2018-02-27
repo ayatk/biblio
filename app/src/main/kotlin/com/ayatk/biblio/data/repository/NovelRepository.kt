@@ -17,13 +17,14 @@
 package com.ayatk.biblio.data.repository
 
 import com.ayatk.biblio.data.entity.NovelEntity
+import io.reactivex.Completable
 import io.reactivex.Flowable
 
 interface NovelRepository {
 
   val novels: Flowable<List<NovelEntity>>
 
-  fun save(novel: NovelEntity)
+  fun save(novel: NovelEntity): Completable
 
-  fun delete(novel: NovelEntity)
+  fun delete(novel: NovelEntity): Completable
 }
