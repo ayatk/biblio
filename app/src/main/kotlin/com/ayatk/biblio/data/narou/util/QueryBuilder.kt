@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.data.narou.util
 
-import com.ayatk.biblio.data.narou.entity.enums.OutputOrder
+import com.ayatk.biblio.data.entity.enums.OutputOrder
 import com.ayatk.biblio.data.narou.exception.NarouOutOfRangeException
 import java.net.URLEncoder
 
