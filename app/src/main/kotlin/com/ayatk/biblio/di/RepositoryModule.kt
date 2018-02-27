@@ -39,12 +39,6 @@ class RepositoryModule {
 
   @Singleton
   @Provides
-  fun provideLibraryRepository(
-      database: LibraryDatabase
-  ): LibraryRepository = LibraryRepositoryImpl(database)
-
-  @Singleton
-  @Provides
   fun provideEpisodeRepository(
       dao: EpisodeDao,
       remote: EpisodeRemoteDataSource
