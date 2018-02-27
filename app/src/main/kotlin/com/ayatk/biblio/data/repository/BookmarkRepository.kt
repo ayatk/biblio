@@ -16,15 +16,15 @@
 
 package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.data.entity.IndexEntity
+import com.ayatk.biblio.data.entity.BookmarkEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
-interface IndexRepository {
+interface BookmarkRepository {
 
-  fun indexes(code: String): Flowable<List<IndexEntity>>
+  val bookmarks: Flowable<List<BookmarkEntity>>
 
-  fun save(indices: List<IndexEntity>): Completable
+  fun save(bookmarks: List<BookmarkEntity>): Completable
 
   fun delete(code: String): Completable
 }

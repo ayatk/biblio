@@ -16,29 +16,24 @@
 
 package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.data.datasource.novel.EpisodeRemoteDataSource
-import com.ayatk.biblio.data.db.dao.EpisodeDao
-import com.ayatk.biblio.data.entity.EpisodeEntity
+import com.ayatk.biblio.data.db.dao.BookmarkDao
+import com.ayatk.biblio.data.entity.BookmarkEntity
 import io.reactivex.Completable
-import io.reactivex.Single
+import io.reactivex.Flowable
+import javax.inject.Inject
 
-class EpisodeRepositoryImpl(
-    private val dao: EpisodeDao,
-    private val remoteDataSource: EpisodeRemoteDataSource
-) : EpisodeRepository {
+class BookmarkRepositoryImpl @Inject constructor(
+    private val dao: BookmarkDao
+) : BookmarkRepository {
 
-  override fun find(code: String, page: Int): Single<EpisodeEntity> {
+  override val bookmarks: Flowable<List<BookmarkEntity>> =
+      TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+
+  override fun save(bookmarks: List<BookmarkEntity>): Completable {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 
-  override fun save(episode: EpisodeEntity): Completable =
-      Completable.fromCallable {
-        dao.insert(episode)
-      }
-
-  override fun deleteAll(code: String): Completable =
-      Completable.fromRunnable {
-        dao.getAllEpisodeByCode(code)
-            .map { it.map(dao::delete) }
-      }
+  override fun delete(code: String): Completable {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
 }

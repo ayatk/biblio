@@ -16,16 +16,15 @@
 
 package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.model.Episode
-import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.data.entity.EpisodeEntity
 import io.reactivex.Completable
 import io.reactivex.Single
 
 interface EpisodeRepository {
 
-  fun find(novel: Novel, page: Int): Single<List<Episode>>
+  fun find(code: String, page: Int): Single<EpisodeEntity>
 
-  fun save(episode: Episode): Completable
+  fun save(episode: EpisodeEntity): Completable
 
-  fun deleteAll(novel: Novel): Completable
+  fun deleteAll(code: String): Completable
 }

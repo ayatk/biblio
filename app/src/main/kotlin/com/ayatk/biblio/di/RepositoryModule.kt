@@ -18,10 +18,16 @@ package com.ayatk.biblio.di
 
 import com.ayatk.biblio.data.datasource.novel.EpisodeRemoteDataSource
 import com.ayatk.biblio.data.datasource.novel.IndexRemoteDataSource
+import com.ayatk.biblio.data.db.dao.BookmarkDao
+import com.ayatk.biblio.data.db.dao.ChapterDao
 import com.ayatk.biblio.data.db.dao.EpisodeDao
 import com.ayatk.biblio.data.db.dao.IndexDao
 import com.ayatk.biblio.data.db.dao.NovelDao
 import com.ayatk.biblio.data.narou.NarouClient
+import com.ayatk.biblio.data.repository.BookmarkRepository
+import com.ayatk.biblio.data.repository.BookmarkRepositoryImpl
+import com.ayatk.biblio.data.repository.ChapterRepository
+import com.ayatk.biblio.data.repository.ChapterRepositoryImpl
 import com.ayatk.biblio.data.repository.EpisodeRepository
 import com.ayatk.biblio.data.repository.EpisodeRepositoryImpl
 import com.ayatk.biblio.data.repository.IndexRepository
@@ -36,6 +42,18 @@ import javax.inject.Singleton
 
 @Module
 class RepositoryModule {
+
+  @Singleton
+  @Provides
+  fun provideBookmarkRepository(
+      dao: BookmarkDao
+  ): BookmarkRepository = BookmarkRepositoryImpl(dao)
+
+  @Singleton
+  @Provides
+  fun provideChapterRepository(
+      dao: ChapterDao
+  ): ChapterRepository = ChapterRepositoryImpl(dao)
 
   @Singleton
   @Provides

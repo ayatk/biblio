@@ -17,45 +17,29 @@
 package com.ayatk.biblio.data.repository
 
 import com.ayatk.biblio.data.datasource.novel.IndexRemoteDataSource
-import com.ayatk.biblio.data.db.IndexDatabase
-import com.ayatk.biblio.model.Index
-import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.util.rx.toSingle
+import com.ayatk.biblio.data.db.dao.IndexDao
+import com.ayatk.biblio.data.entity.IndexEntity
 import io.reactivex.Completable
-import io.reactivex.Single
+import io.reactivex.Flowable
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class IndexRepositoryImpl @Inject constructor(
-    private val database: IndexDatabase,
+    private val dao: IndexDao,
     private val remoteDataSource: IndexRemoteDataSource
 ) : IndexRepository {
 
-  var isDirty = false
+  override fun indexes(code: String): Flowable<List<IndexEntity>> =
+      dao.getAllIndexByCode(code)
 
-  override fun findAll(novel: Novel): Single<List<Index>> =
-      if (isDirty) findAllFromRemote(novel) else findAllFromLocal(novel)
+  override fun save(indices: List<IndexEntity>): Completable =
+      Completable.fromRunnable {
+        indices.map(dao::insert)
+      }
 
-  override fun save(indices: List<Index>): Completable = database.save(indices)
-
-  override fun delete(novel: Novel): Completable = database.delete(novel)
-
-  private fun findAllFromRemote(novel: Novel): Single<List<Index>> =
-      remoteDataSource.findAll(novel)
-          .doOnSuccess(this::updateAllAsync)
-
-  private fun findAllFromLocal(novel: Novel): Single<List<Index>> =
-      database.findAll(novel)
-          .flatMap {
-            if (it.isEmpty()) {
-              return@flatMap findAllFromRemote(novel)
-            }
-            return@flatMap it.toSingle()
-          }
-
-  private fun updateAllAsync(indices: List<Index>) {
-    database.save(indices).subscribe()
-    isDirty = false
-  }
+  override fun delete(code: String): Completable =
+      Completable.fromRunnable {
+        indexes(code).map { it.map(dao::delete) }
+      }
 }
