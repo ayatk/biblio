@@ -4,7 +4,7 @@ import com.ayatk.biblio.data.entity.NovelEntity
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 
-fun NovelEntity.toNovel(): Novel =
+fun NovelEntity.toModel(): Novel =
     Novel(
         code,
         title,
@@ -37,7 +37,7 @@ fun NovelEntity.toNovel(): Novel =
         novelUpdatedAt
     )
 
-fun Novel.toNovelEntity(): NovelEntity =
+fun Novel.toEntity(): NovelEntity =
     NovelEntity(
         code,
         title,
@@ -73,7 +73,7 @@ fun Novel.toNovelEntity(): NovelEntity =
 fun NovelEntity.toLibrary(): Library =
     Library(
         code,
-        this.toNovel(),
+        this.toModel(),
         // TODO: タグの変換処理をかく
         listOf()
     )
