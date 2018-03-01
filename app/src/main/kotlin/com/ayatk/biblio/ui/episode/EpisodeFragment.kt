@@ -52,7 +52,8 @@ class EpisodeFragment : DaggerFragment() {
   }
 
   override fun onCreateView(
-      inflater: LayoutInflater, container: ViewGroup?,
+      inflater: LayoutInflater,
+      container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
     binding = FragmentEpisodeBinding.inflate(inflater, container, false)

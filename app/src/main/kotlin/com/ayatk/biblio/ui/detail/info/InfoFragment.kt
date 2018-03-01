@@ -49,7 +49,9 @@ class InfoFragment : DaggerFragment() {
   }
 
   override fun onCreateView(
-      inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
   ): View? {
     binding = FragmentInfoBinding.inflate(inflater, container, false)
     binding.setLifecycleOwner(this)

@@ -28,7 +28,6 @@ import com.ayatk.biblio.ui.util.helper.Navigator
 import com.ayatk.biblio.util.DateFormat
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
 import mabbas007.tagsedittext.TagsEditText
 import timber.log.Timber
 import javax.inject.Inject
@@ -79,7 +78,7 @@ class InfoViewModel @Inject constructor(
         .setTitle("タグの追加")
         .setView(editView)
         .setPositiveButton("OK") { _, _ ->
-          libraryRepository.update(listOf(Library (novel = novel, tag = editView.tags)))
+          libraryRepository.update(listOf(Library(novel = novel, tag = editView.tags)))
               .subscribeOn(schedulerProvider.io())
               .observeOn(schedulerProvider.ui())
               .subscribe()

@@ -21,7 +21,8 @@ import android.databinding.ObservableList
 import android.support.v7.widget.RecyclerView
 
 abstract class ObservableListRecyclerAdapter<T, VH : RecyclerView.ViewHolder>(
-    context: Context, list: ObservableList<T>
+    context: Context,
+    list: ObservableList<T>
 ) : ArrayRecyclerAdapter<T, VH>(context, list) {
 
   init {

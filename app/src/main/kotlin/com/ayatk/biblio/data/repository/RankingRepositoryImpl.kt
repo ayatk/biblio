@@ -52,7 +52,12 @@ class RankingRepositoryImpl @Inject constructor(
                 .drop(range.first)
                 .take(range.count())
 
-            narouClient.getNovel(QueryBuilder().ncode(*codes.toTypedArray()).size(range.count()).build())
+            val query = QueryBuilder()
+                .ncode(*codes.toTypedArray())
+                .size(range.count())
+                .build()
+
+            narouClient.getNovel(query)
                 .map { novel ->
                   it.drop(range.first)
                       .take(range.count())

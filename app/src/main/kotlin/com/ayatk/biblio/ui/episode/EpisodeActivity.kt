@@ -67,7 +67,8 @@ class EpisodeActivity : DaggerAppCompatActivity() {
             }
 
             override fun onPageScrolled(
-                position: Int, positionOffset: Float,
+                position: Int,
+                positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
             }

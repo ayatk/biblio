@@ -25,7 +25,6 @@ import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.util.DateFormat
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 

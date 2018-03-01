@@ -158,19 +158,22 @@ class SearchActivity : DaggerAppCompatActivity() {
   }
 
   private inner class SearchResultAdapter constructor(
-      context: Context, list: ObservableList<SearchResultItemViewModel>
+      context: Context,
+      list: ObservableList<SearchResultItemViewModel>
   ) :
       ObservableListRecyclerAdapter<SearchResultItemViewModel, BindingHolder<ViewSearchResultItemBinding>>(
           context, list
       ) {
 
     override fun onCreateViewHolder(
-        parent: ViewGroup, viewType: Int
+        parent: ViewGroup,
+        viewType: Int
     ): BindingHolder<ViewSearchResultItemBinding> =
         BindingHolder(context, parent, layout.view_search_result_item)
 
     override fun onBindViewHolder(
-        holder: BindingHolder<ViewSearchResultItemBinding>, position: Int
+        holder: BindingHolder<ViewSearchResultItemBinding>,
+        position: Int
     ) {
       holder.binding.apply {
         viewModel = getItem(position)

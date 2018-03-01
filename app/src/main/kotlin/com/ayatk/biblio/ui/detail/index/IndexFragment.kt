@@ -56,7 +56,8 @@ class IndexFragment : DaggerFragment() {
   }
 
   override fun onCreateView(
-      inflater: LayoutInflater, container: ViewGroup?,
+      inflater: LayoutInflater,
+      container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
     binding = FragmentIndexBinding.inflate(inflater, container, false)
@@ -94,7 +95,8 @@ class IndexFragment : DaggerFragment() {
   }
 
   private inner class TableAdapter constructor(
-      context: Context, list: ObservableList<IndexItemViewModel>
+      context: Context,
+      list: ObservableList<IndexItemViewModel>
   ) :
       ObservableListRecyclerAdapter<IndexItemViewModel, BindingHolder<ItemIndexBinding>>(
           context, list
@@ -105,7 +107,8 @@ class IndexFragment : DaggerFragment() {
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup, viewType: Int
+        parent: ViewGroup,
+        viewType: Int
     ): BindingHolder<ItemIndexBinding> =
         BindingHolder(context, parent, layout.item_index)
 
