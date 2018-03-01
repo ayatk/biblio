@@ -1,7 +1,6 @@
 package com.ayatk.biblio.domain.translator
 
 import com.ayatk.biblio.data.entity.NovelEntity
-import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 
 fun NovelEntity.toModel(): Novel =
@@ -68,12 +67,4 @@ fun Novel.toEntity(): NovelEntity =
         illustrationCount,
         conversationRate,
         novelUpdatedAt
-    )
-
-fun NovelEntity.toLibrary(): Library =
-    Library(
-        code,
-        this.toModel(),
-        // TODO: タグの変換処理をかく
-        listOf()
     )
