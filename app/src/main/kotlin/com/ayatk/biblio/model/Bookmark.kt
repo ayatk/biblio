@@ -16,8 +16,10 @@
 
 package com.ayatk.biblio.model
 
+import java.util.UUID
+
 data class Bookmark(
-    val id: Long,
+    val id: UUID,
 
     val novel: Novel,
 
