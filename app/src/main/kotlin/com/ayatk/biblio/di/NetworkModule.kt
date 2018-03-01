@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.di
 
-import com.ayatk.biblio.data.narou.entity.enums.NarouBigGenre
-import com.ayatk.biblio.data.narou.entity.enums.NarouGenre
+import com.ayatk.biblio.data.entity.enums.BigGenre
+import com.ayatk.biblio.data.entity.enums.Genre
 import com.ayatk.biblio.data.narou.service.NarouApiService
 import com.ayatk.biblio.data.narou.service.NarouService
 import com.google.gson.Gson
@@ -77,12 +77,12 @@ class NetworkModule {
     return GsonBuilder()
         .setDateFormat("yyyy-MM-dd HH:mm:ss")
         .registerTypeAdapter(
-            NarouBigGenre::class.java,
-            JsonDeserializer { jsonElement, _, _ -> NarouBigGenre.of(jsonElement.asInt) }
+            BigGenre::class.java,
+            JsonDeserializer { jsonElement, _, _ -> BigGenre.of(jsonElement.asInt) }
         )
         .registerTypeAdapter(
-            NarouGenre::class.java,
-            JsonDeserializer { jsonElement, _, _ -> NarouGenre.of(jsonElement.asInt) }
+            Genre::class.java,
+            JsonDeserializer { jsonElement, _, _ -> Genre.of(jsonElement.asInt) }
         )
         .create()
   }
