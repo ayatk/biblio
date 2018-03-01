@@ -208,7 +208,7 @@ configurations {
   ktlint
 }
 
-ext.supportLibVersion = '27.0.2'
+ext.supportLibVersion = '27.1.0'
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -222,7 +222,7 @@ dependencies {
   implementation "com.android.support:preference-v7:${supportLibVersion}"
   implementation "com.android.support:preference-v14:${supportLibVersion}"
   implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-  kapt 'com.android.databinding:compiler:3.2.0-alpha02'
+  kapt 'com.android.databinding:compiler:3.2.0-alpha04'
 
   // Android Architecture Components
   implementation 'android.arch.persistence.room:runtime:1.0.0'
@@ -234,7 +234,7 @@ dependencies {
   kapt "android.arch.lifecycle:compiler:1.1.0"
 
   // androidx
-  implementation 'androidx.core:core-ktx:0.1'
+  implementation 'androidx.core:core-ktx:0.2'
 
   // Network
   implementation 'com.squareup.retrofit2:retrofit:2.3.0'
@@ -242,8 +242,8 @@ dependencies {
   implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
   implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
   implementation 'com.google.code.gson:gson:2.8.2'
-  implementation 'com.squareup.okhttp3:okhttp:3.9.1'
-  implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+  implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+  implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
 
   // Dependency Injection
   implementation 'com.google.dagger:dagger:2.14.1'
@@ -253,8 +253,8 @@ dependencies {
   implementation 'com.google.dagger:dagger-android-support:2.14.1'
 
   // ReactiveX
-  implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
-  implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+  implementation 'io.reactivex.rxjava2:rxjava:2.1.10'
+  implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
   implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
 
   // O/R Mapping
@@ -283,14 +283,14 @@ dependencies {
   debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
   releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
   testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
-  implementation 'com.jakewharton.timber:timber:4.6.0'
+  implementation 'com.jakewharton.timber:timber:4.6.1'
   debugImplementation 'com.facebook.stetho:stetho:1.5.0'
   debugImplementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
   debugImplementation 'com.facebook.stetho:stetho-timber:1.5.0@aar'
   debugImplementation 'com.tomoima.debot:debot:2.0.3'
   releaseImplementation 'com.tomoima.debot:debot-no-op:2.0.3'
   debugImplementation 'jp.wasabeef:takt:1.0.5'
-  implementation('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
+  implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
     transitive = true
   }
 
@@ -304,7 +304,7 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 
   // Lint
-  ktlint "com.github.shyiko:ktlint:0.15.0"
+  ktlint "com.github.shyiko:ktlint:0.17.0"
 }
 
 task ktlint(type: JavaExec, group: "verification") {
