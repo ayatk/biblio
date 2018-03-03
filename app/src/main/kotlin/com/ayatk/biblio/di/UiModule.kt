@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.ui
+package com.ayatk.biblio.di
 
 import android.app.Activity
 import android.arch.lifecycle.ViewModel
-import com.ayatk.biblio.di.ViewModelKey
 import com.ayatk.biblio.ui.detail.DetailActivity
 import com.ayatk.biblio.ui.detail.DetailModule
 import com.ayatk.biblio.ui.episode.EpisodeActivity

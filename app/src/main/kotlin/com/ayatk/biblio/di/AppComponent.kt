@@ -18,7 +18,6 @@ package com.ayatk.biblio.di
 
 import android.app.Application
 import com.ayatk.biblio.App
-import com.ayatk.biblio.ui.UiModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
