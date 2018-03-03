@@ -14,20 +14,16 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.remote.service
+package com.ayatk.biblio.di
 
-import io.reactivex.Flowable
-import retrofit2.http.GET
-import retrofit2.http.Path
+import com.ayatk.biblio.data.remote.NarouDataStore
+import com.ayatk.biblio.data.remote.NarouDataStoreImpl
+import dagger.Binds
+import dagger.Module
 
-interface NarouService {
+@Module
+interface DataStoreModule {
 
-  @GET("/{ncode}")
-  fun getTableOfContents(@Path("ncode") ncode: String): Flowable<String>
-
-  @GET("/{ncode}/{page}")
-  fun getPage(@Path("ncode") ncode: String, @Path("page") page: Int): Flowable<String>
-
-  @GET("/{ncode}")
-  fun getSSPage(@Path("ncode") ncode: String): Flowable<String>
+  @Binds
+  fun bindNarouDataStore(dataStoreImpl: NarouDataStoreImpl): NarouDataStore
 }

@@ -14,23 +14,25 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.remote.service
+package com.ayatk.biblio.data.remote
 
+import com.ayatk.biblio.data.entity.enums.RankingType
+import com.ayatk.biblio.data.remote.entity.NarouEpisode
+import com.ayatk.biblio.data.remote.entity.NarouIndex
 import com.ayatk.biblio.data.remote.entity.NarouNovel
 import com.ayatk.biblio.data.remote.entity.NarouRanking
 import io.reactivex.Flowable
-import retrofit2.http.GET
-import retrofit2.http.Query
-import retrofit2.http.QueryMap
+import java.util.Date
 
-interface NarouApiService {
+interface NarouDataStore {
 
-  @GET("/novelapi/api/")
-  fun getNovel(@QueryMap query: Map<String, String>): Flowable<List<NarouNovel>>
+  fun getNovel(vararg codes: String): Flowable<List<NarouNovel>>
 
-  @GET("/novel18api/api/")
-  fun getNovel18(@QueryMap query: Map<String, String>): Flowable<List<NarouNovel>>
+  fun getIndex(code: String): Flowable<List<NarouIndex>>
 
-  @GET("rank/rankget/?out=json")
-  fun getRanking(@Query("rtype") rtype: String): Flowable<List<NarouRanking>>
+  fun getEpisode(code: String, page: Int): Flowable<NarouEpisode>
+
+  fun getShortStory(code: String): Flowable<NarouEpisode>
+
+  fun getRanking(rankingType: RankingType, date: Date): Flowable<List<NarouRanking>>
 }
