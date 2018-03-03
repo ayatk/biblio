@@ -16,45 +16,25 @@
 
 package com.ayatk.biblio.di
 
-import com.ayatk.biblio.data.repository.NovelRepository
-import com.ayatk.biblio.data.repository.RankingRepository
 import com.ayatk.biblio.domain.usecase.HomeLibraryUseCase
 import com.ayatk.biblio.domain.usecase.HomeLibraryUseCaseImpl
 import com.ayatk.biblio.domain.usecase.HomeRankingUseCase
 import com.ayatk.biblio.domain.usecase.HomeRankingUseCaseImpl
 import com.ayatk.biblio.domain.usecase.RankingUseCase
 import com.ayatk.biblio.domain.usecase.RankingUseCaseImpl
-import com.ayatk.biblio.util.rx.SchedulerProvider
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
 
 @Module
-class UseCaseModule {
+@Suppress("unused")
+interface UseCaseModule {
 
-  @Singleton
-  @Provides
-  fun provideHomeLibraryUseCase(
-      novelRepository: NovelRepository,
-      indexRepository: IndexRepository,
-      schedulerProvider: SchedulerProvider
-  ): HomeLibraryUseCase = HomeLibraryUseCaseImpl(
-      novelRepository,
-      indexRepository,
-      schedulerProvider
-  )
+  @Binds
+  fun bindHomeLibraryUseCase(useCase: HomeLibraryUseCaseImpl): HomeLibraryUseCase
 
-  @Singleton
-  @Provides
-  fun provideHomeRankingUseCase(
-      repository: RankingRepository,
-      schedulerProvider: SchedulerProvider
-  ): HomeRankingUseCase = HomeRankingUseCaseImpl(repository, schedulerProvider)
+  @Binds
+  fun bindHomeRankingUseCase(useCase: HomeRankingUseCaseImpl): HomeRankingUseCase
 
-  @Singleton
-  @Provides
-  fun provideRankingUseCase(
-      repository: RankingRepository,
-      schedulerProvider: SchedulerProvider
-  ): RankingUseCase = RankingUseCaseImpl(repository, schedulerProvider)
+  @Binds
+  fun bindRankingUseCase(useCase: RankingUseCaseImpl): RankingUseCase
 }

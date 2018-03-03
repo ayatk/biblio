@@ -25,8 +25,10 @@ import com.ayatk.biblio.model.enums.RankingType
 import io.reactivex.Flowable
 import java.util.Calendar
 import javax.inject.Inject
+import javax.inject.Singleton
 import com.ayatk.biblio.data.entity.enums.RankingType as ApiRankingType
 
+@Singleton
 class RankingRepositoryImpl @Inject constructor(
     private val narouClient: NarouClient
 ) : RankingRepository {

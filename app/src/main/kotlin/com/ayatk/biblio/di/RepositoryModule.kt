@@ -16,14 +16,6 @@
 
 package com.ayatk.biblio.di
 
-import com.ayatk.biblio.data.datasource.novel.EpisodeRemoteDataSource
-import com.ayatk.biblio.data.datasource.novel.IndexRemoteDataSource
-import com.ayatk.biblio.data.db.dao.BookmarkDao
-import com.ayatk.biblio.data.db.dao.ChapterDao
-import com.ayatk.biblio.data.db.dao.EpisodeDao
-import com.ayatk.biblio.data.db.dao.IndexDao
-import com.ayatk.biblio.data.db.dao.NovelDao
-import com.ayatk.biblio.data.narou.NarouClient
 import com.ayatk.biblio.data.repository.BookmarkRepository
 import com.ayatk.biblio.data.repository.BookmarkRepositoryImpl
 import com.ayatk.biblio.data.repository.ChapterRepository
@@ -36,48 +28,28 @@ import com.ayatk.biblio.data.repository.NovelRepository
 import com.ayatk.biblio.data.repository.NovelRepositoryImpl
 import com.ayatk.biblio.data.repository.RankingRepository
 import com.ayatk.biblio.data.repository.RankingRepositoryImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
 
 @Module
-class RepositoryModule {
+@Suppress("unused")
+interface RepositoryModule {
 
-  @Singleton
-  @Provides
-  fun provideBookmarkRepository(
-      dao: BookmarkDao
-  ): BookmarkRepository = BookmarkRepositoryImpl(dao)
+  @Binds
+  fun bindBookmarkRepository(repository: BookmarkRepositoryImpl): BookmarkRepository
 
-  @Singleton
-  @Provides
-  fun provideChapterRepository(
-      dao: ChapterDao
-  ): ChapterRepository = ChapterRepositoryImpl(dao)
+  @Binds
+  fun bindChapterRepository(repository: ChapterRepositoryImpl): ChapterRepository
 
-  @Singleton
-  @Provides
-  fun provideEpisodeRepository(
-      dao: EpisodeDao,
-      remote: EpisodeRemoteDataSource
-  ): EpisodeRepository = EpisodeRepositoryImpl(dao, remote)
+  @Binds
+  fun bindEpisodeRepository(repository: EpisodeRepositoryImpl): EpisodeRepository
 
-  @Singleton
-  @Provides
-  fun provideNovelRepository(
-      dao: NovelDao
-  ): NovelRepository = NovelRepositoryImpl(dao)
+  @Binds
+  fun bindNovelRepository(repository: NovelRepositoryImpl): NovelRepository
 
-  @Singleton
-  @Provides
-  fun provideIndexRepository(
-      dao: IndexDao,
-      remote: IndexRemoteDataSource
-  ): IndexRepository = IndexRepositoryImpl(dao, remote)
+  @Binds
+  fun bindIndexRepository(repository: IndexRepositoryImpl): IndexRepository
 
-  @Singleton
-  @Provides
-  fun provideRankingRepository(
-      client: NarouClient
-  ): RankingRepository = RankingRepositoryImpl(client)
+  @Binds
+  fun bindRankingRepository(repository: RankingRepositoryImpl): RankingRepository
 }

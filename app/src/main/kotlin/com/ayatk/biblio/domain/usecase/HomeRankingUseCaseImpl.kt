@@ -23,7 +23,9 @@ import com.ayatk.biblio.model.enums.RankingType
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.Flowable
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class HomeRankingUseCaseImpl @Inject constructor(
     private val repository: RankingRepository,
     private val schedulerProvider: SchedulerProvider

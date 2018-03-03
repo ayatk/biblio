@@ -21,7 +21,9 @@ import com.ayatk.biblio.data.entity.ChapterEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ChapterRepositoryImpl @Inject constructor(
     private val dao: ChapterDao
 ) : ChapterRepository {

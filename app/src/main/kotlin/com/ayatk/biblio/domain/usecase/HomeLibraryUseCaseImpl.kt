@@ -24,7 +24,9 @@ import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class HomeLibraryUseCaseImpl @Inject constructor(
     private val novelRepository: NovelRepository,
     private val indexRepository: IndexRepository,

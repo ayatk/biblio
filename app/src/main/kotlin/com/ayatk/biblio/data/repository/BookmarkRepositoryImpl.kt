@@ -22,7 +22,9 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import java.util.UUID
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class BookmarkRepositoryImpl @Inject constructor(
     private val dao: BookmarkDao
 ) : BookmarkRepository {

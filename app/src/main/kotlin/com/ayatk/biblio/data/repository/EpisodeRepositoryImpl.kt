@@ -21,8 +21,11 @@ import com.ayatk.biblio.data.db.dao.EpisodeDao
 import com.ayatk.biblio.data.entity.EpisodeEntity
 import io.reactivex.Completable
 import io.reactivex.Single
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class EpisodeRepositoryImpl(
+@Singleton
+class EpisodeRepositoryImpl @Inject constructor(
     private val dao: EpisodeDao,
     private val remoteDataSource: EpisodeRemoteDataSource
 ) : EpisodeRepository {
