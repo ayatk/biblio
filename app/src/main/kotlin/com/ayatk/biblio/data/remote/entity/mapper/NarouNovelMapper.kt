@@ -17,31 +17,41 @@
 package com.ayatk.biblio.data.remote.entity.mapper
 
 import com.ayatk.biblio.data.remote.entity.NarouNovel
+import com.ayatk.biblio.domain.translator.toModel
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.Publisher
 
 fun List<NarouNovel>.toNovel(publisher: Publisher): List<Novel> =
     map {
       Novel(
-          publisher = publisher,
           code = it.ncode,
           title = it.title,
+          userID = it.userID,
           writer = it.writer,
-          writerId = it.userID.toString(),
           story = it.story,
-          novelTags = it.keyword.split(" "),
-          firstUpdateDate = it.firstup,
-          lastUpdateDate = it.lastup,
+          publisher = publisher,
+          bigGenre = it.bigGenre.toModel(),
+          genre = it.genre.toModel(),
+          keyword = it.keyword.split(" "),
           novelState = it.novelType.toNovelState(it.end),
-          totalPages = it.page,
-          allRateCount = it.raterCount,
-          reviewCount = it.reviewCount,
-          bookmarkCount = it.bookmarkCount,
+          firstUpload = it.firstup,
+          lastUpload = it.lastup,
+          page = it.page,
           length = it.length,
-          original = it.gensaku,
-          isOrigin = true,
-          isR15 = it.isR15 == 1,
+          readTime = it.time,
           isR18 = publisher == Publisher.NOCTURNE_MOONLIGHT,
-          point = it.globalPoint
+          isR15 = it.isR15 == 1,
+          isBL = it.isBL == 1,
+          isGL = it.isGL == 1,
+          isCruelness = it.isCruel == 1,
+          isTransmigration = it.isAnotherWorld == 1,
+          isTransfer = it.isTransfer == 1,
+          point = it.allPoint,
+          bookmarkCount = it.bookmarkCount,
+          reviewCount = it.reviewCount,
+          ratingCount = it.raterCount,
+          illustrationCount = it.illustrationCount,
+          conversationRate = it.conversationRate,
+          novelUpdatedAt = it.novelUpdatedAt
       )
     }

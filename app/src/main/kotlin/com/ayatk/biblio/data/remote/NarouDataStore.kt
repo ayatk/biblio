@@ -26,7 +26,7 @@ import java.util.Date
 
 interface NarouDataStore {
 
-  fun getNovel(vararg codes: String): Flowable<List<NarouNovel>>
+  fun getNovel(query: Map<String, String>): Flowable<List<NarouNovel>>
 
   fun getIndex(code: String): Flowable<List<NarouIndex>>
 

@@ -24,7 +24,6 @@ import com.ayatk.biblio.data.remote.entity.NarouRanking
 import com.ayatk.biblio.data.remote.service.NarouApiService
 import com.ayatk.biblio.data.remote.service.NarouService
 import com.ayatk.biblio.data.remote.util.HtmlUtil
-import com.ayatk.biblio.data.remote.util.QueryBuilder
 import com.ayatk.biblio.data.remote.util.QueryTime
 import io.reactivex.Flowable
 import java.util.Date
@@ -39,12 +38,10 @@ class NarouDataStoreImpl @Inject constructor(
     @Named("Narou") private val narouService: NarouService
 ) : NarouDataStore {
 
-  override fun getNovel(vararg codes: String): Flowable<List<NarouNovel>> {
-    val query = QueryBuilder().ncode(*codes).build()
-    return narouApiService.getNovel(query)
-        // 0番目にall nullの要素が入ってしまってるのでdrop(1)しないと落ちる
-        .map { novels -> novels.drop(1) }
-  }
+  override fun getNovel(query: Map<String, String>): Flowable<List<NarouNovel>> =
+      narouApiService.getNovel(query)
+          // 0番目にall nullの要素が入ってしまってるのでdrop(1)しないと落ちる
+          .map { novels -> novels.drop(1) }
 
   override fun getIndex(code: String): Flowable<List<NarouIndex>> =
       narouService.getTableOfContents(code.toLowerCase())

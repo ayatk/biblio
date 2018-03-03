@@ -17,10 +17,12 @@
 package com.ayatk.biblio.data.repository
 
 import com.ayatk.biblio.data.entity.enums.OutputOrder
-import com.ayatk.biblio.data.remote.NarouClient
+import com.ayatk.biblio.data.remote.NarouDataStore
+import com.ayatk.biblio.data.remote.entity.mapper.toNovel
 import com.ayatk.biblio.data.remote.entity.mapper.toRanking
 import com.ayatk.biblio.data.remote.util.QueryBuilder
 import com.ayatk.biblio.model.Ranking
+import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.model.enums.RankingType
 import io.reactivex.Flowable
 import java.util.Calendar
@@ -30,7 +32,7 @@ import com.ayatk.biblio.data.entity.enums.RankingType as ApiRankingType
 
 @Singleton
 class RankingRepositoryImpl @Inject constructor(
-    private val narouClient: NarouClient
+    private val dataStore: NarouDataStore
 ) : RankingRepository {
 
   companion object {
@@ -47,7 +49,7 @@ class RankingRepositoryImpl @Inject constructor(
         today.add(Calendar.DATE, -1)
       }
 
-      return narouClient.getRanking(today.time, apiRankingType)
+      return dataStore.getRanking(apiRankingType, today.time)
           .flatMap {
             val codes = it
                 .map { it.ncode }
@@ -59,20 +61,18 @@ class RankingRepositoryImpl @Inject constructor(
                 .size(range.count())
                 .build()
 
-            narouClient.getNovel(query)
+            dataStore.getNovel(query)
                 .map { novel ->
                   it.drop(range.first)
                       .take(range.count())
-                      .toRanking(novel)
+                      .toRanking(novel.toNovel(Publisher.NAROU))
                 }
           }
-          .toFlowable()
     } else {
       val query = QueryBuilder().order(OutputOrder.HYOKA_COUNT).size(range.last).build()
-      return narouClient
+      return dataStore
           .getNovel(query)
-          .map { it.toRanking() }
-          .toFlowable()
+          .map { it.toNovel(Publisher.NAROU).toRanking() }
     }
   }
 
