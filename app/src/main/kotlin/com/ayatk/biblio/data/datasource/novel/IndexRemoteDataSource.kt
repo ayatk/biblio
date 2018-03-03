@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.data.datasource.novel
 
-import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.data.narou.entity.mapper.toIndex
+import com.ayatk.biblio.data.remote.NarouClient
+import com.ayatk.biblio.data.remote.entity.mapper.toIndex
 import com.ayatk.biblio.data.repository.IndexRepository
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel

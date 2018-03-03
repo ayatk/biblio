@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.service
+package com.ayatk.biblio.data.remote.service
 
-import com.ayatk.biblio.data.narou.entity.NarouNovel
-import com.ayatk.biblio.data.narou.entity.NarouRanking
+import com.ayatk.biblio.data.remote.entity.NarouNovel
+import com.ayatk.biblio.data.remote.entity.NarouRanking
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

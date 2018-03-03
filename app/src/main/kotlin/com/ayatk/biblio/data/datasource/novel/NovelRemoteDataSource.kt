@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.data.datasource.novel
 
-import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.data.narou.util.QueryBuilder
+import com.ayatk.biblio.data.remote.NarouClient
+import com.ayatk.biblio.data.remote.util.QueryBuilder
 import com.ayatk.biblio.data.repository.NovelRepository
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.Publisher

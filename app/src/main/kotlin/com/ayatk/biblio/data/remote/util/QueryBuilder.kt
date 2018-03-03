@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.util
+package com.ayatk.biblio.data.remote.util
 
 import com.ayatk.biblio.data.entity.enums.OutputOrder
-import com.ayatk.biblio.data.narou.exception.NarouOutOfRangeException
+import com.ayatk.biblio.data.remote.exception.NarouOutOfRangeException
 import java.net.URLEncoder
 
 class QueryBuilder {

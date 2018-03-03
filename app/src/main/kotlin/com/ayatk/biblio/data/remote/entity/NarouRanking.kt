@@ -14,20 +14,18 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.service
+package com.ayatk.biblio.data.remote.entity
 
-import io.reactivex.Single
-import retrofit2.http.GET
-import retrofit2.http.Path
+import com.google.gson.annotations.SerializedName
 
-interface NarouService {
+data class NarouRanking(
 
-  @GET("/{ncode}")
-  fun getTableOfContents(@Path("ncode") ncode: String): Single<String>
+    @SerializedName("rank")
+    var rank: Int,
 
-  @GET("/{ncode}/{page}")
-  fun getPage(@Path("ncode") ncode: String, @Path("page") page: Int): Single<String>
+    @SerializedName("ncode")
+    var ncode: String,
 
-  @GET("/{ncode}")
-  fun getSSPage(@Path("ncode") ncode: String): Single<String>
-}
+    @SerializedName("pt")
+    var pt: Int
+)

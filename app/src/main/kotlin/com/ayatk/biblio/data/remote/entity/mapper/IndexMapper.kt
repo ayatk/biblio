@@ -14,6 +14,21 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.exception
+package com.ayatk.biblio.data.remote.entity.mapper
 
-class NarouOutOfRangeException(message: String) : RuntimeException(message)
+import com.ayatk.biblio.data.remote.entity.NarouIndex
+import com.ayatk.biblio.model.Index
+import com.ayatk.biblio.model.Novel
+
+fun List<NarouIndex>.toIndex(novel: Novel): List<Index> =
+    map {
+      Index(
+          id = "${novel.code}-${it.id}",
+          novel = novel,
+          title = it.title,
+          isChapter = it.isChapter,
+          page = it.page,
+          publishDate = it.publishDate,
+          lastUpdate = it.lastUpdate
+      )
+    }

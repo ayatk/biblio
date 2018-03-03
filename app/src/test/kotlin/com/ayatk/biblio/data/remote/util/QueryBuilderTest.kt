@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.util
+package com.ayatk.biblio.data.remote.util
 
-import com.ayatk.biblio.data.narou.entity.enums.OutputOrder
-import com.ayatk.biblio.data.narou.exception.NarouOutOfRangeException
+import com.ayatk.biblio.data.remote.entity.enums.OutputOrder
+import com.ayatk.biblio.data.remote.exception.NarouOutOfRangeException
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import org.junit.Test

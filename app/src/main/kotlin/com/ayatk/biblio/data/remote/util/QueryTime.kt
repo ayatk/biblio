@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.util
+package com.ayatk.biblio.data.remote.util
 
 import java.text.SimpleDateFormat
 import java.util.Calendar

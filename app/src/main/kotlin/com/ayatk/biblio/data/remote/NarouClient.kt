@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou
+package com.ayatk.biblio.data.remote
 
 import com.ayatk.biblio.data.entity.enums.RankingType
-import com.ayatk.biblio.data.narou.entity.NarouEpisode
-import com.ayatk.biblio.data.narou.entity.NarouIndex
-import com.ayatk.biblio.data.narou.entity.NarouRanking
-import com.ayatk.biblio.data.narou.entity.mapper.toNovel
-import com.ayatk.biblio.data.narou.service.NarouApiService
-import com.ayatk.biblio.data.narou.service.NarouService
-import com.ayatk.biblio.data.narou.util.HtmlUtil
-import com.ayatk.biblio.data.narou.util.QueryTime
+import com.ayatk.biblio.data.remote.entity.NarouEpisode
+import com.ayatk.biblio.data.remote.entity.NarouIndex
+import com.ayatk.biblio.data.remote.entity.NarouRanking
+import com.ayatk.biblio.data.remote.entity.mapper.toNovel
+import com.ayatk.biblio.data.remote.service.NarouApiService
+import com.ayatk.biblio.data.remote.service.NarouService
+import com.ayatk.biblio.data.remote.util.HtmlUtil
+import com.ayatk.biblio.data.remote.util.QueryTime
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.Publisher
 import io.reactivex.Single

@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.entity.mapper
+package com.ayatk.biblio.data.remote.entity.mapper
 
-import com.ayatk.biblio.data.narou.entity.NarouNovel
+import com.ayatk.biblio.data.remote.entity.NarouNovel
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.Publisher
 

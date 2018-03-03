@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.entity.mapper
+package com.ayatk.biblio.data.remote.entity
 
-import com.ayatk.biblio.model.enums.NovelState
+data class NarouEpisode(
 
-fun Int.toNovelState(isEnd: Int): NovelState {
-  return if (this == 2) {
-    NovelState.SHORT_STORY
-  } else if (this == 1 && isEnd == 1) {
-    NovelState.SERIES
-  } else {
-    NovelState.SERIES_END
-  }
-}
+    var ncode: String,
+
+    var page: Int,
+
+    var subtitle: String,
+
+    var prevContent: String,
+
+    var content: String,
+
+    var afterContent: String
+)

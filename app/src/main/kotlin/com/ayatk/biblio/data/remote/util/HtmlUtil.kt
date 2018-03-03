@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.util
+package com.ayatk.biblio.data.remote.util
 
-import com.ayatk.biblio.data.narou.entity.NarouEpisode
-import com.ayatk.biblio.data.narou.entity.NarouIndex
+import com.ayatk.biblio.data.remote.entity.NarouEpisode
+import com.ayatk.biblio.data.remote.entity.NarouIndex
 import com.ayatk.biblio.util.DateFormat
 import org.jsoup.Jsoup
 import javax.inject.Singleton

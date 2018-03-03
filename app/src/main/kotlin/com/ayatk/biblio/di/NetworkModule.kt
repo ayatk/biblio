@@ -18,8 +18,8 @@ package com.ayatk.biblio.di
 
 import com.ayatk.biblio.data.entity.enums.BigGenre
 import com.ayatk.biblio.data.entity.enums.Genre
-import com.ayatk.biblio.data.narou.service.NarouApiService
-import com.ayatk.biblio.data.narou.service.NarouService
+import com.ayatk.biblio.data.remote.service.NarouApiService
+import com.ayatk.biblio.data.remote.service.NarouService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer

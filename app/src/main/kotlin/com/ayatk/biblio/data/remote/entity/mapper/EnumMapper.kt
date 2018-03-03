@@ -14,22 +14,16 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.entity.mapper
+package com.ayatk.biblio.data.remote.entity.mapper
 
-import com.ayatk.biblio.data.narou.entity.NarouRanking
-import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.Ranking
+import com.ayatk.biblio.model.enums.NovelState
 
-fun List<NarouRanking>.toRanking(novels: List<Novel>): List<Ranking> =
-    map {
-      Ranking(
-          rank = it.rank,
-          novel = novels.firstOrNull { novel -> novel.code == it.ncode } ?: Novel(),
-          point = it.pt
-      )
-    }
-
-fun List<Novel>.toRanking(): List<Ranking> =
-    mapIndexed { index, novel ->
-      Ranking(rank = index + 1, novel = novel, point = novel.point)
-    }
+fun Int.toNovelState(isEnd: Int): NovelState {
+  return if (this == 2) {
+    NovelState.SHORT_STORY
+  } else if (this == 1 && isEnd == 1) {
+    NovelState.SERIES
+  } else {
+    NovelState.SERIES_END
+  }
+}

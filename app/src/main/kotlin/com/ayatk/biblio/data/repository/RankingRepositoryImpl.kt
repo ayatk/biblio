@@ -17,9 +17,9 @@
 package com.ayatk.biblio.data.repository
 
 import com.ayatk.biblio.data.entity.enums.OutputOrder
-import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.data.narou.entity.mapper.toRanking
-import com.ayatk.biblio.data.narou.util.QueryBuilder
+import com.ayatk.biblio.data.remote.NarouClient
+import com.ayatk.biblio.data.remote.entity.mapper.toRanking
+import com.ayatk.biblio.data.remote.util.QueryBuilder
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.RankingType
 import io.reactivex.Flowable

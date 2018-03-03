@@ -14,21 +14,23 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.entity.mapper
+package com.ayatk.biblio.data.remote.entity
 
-import com.ayatk.biblio.data.narou.entity.NarouIndex
-import com.ayatk.biblio.model.Index
-import com.ayatk.biblio.model.Novel
+import java.util.Date
 
-fun List<NarouIndex>.toIndex(novel: Novel): List<Index> =
-    map {
-      Index(
-          id = "${novel.code}-${it.id}",
-          novel = novel,
-          title = it.title,
-          isChapter = it.isChapter,
-          page = it.page,
-          publishDate = it.publishDate,
-          lastUpdate = it.lastUpdate
-      )
-    }
+data class NarouIndex(
+
+    var id: Int,
+
+    var ncode: String,
+
+    var title: String,
+
+    var isChapter: Boolean,
+
+    var page: Int?,
+
+    var publishDate: Date?,
+
+    var lastUpdate: Date?
+)

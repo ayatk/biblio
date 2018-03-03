@@ -14,23 +14,6 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.entity
+package com.ayatk.biblio.data.remote.exception
 
-import java.util.Date
-
-data class NarouIndex(
-
-    var id: Int,
-
-    var ncode: String,
-
-    var title: String,
-
-    var isChapter: Boolean,
-
-    var page: Int?,
-
-    var publishDate: Date?,
-
-    var lastUpdate: Date?
-)
+class NarouOutOfRangeException(message: String) : RuntimeException(message)

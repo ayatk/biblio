@@ -14,19 +14,22 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.narou.entity
+package com.ayatk.biblio.data.remote.entity.mapper
 
-data class NarouEpisode(
+import com.ayatk.biblio.data.remote.entity.NarouRanking
+import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.model.Ranking
 
-    var ncode: String,
+fun List<NarouRanking>.toRanking(novels: List<Novel>): List<Ranking> =
+    map {
+      Ranking(
+          rank = it.rank,
+          novel = novels.firstOrNull { novel -> novel.code == it.ncode } ?: Novel(),
+          point = it.pt
+      )
+    }
 
-    var page: Int,
-
-    var subtitle: String,
-
-    var prevContent: String,
-
-    var content: String,
-
-    var afterContent: String
-)
+fun List<Novel>.toRanking(): List<Ranking> =
+    mapIndexed { index, novel ->
+      Ranking(rank = index + 1, novel = novel, point = novel.point)
+    }

@@ -24,8 +24,8 @@ import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
 import android.util.Log
 import android.view.View
-import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.data.narou.util.QueryBuilder
+import com.ayatk.biblio.data.remote.NarouClient
+import com.ayatk.biblio.data.remote.util.QueryBuilder
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.util.rx.SchedulerProvider
