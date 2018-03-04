@@ -21,13 +21,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.detail.DetailActivity">
 
-  <data>
-
-    <variable
-        name="viewModel"
-        type="com.ayatk.biblio.ui.detail.DetailViewModel"/>
-  </data>
-
   <android.support.design.widget.CoordinatorLayout
       android:id="@+id/coordinator_layout"
       android:layout_width="match_parent"
@@ -50,7 +43,6 @@
           android:layout_width="match_parent"
           android:layout_height="?attr/actionBarSize"
           android:background="?attr/colorPrimary"
-          android:title="@{viewModel.novel.title}"
           app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
       <android.support.design.widget.TabLayout

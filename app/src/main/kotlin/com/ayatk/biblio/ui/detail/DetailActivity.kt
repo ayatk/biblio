@@ -42,14 +42,10 @@ class DetailActivity : DaggerAppCompatActivity() {
     Parcels.unwrap<Novel>(intent.getParcelableExtra(EXTRA_NOVEL))
   }
 
-  private val viewModel: DetailViewModel by lazy {
-    DetailViewModel(novel)
-  }
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding.viewModel = viewModel
 
+    binding.toolbar.title = novel.title
     initBackToolbar(this, binding.toolbar)
 
     // ViewPager
