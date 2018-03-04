@@ -18,6 +18,9 @@ package com.ayatk.biblio.di
 
 import com.ayatk.biblio.data.remote.NarouDataStore
 import com.ayatk.biblio.data.remote.NarouDataStoreImpl
+import com.ayatk.biblio.data.remote.NocDataStoreImpl
+import com.ayatk.biblio.di.scope.Narou
+import com.ayatk.biblio.di.scope.Nocturne
 import dagger.Binds
 import dagger.Module
 
@@ -27,4 +30,8 @@ interface DataStoreModule {
   @Binds
   @Narou
   fun bindNarouDataStore(dataStoreImpl: NarouDataStoreImpl): NarouDataStore
+
+  @Binds
+  @Nocturne
+  fun bindNocDataStore(dataStoreImpl: NocDataStoreImpl): NarouDataStore
 }
