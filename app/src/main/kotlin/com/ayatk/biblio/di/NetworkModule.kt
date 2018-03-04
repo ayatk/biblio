@@ -20,6 +20,8 @@ import com.ayatk.biblio.data.entity.enums.BigGenre
 import com.ayatk.biblio.data.entity.enums.Genre
 import com.ayatk.biblio.data.remote.service.NarouApiService
 import com.ayatk.biblio.data.remote.service.NarouService
+import com.ayatk.biblio.di.scope.Narou
+import com.ayatk.biblio.di.scope.Nocturne
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer
@@ -30,7 +32,6 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -49,7 +50,7 @@ class NetworkModule {
 
   @Singleton
   @Provides
-  @Named("Narou")
+  @Narou
   fun provideNarouService(client: OkHttpClient): NarouService {
     return Retrofit.Builder()
         .client(client)
@@ -62,7 +63,7 @@ class NetworkModule {
 
   @Singleton
   @Provides
-  @Named("Narou18")
+  @Nocturne
   fun provideNarou18Service(client: OkHttpClient): NarouService {
     return Retrofit.Builder()
         .client(client)

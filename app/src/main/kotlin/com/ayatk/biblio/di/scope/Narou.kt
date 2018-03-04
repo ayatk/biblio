@@ -14,17 +14,14 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.di
+package com.ayatk.biblio.di.scope
 
-import com.ayatk.biblio.data.remote.NarouDataStore
-import com.ayatk.biblio.data.remote.NarouDataStoreImpl
-import dagger.Binds
-import dagger.Module
+import java.lang.annotation.Documented
+import java.lang.annotation.Retention
+import java.lang.annotation.RetentionPolicy
+import javax.inject.Qualifier
 
-@Module
-interface DataStoreModule {
-
-  @Binds
-  @Narou
-  fun bindNarouDataStore(dataStoreImpl: NarouDataStoreImpl): NarouDataStore
-}
+@Qualifier
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+annotation class Narou

@@ -25,17 +25,17 @@ import com.ayatk.biblio.data.remote.service.NarouApiService
 import com.ayatk.biblio.data.remote.service.NarouService
 import com.ayatk.biblio.data.remote.util.HtmlUtil
 import com.ayatk.biblio.data.remote.util.QueryTime
+import com.ayatk.biblio.di.scope.Narou
 import io.reactivex.Flowable
 import java.util.Date
 import javax.inject.Inject
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Singleton
 class NarouDataStoreImpl @Inject constructor(
     private val htmlUtil: HtmlUtil,
     private val narouApiService: NarouApiService,
-    @Named("Narou") private val narouService: NarouService
+    @Narou private val narouService: NarouService
 ) : NarouDataStore {
 
   override fun getNovel(query: Map<String, String>): Flowable<List<NarouNovel>> =
