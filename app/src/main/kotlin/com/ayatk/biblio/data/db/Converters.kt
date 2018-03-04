@@ -24,6 +24,7 @@ import com.ayatk.biblio.data.entity.enums.Publisher
 import java.util.Date
 import java.util.UUID
 
+@Suppress("TooManyFunctions")
 object Converters {
 
   @JvmStatic
