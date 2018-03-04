@@ -30,6 +30,7 @@ import org.parceler.Parcels
 import javax.inject.Inject
 
 class InfoFragment : DaggerFragment() {
+
   @Inject
   lateinit var viewModelFactory: ViewModelFactory
 
@@ -54,15 +55,12 @@ class InfoFragment : DaggerFragment() {
       savedInstanceState: Bundle?
   ): View? {
     binding = FragmentInfoBinding.inflate(inflater, container, false)
+
+    lifecycle.addObserver(viewModel)
     binding.setLifecycleOwner(this)
     binding.viewModel = viewModel
 
     return binding.root
-  }
-
-  override fun onResume() {
-    super.onResume()
-    viewModel.start()
   }
 
   companion object {
