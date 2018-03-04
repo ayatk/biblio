@@ -20,23 +20,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-  <data>
-
-    <import type="android.R"/>
-
-    <variable
-        name="viewModel"
-        type="com.ayatk.biblio.ui.detail.index.IndexItemViewModel"/>
-  </data>
-
   <android.support.constraint.ConstraintLayout
+      android:id="@+id/index_container"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@{viewModel.index.isChapter ? @color/grey300 : 0}"
-      android:clickable="@{!viewModel.index.isChapter}"
-      android:focusable="@{!viewModel.index.isChapter}"
-      android:foreground="?attr/selectableItemBackground"
-      android:onClick="@{() -> viewModel.onItemClick(context)}"
+      android:background="?attr/selectableItemBackground"
       android:padding="@dimen/space_16dp">
 
     <TextView
@@ -46,7 +34,6 @@
         android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="@{viewModel.index.title}"
         android:textSize="@dimen/text_14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/publish_date"
@@ -61,7 +48,6 @@
         android:layout_marginBottom="0dp"
         android:layout_marginEnd="0dp"
         android:layout_marginTop="0dp"
-        android:text="@{viewModel.lastUpdate}"
         android:textSize="@dimen/text_14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"

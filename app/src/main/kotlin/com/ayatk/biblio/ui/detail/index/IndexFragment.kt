@@ -17,8 +17,6 @@
 package com.ayatk.biblio.ui.detail.index
 
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
-import android.databinding.ObservableList
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -27,16 +25,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.os.bundleOf
 import com.ayatk.biblio.R
-import com.ayatk.biblio.R.layout
 import com.ayatk.biblio.databinding.FragmentIndexBinding
-import com.ayatk.biblio.databinding.ItemIndexBinding
 import com.ayatk.biblio.di.ViewModelFactory
+import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.util.customview.BindingHolder
-import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
+import com.ayatk.biblio.ui.detail.index.item.IndexItem
+import com.ayatk.biblio.ui.util.helper.Navigator
+import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.ext.drawable
+import com.ayatk.biblio.util.ext.observe
+import com.ayatk.biblio.util.ext.setVisible
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Section
+import com.xwray.groupie.ViewHolder
 import dagger.android.support.DaggerFragment
 import org.parceler.Parcels
+import timber.log.Timber
 import javax.inject.Inject
 
 class IndexFragment : DaggerFragment() {
@@ -51,8 +55,12 @@ class IndexFragment : DaggerFragment() {
   private lateinit var binding: FragmentIndexBinding
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL)
-    )
+    Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL))
+  }
+
+  private val indexSection = Section()
+  private val onClickListener = { index: Index ->
+    Navigator.navigateToDetail(context!!, index.novel)
   }
 
   override fun onCreateView(
@@ -63,12 +71,26 @@ class IndexFragment : DaggerFragment() {
     binding = FragmentIndexBinding.inflate(inflater, container, false)
     binding.setLifecycleOwner(this)
     initRecyclerView()
-    return binding.root
-  }
 
-  override fun onResume() {
-    super.onResume()
-    viewModel.start(novel)
+    // 初期読み込み
+    viewModel.getIndex(novel)
+
+    viewModel.indexLiveData.observe(this, { result ->
+      when (result) {
+        is Result.Success -> {
+          val indexes = result.data
+          indexSection.update(indexes.map {
+            IndexItem(it, onClickListener)
+          })
+          binding.recyclerView.setVisible(indexes.isNotEmpty())
+        }
+        is Result.Failure -> {
+          Timber.e(result.e)
+        }
+      }
+    })
+
+    return binding.root
   }
 
   private fun initRecyclerView() {
@@ -77,7 +99,9 @@ class IndexFragment : DaggerFragment() {
         .let { divider.setDrawable(it) }
 
     binding.recyclerView.apply {
-      adapter = TableAdapter(context, viewModel.indexViewModels)
+      adapter = GroupAdapter<ViewHolder>().apply {
+        add(indexSection)
+      }
       setHasFixedSize(true)
       addItemDecoration(divider)
       layoutManager = LinearLayoutManager(context)
@@ -90,32 +114,6 @@ class IndexFragment : DaggerFragment() {
     fun newInstance(novel: Novel): IndexFragment {
       return IndexFragment().apply {
         arguments = bundleOf(BUNDLE_ARGS_NOVEL to Parcels.wrap(novel))
-      }
-    }
-  }
-
-  private inner class TableAdapter constructor(
-      context: Context,
-      list: ObservableList<IndexItemViewModel>
-  ) :
-      ObservableListRecyclerAdapter<IndexItemViewModel, BindingHolder<ItemIndexBinding>>(
-          context, list
-      ) {
-
-    init {
-      setHasStableIds(false)
-    }
-
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): BindingHolder<ItemIndexBinding> =
-        BindingHolder(context, parent, layout.item_index)
-
-    override fun onBindViewHolder(holder: BindingHolder<ItemIndexBinding>, position: Int) {
-      holder.binding.apply {
-        viewModel = getItem(position)
-        executePendingBindings()
       }
     }
   }

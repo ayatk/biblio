@@ -14,25 +14,26 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.ui.detail.index
+package com.ayatk.biblio.ui.detail.index.item
 
-import android.content.Context
-import android.databinding.BaseObservable
+import com.ayatk.biblio.R
 import com.ayatk.biblio.model.Index
-import com.ayatk.biblio.ui.util.helper.Navigator
 import com.ayatk.biblio.util.DateFormat
+import com.xwray.groupie.databinding.BindableItem
 
-class IndexItemViewModel(val index: Index) : BaseObservable() {
+class IndexItem(
+    private val index: Index,
+    private val onClickListener: (Index) -> Unit
+) : BindableItem<ItemIndexBinding>() {
+  override fun getLayout(): Int = R.layout.item_index
 
-  val lastUpdate: String =
-      if (index.publishDate == null) ""
-      else DateFormat.yyyyMMddkkmm.format(index.publishDate)
-
-  fun onItemClick(context: Context) {
-    if (!index.isChapter) {
-      Navigator.navigateToEpisode(context, index.novel,
-          requireNotNull(index.page, { "ページ番号がはいってないぞい" })
-      )
+  override fun bind(viewBinding: ItemIndexBinding, position: Int) {
+    viewBinding.let {
+      it.title = index.subtitle
+      it.lastUpdate = DateFormat.yyyyMMddkkmm.format(index.lastUpdate)
+      it.indexContainer.setOnClickListener {
+        onClickListener(index)
+      }
     }
   }
 }

@@ -16,52 +16,39 @@
 
 package com.ayatk.biblio.ui.detail.index
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.databinding.ObservableArrayList
-import com.ayatk.biblio.data.repository.IndexRepositoryImpl
+import com.ayatk.biblio.domain.usecase.DetailUseCase
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.ui.util.toResult
+import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
-import timber.log.Timber
+import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
 class IndexViewModel @Inject constructor(
-    private val indexRepositoryImpl: IndexRepositoryImpl,
+    private val detailUseCase: DetailUseCase,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
   private val compositeDisposable = CompositeDisposable()
 
-  var indexViewModels = ObservableArrayList<IndexItemViewModel>()
+  val indexLiveData = MutableLiveData<Result<List<Index>>>()
 
   override fun onCleared() {
     super.onCleared()
     compositeDisposable.clear()
   }
 
-  fun start(novel: Novel) {
-    indexRepositoryImpl.findAll(novel)
-        .map({ indexes -> convertToViewModel(indexes) })
-        .subscribeOn(schedulerProvider.io())
+  fun getIndex(novel: Novel) {
+    detailUseCase.getIndex(novel)
+        .toResult(schedulerProvider)
         .observeOn(schedulerProvider.ui())
-        .subscribe(
-            this::renderLibraries,
-            { throwable -> Timber.e(throwable, "Failed to show libraries.") }
-        )
+        .subscribe(indexLiveData::postValue)
         .addTo(compositeDisposable)
   }
 
-  private fun convertToViewModel(indices: List<Index>): List<IndexItemViewModel> {
-    return indices.map { novelTable ->
-      IndexItemViewModel(novelTable)
-    }
-  }
-
-  private fun renderLibraries(indexItemViewModels: List<IndexItemViewModel>) {
-    if (this.indexViewModels.size != indexItemViewModels.size) {
-      this.indexViewModels.clear()
-      this.indexViewModels.addAll(indexItemViewModels)
-    }
-  }
+  // TODO: リフレッシュの処理
 }
