@@ -31,8 +31,8 @@ interface IndexDao {
   fun getAllIndexByCode(code: String): Flowable<List<IndexEntity>>
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insert(index: IndexEntity)
+  fun insert(indexes: List<IndexEntity>)
 
   @Delete
-  fun delete(index: IndexEntity)
+  fun delete(indexes: List<IndexEntity>)
 }
