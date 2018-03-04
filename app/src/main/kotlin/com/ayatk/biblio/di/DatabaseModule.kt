@@ -20,7 +20,6 @@ import android.app.Application
 import android.arch.persistence.room.Room
 import com.ayatk.biblio.data.db.AppDatabase
 import com.ayatk.biblio.data.db.dao.BookmarkDao
-import com.ayatk.biblio.data.db.dao.ChapterDao
 import com.ayatk.biblio.data.db.dao.EpisodeDao
 import com.ayatk.biblio.data.db.dao.IndexDao
 import com.ayatk.biblio.data.db.dao.NovelDao
@@ -41,10 +40,6 @@ class DatabaseModule {
   @Singleton
   @Provides
   fun provideBookmarkDao(db: AppDatabase): BookmarkDao = db.bookmarkDao()
-
-  @Singleton
-  @Provides
-  fun provideChapterDao(db: AppDatabase): ChapterDao = db.chapterDao()
 
   @Singleton
   @Provides

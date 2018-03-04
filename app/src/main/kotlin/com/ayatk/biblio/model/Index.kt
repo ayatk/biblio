@@ -30,7 +30,7 @@ data class Index(
 
     val page: Int,
 
-    val chapter: Chapter,
+    val chapterTitle: String?,
 
     val readingState: ReadingState,
 

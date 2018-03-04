@@ -31,11 +31,6 @@ import java.util.UUID
           parentColumns = arrayOf("code"),
           childColumns = arrayOf("novel_code"),
           entity = NovelEntity::class
-      ),
-      ForeignKey(
-          parentColumns = arrayOf("id"),
-          childColumns = arrayOf("chapter_id"),
-          entity = IndexEntity::class
       )
     ]
 )
@@ -52,8 +47,7 @@ data class IndexEntity(
     @ColumnInfo(index = true)
     var page: Int,
 
-    @ColumnInfo(name = "chapter_id", index = true)
-    var chapterId: UUID,
+    var chapter: String?,
 
     @ColumnInfo(name = "reading_state")
     var readingState: ReadingState,

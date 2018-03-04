@@ -16,18 +16,20 @@
 
 package com.ayatk.biblio.data.remote.entity.mapper
 
+import com.ayatk.biblio.data.entity.IndexEntity
+import com.ayatk.biblio.data.entity.enums.ReadingState
 import com.ayatk.biblio.data.remote.entity.NarouIndex
-import com.ayatk.biblio.model.Index
-import com.ayatk.biblio.model.Novel
+import java.util.UUID
 
-fun List<NarouIndex>.toIndex(novel: Novel): List<Index> =
+fun List<NarouIndex>.toEntity(): List<IndexEntity> =
     map {
-      Index(
-          id = "${novel.code}-${it.id}",
-          novel = novel,
-          title = it.title,
-          isChapter = it.isChapter,
+      IndexEntity(
+          id = UUID.nameUUIDFromBytes("${it.ncode}-${it.page}".toByteArray()),
+          code = it.ncode,
+          subtitle = it.title,
           page = it.page,
+          chapter = it.chapter,
+          readingState = ReadingState.UNREAD,
           publishDate = it.publishDate,
           lastUpdate = it.lastUpdate
       )

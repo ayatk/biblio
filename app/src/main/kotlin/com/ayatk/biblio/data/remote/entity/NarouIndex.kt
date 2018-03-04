@@ -26,11 +26,11 @@ data class NarouIndex(
 
     var title: String,
 
-    var isChapter: Boolean,
+    var chapter: String?,
 
-    var page: Int?,
+    var page: Int,
 
-    var publishDate: Date?,
+    var publishDate: Date,
 
-    var lastUpdate: Date?
+    var lastUpdate: Date
 )
