@@ -20,7 +20,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
-import android.databinding.ObservableList
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -32,17 +31,23 @@ import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import com.ayatk.biblio.R
-import com.ayatk.biblio.R.layout
 import com.ayatk.biblio.databinding.ActivitySearchBinding
-import com.ayatk.biblio.databinding.ViewSearchResultItemBinding
 import com.ayatk.biblio.di.ViewModelFactory
-import com.ayatk.biblio.ui.util.customview.BindingHolder
-import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
+import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.ui.search.item.SearchResultItem
+import com.ayatk.biblio.ui.util.helper.Navigator
 import com.ayatk.biblio.ui.util.initBackToolbar
+import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.ext.drawable
+import com.ayatk.biblio.util.ext.observe
+import com.ayatk.biblio.util.ext.setVisible
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Section
+import com.xwray.groupie.ViewHolder
 import dagger.android.support.DaggerAppCompatActivity
+import io.reactivex.Completable
+import timber.log.Timber
 import javax.inject.Inject
 
 class SearchActivity : DaggerAppCompatActivity() {
@@ -60,14 +65,23 @@ class SearchActivity : DaggerAppCompatActivity() {
 
   private lateinit var searchView: SearchView
 
+  private val searchSection = Section()
+  private val onItemClickListener = { novel: Novel ->
+    Navigator.navigateToDetail(this, novel)
+  }
+  private val onDownloadClickListener: (Novel) -> Completable = { novel: Novel ->
+    viewModel.saveNovel(novel)
+  }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     overridePendingTransition(R.anim.activity_fade_enter, R.anim.activity_fade_exit)
     binding.setLifecycleOwner(this)
-    lifecycle.addObserver(viewModel)
     binding.viewModel = viewModel
 
     initBackToolbar(this, binding.toolbar)
+
+    initRecyclerView()
 
     binding.drawerLayout.addDrawerListener(
         object : ActionBarDrawerToggle(
@@ -81,23 +95,20 @@ class SearchActivity : DaggerAppCompatActivity() {
         }
     )
 
-    val divider = DividerItemDecoration(this, 1)
-    this.drawable(R.drawable.divider)
-        .let { divider.setDrawable(it) }
 
-    binding.searchResult.apply {
-      adapter = SearchResultAdapter(context, viewModel.searchResult)
-      addItemDecoration(divider)
-      layoutManager = LinearLayoutManager(context)
-      addOnScrollListener(
-          object : OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
-              if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-                searchView.clearFocus()
-              }
-            }
-          }
-      )
+    viewModel.result.observe(this) { result ->
+      when (result) {
+        is Result.Success -> {
+          val novels = result.data
+          searchSection.update(novels.map {
+            SearchResultItem(it, onItemClickListener, onDownloadClickListener)
+          })
+          binding.searchResult.setVisible(novels.isNotEmpty())
+        }
+        is Result.Failure -> {
+          Timber.e(result.e)
+        }
+      }
     }
   }
 
@@ -124,7 +135,7 @@ class SearchActivity : DaggerAppCompatActivity() {
           override fun onQueryTextSubmit(query: String): Boolean = onQueryTextChange(query)
 
           override fun onQueryTextChange(newText: String): Boolean {
-            viewModel.search(newText)
+            viewModel.setQuery(newText)
             return false
           }
         }
@@ -153,32 +164,30 @@ class SearchActivity : DaggerAppCompatActivity() {
     }
   }
 
-  companion object {
-    fun createIntent(context: Context): Intent = Intent(context, SearchActivity::class.java)
+  private fun initRecyclerView() {
+    val divider = DividerItemDecoration(this, 1)
+    this.drawable(R.drawable.divider).let { divider.setDrawable(it) }
+
+    binding.searchResult.apply {
+      adapter = GroupAdapter<ViewHolder>().apply {
+        add(searchSection)
+      }
+      setHasFixedSize(true)
+      addItemDecoration(divider)
+      layoutManager = LinearLayoutManager(context)
+      addOnScrollListener(
+          object : OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+              if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                searchView.clearFocus()
+              }
+            }
+          }
+      )
+    }
   }
 
-  private inner class SearchResultAdapter constructor(
-      context: Context,
-      list: ObservableList<SearchResultItemViewModel>
-  ) :
-      ObservableListRecyclerAdapter<SearchResultItemViewModel, BindingHolder<ViewSearchResultItemBinding>>(
-          context, list
-      ) {
-
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): BindingHolder<ViewSearchResultItemBinding> =
-        BindingHolder(context, parent, layout.view_search_result_item)
-
-    override fun onBindViewHolder(
-        holder: BindingHolder<ViewSearchResultItemBinding>,
-        position: Int
-    ) {
-      holder.binding.apply {
-        viewModel = getItem(position)
-        executePendingBindings()
-      }
-    }
+  companion object {
+    fun createIntent(context: Context): Intent = Intent(context, SearchActivity::class.java)
   }
 }

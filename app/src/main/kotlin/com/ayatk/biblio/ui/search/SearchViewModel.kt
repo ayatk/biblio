@@ -16,82 +16,50 @@
 
 package com.ayatk.biblio.ui.search
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.OnLifecycleEvent
+import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
-import android.databinding.ObservableArrayList
-import android.util.Log
-import android.view.View
-import com.ayatk.biblio.data.remote.NarouClient
-import com.ayatk.biblio.data.remote.util.QueryBuilder
-import com.ayatk.biblio.model.Library
+import com.ayatk.biblio.domain.usecase.SearchUseCase
 import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.ui.util.toResult
+import com.ayatk.biblio.util.Result
+import com.ayatk.biblio.util.ext.toLiveData
 import com.ayatk.biblio.util.rx.SchedulerProvider
+import io.reactivex.Completable
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
-import timber.log.Timber
+import java.util.Locale
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
-    private val narouClient: NarouClient,
-    private val libraryRepository: LibraryRepository,
+    private val useCase: SearchUseCase,
     private val schedulerProvider: SchedulerProvider
-) : ViewModel(), LifecycleObserver {
+) : ViewModel() {
 
   private val compositeDisposable = CompositeDisposable()
 
-  val searchResult = ObservableArrayList<SearchResultItemViewModel>()
+  private val query = MutableLiveData<String>()
 
-  val searchResultVisibility = MutableLiveData<Int>()
-
-  var libraries = listOf<Library>()
-
-  @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-  fun onCreate() {
-    libraryRepository.findAll()
-        .observeOn(schedulerProvider.ui())
-        .subscribe(
-            { libraries -> this.libraries = libraries },
-            { t -> Log.e("SearchViewModel", t.toString()) }
-        )
-        .addTo(compositeDisposable)
-  }
+  val result: LiveData<Result<Map<Novel, Boolean>>> =
+      Transformations.switchMap<String, Result<Map<Novel, Boolean>>>(query) { search ->
+        useCase.search(search)
+            .toResult(schedulerProvider)
+            .toLiveData()
+      }
 
   override fun onCleared() {
     super.onCleared()
     compositeDisposable.clear()
   }
 
-  fun search(query: String) {
-    val formattedQuery = query.trim { it <= ' ' }
-    if (formattedQuery.isNotBlank()) {
-      searchResultVisibility.postValue(View.VISIBLE)
-      val builtQuery = QueryBuilder().searchWords(query).size(100).build()
-      compositeDisposable.clear()
-      narouClient.getNovel(builtQuery)
-          .map({ novels -> convertToViewModel(novels) })
-          .subscribeOn(schedulerProvider.io())
-          .observeOn(schedulerProvider.ui())
-          .subscribe(
-              { viewModels ->
-                if (viewModels.isNotEmpty()) {
-                  searchResult.clear()
-                  searchResult.addAll(viewModels)
-                }
-              },
-              Timber::e
-          )
-          .addTo(compositeDisposable)
-    } else {
-      searchResultVisibility.postValue(View.GONE)
+  fun setQuery(originalInput: String) {
+    val input = originalInput.toLowerCase(Locale.getDefault()).trim { it <= ' ' }
+    if (input != query.value) {
+      query.value = input
     }
   }
 
-  private fun convertToViewModel(novels: List<Novel>): List<SearchResultItemViewModel> {
-    return novels.map { novel ->
-      SearchResultItemViewModel(libraries, novel, libraryRepository)
-    }
-  }
+  fun saveNovel(novel: Novel): Completable =
+      useCase.saveNovel(novel)
+          .observeOn(schedulerProvider.ui())
 }

@@ -22,14 +22,19 @@
 
   <data>
 
-    <import type="android.view.View"/>
+    <import type="View"/>
 
     <variable
-        name="viewModel"
-        type="com.ayatk.biblio.ui.search.SearchResultItemViewModel"/>
+        name="novel"
+        type="com.ayatk.biblio.model.Novel"/>
+
+    <variable
+        name="isDownloaded"
+        type="Boolean"/>
   </data>
 
   <android.support.constraint.ConstraintLayout
+      android:id="@+id/search_result"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:background="?attr/selectableItemBackground"
@@ -43,7 +48,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:lines="1"
-        android:text="@{viewModel.novel.title}"
+        android:text="@{novel.title}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -54,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
-        android:text="@{viewModel.novel.writer}"
+        android:text="@{novel.writer}"
         android:textColor="@color/grey500"
         android:textSize="@dimen/text_12sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
@@ -66,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@{viewModel.lastUpdate}"
+        android:text="@{lastUpdate}"
         android:textColor="@color/grey500"
         android:textSize="@dimen/text_12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -82,7 +87,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/tag"
         android:padding="@dimen/space_4dp"
-        android:text="@{viewModel.novel.publisher.siteName}"
+        android:text="@{novel.publisher.siteName}"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/novel_type"
         app:layout_constraintTop_toBottomOf="@+id/novel_title"
@@ -93,9 +98,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="@{String.format(@string/novel_total_pages, viewModel.novel.totalPages)}"
+        android:text="@{String.format(@string/novel_total_pages, novel.totalPages)}"
         android:textSize="12sp"
-        android:visibility="@{viewModel.shortStory ? android.view.View.GONE : android.view.View.VISIBLE}"
         app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
         app:layout_constraintStart_toEndOf="@+id/novel_writer"/>
 
@@ -104,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="@{viewModel.novel.novelState.stateName}"
+        android:text="@{novel.novelState.stateName}"
         android:textSize="12sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
         app:layout_constraintStart_toEndOf="@+id/read_progress"
@@ -120,8 +124,7 @@
           android:id="@+id/add_library"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:onClick="@{viewModel::onClickAddLibrary}"
-          android:visibility="@{viewModel.downloadVisibility}"
+          android:visibility="@{isDownloaded ? View.VISIBLE: View.GONE}"
           app:srcCompat="@drawable/ic_book_plus_gray600_24_vector"
           tools:visibility="visible"/>
 
@@ -129,7 +132,7 @@
           android:id="@+id/download_done"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:visibility="@{viewModel.downloadedVisibility}"
+          android:visibility="@{isDownloaded ? View.GONE : View.VISIBLE}"
           app:srcCompat="@drawable/ic_check_green_24_vector"
           tools:visibility="visible"/>
 
