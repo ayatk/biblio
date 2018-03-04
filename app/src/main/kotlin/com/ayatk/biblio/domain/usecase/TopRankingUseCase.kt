@@ -21,7 +21,7 @@ import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.model.enums.RankingType
 import io.reactivex.Flowable
 
-interface HomeRankingUseCase {
+interface TopRankingUseCase {
   /**
    * ホームのランキング画面で使うランキングを取得する
    *

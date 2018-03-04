@@ -18,7 +18,7 @@ package com.ayatk.biblio.ui.home.ranking
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
-import com.ayatk.biblio.domain.usecase.HomeRankingUseCase
+import com.ayatk.biblio.domain.usecase.TopRankingUseCase
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.model.enums.RankingType
@@ -29,7 +29,7 @@ import com.ayatk.biblio.util.rx.SchedulerProvider
 import javax.inject.Inject
 
 class TopRankingViewModel @Inject constructor(
-    private val useCase: HomeRankingUseCase,
+    private val useCase: TopRankingUseCase,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 

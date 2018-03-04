@@ -16,12 +16,12 @@
 
 package com.ayatk.biblio.di
 
-import com.ayatk.biblio.domain.usecase.HomeLibraryUseCase
-import com.ayatk.biblio.domain.usecase.HomeLibraryUseCaseImpl
-import com.ayatk.biblio.domain.usecase.HomeRankingUseCase
-import com.ayatk.biblio.domain.usecase.HomeRankingUseCaseImpl
+import com.ayatk.biblio.domain.usecase.LibraryUseCase
+import com.ayatk.biblio.domain.usecase.LibraryUseCaseImpl
 import com.ayatk.biblio.domain.usecase.RankingUseCase
 import com.ayatk.biblio.domain.usecase.RankingUseCaseImpl
+import com.ayatk.biblio.domain.usecase.TopRankingUseCase
+import com.ayatk.biblio.domain.usecase.TopRankingUseCaseImpl
 import dagger.Binds
 import dagger.Module
 
@@ -30,10 +30,10 @@ import dagger.Module
 interface UseCaseModule {
 
   @Binds
-  fun bindHomeLibraryUseCase(useCase: HomeLibraryUseCaseImpl): HomeLibraryUseCase
+  fun bindHomeLibraryUseCase(useCase: LibraryUseCaseImpl): LibraryUseCase
 
   @Binds
-  fun bindHomeRankingUseCase(useCase: HomeRankingUseCaseImpl): HomeRankingUseCase
+  fun bindHomeRankingUseCase(useCase: TopRankingUseCaseImpl): TopRankingUseCase
 
   @Binds
   fun bindRankingUseCase(useCase: RankingUseCaseImpl): RankingUseCase

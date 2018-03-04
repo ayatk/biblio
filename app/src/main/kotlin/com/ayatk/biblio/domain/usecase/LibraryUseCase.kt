@@ -20,7 +20,7 @@ import com.ayatk.biblio.model.Library
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
-interface HomeLibraryUseCase {
+interface LibraryUseCase {
 
   /**
    * Roomからライブラリが更新されるたびにどんぶらこ〜ってデータが流れてくる

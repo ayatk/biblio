@@ -19,7 +19,7 @@ package com.ayatk.biblio.ui.home.library
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.ayatk.biblio.domain.usecase.HomeLibraryUseCase
+import com.ayatk.biblio.domain.usecase.LibraryUseCase
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.ui.util.toResult
 import com.ayatk.biblio.util.Result
@@ -31,7 +31,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class LibraryViewModel @Inject constructor(
-    private val useCase: HomeLibraryUseCase,
+    private val useCase: LibraryUseCase,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 

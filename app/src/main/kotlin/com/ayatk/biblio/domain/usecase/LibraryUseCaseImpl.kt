@@ -27,14 +27,14 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class HomeLibraryUseCaseImpl @Inject constructor(
+class LibraryUseCaseImpl @Inject constructor(
     private val novelRepository: NovelRepository,
     private val indexRepository: IndexRepository,
     private val schedulerProvider: SchedulerProvider
-) : HomeLibraryUseCase {
+) : LibraryUseCase {
 
   override val libraries: Flowable<List<Library>> =
-      novelRepository.novels
+      novelRepository.savedNovels
           .filter { it.isNotEmpty() }
           .map { it.map { it.toLibrary() } }
           .subscribeOn(schedulerProvider.io())

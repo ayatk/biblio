@@ -26,10 +26,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class HomeRankingUseCaseImpl @Inject constructor(
+class TopRankingUseCaseImpl @Inject constructor(
     private val repository: RankingRepository,
     private val schedulerProvider: SchedulerProvider
-) : HomeRankingUseCase {
+) : TopRankingUseCase {
 
   companion object {
     private const val RANK_SIZE = 5
