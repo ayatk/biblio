@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.data.remote.entity.mapper
 
-import com.ayatk.biblio.model.enums.NovelState
+import com.ayatk.biblio.data.entity.enums.NovelState
 
 fun Int.toNovelState(isEnd: Int): NovelState {
   return if (this == 2) {
