@@ -123,7 +123,7 @@
           android:layout_gravity="center"
           android:layout_marginEnd="@dimen/icon_space_4dp"
           android:contentDescription="tag_icon"
-          android:src="@drawable/ic_tag_multiple_grey400_20_vector"/>
+          app:srcCompat="@drawable/ic_tag_multiple_grey400_20_vector"/>
 
       <com.google.android.flexbox.FlexboxLayout
           android:id="@+id/tag_container"
