@@ -30,6 +30,7 @@ class HtmlUtil {
     val indexList = arrayListOf<NarouIndex>()
 
     val parseTable = Jsoup.parse(body)
+    var chapterName = ""
 
     // 短編小説のときは目次がないのでタイトルのNarouIndexを生成
     if (parseTable.select(".index_box").isEmpty()) {
@@ -38,14 +39,13 @@ class HtmlUtil {
           .parse(
               parseTable.select("meta[name=WWWC]").attr("content")
           )
-      return listOf(NarouIndex(0, ncode, title, false, 1, update, update))
+      return listOf(NarouIndex(0, ncode, title, null, 1, update, update))
     }
 
     for ((index, element) in parseTable.select(".index_box").first().children().withIndex()) {
       if (element.className() == "chapter_title") {
-        indexList.add(
-            NarouIndex(index, ncode, element.text(), true, null, null, null)
-        )
+        chapterName = element.text()
+        continue
       }
 
       if (element.className() == "novel_sublist2") {
@@ -75,7 +75,12 @@ class HtmlUtil {
         }
         indexList.add(
             NarouIndex(
-                index, ncode, el.text(), false, Integer.parseInt(attrs[2]), date,
+                index,
+                ncode,
+                el.text(),
+                chapterName,
+                Integer.parseInt(attrs[2]),
+                date,
                 lastUpdate
             )
         )
@@ -108,7 +113,7 @@ class HtmlUtil {
     )
   }
 
-  fun getFormattedContent(content: String): String {
+  private fun getFormattedContent(content: String): String {
     return content
         .replace("\n", "")
         .replace("<br */?>".toRegex(), "\n")
