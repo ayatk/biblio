@@ -16,30 +16,42 @@
 
 package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.data.datasource.novel.IndexRemoteDataSource
 import com.ayatk.biblio.data.db.dao.IndexDao
 import com.ayatk.biblio.data.entity.IndexEntity
+import com.ayatk.biblio.data.entity.NovelEntity
+import com.ayatk.biblio.data.entity.enums.Publisher
+import com.ayatk.biblio.data.remote.NarouDataStore
+import com.ayatk.biblio.data.remote.entity.mapper.toEntity
+import com.ayatk.biblio.di.scope.Narou
+import com.ayatk.biblio.di.scope.Nocturne
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.rxkotlin.Flowables
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class IndexRepositoryImpl @Inject constructor(
     private val dao: IndexDao,
-    private val remoteDataSource: IndexRemoteDataSource
+    @Narou private val narouDataStore: NarouDataStore,
+    @Nocturne private val nocDataStore: NarouDataStore
 ) : IndexRepository {
 
-  override fun indexes(code: String): Flowable<List<IndexEntity>> =
-      dao.getAllIndexByCode(code)
+  override fun index(entity: NovelEntity): Flowable<List<IndexEntity>> =
+      Flowables.combineLatest(
+          when (entity.publisher) {
+            Publisher.NAROU -> narouDataStore.getIndex(entity.code)
+            Publisher.NOCTURNE_MOONLIGHT -> nocDataStore.getIndex(entity.code)
+          }
+              .map { it.toEntity() },
+          dao.getAllIndexByCode(entity.code),
+          { remote, local ->
+            if (remote.isEmpty()) local else remote
+          })
 
-  override fun save(indices: List<IndexEntity>): Completable =
-      Completable.fromRunnable {
-        indices.map(dao::insert)
-      }
+  override fun save(indexes: List<IndexEntity>): Completable =
+      Completable.fromRunnable { dao.insert(indexes) }
 
   override fun delete(code: String): Completable =
-      Completable.fromRunnable {
-        indexes(code).map { it.map(dao::delete) }
-      }
+      Completable.fromRunnable { dao.getAllIndexByCode(code) }
 }

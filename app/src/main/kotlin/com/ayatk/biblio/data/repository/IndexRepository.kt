@@ -17,14 +17,15 @@
 package com.ayatk.biblio.data.repository
 
 import com.ayatk.biblio.data.entity.IndexEntity
+import com.ayatk.biblio.data.entity.NovelEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
 interface IndexRepository {
 
-  fun indexes(code: String): Flowable<List<IndexEntity>>
+  fun index(entity: NovelEntity): Flowable<List<IndexEntity>>
 
-  fun save(indices: List<IndexEntity>): Completable
+  fun save(indexes: List<IndexEntity>): Completable
 
   fun delete(code: String): Completable
 }
