@@ -30,7 +30,7 @@ class LibraryItem(
     private val library: Library,
     private val defaultPrefs: DefaultPrefs,
     private val onClickListener: (Novel) -> Unit
-) : BindableItem<ItemLibraryBinding>(library.id) {
+) : BindableItem<ItemLibraryBinding>() {
 
   override fun getLayout(): Int = R.layout.item_library
 
