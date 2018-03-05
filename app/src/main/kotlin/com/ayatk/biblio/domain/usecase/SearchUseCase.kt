@@ -17,6 +17,7 @@
 package com.ayatk.biblio.domain.usecase
 
 import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.model.enums.Publisher
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
@@ -27,8 +28,9 @@ interface SearchUseCase {
    * Mapの最初は小説情報で、二つ目のBooleanはすでにライブラリにダウンロードされているかを表す。
    *
    * @param query 検索する文字
+   * @param publisher 公開サイト
    */
-  fun search(query: String): Flowable<Map<Novel, Boolean>>
+  fun search(query: String, publisher: Publisher): Flowable<Map<Novel, Boolean>>
 
   /**
    * 小説をライブラリに保存する

@@ -33,6 +33,7 @@ import com.ayatk.biblio.ui.search.SearchActivity
 import com.ayatk.biblio.ui.util.Page
 import com.ayatk.biblio.ui.util.helper.disableShiftingMode
 import dagger.android.support.DaggerAppCompatActivity
+import timber.log.Timber
 import javax.inject.Inject
 
 class HomeActivity : DaggerAppCompatActivity() {
@@ -72,6 +73,7 @@ class HomeActivity : DaggerAppCompatActivity() {
 
   private fun initBottomNav() {
     binding.bottomNav.disableShiftingMode()
+    Timber.d(defaultPrefs.homePageState.toString())
     changePage(Page.forMenuId(defaultPrefs.homePageState))
     binding.bottomNav.selectedItemId = defaultPrefs.homePageState
     binding.bottomNav.setOnNavigationItemSelectedListener({

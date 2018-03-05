@@ -22,6 +22,7 @@ import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
 import com.ayatk.biblio.domain.usecase.SearchUseCase
 import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.ui.util.toResult
 import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.ext.toLiveData
@@ -42,7 +43,7 @@ class SearchViewModel @Inject constructor(
 
   val result: LiveData<Result<Map<Novel, Boolean>>> =
       Transformations.switchMap<String, Result<Map<Novel, Boolean>>>(query) { search ->
-        useCase.search(search)
+        useCase.search(search, Publisher.NAROU)
             .toResult(schedulerProvider)
             .toLiveData()
       }
@@ -54,7 +55,7 @@ class SearchViewModel @Inject constructor(
 
   fun setQuery(originalInput: String) {
     val input = originalInput.toLowerCase(Locale.getDefault()).trim { it <= ' ' }
-    if (input != query.value) {
+    if (input != query.value && input.isNotBlank()) {
       query.value = input
     }
   }

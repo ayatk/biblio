@@ -17,10 +17,14 @@
 package com.ayatk.biblio.domain.usecase
 
 import com.ayatk.biblio.data.repository.NovelRepository
+import com.ayatk.biblio.domain.translator.toEntity
+import com.ayatk.biblio.domain.translator.toModel
 import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.rxkotlin.Flowables
 import javax.inject.Inject
 
 class SearchUseCaseImpl @Inject constructor(
@@ -28,9 +32,14 @@ class SearchUseCaseImpl @Inject constructor(
     private val schedulerProvider: SchedulerProvider
 ) : SearchUseCase {
 
-  override fun search(query: String): Flowable<Map<Novel, Boolean>> {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
+  override fun search(query: String, publisher: Publisher): Flowable<Map<Novel, Boolean>> =
+      Flowables.combineLatest(
+          repository.savedNovels,
+          repository.novelsByQuery(query, publisher.toEntity()),
+          { saved, remote ->
+            remote.map { it.toModel() to (it in saved) }.toMap()
+          })
+          .subscribeOn(schedulerProvider.io())
 
   override fun saveNovel(novel: Novel): Completable {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

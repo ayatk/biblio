@@ -48,6 +48,16 @@ class NovelRepositoryImpl @Inject constructor(
         .map { it.toEntity(publisher) }
   }
 
+  override fun novelsByQuery(rawQuery: String, publisher: Publisher): Flowable<List<NovelEntity>> {
+    // TODO: フィルタリングなんかの条件をどうするか後で考える
+    val query = QueryBuilder().searchWords(rawQuery).build()
+    return when (publisher) {
+      Publisher.NAROU -> narouDataStore.getNovel(query)
+      Publisher.NOCTURNE_MOONLIGHT -> nocDataStore.getNovel(query)
+    }
+        .map { it.toEntity(publisher) }
+  }
+
   override fun save(novel: NovelEntity): Completable =
       Completable.fromRunnable { dao::insert }
 

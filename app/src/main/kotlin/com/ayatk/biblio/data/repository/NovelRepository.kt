@@ -27,6 +27,8 @@ interface NovelRepository {
 
   fun novels(publisher: Publisher, vararg codes: String): Flowable<List<NovelEntity>>
 
+  fun novelsByQuery(rawQuery: String, publisher: Publisher): Flowable<List<NovelEntity>>
+
   fun save(novel: NovelEntity): Completable
 
   fun delete(novel: NovelEntity): Completable
