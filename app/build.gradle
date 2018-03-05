@@ -275,8 +275,6 @@ dependencies {
   implementation 'com.xwray:groupie-databinding:2.0.3'
 
   // Util
-  implementation 'org.parceler:parceler-api:1.1.10'
-  kapt 'org.parceler:parceler:1.1.10'
   implementation 'org.greenrobot:eventbus:3.1.1'
 
   // Debug

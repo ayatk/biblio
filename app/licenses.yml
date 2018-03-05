@@ -180,14 +180,6 @@
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
   url: https://github.com/google/flexbox-layout
 
-- artifact: org.parceler:parceler-api:+
-  name: Parceler API
-  year: 2011-2015
-  copyrightHolder: John Ericksen
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/johncarl81/parceler
-
 - artifact: com.tomoima.debot:debot-no-op:+
   name: debot-no-op
   year: 2017

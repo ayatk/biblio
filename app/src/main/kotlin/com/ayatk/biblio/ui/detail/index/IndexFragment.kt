@@ -39,7 +39,6 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 import dagger.android.support.DaggerFragment
-import org.parceler.Parcels
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -55,7 +54,7 @@ class IndexFragment : DaggerFragment() {
   private lateinit var binding: FragmentIndexBinding
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL))
+    arguments?.getSerializable(BUNDLE_ARGS_NOVEL) as Novel
   }
 
   private val indexSection = Section()
@@ -113,7 +112,7 @@ class IndexFragment : DaggerFragment() {
 
     fun newInstance(novel: Novel): IndexFragment {
       return IndexFragment().apply {
-        arguments = bundleOf(BUNDLE_ARGS_NOVEL to Parcels.wrap(novel))
+        arguments = bundleOf(BUNDLE_ARGS_NOVEL to novel)
       }
     }
   }

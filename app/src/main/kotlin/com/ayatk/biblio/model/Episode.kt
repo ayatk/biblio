@@ -16,11 +16,8 @@
 
 package com.ayatk.biblio.model
 
-import org.parceler.Parcel
-import org.parceler.Parcel.Serialization
 import java.util.UUID
 
-@Parcel(Serialization.BEAN)
 data class Episode(
 
     val id: UUID,

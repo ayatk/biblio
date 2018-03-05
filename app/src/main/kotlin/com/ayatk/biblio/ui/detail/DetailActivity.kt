@@ -29,8 +29,8 @@ import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.detail.index.IndexFragment
 import com.ayatk.biblio.ui.detail.info.InfoFragment
 import com.ayatk.biblio.ui.util.initBackToolbar
+import com.ayatk.biblio.util.ext.extraOf
 import dagger.android.support.DaggerAppCompatActivity
-import org.parceler.Parcels
 
 class DetailActivity : DaggerAppCompatActivity() {
 
@@ -39,7 +39,7 @@ class DetailActivity : DaggerAppCompatActivity() {
   }
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(intent.getParcelableExtra(EXTRA_NOVEL))
+    intent.extras.get(EXTRA_NOVEL) as Novel
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,11 +58,10 @@ class DetailActivity : DaggerAppCompatActivity() {
 
     private val EXTRA_NOVEL = "extra_novel"
 
-    fun createIntent(context: Context, novel: Novel): Intent {
-      val intent = Intent(context, DetailActivity::class.java)
-      intent.putExtra(EXTRA_NOVEL, Parcels.wrap(novel))
-      return intent
-    }
+    fun createIntent(context: Context, novel: Novel): Intent =
+        Intent(context, DetailActivity::class.java).extraOf(
+            EXTRA_NOVEL to novel
+        )
   }
 
   inner class DetailPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {

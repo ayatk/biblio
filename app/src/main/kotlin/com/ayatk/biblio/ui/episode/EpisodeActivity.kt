@@ -30,10 +30,10 @@ import com.ayatk.biblio.databinding.ActivityEpisodeBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.UiEvent
 import com.ayatk.biblio.ui.util.initBackToolbar
+import com.ayatk.biblio.util.ext.extraOf
 import dagger.android.support.DaggerAppCompatActivity
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
-import org.parceler.Parcels
 
 class EpisodeActivity : DaggerAppCompatActivity() {
 
@@ -42,7 +42,7 @@ class EpisodeActivity : DaggerAppCompatActivity() {
   }
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(intent.getParcelableExtra(EXTRA_NOVEL))
+    intent.getSerializableExtra(EXTRA_NOVEL) as Novel
   }
 
   private val page: Int by lazy {
@@ -106,12 +106,11 @@ class EpisodeActivity : DaggerAppCompatActivity() {
     private val EXTRA_NOVEL = "NOVEL"
     private val EXTRA_PAGE = "PAGE"
 
-    fun createIntent(context: Context, novel: Novel, page: Int): Intent {
-      return Intent(context, EpisodeActivity::class.java).apply {
-        putExtra(EXTRA_NOVEL, Parcels.wrap(novel))
-        putExtra(EXTRA_PAGE, page)
-      }
-    }
+    fun createIntent(context: Context, novel: Novel, page: Int): Intent =
+        Intent(context, EpisodeActivity::class.java).extraOf(
+            EXTRA_NOVEL to novel,
+            EXTRA_PAGE to page
+        )
   }
 
   inner class EpisodePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {

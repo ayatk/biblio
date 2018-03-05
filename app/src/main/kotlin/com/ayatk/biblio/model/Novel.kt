@@ -20,11 +20,9 @@ import com.ayatk.biblio.model.enums.BigGenre
 import com.ayatk.biblio.model.enums.Genre
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.model.enums.Publisher
-import org.parceler.Parcel
-import org.parceler.Parcel.Serialization
+import java.io.Serializable
 import java.util.Date
 
-@Parcel(Serialization.BEAN)
 data class Novel(
 
     val code: String,
@@ -84,4 +82,4 @@ data class Novel(
     val conversationRate: Int,
 
     val novelUpdatedAt: Date
-)
+) : Serializable

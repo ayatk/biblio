@@ -16,9 +16,6 @@
 
 package com.ayatk.biblio.model
 
-import org.parceler.Parcel
-
-@Parcel(Parcel.Serialization.BEAN)
 data class Ranking(
 
     val rank: Int,

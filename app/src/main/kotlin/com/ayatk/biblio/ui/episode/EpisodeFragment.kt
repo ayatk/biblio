@@ -26,7 +26,6 @@ import com.ayatk.biblio.databinding.FragmentEpisodeBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
 import dagger.android.support.DaggerFragment
-import org.parceler.Parcels
 import javax.inject.Inject
 
 class EpisodeFragment : DaggerFragment() {
@@ -41,7 +40,7 @@ class EpisodeFragment : DaggerFragment() {
   }
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL))
+    arguments?.getSerializable(BUNDLE_ARGS_NOVEL) as Novel
   }
 
   private val page: Int by lazy {
@@ -67,7 +66,7 @@ class EpisodeFragment : DaggerFragment() {
     fun newInstance(novel: Novel, page: Int): EpisodeFragment {
       return EpisodeFragment().apply {
         arguments = bundleOf(
-            BUNDLE_ARGS_NOVEL to Parcels.wrap(novel),
+            BUNDLE_ARGS_NOVEL to novel,
             BUNDLE_ARGS_NOVEL_PAGE to page
         )
       }

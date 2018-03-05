@@ -26,7 +26,6 @@ import com.ayatk.biblio.databinding.FragmentInfoBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
 import dagger.android.support.DaggerFragment
-import org.parceler.Parcels
 import javax.inject.Inject
 
 class InfoFragment : DaggerFragment() {
@@ -41,7 +40,7 @@ class InfoFragment : DaggerFragment() {
   private lateinit var binding: FragmentInfoBinding
 
   private val novel: Novel by lazy {
-    Parcels.unwrap<Novel>(arguments?.getParcelable(BUNDLE_ARGS_NOVEL))
+    arguments?.getSerializable(BUNDLE_ARGS_NOVEL) as Novel
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,7 +67,7 @@ class InfoFragment : DaggerFragment() {
 
     fun newInstance(novel: Novel): InfoFragment {
       return InfoFragment().apply {
-        arguments = bundleOf(BUNDLE_ARGS_NOVEL to Parcels.wrap(novel))
+        arguments = bundleOf(BUNDLE_ARGS_NOVEL to novel)
       }
     }
   }
