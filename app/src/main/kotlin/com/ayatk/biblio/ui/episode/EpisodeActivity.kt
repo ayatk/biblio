@@ -22,7 +22,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
 import android.view.MenuItem
 import com.ayatk.biblio.R
@@ -37,7 +37,7 @@ import org.parceler.Parcels
 
 class EpisodeActivity : DaggerAppCompatActivity() {
 
-  val binding: ActivityEpisodeBinding by lazy {
+  private val binding: ActivityEpisodeBinding by lazy {
     DataBindingUtil.setContentView<ActivityEpisodeBinding>(this, R.layout.activity_episode)
   }
 
@@ -54,12 +54,10 @@ class EpisodeActivity : DaggerAppCompatActivity() {
 
     initBackToolbar(this, binding.toolbar)
 
-    EventBus.getDefault().post(UiEvent.EpisodeSelectedEvent(page))
-
     // ViewPager
     binding.novelViewPager.apply {
       adapter = EpisodePagerAdapter(supportFragmentManager)
-      currentItem = page - 1
+      currentItem = page
       addOnPageChangeListener(
           object : ViewPager.OnPageChangeListener {
             override fun onPageSelected(position: Int) {
@@ -116,12 +114,11 @@ class EpisodeActivity : DaggerAppCompatActivity() {
     }
   }
 
-  inner class EpisodePagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+  inner class EpisodePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment =
-        EpisodeFragment.newInstance(novel, position + 1)
+        EpisodeFragment.newInstance(novel, position)
 
-    override fun getCount(): Int =
-        novel.totalPages
+    override fun getCount(): Int = novel.page
   }
 }

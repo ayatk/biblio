@@ -25,10 +25,7 @@ import androidx.os.bundleOf
 import com.ayatk.biblio.databinding.FragmentEpisodeBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.UiEvent
 import dagger.android.support.DaggerFragment
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
 import org.parceler.Parcels
 import javax.inject.Inject
 
@@ -63,27 +60,9 @@ class EpisodeFragment : DaggerFragment() {
     return binding.root
   }
 
-  override fun onResume() {
-    super.onResume()
-    EventBus.getDefault().register(this)
-    viewModel.start(novel, page)
-  }
-
-  override fun onPause() {
-    super.onPause()
-    EventBus.getDefault().unregister(this)
-  }
-
-  @Subscribe
-  fun onEvent(event: UiEvent.EpisodeSelectedEvent) {
-    if (event.position + 1 == page) {
-      EventBus.getDefault().post(UiEvent.SubtitleChangeEvent(viewModel.episode.value!!.subtitle))
-    }
-  }
-
   companion object {
-    private val BUNDLE_ARGS_NOVEL = "NOVEL"
-    private val BUNDLE_ARGS_NOVEL_PAGE = "NOVEL_PAGE"
+    private const val BUNDLE_ARGS_NOVEL = "NOVEL"
+    private const val BUNDLE_ARGS_NOVEL_PAGE = "NOVEL_PAGE"
 
     fun newInstance(novel: Novel, page: Int): EpisodeFragment {
       return EpisodeFragment().apply {

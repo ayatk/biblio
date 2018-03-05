@@ -18,36 +18,34 @@ package com.ayatk.biblio.ui.episode
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.ayatk.biblio.data.repository.EpisodeRepository
+import com.ayatk.biblio.domain.usecase.EpisodeUseCase
 import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.ui.util.toResult
+import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.rx.SchedulerProvider
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
 import timber.log.Timber
 import javax.inject.Inject
 
 class EpisodeViewModel @Inject constructor(
-    private val episodeRepository: EpisodeRepository,
+    private val useCase: EpisodeUseCase,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
-  private val compositeDisposable = CompositeDisposable()
+  val episode = MutableLiveData<Episode>()
 
-  var episode = MutableLiveData<Episode>()
-
-  fun start(novel: Novel, page: Int) {
-    episodeRepository.find(novel, page)
-        .observeOn(schedulerProvider.ui())
-        .subscribe(
-            { episode.postValue(it.first()) },
-            { Timber.e(it) }
-        )
-        .addTo(compositeDisposable)
-  }
-
-  override fun onCleared() {
-    super.onCleared()
-    compositeDisposable.clear()
-  }
+  fun start(novel: Novel, page: Int) =
+      useCase.getEpisode(novel, page)
+          .toResult(schedulerProvider)
+          .observeOn(schedulerProvider.ui())
+          .subscribe({ result ->
+            when (result) {
+              is Result.Success -> {
+                episode.postValue(result.data)
+              }
+              is Result.Failure -> {
+                Timber.e(result.e)
+              }
+            }
+          })
 }
