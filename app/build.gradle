@@ -94,7 +94,7 @@ android {
     applicationVariants.all { variant ->
       variant.outputs.all { output ->
         if (output.outputFile != null && output.outputFile.name.endsWith('.apk')) {
-          outputFileName = "${APP_NAME}-v${VERSION}.apk"
+          outputFileName = "${APP_NAME}-v${VERSION}-${BUILD_NUM}.apk"
         }
       }
     }

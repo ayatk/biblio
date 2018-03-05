@@ -29,6 +29,9 @@ jobs:
       - run:
           name: Build APK
           command: ./gradlew assembleProductionRelease -PdisablePreDex
+      - store_artifacts:
+          path: app/build/outputs/apk
+          destination: apk
       - save_cache:
           paths:
             - ~/.gradle
