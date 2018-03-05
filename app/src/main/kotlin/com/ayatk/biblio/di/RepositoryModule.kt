@@ -18,8 +18,6 @@ package com.ayatk.biblio.di
 
 import com.ayatk.biblio.data.repository.BookmarkRepository
 import com.ayatk.biblio.data.repository.BookmarkRepositoryImpl
-import com.ayatk.biblio.data.repository.ChapterRepository
-import com.ayatk.biblio.data.repository.ChapterRepositoryImpl
 import com.ayatk.biblio.data.repository.EpisodeRepository
 import com.ayatk.biblio.data.repository.EpisodeRepositoryImpl
 import com.ayatk.biblio.data.repository.IndexRepository
@@ -37,9 +35,6 @@ interface RepositoryModule {
 
   @Binds
   fun bindBookmarkRepository(repository: BookmarkRepositoryImpl): BookmarkRepository
-
-  @Binds
-  fun bindChapterRepository(repository: ChapterRepositoryImpl): ChapterRepository
 
   @Binds
   fun bindEpisodeRepository(repository: EpisodeRepositoryImpl): EpisodeRepository

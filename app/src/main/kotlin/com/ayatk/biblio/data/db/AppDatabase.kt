@@ -20,12 +20,10 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import com.ayatk.biblio.data.db.dao.BookmarkDao
-import com.ayatk.biblio.data.db.dao.ChapterDao
 import com.ayatk.biblio.data.db.dao.EpisodeDao
 import com.ayatk.biblio.data.db.dao.IndexDao
 import com.ayatk.biblio.data.db.dao.NovelDao
 import com.ayatk.biblio.data.entity.BookmarkEntity
-import com.ayatk.biblio.data.entity.ChapterEntity
 import com.ayatk.biblio.data.entity.EpisodeEntity
 import com.ayatk.biblio.data.entity.IndexEntity
 import com.ayatk.biblio.data.entity.NovelEntity
@@ -33,7 +31,6 @@ import com.ayatk.biblio.data.entity.NovelEntity
 @Database(
     entities = [
       BookmarkEntity::class,
-      ChapterEntity::class,
       EpisodeEntity::class,
       IndexEntity::class,
       NovelEntity::class
@@ -44,8 +41,6 @@ import com.ayatk.biblio.data.entity.NovelEntity
 abstract class AppDatabase : RoomDatabase() {
 
   abstract fun bookmarkDao(): BookmarkDao
-
-  abstract fun chapterDao(): ChapterDao
 
   abstract fun episodeDao(): EpisodeDao
 
