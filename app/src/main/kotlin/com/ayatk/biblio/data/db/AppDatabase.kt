@@ -35,7 +35,8 @@ import com.ayatk.biblio.data.entity.NovelEntity
       IndexEntity::class,
       NovelEntity::class
     ],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
