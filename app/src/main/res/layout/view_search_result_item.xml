@@ -22,7 +22,7 @@
 
   <data>
 
-    <import type="View"/>
+    <import type="android.view.View"/>
 
     <variable
         name="novel"
@@ -71,7 +71,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@{lastUpdate}"
         android:textColor="@color/grey500"
         android:textSize="@dimen/text_12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -98,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="@{String.format(@string/novel_total_pages, novel.totalPages)}"
+        android:text="@{String.format(@string/novel_total_pages, novel.page)}"
         android:textSize="12sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
         app:layout_constraintStart_toEndOf="@+id/novel_writer"/>
