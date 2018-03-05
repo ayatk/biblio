@@ -40,7 +40,7 @@ class LibraryItem(
       it.libraryItem.setOnClickListener {
         onClickListener(library.novel)
       }
-      it.lastUpdate.text = DateFormat.yyyyMMddkkmm.format(library.novel.lastUpdateDate)
+      it.lastUpdate.text = DateFormat.yyyyMMddkkmm.format(library.novel.lastUpload)
       it.readProgress.setVisible(library.novel.novelState != NovelState.SHORT_STORY)
       it.tagLayout.setVisible(defaultPrefs.showTagAtLibrary && library.tag.isNotEmpty())
     }
