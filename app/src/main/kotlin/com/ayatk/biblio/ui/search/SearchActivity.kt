@@ -22,6 +22,7 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -30,7 +31,6 @@ import android.support.v7.widget.RecyclerView.OnScrollListener
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivitySearchBinding
 import com.ayatk.biblio.di.ViewModelFactory
@@ -88,9 +88,12 @@ class SearchActivity : DaggerAppCompatActivity() {
             this, binding.drawerLayout, R.string.drawer_open,
             R.string.drawer_close
         ) {
-          override fun onDrawerOpened(drawerView: View) {
-            super.onDrawerOpened(drawerView)
-            searchView.clearFocus()
+          override fun onDrawerStateChanged(newState: Int) {
+            super.onDrawerStateChanged(newState)
+            Timber.d(newState.toString())
+            if (newState != DrawerLayout.STATE_IDLE) {
+              searchView.clearFocus()
+            }
           }
         }
     )
@@ -144,6 +147,7 @@ class SearchActivity : DaggerAppCompatActivity() {
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     if (item.itemId == R.id.action_filter) {
+      searchView.clearFocus()
       binding.drawerLayout.openDrawer(GravityCompat.END)
       return true
     }
