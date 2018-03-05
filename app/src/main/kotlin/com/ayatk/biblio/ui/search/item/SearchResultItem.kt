@@ -38,12 +38,13 @@ class SearchResultItem(
   override fun bind(viewBinding: ViewSearchResultItemBinding, position: Int) {
     viewBinding.let {
       it.novel = novel.key
-      it.isDownloaded = isDownloaded
       it.searchResult.setOnClickListener {
         onClickListener(novel.key)
       }
       it.lastUpdate.text = DateFormat.yyyyMMddkkmm.format(novel.key.lastUpload)
       it.readProgress.setVisible(novel.key.novelState != NovelState.SHORT_STORY)
+      it.addLibrary.setVisible(!isDownloaded)
+      it.downloadDone.setVisible(isDownloaded)
       it.addLibrary.setOnClickListener {
         onDownloadClickListener(novel.key)
             .subscribe {
