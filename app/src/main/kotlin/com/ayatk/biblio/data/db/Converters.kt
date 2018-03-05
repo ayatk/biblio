@@ -21,6 +21,7 @@ import com.ayatk.biblio.data.entity.enums.BigGenre
 import com.ayatk.biblio.data.entity.enums.Genre
 import com.ayatk.biblio.data.entity.enums.NovelState
 import com.ayatk.biblio.data.entity.enums.Publisher
+import com.ayatk.biblio.data.entity.enums.ReadingState
 import java.util.Date
 import java.util.UUID
 
@@ -58,6 +59,14 @@ object Converters {
   @JvmStatic
   @TypeConverter
   fun deserializePublisher(publisher: String): Publisher = Publisher.valueOf(publisher)
+
+  @JvmStatic
+  @TypeConverter
+  fun serializeReadingState(readingState: ReadingState): String = readingState.name
+
+  @JvmStatic
+  @TypeConverter
+  fun deserializeReadingState(state: String): ReadingState = ReadingState.valueOf(state)
 
   @JvmStatic
   @TypeConverter
