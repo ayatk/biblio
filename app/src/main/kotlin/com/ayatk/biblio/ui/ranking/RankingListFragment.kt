@@ -54,7 +54,7 @@ class RankingListFragment : DaggerFragment() {
   }
 
   private val rankingType: RankingType by lazy {
-    arguments?.getSerializable(ARG_RANKING_TYPE)!! as RankingType
+    arguments?.getSerializable(BUNDLE_ARGS_RANKING_TYPE)!! as RankingType
   }
 
   private val rankingSection = Section()
@@ -109,11 +109,11 @@ class RankingListFragment : DaggerFragment() {
   }
 
   companion object {
-    private const val ARG_RANKING_TYPE = "ranking_type"
+    private const val BUNDLE_ARGS_RANKING_TYPE = "ranking_type"
 
     fun newInstance(rankingType: RankingType): Fragment {
       return RankingListFragment().apply {
-        arguments = bundleOf(ARG_RANKING_TYPE to rankingType)
+        arguments = bundleOf(BUNDLE_ARGS_RANKING_TYPE to rankingType)
       }
     }
   }
