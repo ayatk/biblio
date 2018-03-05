@@ -17,6 +17,7 @@
 package com.ayatk.biblio.data.repository
 
 import com.ayatk.biblio.data.entity.enums.OutputOrder
+import com.ayatk.biblio.data.entity.enums.Publisher
 import com.ayatk.biblio.data.remote.NarouDataStore
 import com.ayatk.biblio.data.remote.entity.mapper.toNovel
 import com.ayatk.biblio.data.remote.entity.mapper.toRanking
@@ -24,7 +25,6 @@ import com.ayatk.biblio.data.remote.util.QueryBuilder
 import com.ayatk.biblio.di.scope.Narou
 import com.ayatk.biblio.di.scope.Nocturne
 import com.ayatk.biblio.model.Ranking
-import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.model.enums.RankingType
 import io.reactivex.Flowable
 import java.util.Calendar
