@@ -29,57 +29,57 @@ data class Novel(
 
     val title: String,
 
-    val userID: Int,
+    val userID: Int = 0,
 
-    val writer: String,
+    val writer: String = "",
 
-    val story: String,
+    val story: String = "",
 
-    val publisher: Publisher,
+    val publisher: Publisher = Publisher.NAROU,
 
-    val bigGenre: BigGenre,
+    val bigGenre: BigGenre = BigGenre.OTHER,
 
-    val genre: Genre,
+    val genre: Genre = Genre.NON_GENRE,
 
-    val keyword: List<String>,
+    val keyword: List<String> = listOf(),
 
-    val novelState: NovelState,
+    val novelState: NovelState = NovelState.SERIES_END,
 
-    val firstUpload: Date,
+    val firstUpload: Date = Date(),
 
-    val lastUpload: Date,
+    val lastUpload: Date = Date(),
 
-    val page: Int,
+    val page: Int = 0,
 
-    val length: Int,
+    val length: Int = 0,
 
-    val readTime: Int,
+    val readTime: Int = 0,
 
-    val isR18: Boolean,
+    val isR18: Boolean = false,
 
-    val isR15: Boolean,
+    val isR15: Boolean = false,
 
-    val isBL: Boolean,
+    val isBL: Boolean = false,
 
-    val isGL: Boolean,
+    val isGL: Boolean = false,
 
-    val isCruelness: Boolean,
+    val isCruelness: Boolean = false,
 
-    val isTransmigration: Boolean,
+    val isTransmigration: Boolean = false,
 
-    val isTransfer: Boolean,
+    val isTransfer: Boolean = false,
 
-    val point: Int,
+    val point: Int = 0,
 
-    val bookmarkCount: Int,
+    val bookmarkCount: Int = 0,
 
-    val reviewCount: Int,
+    val reviewCount: Int = 0,
 
-    val ratingCount: Int,
+    val ratingCount: Int = 0,
 
-    val illustrationCount: Int,
+    val illustrationCount: Int = 0,
 
-    val conversationRate: Int,
+    val conversationRate: Int = 0,
 
-    val novelUpdatedAt: Date
+    val novelUpdatedAt: Date = Date()
 ) : Serializable
