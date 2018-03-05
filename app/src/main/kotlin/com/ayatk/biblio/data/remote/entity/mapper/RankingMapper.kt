@@ -24,7 +24,7 @@ fun List<NarouRanking>.toRanking(novels: List<Novel>): List<Ranking> =
     map {
       Ranking(
           rank = it.rank,
-          novel = novels.firstOrNull { novel -> novel.code == it.ncode } ?: Novel(),
+          novel = novels.first { novel -> novel.code == it.ncode },
           point = it.pt
       )
     }
