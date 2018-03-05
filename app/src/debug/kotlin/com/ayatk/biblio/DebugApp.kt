@@ -17,6 +17,7 @@
 package com.ayatk.biblio
 
 import com.facebook.stetho.Stetho
+import com.squareup.leakcanary.LeakCanary
 import com.tomoima.debot.DebotConfigurator
 import jp.wasabeef.takt.Takt
 import timber.log.Timber
@@ -29,6 +30,8 @@ class DebugApp : App() {
     DebotConfigurator.configureWithDefault()
     Takt.stock(this).play()
 
+    initLeakCanary()
+
     if (BuildConfig.DEBUG) {
       Timber.plant(Timber.DebugTree())
     }
@@ -37,5 +40,12 @@ class DebugApp : App() {
   override fun onTerminate() {
     Takt.finish()
     super.onTerminate()
+  }
+
+  private fun initLeakCanary() {
+    if (LeakCanary.isInAnalyzerProcess(this)) {
+      return
+    }
+    LeakCanary.install(this)
   }
 }
