@@ -16,10 +16,16 @@
 
 package com.ayatk.biblio.di
 
+import com.ayatk.biblio.domain.usecase.DetailUseCase
+import com.ayatk.biblio.domain.usecase.DetailUseCaseImpl
+import com.ayatk.biblio.domain.usecase.EpisodeUseCase
+import com.ayatk.biblio.domain.usecase.EpisodeUseCaseImpl
 import com.ayatk.biblio.domain.usecase.LibraryUseCase
 import com.ayatk.biblio.domain.usecase.LibraryUseCaseImpl
 import com.ayatk.biblio.domain.usecase.RankingUseCase
 import com.ayatk.biblio.domain.usecase.RankingUseCaseImpl
+import com.ayatk.biblio.domain.usecase.SearchUseCase
+import com.ayatk.biblio.domain.usecase.SearchUseCaseImpl
 import com.ayatk.biblio.domain.usecase.TopRankingUseCase
 import com.ayatk.biblio.domain.usecase.TopRankingUseCaseImpl
 import dagger.Binds
@@ -28,6 +34,15 @@ import dagger.Module
 @Module
 @Suppress("unused")
 interface UseCaseModule {
+
+  @Binds
+  fun bindDetailUseCase(useCase: DetailUseCaseImpl): DetailUseCase
+
+  @Binds
+  fun bindEpisodeUseCase(useCase: EpisodeUseCaseImpl): EpisodeUseCase
+
+  @Binds
+  fun bindSearchUseCase(useCase: SearchUseCaseImpl): SearchUseCase
 
   @Binds
   fun bindHomeLibraryUseCase(useCase: LibraryUseCaseImpl): LibraryUseCase
