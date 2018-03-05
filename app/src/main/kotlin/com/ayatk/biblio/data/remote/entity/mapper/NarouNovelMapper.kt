@@ -16,10 +16,47 @@
 
 package com.ayatk.biblio.data.remote.entity.mapper
 
+import com.ayatk.biblio.data.entity.NovelEntity
+import com.ayatk.biblio.data.entity.enums.Publisher
 import com.ayatk.biblio.data.remote.entity.NarouNovel
+import com.ayatk.biblio.domain.translator.toKeywordModel
 import com.ayatk.biblio.domain.translator.toModel
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.model.enums.Publisher
+
+fun List<NarouNovel>.toEntity(publisher: Publisher): List<NovelEntity> =
+    map {
+      NovelEntity(
+          code = it.ncode,
+          title = it.title,
+          userID = it.userID,
+          writer = it.writer,
+          story = it.story,
+          publisher = publisher,
+          bigGenre = it.bigGenre,
+          genre = it.genre,
+          keyword = it.keyword,
+          novelState = it.novelType.toNovelState(it.end),
+          firstUpload = it.firstup,
+          lastUpload = it.lastup,
+          page = it.page,
+          length = it.length,
+          readTime = it.time,
+          isR18 = publisher == Publisher.NOCTURNE_MOONLIGHT,
+          isR15 = it.isR15 == 1,
+          isBL = it.isBL == 1,
+          isGL = it.isGL == 1,
+          isCruelness = it.isCruel == 1,
+          isTransmigration = it.isAnotherWorld == 1,
+          isTransfer = it.isTransfer == 1,
+          globalPoint = it.allPoint,
+          bookmarkCount = it.bookmarkCount,
+          reviewCount = it.reviewCount,
+          ratingCount = it.raterCount,
+          illustrationCount = it.illustrationCount,
+          conversationRate = it.conversationRate,
+          novelUpdatedAt = it.novelUpdatedAt
+      )
+    }
 
 fun List<NarouNovel>.toNovel(publisher: Publisher): List<Novel> =
     map {
@@ -29,11 +66,11 @@ fun List<NarouNovel>.toNovel(publisher: Publisher): List<Novel> =
           userID = it.userID,
           writer = it.writer,
           story = it.story,
-          publisher = publisher,
+          publisher = publisher.toModel(),
           bigGenre = it.bigGenre.toModel(),
           genre = it.genre.toModel(),
-          keyword = it.keyword.split(" "),
-          novelState = it.novelType.toNovelState(it.end),
+          keyword = it.keyword.toKeywordModel(),
+          novelState = it.novelType.toNovelState(it.end).toModel(),
           firstUpload = it.firstup,
           lastUpload = it.lastup,
           page = it.page,
