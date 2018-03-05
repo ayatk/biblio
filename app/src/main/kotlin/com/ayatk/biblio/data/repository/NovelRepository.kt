@@ -17,12 +17,15 @@
 package com.ayatk.biblio.data.repository
 
 import com.ayatk.biblio.data.entity.NovelEntity
+import com.ayatk.biblio.data.entity.enums.Publisher
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
 interface NovelRepository {
 
-  val novels: Flowable<List<NovelEntity>>
+  val savedNovels: Flowable<List<NovelEntity>>
+
+  fun novels(publisher: Publisher, vararg codes: String): Flowable<List<NovelEntity>>
 
   fun save(novel: NovelEntity): Completable
 

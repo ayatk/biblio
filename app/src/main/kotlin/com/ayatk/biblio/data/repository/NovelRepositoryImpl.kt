@@ -18,6 +18,12 @@ package com.ayatk.biblio.data.repository
 
 import com.ayatk.biblio.data.db.dao.NovelDao
 import com.ayatk.biblio.data.entity.NovelEntity
+import com.ayatk.biblio.data.entity.enums.Publisher
+import com.ayatk.biblio.data.remote.NarouDataStore
+import com.ayatk.biblio.data.remote.entity.mapper.toEntity
+import com.ayatk.biblio.data.remote.util.QueryBuilder
+import com.ayatk.biblio.di.scope.Narou
+import com.ayatk.biblio.di.scope.Nocturne
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import javax.inject.Inject
@@ -25,10 +31,22 @@ import javax.inject.Singleton
 
 @Singleton
 class NovelRepositoryImpl @Inject constructor(
-    private val dao: NovelDao
+    private val dao: NovelDao,
+    @Narou private val narouDataStore: NarouDataStore,
+    @Nocturne private val nocDataStore: NarouDataStore
 ) : NovelRepository {
 
-  override val novels: Flowable<List<NovelEntity>> = dao.getAllNovel()
+  override val savedNovels: Flowable<List<NovelEntity>> = dao.getAllNovel()
+
+  override fun novels(publisher: Publisher, vararg codes: String): Flowable<List<NovelEntity>> {
+    // TODO データベースからとってくる処理をかく
+    val query = QueryBuilder().ncode(*codes).build()
+    return when (publisher) {
+      Publisher.NAROU -> narouDataStore.getNovel(query)
+      Publisher.NOCTURNE_MOONLIGHT -> nocDataStore.getNovel(query)
+    }
+        .map { it.toEntity(publisher) }
+  }
 
   override fun save(novel: NovelEntity): Completable =
       Completable.fromRunnable { dao::insert }
