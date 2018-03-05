@@ -31,13 +31,13 @@ buildscript {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}"
     classpath 'com.google.gms:google-services:3.1.1'
     classpath 'com.cookpad.android.licensetools:license-tools-plugin:1.2.0'
-    classpath 'com.github.ben-manes:gradle-versions-plugin:0.17.0'
     classpath 'io.fabric.tools:gradle:1.+'
   }
 }
 
 plugins {
-  id("io.gitlab.arturbosch.detekt").version("1.0.0.RC6-3")
+  id 'com.github.ben-manes.versions' version '0.17.0'
+  id 'io.gitlab.arturbosch.detekt' version '1.0.0.RC6-3'
 }
 
 allprojects {
