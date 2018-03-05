@@ -49,7 +49,7 @@ enum class Page(
 
   companion object {
 
-    fun forMenuId(@IdRes id: Int): Page = values().first { it.menuId == id }
+    fun forMenuId(@IdRes id: Int): Page = values().firstOrNull { it.menuId == id } ?: LIBRARY
 
     fun forName(fragment: Fragment): Page {
       val name = fragment.javaClass.simpleName
