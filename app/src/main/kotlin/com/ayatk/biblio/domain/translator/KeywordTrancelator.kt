@@ -16,12 +16,6 @@
 
 package com.ayatk.biblio.domain.translator
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+fun List<String>.toKeywordEntity(): String = this.joinToString()
 
-fun List<String>.toKeywordEntity(): String = Gson().toJson(this)
-
-fun String.toKeywordModel(): List<String> {
-  val listType = object : TypeToken<List<String>>() {}.type
-  return Gson().fromJson(this, listType)
-}
+fun String.toKeywordModel(): List<String> = this.split(", ")
