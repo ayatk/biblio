@@ -20,17 +20,6 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.cookpad.android.licensetools'
 apply plugin: 'io.fabric'
 
-def APP_NAME = "biblio"
-def VERSION = "0.2.4-alpha"
-def PACKAGE_NAME = "com.ayatk.biblio"
-
-// for debug info
-def GIT_SHA = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
-def GIT_BRANCH = (System.getenv("CIRCLE_BRANCH") != null) ? System.getenv("CIRCLE_BRANCH") :
-    'git rev-parse --abbrev-ref HEAD'.execute([], project.rootDir).text.trim()
-def BUILD_NUM = (System.getenv("CIRCLE_BUILD_NUM") != null) ? System.getenv("CIRCLE_BUILD_NUM") : "1"
-def BUILD_TIME = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone("UTC"))
-
 // Keys
 def RELEASE_STORE_PASSWORD = (System.getenv("RELEASE_STORE_PASSWORD") != null) ?
     System.getenv("RELEASE_STORE_PASSWORD") : ""
@@ -40,8 +29,6 @@ def RELEASE_KEY_PASSWORD = (System.getenv("RELEASE_KEY_PASSWORD") != null) ?
     System.getenv("RELEASE_KEY_PASSWORD") : ""
 def FABRIC_API_KEY = (System.getenv("FABRIC_API_KEY") != null) ?
     System.getenv("FABRIC_API_KEY") : ""
-
-def MIN_SDK_VERSION = 21 // Lollipop
 
 def secretPropsFile = file("$rootDir/secret.properties")
 if (secretPropsFile.canRead()) {
@@ -54,13 +41,13 @@ if (secretPropsFile.canRead()) {
 }
 
 android {
-  compileSdkVersion 27
-  buildToolsVersion '27.0.3'
+  compileSdkVersion versions.compileSdk
+  buildToolsVersion versions.buildTools
 
   defaultConfig {
     applicationId PACKAGE_NAME
-    minSdkVersion MIN_SDK_VERSION
-    targetSdkVersion 27
+    minSdkVersion versions.minSdk
+    targetSdkVersion versions.targetSdk
     versionCode BUILD_NUM.toInteger()
     versionName VERSION
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -121,13 +108,13 @@ android {
     develop {}
     // use deploygate
     nightly {
-      minSdkVersion MIN_SDK_VERSION
+      minSdkVersion versions.minSdk
       applicationId "${PACKAGE_NAME}.nightly"
       versionName "${VERSION}-nightly"
     }
     production {
       // The actual minSdkVersion for the application.
-      minSdkVersion MIN_SDK_VERSION
+      minSdkVersion versions.minSdk
     }
   }
 
@@ -207,96 +194,99 @@ configurations {
   ktlint
 }
 
-ext.supportLibVersion = '27.1.0'
-
 dependencies {
-  implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+  // Kotlin
+  implementation depends.kotlin.stdlib
+  implementation depends.ktx
 
   // android support libraries
-  implementation "com.android.support:appcompat-v7:${supportLibVersion}"
-  implementation "com.android.support:design:${supportLibVersion}"
-  implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
-  implementation "com.android.support:cardview-v7:${supportLibVersion}"
-  implementation "com.android.support:customtabs:${supportLibVersion}"
-  implementation "com.android.support:preference-v7:${supportLibVersion}"
-  implementation "com.android.support:preference-v14:${supportLibVersion}"
-  implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+  implementation depends.support.appcompat
+  implementation depends.support.design
+  implementation depends.support.cardview
+  implementation depends.support.customtabs
+  implementation depends.support.preference
+  implementation depends.support.preferenceV14
+  implementation depends.support.constraint
 
   // Android Architecture Components
-  implementation 'android.arch.persistence.room:runtime:1.0.0'
-  implementation 'android.arch.persistence.room:rxjava2:1.0.0'
-  kapt 'android.arch.persistence.room:compiler:1.0.0'
-  implementation "android.arch.lifecycle:runtime:1.1.0"
-  implementation "android.arch.lifecycle:extensions:1.1.0"
-  implementation "android.arch.lifecycle:reactivestreams:1.1.0"
-  kapt "android.arch.lifecycle:compiler:1.1.0"
-
-  // androidx
-  implementation 'androidx.core:core-ktx:0.2'
+  implementation depends.lifecycle.runtime
+  implementation depends.lifecycle.extensions
+  implementation depends.lifecycle.reactivestreams
+  implementation depends.room.runtime
+  implementation depends.room.rxjava2
+  kapt depends.lifecycle.compiler
+  kapt depends.room.compiler
 
   // Network
-  implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-  implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
-  implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-  implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
-  implementation 'com.google.code.gson:gson:2.8.2'
-  implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-  implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+  implementation depends.retrofit.core
+  implementation depends.retrofit.converterGson
+  implementation depends.retrofit.converterScalars
+  implementation depends.retrofit.adapterRxJava2
+
+  implementation depends.gson
+
+  implementation depends.okhttp3.core
+  implementation depends.okhttp3.loggingIntercepter
 
   // Dependency Injection
-  implementation 'com.google.dagger:dagger:2.14.1'
-  kapt 'com.google.dagger:dagger-compiler:2.14.1'
-  implementation 'com.google.dagger:dagger-android:2.14.1'
-  kapt 'com.google.dagger:dagger-android-processor:2.14.1'
-  implementation 'com.google.dagger:dagger-android-support:2.14.1'
+  implementation depends.dagger.core
+  implementation depends.dagger.android
+  implementation depends.dagger.androidSupport
+  kapt depends.dagger.compiler
+  kapt depends.dagger.androidProcessor
 
   // ReactiveX
-  implementation 'io.reactivex.rxjava2:rxjava:2.1.10'
-  implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
-  implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+  implementation depends.rxjava2.core
+  implementation depends.rxjava2.android
+  implementation depends.rxjava2.kotlin
 
   // SharedPreferences
-  implementation 'com.rejasupotaro:kvs-schema:5.0.1'
-  kapt 'com.rejasupotaro:kvs-schema-compiler:5.0.1'
+  implementation depends.kvsSchema.core
+  kapt depends.kvsSchema.compiler
 
   // Jsoup
-  implementation 'org.jsoup:jsoup:1.11.2'
+  implementation depends.jsoup
 
   // UI
-  implementation 'com.google.android:flexbox:0.3.2'
-  implementation 'com.github.mabbas007:TagsEditText:1.0.5'
-  implementation 'com.xwray:groupie:2.0.3'
-  implementation 'com.xwray:groupie-databinding:2.0.3'
+  implementation depends.flexbox
+  implementation depends.groupie.core
+  implementation depends.groupie.binding
 
   // Util
-  implementation 'org.greenrobot:eventbus:3.1.1'
+  implementation depends.eventbus
 
   // Debug
-  debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-  releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
-  testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
-  implementation 'com.jakewharton.timber:timber:4.6.1'
-  debugImplementation 'com.facebook.stetho:stetho:1.5.0'
-  debugImplementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
-  debugImplementation 'com.facebook.stetho:stetho-timber:1.5.0@aar'
-  debugImplementation 'com.tomoima.debot:debot:2.0.3'
-  releaseImplementation 'com.tomoima.debot:debot-no-op:2.0.3'
-  debugImplementation 'jp.wasabeef:takt:1.0.5'
-  implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
+  implementation depends.timber
+
+  debugImplementation depends.leakcanary
+
+  debugImplementation depends.stetho.core
+  debugImplementation depends.stetho.okhttp3
+  debugImplementation depends.stetho.timber
+
+  debugImplementation depends.debot.core
+  releaseImplementation depends.debot.noop
+
+  debugImplementation depends.takt
+
+  implementation(depends.crashlytics) {
     transitive = true
   }
 
-  androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
-    exclude group: 'com.android.support', module: 'support-annotations'
-  })
-  testImplementation 'junit:junit:4.12'
-  testImplementation "android.arch.core:core-testing:1.1.0"
-  testImplementation "android.arch.persistence.room:testing:1.0.0"
 
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+  // Test
+  testImplementation depends.junit
+
+  androidTestImplementation depends.supportTest.runner
+  androidTestImplementation depends.supportTest.espresso
+  androidTestImplementation depends.supportTest.contrib
+
+  testImplementation depends.archTest.core
+  testImplementation depends.archTest.room
 
   // Lint
-  ktlint "com.github.shyiko:ktlint:0.15.0"
+  ktlint depends.ktlint
 }
 
 task ktlint(type: JavaExec, group: "verification") {
