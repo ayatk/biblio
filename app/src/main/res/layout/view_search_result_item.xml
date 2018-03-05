@@ -123,7 +123,7 @@
           android:id="@+id/add_library"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:visibility="@{isDownloaded ? View.VISIBLE: View.GONE}"
+          android:visibility="@{safeUnbox(isDownloaded) ? View.VISIBLE: View.GONE}"
           app:srcCompat="@drawable/ic_book_plus_gray600_24_vector"
           tools:visibility="visible"/>
 
@@ -131,7 +131,7 @@
           android:id="@+id/download_done"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:visibility="@{isDownloaded ? View.GONE : View.VISIBLE}"
+          android:visibility="@{safeUnbox(isDownloaded) ? View.GONE : View.VISIBLE}"
           app:srcCompat="@drawable/ic_check_green_24_vector"
           tools:visibility="visible"/>
 
