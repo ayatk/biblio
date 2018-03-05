@@ -33,10 +33,10 @@
       android:layout_marginBottom="16dp"
       android:layout_marginStart="16dp"
       android:layout_marginTop="16dp"
-      app:srcCompat="@drawable/ic_crown_24"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/ic_crown_24"
       tools:visibility="visible"/>
 
   <TextView

@@ -37,36 +37,36 @@
           android:id="@+id/daily"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          app:setRankingTitle="@string/ranking_daily"
-          app:rankingType="@{RankingType.DAILY}"/>
+          app:rankingType="@{RankingType.DAILY}"
+          app:setRankingTitle="@string/ranking_daily"/>
 
       <com.ayatk.biblio.ui.util.customview.RankingTopCellView
           android:id="@+id/weekly"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          app:setRankingTitle="@string/ranking_weekly"
-          app:rankingType="@{RankingType.WEEKLY}"/>
+          app:rankingType="@{RankingType.WEEKLY}"
+          app:setRankingTitle="@string/ranking_weekly"/>
 
       <com.ayatk.biblio.ui.util.customview.RankingTopCellView
           android:id="@+id/monthly"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          app:setRankingTitle="@string/ranking_monthly"
-          app:rankingType="@{RankingType.MONTHLY}"/>
+          app:rankingType="@{RankingType.MONTHLY}"
+          app:setRankingTitle="@string/ranking_monthly"/>
 
       <com.ayatk.biblio.ui.util.customview.RankingTopCellView
           android:id="@+id/quarter"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          app:setRankingTitle="@string/ranking_quarter"
-          app:rankingType="@{RankingType.QUARTET}"/>
+          app:rankingType="@{RankingType.QUARTET}"
+          app:setRankingTitle="@string/ranking_quarter"/>
 
       <com.ayatk.biblio.ui.util.customview.RankingTopCellView
           android:id="@+id/all"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          app:setRankingTitle="@string/ranking_all"
-          app:rankingType="@{RankingType.ALL}"/>
+          app:rankingType="@{RankingType.ALL}"
+          app:setRankingTitle="@string/ranking_all"/>
 
     </LinearLayout>
 

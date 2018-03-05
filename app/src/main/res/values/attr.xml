@@ -22,6 +22,6 @@
   </declare-styleable>
 
   <declare-styleable name="RankingTopCellView">
-    <attr name="setRankingTitle" format="reference"/>
+    <attr format="reference" name="setRankingTitle"/>
   </declare-styleable>
 </resources>
