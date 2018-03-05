@@ -23,7 +23,7 @@ import com.ayatk.biblio.data.remote.entity.NarouNovel
 import com.ayatk.biblio.data.remote.entity.NarouRanking
 import com.ayatk.biblio.data.remote.service.NarouApiService
 import com.ayatk.biblio.data.remote.service.NarouService
-import com.ayatk.biblio.data.remote.util.HtmlUtil
+import com.ayatk.biblio.data.remote.util.HtmlParser
 import com.ayatk.biblio.data.remote.util.QueryTime
 import com.ayatk.biblio.di.scope.Narou
 import io.reactivex.Flowable
@@ -33,7 +33,7 @@ import javax.inject.Singleton
 
 @Singleton
 class NarouDataStoreImpl @Inject constructor(
-    private val htmlUtil: HtmlUtil,
+    private val htmlParser: HtmlParser,
     private val narouApiService: NarouApiService,
     @Narou private val narouService: NarouService
 ) : NarouDataStore {
@@ -45,15 +45,15 @@ class NarouDataStoreImpl @Inject constructor(
 
   override fun getIndex(code: String): Flowable<List<NarouIndex>> =
       narouService.getTableOfContents(code.toLowerCase())
-          .map { htmlUtil.parseTableOfContents(code, it) }
+          .map { htmlParser.parseTableOfContents(code, it) }
 
   override fun getEpisode(code: String, page: Int): Flowable<NarouEpisode> =
       narouService.getPage(code, page)
-          .map { htmlUtil.parsePage(code, it, page) }
+          .map { htmlParser.parsePage(code, it, page) }
 
   override fun getShortStory(code: String): Flowable<NarouEpisode> =
       narouService.getSSPage(code)
-          .map { htmlUtil.parsePage(code, it, 1) }
+          .map { htmlParser.parsePage(code, it, 1) }
 
   override fun getRanking(rankingType: RankingType, date: Date): Flowable<List<NarouRanking>> {
     var dateStr = ""

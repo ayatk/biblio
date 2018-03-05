@@ -23,7 +23,7 @@ import org.jsoup.Jsoup
 import javax.inject.Singleton
 
 @Singleton
-class HtmlUtil {
+class HtmlParser {
 
   fun parseTableOfContents(ncode: String, body: String): List<NarouIndex> {
 

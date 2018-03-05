@@ -20,7 +20,7 @@ import android.app.Application
 import android.net.ConnectivityManager
 import androidx.content.systemService
 import com.ayatk.biblio.data.DefaultPrefs
-import com.ayatk.biblio.data.remote.util.HtmlUtil
+import com.ayatk.biblio.data.remote.util.HtmlParser
 import com.ayatk.biblio.util.rx.AppSchedulerProvider
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import dagger.Module
@@ -45,5 +45,5 @@ class AppModule {
 
   @Singleton
   @Provides
-  fun provideHtmlUtil(): HtmlUtil = HtmlUtil()
+  fun provideHtmlUtil(): HtmlParser = HtmlParser()
 }
