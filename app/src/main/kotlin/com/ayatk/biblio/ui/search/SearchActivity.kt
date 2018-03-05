@@ -95,7 +95,6 @@ class SearchActivity : DaggerAppCompatActivity() {
         }
     )
 
-
     viewModel.result.observe(this) { result ->
       when (result) {
         is Result.Success -> {
