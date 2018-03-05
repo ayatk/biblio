@@ -28,14 +28,6 @@
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
   url: https://github.com/android/kotlin-extensions
 
-- artifact: com.github.gfx.android.orma:+:+
-  name: Android Orma Database
-  year: 2015
-  copyrightHolder: FUJI Goro (gfx)
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/gfx/Android-Orma
-
 - artifact: com.google.android.gms:+:+
   name: play-services
   skip: true
@@ -141,14 +133,6 @@
   license: The Apache Software License, Version 2.0
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
   url: http://code.google.com/p/atinject/
-
-- artifact: org.antlr:antlr4-runtime:+
-  name: ANTLR 4 Runtime
-  year: 2012-2016
-  copyrightHolder: The ANTLR Project
-  license: BSD 3-clause license
-  licenseUrl: https://raw.githubusercontent.com/antlr/antlr4/master/LICENSE.txt
-  url: https://github.com/antlr/antlr4
 
 - artifact: org.jetbrains.kotlin:+:+
   name: Kotlin
