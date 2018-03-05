@@ -24,6 +24,7 @@ import android.support.v7.app.AppCompatActivity
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityWebBinding
 import com.ayatk.biblio.ui.util.initBackToolbar
+import com.ayatk.biblio.util.ext.extraOf
 
 class LicenseActivity : AppCompatActivity() {
 
@@ -49,11 +50,10 @@ class LicenseActivity : AppCompatActivity() {
     private val EXTRA_TITLE = "TITLE"
     private val EXTRA_URL = "URL"
 
-    fun createIntent(context: Context?, title: String, url: String): Intent {
-      return Intent(context, LicenseActivity::class.java).apply {
-        putExtra(EXTRA_TITLE, title)
-        putExtra(EXTRA_URL, url)
-      }
-    }
+    fun createIntent(context: Context?, title: String, url: String): Intent =
+        Intent(context, LicenseActivity::class.java).extraOf(
+            EXTRA_TITLE to title,
+            EXTRA_URL to url
+        )
   }
 }
