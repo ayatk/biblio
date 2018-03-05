@@ -265,15 +265,12 @@ dependencies {
   debugImplementation depends.stetho.okhttp3
   debugImplementation depends.stetho.timber
 
-  debugImplementation depends.debot.core
-  releaseImplementation depends.debot.noop
-
+  debugImplementation depends.debot
   debugImplementation depends.takt
 
   implementation(depends.crashlytics) {
     transitive = true
   }
-
 
   // Test
   testImplementation depends.junit

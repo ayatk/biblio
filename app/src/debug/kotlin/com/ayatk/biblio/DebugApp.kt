@@ -16,9 +16,12 @@
 
 package com.ayatk.biblio
 
+import com.ayatk.biblio.di.DaggerDebugAppComponent
 import com.facebook.stetho.Stetho
 import com.squareup.leakcanary.LeakCanary
 import com.tomoima.debot.DebotConfigurator
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 import jp.wasabeef.takt.Takt
 import timber.log.Timber
 
@@ -36,6 +39,12 @@ class DebugApp : App() {
       Timber.plant(Timber.DebugTree())
     }
   }
+
+  override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
+      DaggerDebugAppComponent
+          .builder()
+          .application(this)
+          .build()
 
   override fun onTerminate() {
     Takt.finish()

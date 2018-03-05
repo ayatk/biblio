@@ -17,7 +17,7 @@
 package com.ayatk.biblio.di
 
 import android.app.Application
-import com.ayatk.biblio.App
+import com.ayatk.biblio.DebugApp
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -32,22 +32,22 @@ import javax.inject.Singleton
       RepositoryModule::class,
       NetworkModule::class,
       DataStoreModule::class,
-      HttpClientModule::class,
+      DebugHttpClientModule::class,
       DatabaseModule::class,
       UiModule::class,
       UseCaseModule::class,
       ViewModelModule::class
     ]
 )
-interface AppComponent : AndroidInjector<App> {
+interface DebugAppComponent : AndroidInjector<DebugApp> {
 
   @Component.Builder
   interface Builder {
     @BindsInstance
     fun application(application: Application): Builder
 
-    fun build(): AppComponent
+    fun build(): DebugAppComponent
   }
 
-  override fun inject(app: App)
+  override fun inject(app: DebugApp)
 }

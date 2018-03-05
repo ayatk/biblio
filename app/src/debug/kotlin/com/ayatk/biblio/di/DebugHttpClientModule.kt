@@ -22,23 +22,22 @@ import com.facebook.stetho.okhttp3.StethoInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
-import okhttp3.Interceptor.Chain
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.File
 import javax.inject.Singleton
 
 @Module
-class HttpClientModule {
-
+class DebugHttpClientModule {
   companion object {
-    private val CACHE_FILE_NAME = "okhttp.cache"
-    private val MAX_CACHE_SIZE = (4 * 1024 * 1024).toLong()
+    private const val CACHE_FILE_NAME = "biblio.cache"
+    private const val MAX_CACHE_SIZE = (4 * 1024 * 1024).toLong()
   }
 
-  private val addUserAgentInterceptor = { chain: Chain ->
+  private val addUserAgentInterceptor = { chain: Interceptor.Chain ->
     val builder = chain.request().newBuilder()
-    builder.addHeader("User-Agent", "BiblioAndroidApp/${BuildConfig.VERSION_NAME}")
+    builder.addHeader("User-Agent", "BiblioAndroidApp/" + BuildConfig.VERSION_NAME)
     chain.proceed(builder.build())
   }
 
@@ -51,13 +50,12 @@ class HttpClientModule {
     val httpLoggingInterceptor = HttpLoggingInterceptor()
     httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.HEADERS
 
-    val c = OkHttpClient
+    return OkHttpClient
         .Builder()
-        .cache(cache)
-        .addInterceptor(httpLoggingInterceptor)
         .addInterceptor(addUserAgentInterceptor)
+        .cache(cache)
         .addNetworkInterceptor(StethoInterceptor())
-
-    return c.build()
+        .addInterceptor(httpLoggingInterceptor)
+        .build()
   }
 }

@@ -147,10 +147,7 @@ ext {
       timber       : "com.jakewharton.timber:timber:4.6.1",
       leakcanary   : "com.squareup.leakcanary:leakcanary-android:1.5.4",
       takt         : "jp.wasabeef:takt:1.0.5",
-      debot        : [
-          core: "com.tomoima.debot:debot:${versions.debot}",
-          noop: "com.tomoima.debot:debot-no-op:${versions.debot}",
-      ],
+      debot        : "com.tomoima.debot:debot:${versions.debot}",
 
       // ----------------------------------------
       // Test
