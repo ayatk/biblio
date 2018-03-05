@@ -47,8 +47,8 @@ class LicenseActivity : AppCompatActivity() {
 
   companion object {
 
-    private val EXTRA_TITLE = "TITLE"
-    private val EXTRA_URL = "URL"
+    private const val EXTRA_TITLE = "TITLE"
+    private const val EXTRA_URL = "URL"
 
     fun createIntent(context: Context?, title: String, url: String): Intent =
         Intent(context, LicenseActivity::class.java).extraOf(

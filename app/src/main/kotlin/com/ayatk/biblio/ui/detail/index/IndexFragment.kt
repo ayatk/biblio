@@ -108,7 +108,7 @@ class IndexFragment : DaggerFragment() {
   }
 
   companion object {
-    private val BUNDLE_ARGS_NOVEL = "NOVEL"
+    private const val BUNDLE_ARGS_NOVEL = "NOVEL"
 
     fun newInstance(novel: Novel): IndexFragment {
       return IndexFragment().apply {

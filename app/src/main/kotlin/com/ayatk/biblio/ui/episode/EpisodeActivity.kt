@@ -103,8 +103,8 @@ class EpisodeActivity : DaggerAppCompatActivity() {
   }
 
   companion object {
-    private val EXTRA_NOVEL = "NOVEL"
-    private val EXTRA_PAGE = "PAGE"
+    private const val EXTRA_NOVEL = "NOVEL"
+    private const val EXTRA_PAGE = "PAGE"
 
     fun createIntent(context: Context, novel: Novel, page: Int): Intent =
         Intent(context, EpisodeActivity::class.java).extraOf(

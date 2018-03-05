@@ -56,7 +56,7 @@ class DetailActivity : DaggerAppCompatActivity() {
 
   companion object {
 
-    private val EXTRA_NOVEL = "extra_novel"
+    private const val EXTRA_NOVEL = "extra_novel"
 
     fun createIntent(context: Context, novel: Novel): Intent =
         Intent(context, DetailActivity::class.java).extraOf(
