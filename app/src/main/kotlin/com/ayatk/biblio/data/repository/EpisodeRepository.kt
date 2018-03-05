@@ -17,12 +17,13 @@
 package com.ayatk.biblio.data.repository
 
 import com.ayatk.biblio.data.entity.EpisodeEntity
+import com.ayatk.biblio.data.entity.NovelEntity
 import io.reactivex.Completable
 import io.reactivex.Single
 
 interface EpisodeRepository {
 
-  fun find(code: String, page: Int): Single<EpisodeEntity>
+  fun find(entity: NovelEntity, page: Int): Single<EpisodeEntity>
 
   fun save(episode: EpisodeEntity): Completable
 

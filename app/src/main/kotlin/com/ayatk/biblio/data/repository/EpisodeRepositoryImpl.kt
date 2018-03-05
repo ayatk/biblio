@@ -16,9 +16,12 @@
 
 package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.data.datasource.novel.EpisodeRemoteDataSource
 import com.ayatk.biblio.data.db.dao.EpisodeDao
 import com.ayatk.biblio.data.entity.EpisodeEntity
+import com.ayatk.biblio.data.entity.NovelEntity
+import com.ayatk.biblio.data.remote.NarouDataStore
+import com.ayatk.biblio.di.scope.Narou
+import com.ayatk.biblio.di.scope.Nocturne
 import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
@@ -27,10 +30,13 @@ import javax.inject.Singleton
 @Singleton
 class EpisodeRepositoryImpl @Inject constructor(
     private val dao: EpisodeDao,
-    private val remoteDataSource: EpisodeRemoteDataSource
+    @Narou
+    private val narouDataStore: NarouDataStore,
+    @Nocturne
+    private val nocDataStore: NarouDataStore
 ) : EpisodeRepository {
 
-  override fun find(code: String, page: Int): Single<EpisodeEntity> {
+  override fun find(entity: NovelEntity, page: Int): Single<EpisodeEntity> {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 
