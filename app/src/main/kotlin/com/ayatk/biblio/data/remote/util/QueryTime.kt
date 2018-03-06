@@ -59,7 +59,7 @@ object QueryTime {
           time = date
           var week = get(Calendar.DAY_OF_WEEK)
           if (week == Calendar.MONDAY || week == Calendar.SUNDAY) {
-            week += 7
+            week += Calendar.DAY_OF_WEEK
           }
           add(Calendar.DAY_OF_MONTH, -week)
           add(Calendar.DAY_OF_MONTH, Calendar.TUESDAY)
