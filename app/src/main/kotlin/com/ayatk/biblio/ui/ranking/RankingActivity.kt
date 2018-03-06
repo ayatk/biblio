@@ -44,7 +44,7 @@ class RankingActivity : DaggerAppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    initBackToolbar(this, binding.toolbar)
+    initBackToolbar(binding.toolbar)
 
     binding.rankingViewPager.apply {
       adapter = RankingPagerAdapter(supportFragmentManager)

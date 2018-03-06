@@ -79,7 +79,7 @@ class SearchActivity : DaggerAppCompatActivity() {
     binding.setLifecycleOwner(this)
     binding.viewModel = viewModel
 
-    initBackToolbar(this, binding.toolbar)
+    initBackToolbar(binding.toolbar)
 
     initRecyclerView()
 

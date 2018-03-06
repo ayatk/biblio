@@ -46,7 +46,7 @@ class DetailActivity : DaggerAppCompatActivity() {
     super.onCreate(savedInstanceState)
 
     binding.toolbar.title = novel.title
-    initBackToolbar(this, binding.toolbar)
+    initBackToolbar(binding.toolbar)
 
     // ViewPager
     val viewPager = binding.containerPager

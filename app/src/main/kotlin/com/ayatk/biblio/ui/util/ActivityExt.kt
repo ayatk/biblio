@@ -19,16 +19,14 @@ package com.ayatk.biblio.ui.util
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 
-fun initBackToolbar(activity: AppCompatActivity, toolbar: Toolbar) {
-  activity.run {
-    setSupportActionBar(toolbar)
-    supportActionBar?.apply {
-      title = toolbar.title
-      setDisplayHomeAsUpEnabled(true)
-      setDisplayShowHomeEnabled(true)
-      setDisplayShowTitleEnabled(true)
-      setHomeButtonEnabled(true)
-      toolbar.setNavigationOnClickListener { finish() }
-    }
+fun AppCompatActivity.initBackToolbar(toolbar: Toolbar) {
+  setSupportActionBar(toolbar)
+  supportActionBar?.apply {
+    title = toolbar.title
+    setDisplayHomeAsUpEnabled(true)
+    setDisplayShowHomeEnabled(true)
+    setDisplayShowTitleEnabled(true)
+    setHomeButtonEnabled(true)
+    toolbar.setNavigationOnClickListener { finish() }
   }
 }

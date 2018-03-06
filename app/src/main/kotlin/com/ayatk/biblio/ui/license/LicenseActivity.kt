@@ -40,7 +40,7 @@ class LicenseActivity : AppCompatActivity() {
 
     binding.toolbar.title = title
 
-    initBackToolbar(this, binding.toolbar)
+    initBackToolbar(binding.toolbar)
     // WebViewによる表示
     binding.webView.loadUrl(url)
   }
