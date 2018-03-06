@@ -26,6 +26,7 @@ import com.ayatk.biblio.di.scope.Narou
 import com.ayatk.biblio.di.scope.Nocturne
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -59,7 +60,10 @@ class NovelRepositoryImpl @Inject constructor(
   }
 
   override fun save(novel: NovelEntity): Completable =
-      Completable.fromRunnable { dao::insert }
+      Completable.fromRunnable {
+        Timber.d("save ${novel.title}")
+        dao.insert(novel)
+      }
 
   override fun delete(novel: NovelEntity): Completable =
       Completable.fromRunnable { dao::delete }

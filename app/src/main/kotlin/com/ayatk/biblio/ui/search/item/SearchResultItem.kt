@@ -23,33 +23,26 @@ import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.util.DateFormat
 import com.ayatk.biblio.util.ext.setVisible
 import com.xwray.groupie.databinding.BindableItem
-import io.reactivex.Completable
 
 class SearchResultItem(
     private val novel: Map.Entry<Novel, Boolean>,
     private val onClickListener: (Novel) -> Unit,
-    private val onDownloadClickListener: (Novel) -> Completable
+    private val onDownloadClickListener: (Novel) -> Unit
 ) : BindableItem<ItemSearchResultBinding>() {
-
-  var isDownloaded = false
 
   override fun getLayout(): Int = R.layout.item_search_result
 
   override fun bind(viewBinding: ItemSearchResultBinding, position: Int) {
     viewBinding.let {
       it.novel = novel.key
+      it.isDownloaded = novel.value
       it.searchResult.setOnClickListener {
         onClickListener(novel.key)
       }
       it.lastUpdate.text = DateFormat.yyyyMMddkkmm.format(novel.key.lastUpload)
       it.readProgress.setVisible(novel.key.novelState != NovelState.SHORT_STORY)
-      it.addLibrary.setVisible(!isDownloaded)
-      it.downloadDone.setVisible(isDownloaded)
       it.addLibrary.setOnClickListener {
         onDownloadClickListener(novel.key)
-            .subscribe {
-              isDownloaded = true
-            }
       }
     }
   }

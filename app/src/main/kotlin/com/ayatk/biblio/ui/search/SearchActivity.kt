@@ -46,7 +46,6 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 import dagger.android.support.DaggerAppCompatActivity
-import io.reactivex.Completable
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -69,8 +68,9 @@ class SearchActivity : DaggerAppCompatActivity() {
   private val onItemClickListener = { novel: Novel ->
     Navigator.navigateToDetail(this, novel)
   }
-  private val onDownloadClickListener: (Novel) -> Completable = { novel: Novel ->
+  private val onDownloadClickListener: (Novel) -> Unit = { novel: Novel ->
     viewModel.saveNovel(novel)
+        .subscribe()
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {

@@ -27,6 +27,10 @@
     <variable
         name="novel"
         type="com.ayatk.biblio.model.Novel"/>
+
+    <variable
+        name="isDownloaded"
+        type="Boolean"/>
   </data>
 
   <android.support.constraint.ConstraintLayout
@@ -119,6 +123,7 @@
           android:id="@+id/add_library"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:visibility="@{isDownloaded ? View.GONE : View.VISIBLE}"
           app:srcCompat="@drawable/ic_book_plus_gray600_24_vector"
           tools:visibility="visible"/>
 
@@ -126,6 +131,7 @@
           android:id="@+id/download_done"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:visibility="@{!isDownloaded ? View.GONE : View.VISIBLE}"
           app:srcCompat="@drawable/ic_check_green_24_vector"
           tools:visibility="visible"/>
 

@@ -41,7 +41,7 @@ class SearchUseCaseImpl @Inject constructor(
           })
           .subscribeOn(schedulerProvider.io())
 
-  override fun saveNovel(novel: Novel): Completable {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
+  override fun saveNovel(novel: Novel): Completable =
+      repository.save(novel.toEntity())
+          .subscribeOn(schedulerProvider.io())
 }
