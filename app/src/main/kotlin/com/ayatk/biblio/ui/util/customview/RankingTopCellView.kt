@@ -79,7 +79,7 @@ class RankingTopCellView @JvmOverloads constructor(
     container.removeAllViews()
     val inflater = this.context.systemService<LayoutInflater>()
     rankingList.map {
-      val rankingItem = inflater.inflate(R.layout.view_ranking_top_item, null)
+      val rankingItem = inflater.inflate(R.layout.item_ranking_top, null)
       val rank = rankingItem.findViewById<ImageView>(R.id.rank)
       val rankText = rankingItem.findViewById<TextView>(R.id.rank_text)
 

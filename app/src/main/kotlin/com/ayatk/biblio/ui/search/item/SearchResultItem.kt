@@ -17,7 +17,7 @@
 package com.ayatk.biblio.ui.search.item
 
 import com.ayatk.biblio.R
-import com.ayatk.biblio.databinding.ViewSearchResultItemBinding
+import com.ayatk.biblio.databinding.ItemSearchResultBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.util.DateFormat
@@ -29,13 +29,13 @@ class SearchResultItem(
     private val novel: Map.Entry<Novel, Boolean>,
     private val onClickListener: (Novel) -> Unit,
     private val onDownloadClickListener: (Novel) -> Completable
-) : BindableItem<ViewSearchResultItemBinding>() {
+) : BindableItem<ItemSearchResultBinding>() {
 
   var isDownloaded = false
 
-  override fun getLayout(): Int = R.layout.view_search_result_item
+  override fun getLayout(): Int = R.layout.item_search_result
 
-  override fun bind(viewBinding: ViewSearchResultItemBinding, position: Int) {
+  override fun bind(viewBinding: ItemSearchResultBinding, position: Int) {
     viewBinding.let {
       it.novel = novel.key
       it.searchResult.setOnClickListener {
