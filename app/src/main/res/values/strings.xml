@@ -35,7 +35,7 @@
   <string name="series_stop">Stop</string>
   <string name="short_story">Short story</string>
   <string name="novel_progress">%1$d/%2$d</string>
-  <string name="novel_total_pages">%1$d part</string>
+  <string name="novel_total_pages">%1$d parts</string>
 
   <!-- novel detail -->
   <string name="novel_detail">Novel Detail</string>
