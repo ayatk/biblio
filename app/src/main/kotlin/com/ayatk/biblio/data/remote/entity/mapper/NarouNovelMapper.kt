@@ -19,6 +19,7 @@ package com.ayatk.biblio.data.remote.entity.mapper
 import com.ayatk.biblio.data.entity.NovelEntity
 import com.ayatk.biblio.data.entity.enums.Publisher
 import com.ayatk.biblio.data.remote.entity.NarouNovel
+import com.ayatk.biblio.domain.translator.toKeywordEntity
 import com.ayatk.biblio.domain.translator.toKeywordModel
 import com.ayatk.biblio.domain.translator.toModel
 import com.ayatk.biblio.model.Novel
@@ -34,7 +35,7 @@ fun List<NarouNovel>.toEntity(publisher: Publisher): List<NovelEntity> =
           publisher = publisher,
           bigGenre = it.bigGenre,
           genre = it.genre,
-          keyword = it.keyword,
+          keyword = it.keyword.toKeywordEntity(),
           novelState = it.novelType.toNovelState(it.end),
           firstUpload = it.firstup,
           lastUpload = it.lastup,

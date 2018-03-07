@@ -18,4 +18,6 @@ package com.ayatk.biblio.domain.translator
 
 fun List<String>.toKeywordEntity(): String = this.joinToString()
 
-fun String.toKeywordModel(): List<String> = this.split(", ")
+fun String.toKeywordModel(): List<String> = this.split(""",?\s""".toRegex())
+
+fun String.toKeywordEntity(): String = this.replace(" ", " , ")
