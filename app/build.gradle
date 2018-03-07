@@ -158,20 +158,7 @@ android {
   }
 
   lintOptions {
-    textReport true
-    textOutput 'stdout'
-    disable 'GoogleAppIndexingWarning', // ディープリンクは利用しないので、無効化
-        'InvalidPackage', // InvalidPackageのエラーを除外
-        'RestrictedApi',
-        'BinaryOperationInTimber',
-        // NOTE: α版gradle pluginを使ってるとTimberがお亡くなりになるので一時的にdisable
-        'LogNotTimber',
-        'StringFormatInTimber',
-        'ThrowableNotAtBeginning',
-        'TimberArgCount',
-        'TimberArgTypes',
-        'TimberExceptionLogging',
-        'TimberTagLength'
+    disable 'GoogleAppIndexingWarning'
   }
 
   testOptions {
