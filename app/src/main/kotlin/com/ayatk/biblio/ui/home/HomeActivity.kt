@@ -99,7 +99,6 @@ class HomeActivity : DaggerAppCompatActivity() {
 
   private fun replaceFragment(fragment: Fragment, @IdRes @LayoutRes layoutResId: Int) {
     supportFragmentManager.beginTransaction()
-        .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
         .replace(layoutResId, fragment, fragment.javaClass.simpleName)
         .commit()
   }
