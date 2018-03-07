@@ -164,7 +164,7 @@ jobs:
           name: Deploy to DeployGate
           command: |
             export ROOT_DIR=`git rev-parse --show-toplevel`
-            export VERSION=`grep "def VERSION" $ROOT_DIR/app/build.gradle | sed -E 's/.*"(.+)"$/\1/'`
+            export VERSION=`grep "VERSION" $ROOT_DIR/versions.gradle | sed -E "s/.*'(.+)'$/\1/"`
             bundle exec fastlane android nightly
       - save_cache:
           paths:
@@ -207,7 +207,7 @@ jobs:
           name: Deploy to Google Play
           command: |
             export ROOT_DIR=`git rev-parse --show-toplevel`
-            export VERSION=`grep "def VERSION" $ROOT_DIR/app/build.gradle | sed -E 's/.*"(.+)"$/\1/'`
+            export VERSION=`grep "VERSION" $ROOT_DIR/versions.gradle | sed -E "s/.*'(.+)'$/\1/"`
             bundle exec fastlane android deploy
 
 workflows:
