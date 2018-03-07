@@ -18,7 +18,7 @@
   <!-- App Info -->
   <string name="app_name" translatable="false">Biblio</string>
 
-  <!-- Buttom Navigation -->
+  <!-- Bottom Navigation -->
   <string name="library">Library</string>
   <string name="bookmark">Bookmarks</string>
   <string name="ranking">Ranking</string>
@@ -35,7 +35,7 @@
   <string name="series_stop">Stop</string>
   <string name="short_story">Short story</string>
   <string name="novel_progress">%1$d/%2$d</string>
-  <string name="novel_total_pages">%1$d part</string>
+  <string name="novel_total_pages">%1$d parts</string>
 
   <!-- novel detail -->
   <string name="novel_detail">Novel Detail</string>
@@ -112,6 +112,13 @@
   <string name="ranking_quarter_short">Quarter</string>
   <string name="ranking_all_short">All terms</string>
 
-  <string name="novel_ranking_progress">%1$d part</string>
   <string name="novel_ranking_point">%1$d pt</string>
+
+  <!-- Image description -->
+  <string name="ranking_icon_description">crown icon</string>
+  <string name="more_icon_description">more icon</string>
+  <string name="search_icon_description">search_icon</string>
+  <string name="info_icon_description">info icon</string>
+  <string name="keyword_icon_description">keyword icon</string>
+  <string name="tag_icon_description">tag_icon</string>
 </resources>

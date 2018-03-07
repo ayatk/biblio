@@ -78,9 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="0dp"
-        android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        android:padding="@dimen/space_4dp"
         android:text="@{library.novel.publisher.siteName}"
         android:textSize="12sp"
         app:layout_constraintRight_toRightOf="parent"
@@ -123,7 +121,7 @@
           android:layout_height="wrap_content"
           android:layout_gravity="center"
           android:layout_marginEnd="@dimen/icon_space_4dp"
-          android:contentDescription="tag_icon"
+          android:contentDescription="@string/tag_icon_description"
           app:srcCompat="@drawable/ic_tag_multiple_grey400_20_vector"/>
 
       <com.google.android.flexbox.FlexboxLayout

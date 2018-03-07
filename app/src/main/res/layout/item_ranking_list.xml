@@ -37,6 +37,7 @@
         android:id="@+id/rank"
         android:layout_width="32dp"
         android:layout_height="32dp"
+        android:contentDescription="@string/ranking_icon_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -87,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="@{String.format(@string/novel_ranking_progress, ranking.novel.page)}"
+        android:text="@{String.format(@string/novel_total_pages, ranking.novel.page)}"
         android:textSize="12sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/point"
         app:layout_constraintRight_toLeftOf="@+id/novel_type"/>

@@ -24,6 +24,8 @@ import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.util.toResult
 import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.rx.SchedulerProvider
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -31,6 +33,8 @@ class EpisodeViewModel @Inject constructor(
     private val useCase: EpisodeUseCase,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
+
+  private val compositeDisposable = CompositeDisposable()
 
   val episode = MutableLiveData<Episode>()
 
@@ -48,4 +52,10 @@ class EpisodeViewModel @Inject constructor(
               }
             }
           })
+          .addTo(compositeDisposable)
+
+  override fun onCleared() {
+    super.onCleared()
+    compositeDisposable.clear()
+  }
 }

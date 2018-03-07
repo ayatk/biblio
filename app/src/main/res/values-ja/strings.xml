@@ -110,6 +110,13 @@
   <string name="ranking_quarter_short">四半期</string>
   <string name="ranking_all_short">累計</string>
 
-  <string name="novel_ranking_progress">%1$d部</string>
   <string name="novel_ranking_point">%1$d pt</string>
+
+  <!-- Image description -->
+  <string name="ranking_icon_description">crown icon</string>
+  <string name="more_icon_description">more icon</string>
+  <string name="search_icon_description">search_icon</string>
+  <string name="info_icon_description">info icon</string>
+  <string name="keyword_icon_description">keyword icon</string>
+  <string name="tag_icon_description">tag_icon</string>
 </resources>
