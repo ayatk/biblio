@@ -20,4 +20,4 @@ fun List<String>.toKeywordEntity(): String = this.joinToString()
 
 fun String.toKeywordModel(): List<String> = this.split(""",?\s""".toRegex())
 
-fun String.toKeywordEntity(): String = this.replace(" ", " , ")
+fun String.toKeywordEntity(): String = this.replace(" ", ", ")
