@@ -71,10 +71,7 @@ class IndexFragment : DaggerFragment() {
     binding.setLifecycleOwner(this)
     initRecyclerView()
 
-    // 初期読み込み
-    viewModel.getIndex(novel)
-
-    viewModel.indexLiveData.observe(this, { result ->
+    viewModel.getIndex(novel).observe(this, { result ->
       when (result) {
         is Result.Success -> {
           val indexes = result.data

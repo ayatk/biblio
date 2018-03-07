@@ -20,10 +20,12 @@ import com.ayatk.biblio.model.enums.BigGenre
 import com.ayatk.biblio.model.enums.Genre
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.model.enums.Publisher
+import com.ayatk.biblio.model.enums.ReadingState
 import com.ayatk.biblio.data.entity.enums.BigGenre as DataBigGenre
 import com.ayatk.biblio.data.entity.enums.Genre as DataGenre
 import com.ayatk.biblio.data.entity.enums.NovelState as DataNovelState
 import com.ayatk.biblio.data.entity.enums.Publisher as DataPublisher
+import com.ayatk.biblio.data.entity.enums.ReadingState as DataReadingState
 
 // Publisher
 fun DataPublisher.toModel() = Publisher.valueOf(name)
@@ -44,3 +46,8 @@ fun Genre.toEntity() = DataGenre.valueOf(name)
 fun DataNovelState.toModel() = NovelState.valueOf(name)
 
 fun NovelState.toEntity() = DataNovelState.valueOf(name)
+
+// ReadingState
+fun DataReadingState.toModel() = ReadingState.valueOf(name)
+
+fun ReadingState.toEntity() = DataReadingState.valueOf(name)

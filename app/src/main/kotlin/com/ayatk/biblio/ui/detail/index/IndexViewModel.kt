@@ -16,16 +16,15 @@
 
 package com.ayatk.biblio.ui.detail.index
 
-import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
 import com.ayatk.biblio.domain.usecase.DetailUseCase
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.util.toResult
 import com.ayatk.biblio.util.Result
+import com.ayatk.biblio.util.ext.toLiveData
 import com.ayatk.biblio.util.rx.SchedulerProvider
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
 
 class IndexViewModel @Inject constructor(
@@ -33,22 +32,10 @@ class IndexViewModel @Inject constructor(
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
-  private val compositeDisposable = CompositeDisposable()
-
-  val indexLiveData = MutableLiveData<Result<List<Index>>>()
-
-  override fun onCleared() {
-    super.onCleared()
-    compositeDisposable.clear()
-  }
-
-  fun getIndex(novel: Novel) {
-    detailUseCase.getIndex(novel)
-        .toResult(schedulerProvider)
-        .observeOn(schedulerProvider.ui())
-        .subscribe(indexLiveData::postValue)
-        .addTo(compositeDisposable)
-  }
+  fun getIndex(novel: Novel): LiveData<Result<List<Index>>> =
+      detailUseCase.getIndex(novel)
+          .toResult(schedulerProvider)
+          .toLiveData()
 
   // TODO: リフレッシュの処理
 }

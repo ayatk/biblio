@@ -20,6 +20,7 @@ import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Single
 
 interface DetailUseCase {
@@ -44,7 +45,7 @@ interface DetailUseCase {
    *
    * @param novel 欲しい小説のデータ
    */
-  fun getIndex(novel: Novel): Single<List<Index>>
+  fun getIndex(novel: Novel): Flowable<List<Index>>
 
   /**
    * 目次を最新の状態にする
