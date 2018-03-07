@@ -70,7 +70,6 @@ class SearchActivity : DaggerAppCompatActivity() {
   }
   private val onDownloadClickListener: (Novel) -> Unit = { novel: Novel ->
     viewModel.saveNovel(novel)
-        .subscribe()
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {

@@ -27,8 +27,10 @@ import com.ayatk.biblio.ui.util.toResult
 import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.ext.toLiveData
 import com.ayatk.biblio.util.rx.SchedulerProvider
-import io.reactivex.Completable
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
+import io.reactivex.rxkotlin.subscribeBy
+import timber.log.Timber
 import java.util.Locale
 import javax.inject.Inject
 
@@ -60,7 +62,9 @@ class SearchViewModel @Inject constructor(
     }
   }
 
-  fun saveNovel(novel: Novel): Completable =
+  fun saveNovel(novel: Novel) =
       useCase.saveNovel(novel)
           .observeOn(schedulerProvider.ui())
+          .subscribeBy(onError = { e -> Timber.e(e) })
+          .addTo(compositeDisposable)
 }
