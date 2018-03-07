@@ -18,7 +18,7 @@
   <!-- App Info -->
   <string name="app_name" translatable="false">Biblio</string>
 
-  <!-- Buttom Navigation -->
+  <!-- Bottom Navigation -->
   <string name="library">Library</string>
   <string name="bookmark">Bookmarks</string>
   <string name="ranking">Ranking</string>
