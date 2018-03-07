@@ -25,10 +25,10 @@ class QueryBuilder {
   private var query = listOf(Pair("out", "json"))
 
   companion object {
-    private val REQUEST_MIN_NOVEL_SIZE = 1
-    private val REQUEST_MAX_NOVEL_SIZE = 500
-    private val REQUEST_MIN_START_SIZE = 1
-    private val REQUEST_MAX_START_SIZE = 2000
+    private const val REQUEST_MIN_NOVEL_SIZE = 1
+    private const val REQUEST_MAX_NOVEL_SIZE = 500
+    private const val REQUEST_MIN_START_SIZE = 1
+    private const val REQUEST_MAX_START_SIZE = 2000
   }
 
   /**
