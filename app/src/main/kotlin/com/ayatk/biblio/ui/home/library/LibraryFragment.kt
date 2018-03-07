@@ -16,35 +16,57 @@
 
 package com.ayatk.biblio.ui.home.library
 
-import android.content.Context
-import android.databinding.ObservableList
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ayatk.biblio.R
+import com.ayatk.biblio.data.DefaultPrefs
 import com.ayatk.biblio.databinding.FragmentLibraryBinding
-import com.ayatk.biblio.databinding.ViewLibraryItemBinding
-import com.ayatk.biblio.ui.util.customview.BindingHolder
-import com.ayatk.biblio.ui.util.customview.ObservableListRecyclerAdapter
+import com.ayatk.biblio.di.ViewModelFactory
+import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.ui.home.library.item.LibraryItem
+import com.ayatk.biblio.ui.util.helper.Navigator
+import com.ayatk.biblio.util.Result
+import com.ayatk.biblio.util.ext.drawable
+import com.ayatk.biblio.util.ext.observe
+import com.ayatk.biblio.util.ext.setVisible
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Section
+import com.xwray.groupie.ViewHolder
 import dagger.android.support.DaggerFragment
+import timber.log.Timber
 import javax.inject.Inject
 
 class LibraryFragment : DaggerFragment() {
 
-  lateinit var binding: FragmentLibraryBinding
+  @Inject
+  lateinit var viewModelFactory: ViewModelFactory
 
   @Inject
-  lateinit var viewModel: LibraryViewModel
+  lateinit var defaultPrefs: DefaultPrefs
+
+  private val viewModel: LibraryViewModel by lazy {
+    ViewModelProviders.of(this, viewModelFactory).get(LibraryViewModel::class.java)
+  }
+
+  lateinit var binding: FragmentLibraryBinding
+
+  private val librarySection = Section()
+  private val onClickListener = { novel: Novel ->
+    Navigator.navigateToDetail(context!!, novel)
+  }
 
   override fun onCreateView(
-      inflater: LayoutInflater, container: ViewGroup?,
+      inflater: LayoutInflater,
+      container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
     binding = FragmentLibraryBinding.inflate(inflater, container, false)
+    binding.setLifecycleOwner(this)
     binding.viewModel = viewModel
 
     // 色設定
@@ -55,22 +77,36 @@ class LibraryFragment : DaggerFragment() {
     return binding.root
   }
 
-  override fun onResume() {
-    super.onResume()
-    viewModel.start(false)
-  }
+  override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
+    initRecyclerView()
 
-  override fun onDestroy() {
-    super.onDestroy()
-    viewModel.destroy()
+    viewModel.libraries.observe(this, { result ->
+      when (result) {
+        is Result.Success -> {
+          val libraries = result.data
+          librarySection.update(libraries.map {
+            LibraryItem(it, defaultPrefs, onClickListener)
+          })
+          binding.emptyView.setVisible(libraries.isEmpty())
+          binding.recyclerView.setVisible(libraries.isNotEmpty())
+        }
+        is Result.Failure -> {
+          Timber.e(result.e)
+        }
+      }
+    })
   }
 
   private fun initRecyclerView() {
     val divider = DividerItemDecoration(context, 1)
-    ContextCompat.getDrawable(context!!, R.drawable.divider)?.let { divider.setDrawable(it) }
+    context!!.drawable(R.drawable.divider)
+        .let { divider.setDrawable(it) }
 
     binding.recyclerView.apply {
-      adapter = LibraryAdapter(context, viewModel.libraryViewModels)
+      adapter = GroupAdapter<ViewHolder>().apply {
+        add(librarySection)
+      }
       setHasFixedSize(true)
       addItemDecoration(divider)
       layoutManager = LinearLayoutManager(context)
@@ -79,29 +115,5 @@ class LibraryFragment : DaggerFragment() {
 
   companion object {
     fun newInstance(): LibraryFragment = LibraryFragment()
-  }
-
-  private inner class LibraryAdapter constructor(
-      context: Context, list: ObservableList<LibraryItemViewModel>
-  ) : ObservableListRecyclerAdapter<LibraryItemViewModel, BindingHolder<ViewLibraryItemBinding>>(context, list) {
-
-    init {
-      setHasStableIds(true)
-    }
-
-    override fun onCreateViewHolder(
-        parent: ViewGroup, viewType: Int
-    ): BindingHolder<ViewLibraryItemBinding> =
-        BindingHolder(context, parent, R.layout.view_library_item)
-
-    override fun onBindViewHolder(holder: BindingHolder<ViewLibraryItemBinding>, position: Int) {
-      holder.binding.apply {
-        viewModel = getItem(position)
-        executePendingBindings()
-      }
-    }
-
-    override fun getItemId(position: Int): Long =
-        getItem(position).library.id
   }
 }

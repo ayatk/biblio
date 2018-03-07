@@ -46,7 +46,7 @@
       </intent-filter>
     </activity>
     <activity
-        android:name=".ui.detail.NovelDetailActivity"
+        android:name=".ui.detail.DetailActivity"
         android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
         android:exported="false"
         android:label="@string/novel_detail"
@@ -55,12 +55,12 @@
         android:theme="@style/AppTheme.NoActionBar"/>
 
     <activity
-        android:name=".ui.body.NovelBodyActivity"
+        android:name=".ui.episode.EpisodeActivity"
         android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
         android:exported="false"
         android:label="@string/novel_detail"
         android:launchMode="singleTask"
-        android:parentActivityName=".ui.detail.NovelDetailActivity"
+        android:parentActivityName=".ui.detail.DetailActivity"
         android:theme="@style/AppTheme.NoActionBar"/>
 
     <activity

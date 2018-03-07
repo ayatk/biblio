@@ -16,10 +16,10 @@
 
 package com.ayatk.biblio.ui.util
 
+import android.support.annotation.IdRes
 import android.support.annotation.MenuRes
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
-import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.ui.home.bookmark.BookmarkFragment
 import com.ayatk.biblio.ui.home.library.LibraryFragment
@@ -49,21 +49,11 @@ enum class Page(
 
   companion object {
 
-    fun forMenuId(item: MenuItem): Page = forMenuId(item.itemId)
-
-    fun forMenuId(@MenuRes id: Int): Page {
-      values()
-          .filter { it.menuId == id }
-          .forEach { return it }
-      throw AssertionError("no menu enum found for the id. you forgot to implement?")
-    }
+    fun forMenuId(@IdRes id: Int): Page = values().firstOrNull { it.menuId == id } ?: LIBRARY
 
     fun forName(fragment: Fragment): Page {
       val name = fragment.javaClass.simpleName
-      values()
-          .filter { it.pageName == name }
-          .forEach { return it }
-      throw AssertionError("no menu enum found for the id. you forgot to implement?")
+      return values().first { it.pageName == name }
     }
   }
 }

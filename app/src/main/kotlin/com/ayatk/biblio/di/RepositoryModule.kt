@@ -16,59 +16,35 @@
 
 package com.ayatk.biblio.di
 
-import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.repository.library.LibraryDataSource
-import com.ayatk.biblio.repository.library.LibraryLocalDataSource
-import com.ayatk.biblio.repository.library.LibraryRepository
-import com.ayatk.biblio.repository.novel.NovelBodyDataSource
-import com.ayatk.biblio.repository.novel.NovelBodyLocalDataSource
-import com.ayatk.biblio.repository.novel.NovelBodyRemoteDataSource
-import com.ayatk.biblio.repository.novel.NovelBodyRepository
-import com.ayatk.biblio.repository.novel.NovelDataSource
-import com.ayatk.biblio.repository.novel.NovelLocalDataSource
-import com.ayatk.biblio.repository.novel.NovelRemoteDataSource
-import com.ayatk.biblio.repository.novel.NovelRepository
-import com.ayatk.biblio.repository.novel.NovelTableDataSource
-import com.ayatk.biblio.repository.novel.NovelTableLocalDataSource
-import com.ayatk.biblio.repository.novel.NovelTableRemoteDataSource
-import com.ayatk.biblio.repository.novel.NovelTableRepository
-import com.ayatk.biblio.repository.ranking.RankingDataSource
-import com.ayatk.biblio.repository.ranking.RankingRemoteDataSource
+import com.ayatk.biblio.data.repository.BookmarkRepository
+import com.ayatk.biblio.data.repository.BookmarkRepositoryImpl
+import com.ayatk.biblio.data.repository.EpisodeRepository
+import com.ayatk.biblio.data.repository.EpisodeRepositoryImpl
+import com.ayatk.biblio.data.repository.IndexRepository
+import com.ayatk.biblio.data.repository.IndexRepositoryImpl
+import com.ayatk.biblio.data.repository.NovelRepository
+import com.ayatk.biblio.data.repository.NovelRepositoryImpl
+import com.ayatk.biblio.data.repository.RankingRepository
+import com.ayatk.biblio.data.repository.RankingRepositoryImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
 
 @Module
-class RepositoryModule {
+@Suppress("unused")
+interface RepositoryModule {
 
-  @Singleton
-  @Provides
-  fun provideLibraryRepository(localDataSource: LibraryLocalDataSource): LibraryDataSource =
-      LibraryRepository(localDataSource)
+  @Binds
+  fun bindBookmarkRepository(repository: BookmarkRepositoryImpl): BookmarkRepository
 
-  @Singleton
-  @Provides
-  fun provideNovelBodyRepository(
-      local: NovelBodyLocalDataSource,
-      remote: NovelBodyRemoteDataSource
-  ): NovelBodyDataSource = NovelBodyRepository(local, remote)
+  @Binds
+  fun bindEpisodeRepository(repository: EpisodeRepositoryImpl): EpisodeRepository
 
-  @Singleton
-  @Provides
-  fun provideNovelRepository(
-      local: NovelLocalDataSource,
-      remote: NovelRemoteDataSource
-  ): NovelDataSource = NovelRepository(local, remote)
+  @Binds
+  fun bindNovelRepository(repository: NovelRepositoryImpl): NovelRepository
 
-  @Singleton
-  @Provides
-  fun provideNovelTableRepository(
-      local: NovelTableLocalDataSource,
-      remote: NovelTableRemoteDataSource
-  ): NovelTableDataSource = NovelTableRepository(local, remote)
+  @Binds
+  fun bindIndexRepository(repository: IndexRepositoryImpl): IndexRepository
 
-  @Singleton
-  @Provides
-  fun provideRankingRemoteDataSource(client: NarouClient): RankingDataSource =
-      RankingRemoteDataSource(client)
+  @Binds
+  fun bindRankingRepository(repository: RankingRepositoryImpl): RankingRepository
 }

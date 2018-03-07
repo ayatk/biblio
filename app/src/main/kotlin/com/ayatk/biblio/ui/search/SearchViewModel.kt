@@ -16,77 +16,55 @@
 
 package com.ayatk.biblio.ui.search
 
-import android.databinding.ObservableArrayList
-import android.util.Log
-import android.view.View
-import com.ayatk.biblio.data.narou.NarouClient
-import com.ayatk.biblio.data.narou.util.QueryBuilder
-import com.ayatk.biblio.model.Library
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Transformations
+import android.arch.lifecycle.ViewModel
+import com.ayatk.biblio.domain.usecase.SearchUseCase
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.repository.library.LibraryDataSource
-import com.ayatk.biblio.ui.ViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.ayatk.biblio.model.enums.Publisher
+import com.ayatk.biblio.ui.util.toResult
+import com.ayatk.biblio.util.Result
+import com.ayatk.biblio.util.ext.toLiveData
+import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
-import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.rxkotlin.addTo
+import io.reactivex.rxkotlin.subscribeBy
+import timber.log.Timber
+import java.util.Locale
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
-    private val narouClient: NarouClient,
-    private val libraryDataSource: LibraryDataSource
-) : ViewModel {
-
-  init {
-    libraryDataSource.findAll()
-        .subscribeOn(Schedulers.io())
-        .subscribe(
-            { libraries -> this.libraries = libraries },
-            { t -> Log.e("SearchViewModel", t.toString()) }
-        )
-  }
+    private val useCase: SearchUseCase,
+    private val schedulerProvider: SchedulerProvider
+) : ViewModel() {
 
   private val compositeDisposable = CompositeDisposable()
 
-  val searchResult = ObservableArrayList<SearchResultItemViewModel>()
+  private val query = MutableLiveData<String>()
 
-  val searchResultVisibility: BehaviorSubject<Int> = BehaviorSubject.createDefault(View.GONE)
+  val result: LiveData<Result<Map<Novel, Boolean>>> =
+      Transformations.switchMap<String, Result<Map<Novel, Boolean>>>(query) { search ->
+        useCase.search(search, Publisher.NAROU)
+            .toResult(schedulerProvider)
+            .toLiveData()
+      }
 
-  var libraries = listOf<Library>()
-
-  override fun destroy() {
-    searchResultVisibility.onComplete()
+  override fun onCleared() {
+    super.onCleared()
     compositeDisposable.clear()
   }
 
-  fun search(query: String) {
-    val formattedQuery = query.trim { it <= ' ' }
-    if (formattedQuery.isNotBlank()) {
-      searchResultVisibility.onNext(View.VISIBLE)
-      val builtQuery = QueryBuilder().searchWords(query).size(100).build()
-      compositeDisposable.clear()
-      compositeDisposable.add(
-          narouClient.getNovel(builtQuery)
-              .subscribeOn(Schedulers.io())
-              .observeOn(AndroidSchedulers.mainThread())
-              .map({ novels -> convertToViewModel(novels) })
-              .subscribe(
-                  { viewModels ->
-                    if (viewModels.isNotEmpty()) {
-                      searchResult.clear()
-                      searchResult.addAll(viewModels)
-                    }
-                  },
-                  { _ -> /* TODO: あとで頑張る */ }
-              )
-      )
-    } else {
-      searchResultVisibility.onNext(View.GONE)
+  fun setQuery(originalInput: String) {
+    val input = originalInput.toLowerCase(Locale.getDefault()).trim { it <= ' ' }
+    if (input != query.value && input.isNotBlank()) {
+      query.value = input
     }
   }
 
-  private fun convertToViewModel(novels: List<Novel>): List<SearchResultItemViewModel> {
-    return novels.map { novel ->
-      SearchResultItemViewModel(libraries, novel, libraryDataSource)
-    }
-  }
+  fun saveNovel(novel: Novel) =
+      useCase.saveNovel(novel)
+          .observeOn(schedulerProvider.ui())
+          .subscribeBy(onError = { e -> Timber.e(e) })
+          .addTo(compositeDisposable)
 }

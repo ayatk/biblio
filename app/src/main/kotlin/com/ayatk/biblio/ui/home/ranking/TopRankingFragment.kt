@@ -16,34 +16,61 @@
 
 package com.ayatk.biblio.ui.home.ranking
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ayatk.biblio.databinding.FragmentRankingBinding
+import com.ayatk.biblio.di.ViewModelFactory
+import com.ayatk.biblio.model.Ranking
+import com.ayatk.biblio.ui.util.customview.RankingTopCellView
+import com.ayatk.biblio.util.Result
+import com.ayatk.biblio.util.ext.observe
 import dagger.android.support.DaggerFragment
+import timber.log.Timber
 import javax.inject.Inject
 
 class TopRankingFragment : DaggerFragment() {
 
+  @Inject
+  lateinit var viewModelFactory: ViewModelFactory
+
+  private val viewModel: TopRankingViewModel by lazy {
+    ViewModelProviders.of(this, viewModelFactory).get(TopRankingViewModel::class.java)
+  }
+
   lateinit var binding: FragmentRankingBinding
 
-  @Inject
-  lateinit var viewModel: TopRankingViewModel
-
   override fun onCreateView(
-      inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
   ): View? {
     binding = FragmentRankingBinding.inflate(inflater, container, false)
-    binding.viewModel = viewModel
-    viewModel.start()
+    binding.setLifecycleOwner(this)
+
+    bind(viewModel.daily, binding.daily)
+    bind(viewModel.weekly, binding.weekly)
+    bind(viewModel.monthly, binding.monthly)
+    bind(viewModel.quarter, binding.quarter)
+    bind(viewModel.all, binding.all)
 
     return binding.root
   }
 
-  override fun onDetach() {
-    viewModel.destroy()
-    super.onDetach()
+  private fun bind(data: LiveData<Result<List<Ranking>>>, bind: RankingTopCellView) {
+    data.observe(this, { result ->
+      when (result) {
+        is Result.Success -> {
+          bind.setRankings(result.data)
+        }
+        is Result.Failure -> {
+          Timber.e(result.e)
+        }
+      }
+    })
   }
 
   companion object {

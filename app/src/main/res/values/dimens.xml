@@ -15,7 +15,7 @@
   -->
 <resources>
 
-  <item name="match_parent" format="integer" type="dimen">-1</item>
+  <item format="integer" name="match_parent" type="dimen">-1</item>
 
   <!-- space -->
   <dimen name="space_4dp">4dp</dimen>

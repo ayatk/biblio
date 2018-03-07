@@ -18,7 +18,6 @@ package com.ayatk.biblio.di
 
 import android.app.Application
 import com.ayatk.biblio.App
-import com.ayatk.biblio.ui.UiModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -27,14 +26,18 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = arrayOf(
-        AndroidSupportInjectionModule::class,
-        AppModule::class,
-        RepositoryModule::class,
-        HttpClientModule::class,
-        UiModule::class,
-        ViewModelModule::class
-    )
+    modules = [
+      AndroidSupportInjectionModule::class,
+      AppModule::class,
+      RepositoryModule::class,
+      NetworkModule::class,
+      DataStoreModule::class,
+      HttpClientModule::class,
+      DatabaseModule::class,
+      UiModule::class,
+      UseCaseModule::class,
+      ViewModelModule::class
+    ]
 )
 interface AppComponent : AndroidInjector<App> {
 

@@ -16,103 +16,26 @@
 
 package com.ayatk.biblio.ui.ranking
 
-import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
-import android.databinding.ObservableArrayList
-import android.view.View
-import com.ayatk.biblio.data.narou.entity.enums.RankingType
+import com.ayatk.biblio.domain.usecase.RankingUseCase
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.repository.ranking.RankingDataSource
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
+import com.ayatk.biblio.model.enums.RankingType
+import com.ayatk.biblio.ui.util.toResult
+import com.ayatk.biblio.util.Result
+import com.ayatk.biblio.util.ext.toLiveData
+import com.ayatk.biblio.util.rx.SchedulerProvider
 import javax.inject.Inject
 
 class RankingViewModel @Inject constructor(
-    private val dataSource: RankingDataSource
+    private val useCase: RankingUseCase,
+    private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
-  private val compositeDisposable: CompositeDisposable = CompositeDisposable()
-
-  var rankingItemViewModels = ObservableArrayList<RankingItemViewModel>()
-
-  var progressVisibility: MutableLiveData<Int> = MutableLiveData()
-
-  // TODO: ここの処理が頭悪すぎて死ぬので絶対直す
-  fun onCreate(rankingType: RankingType) {
-    when (rankingType) {
-      RankingType.DAILY -> dataSource.getDailyRank(Publisher.NAROU, 0 until RANK_SIZE)
-          .map(this::convertToViewModel)
-          .subscribeOn(Schedulers.io())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(
-              this::renderLibraries,
-              { throwable -> Timber.e(throwable, "Failed to show libraries.") }
-          )
-          .addTo(compositeDisposable)
-      RankingType.WEEKLY -> dataSource.getWeeklyRank(Publisher.NAROU, 0 until RANK_SIZE)
-          .map(this::convertToViewModel)
-          .subscribeOn(Schedulers.io())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(
-              this::renderLibraries,
-              { throwable -> Timber.e(throwable, "Failed to show libraries.") }
-          )
-          .addTo(compositeDisposable)
-
-      RankingType.MONTHLY -> dataSource.getMonthlyRank(Publisher.NAROU, 0 until RANK_SIZE)
-          .map(this::convertToViewModel)
-          .subscribeOn(Schedulers.io())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(
-              this::renderLibraries,
-              { throwable -> Timber.e(throwable, "Failed to show libraries.") }
-          )
-          .addTo(compositeDisposable)
-
-      RankingType.QUARTET -> dataSource.getQuarterRank(Publisher.NAROU, 0 until RANK_SIZE)
-          .map(this::convertToViewModel)
-          .subscribeOn(Schedulers.io())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(
-              this::renderLibraries,
-              { throwable -> Timber.e(throwable, "Failed to show libraries.") }
-          )
-          .addTo(compositeDisposable)
-
-      RankingType.ALL -> dataSource.getAllRank(Publisher.NAROU, 0..RANK_SIZE)
-          .map(this::convertToViewModel)
-          .subscribeOn(Schedulers.io())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(
-              this::renderLibraries,
-              { throwable -> Timber.e(throwable, "Failed to show libraries.") }
-          )
-          .addTo(compositeDisposable)
-    }
-  }
-
-  private fun convertToViewModel(rankings: List<Ranking>): List<RankingItemViewModel> {
-    return rankings.map { ranking -> RankingItemViewModel(ranking) }
-  }
-
-  override fun onCleared() {
-    super.onCleared()
-    compositeDisposable.clear()
-  }
-
-  private fun renderLibraries(rankingItemViewModels: List<RankingItemViewModel>) {
-    progressVisibility.value = View.GONE
-    if (this.rankingItemViewModels.size != rankingItemViewModels.size) {
-      this.rankingItemViewModels.clear()
-      this.rankingItemViewModels.addAll(rankingItemViewModels)
-    }
-  }
-
-  companion object {
-    private const val RANK_SIZE = 300
+  fun rankings(rankingType: RankingType): LiveData<Result<List<Ranking>>> {
+    return useCase.ranking(Publisher.NAROU, rankingType)
+        .toResult(schedulerProvider)
+        .toLiveData()
   }
 }

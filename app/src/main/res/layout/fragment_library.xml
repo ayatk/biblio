@@ -21,6 +21,8 @@
 
   <data>
 
+    <import type="android.view.View"/>
+
     <variable
         name="viewModel"
         type="com.ayatk.biblio.ui.home.library.LibraryViewModel"/>
@@ -35,22 +37,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:onRefreshListener="@{viewModel::onSwipeRefresh}"
-        app:refreshing="@{viewModel.refreshing}">
+        app:refreshing="@{safeUnbox(viewModel.refreshing)}">
 
       <android.support.v7.widget.RecyclerView
           android:id="@+id/recycler_view"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:background="@color/white"
-          android:visibility="@{viewModel.recyclerViewVisibility}"
           style="@style/AppTheme.BaseRecyclerView"/>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <RelativeLayout
+        android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="@{viewModel.emptyViewVisibility}">
+        android:visibility="gone">
 
       <TextView
           android:id="@+id/empty_library_message"

@@ -16,21 +16,38 @@
 
 package com.ayatk.biblio.ui.home
 
+import android.arch.lifecycle.ViewModel
+import com.ayatk.biblio.di.ViewModelKey
 import com.ayatk.biblio.ui.home.bookmark.BookmarkFragment
 import com.ayatk.biblio.ui.home.library.LibraryFragment
+import com.ayatk.biblio.ui.home.library.LibraryViewModel
 import com.ayatk.biblio.ui.home.ranking.TopRankingFragment
+import com.ayatk.biblio.ui.home.ranking.TopRankingViewModel
+import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoMap
 
 @Module
-abstract class HomeModule {
+@Suppress("unused")
+interface HomeModule {
 
   @ContributesAndroidInjector
-  abstract fun contributeLibraryFragment(): LibraryFragment
+  fun contributeLibraryFragment(): LibraryFragment
 
   @ContributesAndroidInjector
-  abstract fun contributeBookmarkFragment(): BookmarkFragment
+  fun contributeBookmarkFragment(): BookmarkFragment
 
   @ContributesAndroidInjector
-  abstract fun contributeRankingFragment(): TopRankingFragment
+  fun contributeRankingFragment(): TopRankingFragment
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(LibraryViewModel::class)
+  fun bindLibraryViewModel(libraryViewModel: LibraryViewModel): ViewModel
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(TopRankingViewModel::class)
+  fun bindTopRankingViewModel(topRankingViewModel: TopRankingViewModel): ViewModel
 }

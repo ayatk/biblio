@@ -16,99 +16,70 @@
 
 package com.ayatk.biblio.model
 
+import com.ayatk.biblio.model.enums.BigGenre
+import com.ayatk.biblio.model.enums.Genre
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.model.enums.Publisher
-import com.github.gfx.android.orma.annotation.Column
-import com.github.gfx.android.orma.annotation.OnConflict
-import com.github.gfx.android.orma.annotation.PrimaryKey
-import com.github.gfx.android.orma.annotation.Setter
-import com.github.gfx.android.orma.annotation.Table
-import org.parceler.Parcel
-import org.parceler.Parcel.Serialization
+import java.io.Serializable
 import java.util.Date
 
-@Parcel(Serialization.BEAN)
-@Table
 data class Novel(
-    // TODO: 2017/04/24 やる気をださない
 
-    @PrimaryKey(onConflict = OnConflict.REPLACE)
-    @Setter("code")
-    var code: String = "",
+    val code: String,
 
-    @Column
-    @Setter("title")
-    var title: String = "",
+    val title: String,
 
-    @Column
-    @Setter("writer")
-    var writer: String = "",
+    val userID: Int = 0,
 
-    @Column(indexed = true)
-    @Setter("writerId")
-    var writerId: String = "",
+    val writer: String = "",
 
-    @Column
-    @Setter("story")
-    var story: String = "",
+    val story: String = "",
 
-    @Column(indexed = true)
-    @Setter("publisher")
-    var publisher: Publisher = Publisher.NAROU,
+    val publisher: Publisher = Publisher.NAROU,
 
-    @Column
-    @Setter("novelTags")
-    var novelTags: List<String> = listOf(),
+    val bigGenre: BigGenre = BigGenre.OTHER,
 
-    @Column
-    @Setter("firstUpdateDate")
-    var firstUpdateDate: Date = Date(),
+    val genre: Genre = Genre.NON_GENRE,
 
-    @Column
-    @Setter("lastUpdateDate")
-    var lastUpdateDate: Date = Date(),
+    val keyword: List<String> = listOf(),
 
-    @Column
-    @Setter("novelState")
-    var novelState: NovelState = NovelState.SERIES,
+    val novelState: NovelState = NovelState.SERIES_END,
 
-    @Column
-    @Setter("totalPages")
-    var totalPages: Int = 0,
+    val firstUpload: Date = Date(),
 
-    @Column
-    @Setter("allRateCount")
-    var allRateCount: Int = 0,
+    val lastUpload: Date = Date(),
 
-    @Column
-    @Setter("reviewCount")
-    var reviewCount: Int = 0,
+    val page: Int = 0,
 
-    @Column
-    @Setter("bookmarkCount")
-    var bookmarkCount: Int = 0,
+    val length: Int = 0,
 
-    @Column
-    @Setter("length")
-    var length: Int = 0,
+    val readTime: Int = 0,
 
-    @Column
-    @Setter("original")
-    var original: String? = "",
+    val isR18: Boolean = false,
 
-    @Column
-    @Setter("isOrigin")
-    var isOrigin: Boolean = true,
+    val isR15: Boolean = false,
 
-    @Column
-    @Setter("isR15")
-    var isR15: Boolean = false,
+    val isBL: Boolean = false,
 
-    @Column
-    @Setter("isR18")
-    var isR18: Boolean = false,
+    val isGL: Boolean = false,
 
-    @Column(defaultExpr = "0")
-    @Setter("point")
-    var point: Int = 0
-)
+    val isCruelness: Boolean = false,
+
+    val isTransmigration: Boolean = false,
+
+    val isTransfer: Boolean = false,
+
+    val point: Int = 0,
+
+    val bookmarkCount: Int = 0,
+
+    val reviewCount: Int = 0,
+
+    val ratingCount: Int = 0,
+
+    val illustrationCount: Int = 0,
+
+    val conversationRate: Int = 0,
+
+    val novelUpdatedAt: Date = Date()
+) : Serializable

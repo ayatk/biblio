@@ -35,12 +35,19 @@
 }
 
 # ----------------------------------------
-# Retrofit and OkHttp
+# Retrofit
 # ----------------------------------------
 -dontwarn okio.**
--dontwarn javax.annotation.Nullable
--dontwarn javax.annotation.ParametersAreNonnullByDefault
+-dontwarn javax.annotation.**
 -dontwarn retrofit2.**
+
+# ----------------------------------------
+# OkHttp
+# ----------------------------------------
+-dontwarn okhttp3.**
+-dontwarn org.conscrypt.**
+# A resource is loaded with a relative path so the package of this class must be preserved.
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
 # ----------------------------------------
 # Jsoup
@@ -48,13 +55,6 @@
 -keep public class org.jsoup.** {
     public *;
 }
-
-# ----------------------------------------
-# Parcel
-# ----------------------------------------
--keep interface org.parceler.Parcel
--keep @org.parceler.Parcel class * { *; }
--keep class **$$Parcelable { *; }
 
 # ----------------------------------------
 # EventBus

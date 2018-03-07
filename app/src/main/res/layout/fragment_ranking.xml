@@ -21,9 +21,7 @@
 
   <data>
 
-    <variable
-        name="viewModel"
-        type="com.ayatk.biblio.ui.home.ranking.TopRankingViewModel"/>
+    <import type="com.ayatk.biblio.model.enums.RankingType"/>
   </data>
 
   <android.support.v4.widget.NestedScrollView
@@ -35,357 +33,40 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-      <android.support.v7.widget.CardView
+      <com.ayatk.biblio.ui.util.customview.RankingTopCellView
+          android:id="@+id/daily"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginBottom="@dimen/space_8dp"
-          android:layout_marginEnd="-2dp"
-          android:layout_marginStart="-2dp"
-          android:layout_marginTop="@dimen/space_8dp"
-          app:cardCornerRadius="0dp"
-          app:cardUseCompatPadding="true">
+          app:rankingType="@{RankingType.DAILY}"
+          app:setRankingTitle="@string/ranking_daily"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@drawable/divider"
-            android:orientation="vertical"
-            android:showDividers="middle">
-
-          <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="@dimen/space_16dp"
-              android:text="@string/ranking_daily"
-              android:textSize="@dimen/text_16sp"/>
-
-          <LinearLayout
-              android:id="@+id/ranking_container"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:divider="@drawable/divider"
-              android:orientation="vertical"
-              android:showDividers="middle"
-              app:addRankingItems="@{viewModel.daily}">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="300dp">
-
-              <ProgressBar
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_gravity="center"/>
-            </FrameLayout>
-
-          </LinearLayout>
-
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="@dimen/space_8dp"
-              android:gravity="end"
-              android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/daily_read_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:padding="8dp"
-                android:onClick="@{() -> viewModel.onClickDailyRank(context)}"
-                android:text="@string/ranking_read_more"
-                android:textColor="@color/app_blue"/>
-
-          </LinearLayout>
-
-        </LinearLayout>
-
-      </android.support.v7.widget.CardView>
-
-      <android.support.v7.widget.CardView
+      <com.ayatk.biblio.ui.util.customview.RankingTopCellView
+          android:id="@+id/weekly"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginBottom="@dimen/space_8dp"
-          android:layout_marginEnd="-2dp"
-          android:layout_marginStart="-2dp"
-          android:layout_marginTop="@dimen/space_8dp"
-          app:cardCornerRadius="0dp"
-          app:cardUseCompatPadding="true">
+          app:rankingType="@{RankingType.WEEKLY}"
+          app:setRankingTitle="@string/ranking_weekly"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@drawable/divider"
-            android:orientation="vertical"
-            android:showDividers="middle">
-
-          <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="@dimen/space_16dp"
-              android:text="@string/ranking_weekly"
-              android:textSize="@dimen/text_16sp"/>
-
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:divider="@drawable/divider"
-              android:orientation="vertical"
-              android:showDividers="middle"
-              app:addRankingItems="@{viewModel.weekly}">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="300dp">
-
-              <ProgressBar
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_gravity="center"/>
-            </LinearLayout>
-
-          </LinearLayout>
-
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="@dimen/space_8dp"
-              android:gravity="end"
-              android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/weekly_read_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:onClick="@{() -> viewModel.onClickWeeklyRank(context)}"
-                android:padding="8dp"
-                android:text="@string/ranking_read_more"
-                android:textColor="@color/app_blue"/>
-
-          </LinearLayout>
-
-        </LinearLayout>
-
-      </android.support.v7.widget.CardView>
-
-      <android.support.v7.widget.CardView
+      <com.ayatk.biblio.ui.util.customview.RankingTopCellView
+          android:id="@+id/monthly"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginBottom="@dimen/space_8dp"
-          android:layout_marginEnd="-2dp"
-          android:layout_marginStart="-2dp"
-          android:layout_marginTop="@dimen/space_8dp"
-          app:cardCornerRadius="0dp"
-          app:cardUseCompatPadding="true">
+          app:rankingType="@{RankingType.MONTHLY}"
+          app:setRankingTitle="@string/ranking_monthly"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@drawable/divider"
-            android:orientation="vertical"
-            android:showDividers="middle">
-
-          <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="@dimen/space_16dp"
-              android:text="@string/ranking_monthly"
-              android:textSize="@dimen/text_16sp"/>
-
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:divider="@drawable/divider"
-              android:orientation="vertical"
-              android:showDividers="middle"
-              app:addRankingItems="@{viewModel.monthly}">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="300dp">
-
-              <ProgressBar
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_gravity="center"/>
-            </FrameLayout>
-
-          </LinearLayout>
-
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="@dimen/space_8dp"
-              android:gravity="end"
-              android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/monthly_read_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="@{() -> viewModel.onClickMonthlyRank(context)}"
-                android:foreground="?attr/selectableItemBackground"
-                android:padding="8dp"
-                android:text="@string/ranking_read_more"
-                android:textColor="@color/app_blue"/>
-
-          </LinearLayout>
-
-        </LinearLayout>
-
-      </android.support.v7.widget.CardView>
-
-      <android.support.v7.widget.CardView
+      <com.ayatk.biblio.ui.util.customview.RankingTopCellView
+          android:id="@+id/quarter"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginBottom="@dimen/space_8dp"
-          android:layout_marginEnd="-2dp"
-          android:layout_marginStart="-2dp"
-          android:layout_marginTop="@dimen/space_8dp"
-          app:cardCornerRadius="0dp"
-          app:cardUseCompatPadding="true">
+          app:rankingType="@{RankingType.QUARTET}"
+          app:setRankingTitle="@string/ranking_quarter"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@drawable/divider"
-            android:orientation="vertical"
-            android:showDividers="middle">
-
-          <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="@dimen/space_16dp"
-              android:text="@string/ranking_quarter"
-              android:textSize="@dimen/text_16sp"/>
-
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:divider="@drawable/divider"
-              android:orientation="vertical"
-              android:showDividers="middle"
-              app:addRankingItems="@{viewModel.quarter}">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="300dp">
-
-              <ProgressBar
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_gravity="center"/>
-            </FrameLayout>
-
-          </LinearLayout>
-
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="@dimen/space_8dp"
-              android:gravity="end"
-              android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/quarter_read_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:onClick="@{() -> viewModel.onClickQuarterRank(context)}"
-                android:padding="8dp"
-                android:text="@string/ranking_read_more"
-                android:textColor="@color/app_blue"/>
-
-          </LinearLayout>
-
-        </LinearLayout>
-
-      </android.support.v7.widget.CardView>
-
-      <android.support.v7.widget.CardView
+      <com.ayatk.biblio.ui.util.customview.RankingTopCellView
+          android:id="@+id/all"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginBottom="@dimen/space_8dp"
-          android:layout_marginEnd="-2dp"
-          android:layout_marginStart="-2dp"
-          android:layout_marginTop="@dimen/space_8dp"
-          app:cardCornerRadius="0dp"
-          app:cardUseCompatPadding="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@drawable/divider"
-            android:orientation="vertical"
-            android:showDividers="middle">
-
-          <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="@dimen/space_16dp"
-              android:text="@string/ranking_all"
-              android:textSize="@dimen/text_16sp"/>
-
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:divider="@drawable/divider"
-              android:orientation="vertical"
-              android:showDividers="middle"
-              app:addRankingItems="@{viewModel.all}">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="300dp">
-
-              <ProgressBar
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_gravity="center"/>
-            </FrameLayout>
-
-          </LinearLayout>
-
-
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_margin="@dimen/space_8dp"
-              android:gravity="end"
-              android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/all_read_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:clickable="true"
-                android:onClick="@{() -> viewModel.onClickAllRank(context)}"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:padding="8dp"
-                android:text="@string/ranking_read_more"
-                android:textColor="@color/app_blue"/>
-
-          </LinearLayout>
-
-        </LinearLayout>
-
-      </android.support.v7.widget.CardView>
+          app:rankingType="@{RankingType.ALL}"
+          app:setRankingTitle="@string/ranking_all"/>
 
     </LinearLayout>
 

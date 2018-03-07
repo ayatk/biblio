@@ -24,6 +24,7 @@ import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
 @Module
+@Suppress("unused")
 interface RankingModule {
 
   @ContributesAndroidInjector

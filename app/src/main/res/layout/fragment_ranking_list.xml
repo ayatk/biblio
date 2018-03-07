@@ -29,7 +29,8 @@
         android:name="com.ayatk.biblio.ui.ranking.RankingFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/view_ranking_list_item"/>
+        android:visibility="gone"
+        tools:listitem="@layout/item_ranking_list"/>
 
     <ProgressBar
         android:id="@+id/progress"

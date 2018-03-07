@@ -27,13 +27,18 @@ import android.support.v4.app.Fragment
 import android.view.Menu
 import android.view.MenuItem
 import com.ayatk.biblio.R
+import com.ayatk.biblio.data.DefaultPrefs
 import com.ayatk.biblio.databinding.ActivityMainBinding
 import com.ayatk.biblio.ui.search.SearchActivity
 import com.ayatk.biblio.ui.util.Page
-import com.ayatk.biblio.ui.util.helper.BottomNavigationViewHelper
+import com.ayatk.biblio.ui.util.helper.disableShiftingMode
 import dagger.android.support.DaggerAppCompatActivity
+import javax.inject.Inject
 
 class HomeActivity : DaggerAppCompatActivity() {
+
+  @Inject
+  lateinit var defaultPrefs: DefaultPrefs
 
   private val binding: ActivityMainBinding by lazy {
     DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
@@ -42,19 +47,8 @@ class HomeActivity : DaggerAppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    BottomNavigationViewHelper.disableShiftingMode(binding.bottomNav)
-
-    // init fragment
-    if (savedInstanceState == null) {
-      changePage(Page.forMenuId(R.id.nav_library))
-    }
     setSupportActionBar(binding.toolbar)
-
-    binding.bottomNav.setOnNavigationItemSelectedListener({
-      changePage(Page.forMenuId(it.itemId))
-      invalidateOptionsMenu()
-      true
-    })
+    initBottomNav()
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -76,6 +70,18 @@ class HomeActivity : DaggerAppCompatActivity() {
     return super.onPrepareOptionsMenu(menu)
   }
 
+  private fun initBottomNav() {
+    binding.bottomNav.disableShiftingMode()
+    changePage(Page.forMenuId(defaultPrefs.homePageState))
+    binding.bottomNav.selectedItemId = defaultPrefs.homePageState
+    binding.bottomNav.setOnNavigationItemSelectedListener({
+      defaultPrefs.homePageState = it.itemId
+      changePage(Page.forMenuId(it.itemId))
+      invalidateOptionsMenu()
+      true
+    })
+  }
+
   private fun toggleToolbarElevation(enable: Boolean) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       val elevation = if (enable) resources.getDimension(R.dimen.elevation_4dp) else 0.toFloat()
@@ -91,7 +97,6 @@ class HomeActivity : DaggerAppCompatActivity() {
 
   private fun replaceFragment(fragment: Fragment, @IdRes @LayoutRes layoutResId: Int) {
     supportFragmentManager.beginTransaction()
-        .setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit)
         .replace(layoutResId, fragment, fragment.javaClass.simpleName)
         .commit()
   }

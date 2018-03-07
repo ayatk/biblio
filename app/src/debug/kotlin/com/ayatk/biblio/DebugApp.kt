@@ -16,9 +16,14 @@
 
 package com.ayatk.biblio
 
+import com.ayatk.biblio.di.DaggerDebugAppComponent
 import com.facebook.stetho.Stetho
+import com.squareup.leakcanary.LeakCanary
 import com.tomoima.debot.DebotConfigurator
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 import jp.wasabeef.takt.Takt
+import timber.log.Timber
 
 class DebugApp : App() {
   override fun onCreate() {
@@ -27,10 +32,29 @@ class DebugApp : App() {
     Stetho.initializeWithDefaults(this)
     DebotConfigurator.configureWithDefault()
     Takt.stock(this).play()
+
+    initLeakCanary()
+
+    if (BuildConfig.DEBUG) {
+      Timber.plant(Timber.DebugTree())
+    }
   }
+
+  override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
+      DaggerDebugAppComponent
+          .builder()
+          .application(this)
+          .build()
 
   override fun onTerminate() {
     Takt.finish()
     super.onTerminate()
+  }
+
+  private fun initLeakCanary() {
+    if (LeakCanary.isInAnalyzerProcess(this)) {
+      return
+    }
+    LeakCanary.install(this)
   }
 }

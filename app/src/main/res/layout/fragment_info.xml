@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016-2018 ayatk.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <data>
+
+    <import type="android.view.View"/>
+
+    <variable
+        name="viewModel"
+        type="com.ayatk.biblio.ui.detail.info.InfoViewModel"/>
+  </data>
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/divider"
+        android:orientation="vertical"
+        android:showDividers="middle">
+
+      <com.ayatk.biblio.ui.util.customview.InfoCellView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:setCellIcon="@drawable/ic_open_book_page_24"
+          app:setCellText="@{viewModel.novel.story}"/>
+
+      <com.ayatk.biblio.ui.util.customview.InfoCellView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:setCellIcon="@drawable/ic_num_24"
+          app:setCellText="@{viewModel.novel.code}"/>
+
+      <com.ayatk.biblio.ui.util.customview.InfoCellView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground"
+          android:onClick="@{() -> viewModel.onClickWriter(context)}"
+          app:setCellIcon="@drawable/ic_writer_grey600_24_vector"
+          app:setCellText="@{viewModel.novel.writer}"/>
+
+      <com.ayatk.biblio.ui.util.customview.InfoCellView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:setCellIcon="@drawable/ic_publish_24"
+          app:setCellText="@{context.getString(viewModel.novel.publisher.siteName)}"/>
+
+      <com.ayatk.biblio.ui.util.customview.InfoCellView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:setCellIcon="@drawable/ic_status_24"
+          app:setCellText="@{context.getString(viewModel.novel.novelState.stateName)}"/>
+
+      <android.support.constraint.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/img_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="keyword icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_pound_gley600_24_vector"/>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/tag_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/img_tag"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tags="@{viewModel.novel.keyword}"/>
+
+      </android.support.constraint.ConstraintLayout>
+
+      <android.support.constraint.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/img_user_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="keyword icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_tag_multiple_grey600_24_vector"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/suggest_add_user_tag"
+            android:textColor="@color/grey500"
+            android:visibility="@{viewModel.tags.isEmpty() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_user_tag"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/user_tag_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:visibility="@{viewModel.tags.isEmpty() ? View.GONE : View.VISIBLE}"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_user_tag"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tags="@{viewModel.tags}"/>
+
+      </android.support.constraint.ConstraintLayout>
+
+      <com.ayatk.biblio.ui.util.customview.InfoCellView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:setCellIcon="@drawable/ic_update_grey600_24_vector"
+          app:setCellText="@{viewModel.lastUpdate}"/>
+
+      <com.ayatk.biblio.ui.util.customview.InfoCellView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground"
+          android:onClick="@{() -> viewModel.onClickNovelPage(context)}"
+          app:setCellIcon="@drawable/ic_earth_grey600_24_vector"
+          app:setCellText="@{viewModel.url}"/>
+
+    </LinearLayout>
+
+  </ScrollView>
+
+</layout>

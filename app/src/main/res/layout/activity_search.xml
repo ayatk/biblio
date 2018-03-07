@@ -21,6 +21,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.search.SearchActivity">
 
+  <data>
+
+    <import type="android.view.View"/>
+
+    <variable
+        name="viewModel"
+        type="com.ayatk.biblio.ui.search.SearchViewModel"/>
+  </data>
+
   <android.support.v4.widget.DrawerLayout
       android:id="@+id/drawer_layout"
       android:layout_width="match_parent"

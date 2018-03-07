@@ -16,112 +16,45 @@
 
 package com.ayatk.biblio.ui.home.library
 
-import android.databinding.BaseObservable
-import android.databinding.Bindable
-import android.databinding.ObservableArrayList
-import android.view.View
-import com.ayatk.biblio.BR
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.ViewModel
+import com.ayatk.biblio.domain.usecase.LibraryUseCase
 import com.ayatk.biblio.model.Library
-import com.ayatk.biblio.model.enums.Publisher
-import com.ayatk.biblio.pref.DefaultPrefs
-import com.ayatk.biblio.repository.library.LibraryDataSource
-import com.ayatk.biblio.repository.novel.NovelRepository
-import com.ayatk.biblio.repository.novel.NovelTableRepository
-import com.ayatk.biblio.ui.ViewModel
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.toObservable
+import com.ayatk.biblio.ui.util.toResult
+import com.ayatk.biblio.util.Result
+import com.ayatk.biblio.util.ext.toLiveData
+import com.ayatk.biblio.util.rx.SchedulerProvider
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
 import javax.inject.Inject
 
 class LibraryViewModel @Inject constructor(
-    private val libraryDataSource: LibraryDataSource,
-    private val novelRepository: NovelRepository,
-    private val novelTableRepository: NovelTableRepository,
-    private val defaultPrefs: DefaultPrefs
-) : BaseObservable(), ViewModel {
+    private val useCase: LibraryUseCase,
+    private val schedulerProvider: SchedulerProvider
+) : ViewModel() {
 
-  companion object {
-    private val TAG = LibraryItemViewModel::class.java.simpleName
+  private val compositeDisposable = CompositeDisposable()
+
+  val libraries: LiveData<Result<List<Library>>> by lazy {
+    useCase.libraries
+        .toResult(schedulerProvider)
+        .toLiveData()
   }
 
-  var libraryViewModels = ObservableArrayList<LibraryItemViewModel>()
+  var refreshing = MutableLiveData<Boolean>()
 
-  @Bindable
-  var emptyViewVisibility: Int = View.GONE
-
-  @Bindable
-  var recyclerViewVisibility: Int = View.VISIBLE
-
-  @Bindable
-  var refreshing: Boolean = false
-    set(value) {
-      field = value
-      notifyPropertyChanged(BR.refreshing)
-    }
-
-  override fun destroy() {}
+  override fun onCleared() {
+    compositeDisposable.clear()
+  }
 
   fun onSwipeRefresh() {
-    start(true)
-  }
-
-  private fun loadLibraries(): Single<List<Library>> {
-    return libraryDataSource.findAll()
-        // 最終更新日時順でソート
-        .map({ libraries -> libraries.sortedByDescending { (_, novel) -> novel.lastUpdateDate } })
-  }
-
-  private fun convertToViewModel(libraries: List<Library>): List<LibraryItemViewModel> {
-    return libraries.map { library ->
-      LibraryItemViewModel(library, defaultPrefs)
-    }
-  }
-
-  fun start(refresh: Boolean) {
-    if (refresh) {
-      novelRepository.isDirty = true
-      novelTableRepository.isDirty = true
-    }
-
-    loadLibraries()
-        .map({ library -> convertToViewModel(library) })
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(
-            { viewModel ->
-              if (refresh) {
-                Publisher.values().map { pub ->
-                  novelRepository.findAll(
-                      viewModel
-                          .filter { it.library.novel.publisher == pub }
-                          .map { it.library.novel.code }, pub
-                  )
-                      .subscribe()
-                }
-                viewModel.toObservable()
-                    .concatMap { novelTableRepository.findAll(it.library.novel).toObservable() }
-                    .subscribe(
-                        {
-                          refreshing = false
-                          novelRepository.isDirty = false
-                          novelTableRepository.isDirty = false
-                        }
-                    )
-              }
-              renderLibraries(viewModel)
-            },
-            { throwable -> Timber.tag(TAG).e(throwable, "Failed to show libraries.") }
+    useCase.update()
+        .observeOn(schedulerProvider.ui())
+        .subscribeBy(
+            onComplete = { refreshing.postValue(false) },
+            onError = Timber::e
         )
-  }
-
-  private fun renderLibraries(libraryViewModels: List<LibraryItemViewModel>) {
-    if (this.libraryViewModels != libraryViewModels) {
-      this.libraryViewModels.clear()
-      this.libraryViewModels.addAll(libraryViewModels)
-    }
-    this.emptyViewVisibility = if (this.libraryViewModels.size > 0) View.GONE else View.VISIBLE
-    this.recyclerViewVisibility = if (this.libraryViewModels.size > 0) View.VISIBLE else View.GONE
-    notifyPropertyChanged(BR.emptyViewVisibility)
-    notifyPropertyChanged(BR.recyclerViewVisibility)
   }
 }
