@@ -16,10 +16,12 @@
   -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/search_bar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    tools:ignore="PrivateResource">
 
   <!-- This is actually used for the badge icon *or* the badge label (or neither) -->
   <TextView
@@ -57,10 +59,10 @@
         android:layout_width="@dimen/abc_dropdownitem_icon_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:contentDescription="@string/search_icon_description"
         android:scaleType="centerInside"
         android:visibility="gone"
-        style="@style/RtlOverlay.Widget.AppCompat.SearchView.MagIcon"
-        android:contentDescription="@string/search_icon_description"/>
+        style="@style/RtlOverlay.Widget.AppCompat.SearchView.MagIcon"/>
 
     <!-- Inner layout contains the app icon, button(s) and EditText -->
     <LinearLayout
