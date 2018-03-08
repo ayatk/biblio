@@ -37,7 +37,7 @@
   skip: true
 
 - artifact: com.google.dagger:+:+
-  name: Dagger
+  name: Dagger2
   year: 2012
   copyrightHolder: The Dagger Authors
   license: The Apache Software License, Version 2.0
@@ -79,16 +79,8 @@
   license: The Apache Software License, Version 2.0
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
 
-- artifact: com.squareup.leakcanary:leakcanary-android-no-op:+
-  name: No op LeakCanary for Android
-  copyrightHolder: Square, Inc.
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: http://github.com/square/leakcanary/
-  skip: true
-
 - artifact: com.rejasupotaro:kvs-schema:+
-  name: kvs-schema
+  name: KVS chema
   year: 2014
   copyrightHolder: Kentaro Takiguchi
   license: The MIT License
@@ -103,7 +95,7 @@
   url: https://github.com/ReactiveX/RxJava
 
 - artifact: io.reactivex.rxjava2:rxjava:+
-  name: rxjava
+  name: RxJava
   year: 2012
   copyrightHolder: Netflix, Inc.
   license: The Apache Software License, Version 2.0
@@ -182,13 +174,6 @@
   url: https://github.com/JakeWharton/timber
   skip: true
 
-- artifact: com.github.mabbas007:TagsEditText:+
-  name: TagsEditText
-  copyrightHolder: mabbas007
-  license: Apache License 2.0
-  licenseUrl: https://api.github.com/licenses/apache-2.0
-  url: https://github.com/mabbas007/TagsEditText
-
 - artifact: com.crashlytics.sdk.android:+:+
   name: Crashlytics
   skip: true
@@ -241,14 +226,14 @@
   url: http://greenrobot.org/eventbus/
 
 - artifact: com.xwray:groupie:+
-  name: groupie
+  name: Groupie
   year: 2016
   copyrightHolder: lisawray
   license: MIT
   url: https://github.com/lisawray/groupie
 
 - artifact: com.xwray:groupie-databinding:+
-  name: groupie databinding
+  name: Groupie Databinding
   year: 2016
   copyrightHolder: lisawray
   license: MIT
