@@ -5,6 +5,7 @@ default_platform :android
 platform :android do
   before_all do
     ENV['SLACK_URL'] = 'https://hooks.slack.com/services/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'
+    gradle(task: 'generateLicensePage')
   end
 
   desc 'Submit a new Nightly Build to DeployGate'

@@ -8,6 +8,8 @@
 /captures
 .externalNativeBuild
 
+/app/src/main/assets/licenses.html
+
 # certificates
 app.release.jks
 app/google-services.json
