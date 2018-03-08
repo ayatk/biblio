@@ -1,255 +1,191 @@
 ---
-- artifact: com.android.databinding:+:+
-  name: Android Databinding Libraries
-  year: 2016
-  copyrightHolder: The Android Open Source Project
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-
-- artifact: com.android.support:+:+
-  name: Android Support Libraries
-  year: 2016
-  copyrightHolder: The Android Open Source Project
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-
-- artifact: com.android.support.constraint:+:+
-  name: Android Constraint Layout Libraries
-  year: 2016
-  copyrightHolder: The Android Open Source Project
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-
-- artifact: androidx.core:core-ktx:+
-  name: Android KTX Core
-  year: 2018
-  copyrightHolder: The Android Open Source Project
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/android/kotlin-extensions
-
-- artifact: com.google.android.gms:+:+
-  name: play-services
-  skip: true
-
-- artifact: com.google.firebase:+:+
-  name: firebase
-  skip: true
-
-- artifact: com.google.dagger:+:+
-  name: Dagger
-  year: 2012
-  copyrightHolder: The Dagger Authors
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-
-- artifact: com.google.code.gson:gson:+
-  name: Gson
-  year: 2008
-  copyrightHolder: Google Inc.
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-
-- artifact: com.jakewharton.fliptables:fliptables:+
-  name: Flip Tables
-  year: 2014
-  copyrightHolder: Jake Wharton
-  license: Apache 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: http://github.com/JakeWharton/flip-tables/
-
-- artifact: com.squareup.okhttp3:+:+
-  name: OkHttp3
-  copyrightHolder: Square, Inc.
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/square/okhttp
-
-- artifact: com.squareup.okio:okio:+
-  name: Okio
-  year: 2012
-  copyrightHolder: Square, Inc.
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-
-- artifact: com.squareup.retrofit2:+:+
-  name: Retrofit2
-  year: 2013
-  copyrightHolder: Square, Inc.
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-
-- artifact: com.squareup.leakcanary:leakcanary-android-no-op:+
-  name: No op LeakCanary for Android
-  copyrightHolder: Square, Inc.
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: http://github.com/square/leakcanary/
-  skip: true
-
-- artifact: com.rejasupotaro:kvs-schema:+
-  name: kvs-schema
-  year: 2014
-  copyrightHolder: Kentaro Takiguchi
-  license: The MIT License
-  licenseUrl: https://github.com/rejasupotaro/kvs-schema/blob/master/LICENSE.txt
-
-- artifact: io.reactivex.rxjava2:rxandroid:+
-  name: RxAndroid
-  year: 2012
-  copyrightHolder: Netflix, Inc.
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/ReactiveX/RxJava
-
-- artifact: io.reactivex.rxjava2:rxjava:+
-  name: rxjava
-  year: 2012
-  copyrightHolder: Netflix, Inc.
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/ReactiveX/RxJava
-
-- artifact: io.reactivex.rxjava2:rxkotlin:+
-  name: RxKotlin
-  year: 2012
-  copyrightHolder: Netflix, Inc.
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/ReactiveX/RxKotlin
-
-- artifact: org.reactivestreams:reactive-streams:+
-  name: reactive-streams
-  license: CC0
-  copyrightHolder: Reactive Streams Special Interest Group
-  licenseUrl: http://creativecommons.org/publicdomain/zero/1.0/
-  url: http://www.reactive-streams.org/
-  skip: true
-
-- artifact: javax.inject:javax.inject:+
-  name: javax.inject
-  year: 2009
-  copyrightHolder: The JSR-330 Expert Group
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: http://code.google.com/p/atinject/
-
-- artifact: org.jetbrains.kotlin:+:+
-  name: Kotlin
-  year: 2000-2017
-  copyrightHolder: jetbrains, inc.
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://kotlinlang.org
-
-- artifact: org.jsoup:jsoup:+
-  name: jsoup
-  year: 2016
-  copyrightHolder: Jonathan Hedley
-  license: The MIT License
-  licenseUrl: http://jsoup.org/license
-  url: https://jsoup.org/
-
-- artifact: org.jetbrains:annotations:+
-  name: IntelliJ IDEA Annotations
-  copyrightHolder: JetBrains
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: http://www.jetbrains.org
-
-- artifact: com.google.android:flexbox:+
-  name: Flexbox layout
-  copyrightHolder: google inc.
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/google/flexbox-layout
-
-- artifact: com.tomoima.debot:debot-no-op:+
-  name: debot-no-op
-  year: 2017
-  copyrightHolder: Imai
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/tomoima525/debot
-  skip: true
-
-- artifact: com.jakewharton.timber:timber:+
-  name: Timber
-  year: 2013
-  copyrightHolder: Jake Wharton
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/JakeWharton/timber
-  skip: true
-
-- artifact: com.github.mabbas007:TagsEditText:+
-  name: TagsEditText
-  copyrightHolder: mabbas007
-  license: Apache License 2.0
-  licenseUrl: https://api.github.com/licenses/apache-2.0
-  url: https://github.com/mabbas007/TagsEditText
-
-- artifact: com.crashlytics.sdk.android:+:+
-  name: Crashlytics
-  skip: true
-
-- artifact: io.fabric.sdk.android:fabric:+
-  name: Fabric
-  skip: true
-
 - artifact: android.arch.core:+:+
   name: Android Architecture
   year: 2017
   copyrightHolder: The Android Open Source Project
   license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
 - artifact: android.arch.lifecycle:+:+
   name: Android Architecture Lifecycle
   year: 2017
   copyrightHolder: The Android Open Source Project
   license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-
-- artifact: android.arch.persistence:db:+
-  name: Android DB
-  copyrightHolder: Google, Inc.
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://developer.android.com/topic/libraries/architecture/index.html
-
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
 - artifact: android.arch.persistence.room:+:+
   name: Android Room
   copyrightHolder: Google, Inc.
   license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
   url: https://developer.android.com/topic/libraries/architecture/index.html
-
-- artifact: android.arch.persistence:db-framework:+
-  name: Android Support SQLite - Framework Implementation
+- artifact: android.arch.persistence:+:+
+  name: Android Support SQLite
   copyrightHolder: Google, Inc.
   license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
   url: https://developer.android.com/topic/libraries/architecture/index.html
-
+- artifact: androidx.core:core-ktx:+
+  name: Android KTX Core
+  year: 2018
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/android/kotlin-extensions
+- artifact: com.android.databinding:+:+
+  name: Android Databinding Libraries
+  year: 2016
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+- artifact: com.android.support.constraint:+:+
+  name: Android Constraint Layout Libraries
+  year: 2016
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+- artifact: com.android.support:+:+
+  name: Android Support Libraries
+  year: 2016
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+- artifact: com.crashlytics.sdk.android:+:+
+  name: Crashlytics
+  skip: true
+- artifact: com.google.android.gms:+:+
+  name: play-services
+  skip: true
+- artifact: com.google.android:flexbox:+
+  name: Flexbox layout
+  copyrightHolder: google inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/google/flexbox-layout
+- artifact: com.google.code.gson:gson:+
+  name: Gson
+  year: 2008
+  copyrightHolder: Google Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+- artifact: com.google.dagger:+:+
+  name: Dagger2
+  year: 2012
+  copyrightHolder: The Dagger Authors
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+- artifact: com.google.firebase:+:+
+  name: firebase
+  skip: true
+- artifact: com.jakewharton.fliptables:fliptables:+
+  name: Flip Tables
+  year: 2014
+  copyrightHolder: Jake Wharton
+  license: Apache 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/JakeWharton/flip-tables/
+- artifact: com.jakewharton.timber:timber:+
+  name: Timber
+  year: 2013
+  copyrightHolder: Jake Wharton
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/JakeWharton/timber
+- artifact: com.rejasupotaro:kvs-schema:+
+  name: KVS Schema
+  year: 2014
+  copyrightHolder: Kentaro Takiguchi
+  license: The MIT License
+  licenseUrl: https://github.com/rejasupotaro/kvs-schema/blob/master/LICENSE.txt
+- artifact: com.squareup.okhttp3:+:+
+  name: OkHttp3
+  copyrightHolder: Square, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/square/okhttp
+- artifact: com.squareup.okio:okio:+
+  name: Okio
+  year: 2012
+  copyrightHolder: Square, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+- artifact: com.squareup.retrofit2:+:+
+  name: Retrofit2
+  year: 2013
+  copyrightHolder: Square, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+- artifact: com.xwray:groupie-databinding:+
+  name: Groupie Databinding
+  year: 2016
+  copyrightHolder: lisawray
+  license: MIT
+  url: https://github.com/lisawray/groupie
+- artifact: com.xwray:groupie:+
+  name: Groupie
+  year: 2016
+  copyrightHolder: lisawray
+  license: MIT
+  url: https://github.com/lisawray/groupie
+- artifact: io.fabric.sdk.android:fabric:+
+  name: Fabric
+  skip: true
+- artifact: io.reactivex.rxjava2:rxandroid:+
+  name: RxAndroid
+  year: 2012
+  copyrightHolder: Netflix, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/ReactiveX/RxJava
+- artifact: io.reactivex.rxjava2:rxjava:+
+  name: RxJava
+  year: 2012
+  copyrightHolder: Netflix, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/ReactiveX/RxJava
+- artifact: io.reactivex.rxjava2:rxkotlin:+
+  name: RxKotlin
+  year: 2012
+  copyrightHolder: Netflix, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/ReactiveX/RxKotlin
+- artifact: javax.inject:javax.inject:+
+  name: javax.inject
+  year: 2009
+  copyrightHolder: The JSR-330 Expert Group
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://code.google.com/p/atinject/
 - artifact: org.greenrobot:eventbus:+
   name: EventBus
   year: 2012-2016
   copyrightHolder: Markus Junginger, greenrobot
   license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: http://greenrobot.org/eventbus/
-
-- artifact: com.xwray:groupie:+
-  name: groupie
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://greenrobot.org/eventbus/
+- artifact: org.jetbrains.kotlin:+:+
+  name: Kotlin
+  year: 2000-2017
+  copyrightHolder: jetbrains, inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://kotlinlang.org
+- artifact: org.jetbrains:annotations:+
+  name: IntelliJ IDEA Annotations
+  copyrightHolder: JetBrains
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://www.jetbrains.org
+- artifact: org.jsoup:jsoup:+
+  name: jsoup
   year: 2016
-  copyrightHolder: lisawray
-  license: MIT
-  url: https://github.com/lisawray/groupie
-
-- artifact: com.xwray:groupie-databinding:+
-  name: groupie databinding
-  year: 2016
-  copyrightHolder: lisawray
-  license: MIT
-  url: https://github.com/lisawray/groupie
+  copyrightHolder: Jonathan Hedley
+  license: The MIT License
+  licenseUrl: https://jsoup.org/license
+  url: https://jsoup.org/
+- artifact: org.reactivestreams:reactive-streams:+
+  name: Reactive Streams
+  license: CC0
+  copyrightHolder: Reactive Streams Special Interest Group
+  licenseUrl: https://creativecommons.org/publicdomain/zero/1.0/
+  url: https://www.reactive-streams.org/
