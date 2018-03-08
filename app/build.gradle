@@ -183,6 +183,9 @@ dependencies {
   kapt depends.lifecycle.compiler
   kapt depends.room.compiler
 
+  // Firebase
+  implementation depends.firebase.core
+
   // Network
   implementation depends.retrofit.core
   implementation depends.retrofit.converterGson

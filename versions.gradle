@@ -40,6 +40,7 @@ ext {
 
       // implementation
       supportLibrary  : '27.1.0',
+      firebase        : '11.8.0',
       kotlin          : '1.2.30',
       ktlint          : '0.15.0',
       retrofit        : '2.3.0',
@@ -76,6 +77,13 @@ ext {
           constraint   : "com.android.support.constraint:constraint-layout:1.0.2",
           preference   : "com.android.support:preference-v7:${versions.supportLibrary}",
           preferenceV14: "com.android.support:preference-v14:${versions.supportLibrary}",
+      ],
+
+      // ----------------------------------------
+      // Firebase
+      // ----------------------------------------
+      firebase     : [
+          core: "com.google.firebase:firebase-core:${versions.firebase}",
       ],
 
       // ----------------------------------------
