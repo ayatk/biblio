@@ -22,6 +22,7 @@ import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import org.junit.Test
 
+@Suppress("TooManyFunctions")
 class QueryBuilderTest {
 
   @Test

@@ -42,16 +42,12 @@ class EpisodeViewModel @Inject constructor(
       useCase.getEpisode(novel, page)
           .toResult(schedulerProvider)
           .observeOn(schedulerProvider.ui())
-          .subscribe({ result ->
+          .subscribe { result ->
             when (result) {
-              is Result.Success -> {
-                episode.postValue(result.data)
-              }
-              is Result.Failure -> {
-                Timber.e(result.e)
-              }
+              is Result.Success -> episode.postValue(result.data)
+              is Result.Failure -> Timber.e(result.e)
             }
-          })
+          }
           .addTo(compositeDisposable)
 
   override fun onCleared() {

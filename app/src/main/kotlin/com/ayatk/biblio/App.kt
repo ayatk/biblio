@@ -32,10 +32,9 @@ open class App : DaggerApplication() {
     Fabric.with(this, Crashlytics())
   }
 
-  override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-    return DaggerAppComponent
-        .builder()
-        .application(this)
-        .build()
-  }
+  override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
+      DaggerAppComponent
+          .builder()
+          .application(this)
+          .build()
 }

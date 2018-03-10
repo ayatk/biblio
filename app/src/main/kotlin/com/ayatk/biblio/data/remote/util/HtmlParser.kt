@@ -113,11 +113,10 @@ class HtmlParser {
     )
   }
 
-  private fun getFormattedContent(content: String): String {
-    return content
-        .replace("\n", "")
-        .replace("<br */?>".toRegex(), "\n")
-        .trim { it <= '　' }
-        .replace("</?(ru?by?|rt|rp)>".toRegex(), "")
-  }
+  private fun getFormattedContent(content: String): String =
+      content
+          .replace("\n", "")
+          .replace("<br */?>".toRegex(), "\n")
+          .trim { it <= '　' }
+          .replace("</?(ru?by?|rt|rp)>".toRegex(), "")
 }

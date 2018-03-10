@@ -58,9 +58,7 @@ class HomeActivity : DaggerAppCompatActivity() {
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
-      R.id.nav_search -> startActivity(
-          SearchActivity.createIntent(this)
-      )
+      R.id.nav_search -> startActivity(SearchActivity.createIntent(this))
     }
     return super.onOptionsItemSelected(item)
   }
@@ -74,12 +72,12 @@ class HomeActivity : DaggerAppCompatActivity() {
     binding.bottomNav.disableShiftingMode()
     changePage(Page.forMenuId(defaultPrefs.homePageState))
     binding.bottomNav.selectedItemId = defaultPrefs.homePageState
-    binding.bottomNav.setOnNavigationItemSelectedListener({
+    binding.bottomNav.setOnNavigationItemSelectedListener {
       defaultPrefs.homePageState = it.itemId
       changePage(Page.forMenuId(it.itemId))
       invalidateOptionsMenu()
       true
-    })
+    }
   }
 
   private fun toggleToolbarElevation(enable: Boolean) {

@@ -80,9 +80,7 @@ class IndexFragment : DaggerFragment() {
           })
           binding.recyclerView.setVisible(indexes.isNotEmpty())
         }
-        is Result.Failure -> {
-          Timber.e(result.e)
-        }
+        is Result.Failure -> Timber.e(result.e)
       }
     })
 
@@ -92,10 +90,9 @@ class IndexFragment : DaggerFragment() {
   companion object {
     private const val BUNDLE_ARGS_NOVEL = "NOVEL"
 
-    fun newInstance(novel: Novel): IndexFragment {
-      return IndexFragment().apply {
-        arguments = bundleOf(BUNDLE_ARGS_NOVEL to novel)
-      }
-    }
+    fun newInstance(novel: Novel): IndexFragment =
+        IndexFragment().apply {
+          arguments = bundleOf(BUNDLE_ARGS_NOVEL to novel)
+        }
   }
 }

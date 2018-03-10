@@ -38,53 +38,49 @@ import javax.inject.Singleton
 class NetworkModule {
   @Singleton
   @Provides
-  fun provideNarouApiService(client: OkHttpClient): NarouApiService {
-    return Retrofit.Builder()
-        .client(client)
-        .baseUrl("http://api.syosetu.com")
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .addConverterFactory(GsonConverterFactory.create(createGson()))
-        .build()
-        .create<NarouApiService>(NarouApiService::class.java)
-  }
+  fun provideNarouApiService(client: OkHttpClient): NarouApiService =
+      Retrofit.Builder()
+          .client(client)
+          .baseUrl("http://api.syosetu.com")
+          .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+          .addConverterFactory(GsonConverterFactory.create(createGson()))
+          .build()
+          .create<NarouApiService>(NarouApiService::class.java)
 
   @Singleton
   @Provides
   @Narou
-  fun provideNarouService(client: OkHttpClient): NarouService {
-    return Retrofit.Builder()
-        .client(client)
-        .baseUrl("https://ncode.syosetu.com")
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .addConverterFactory(ScalarsConverterFactory.create())
-        .build()
-        .create<NarouService>(NarouService::class.java)
-  }
+  fun provideNarouService(client: OkHttpClient): NarouService =
+      Retrofit.Builder()
+          .client(client)
+          .baseUrl("https://ncode.syosetu.com")
+          .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+          .addConverterFactory(ScalarsConverterFactory.create())
+          .build()
+          .create<NarouService>(NarouService::class.java)
 
   @Singleton
   @Provides
   @Nocturne
-  fun provideNarou18Service(client: OkHttpClient): NarouService {
-    return Retrofit.Builder()
-        .client(client)
-        .baseUrl("https://novel18.syosetu.com")
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .addConverterFactory(ScalarsConverterFactory.create())
-        .build()
-        .create<NarouService>(NarouService::class.java)
-  }
+  fun provideNarou18Service(client: OkHttpClient): NarouService =
+      Retrofit.Builder()
+          .client(client)
+          .baseUrl("https://novel18.syosetu.com")
+          .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+          .addConverterFactory(ScalarsConverterFactory.create())
+          .build()
+          .create<NarouService>(NarouService::class.java)
 
-  private fun createGson(): Gson {
-    return GsonBuilder()
-        .setDateFormat("yyyy-MM-dd HH:mm:ss")
-        .registerTypeAdapter(
-            BigGenre::class.java,
-            JsonDeserializer { jsonElement, _, _ -> BigGenre.of(jsonElement.asInt) }
-        )
-        .registerTypeAdapter(
-            Genre::class.java,
-            JsonDeserializer { jsonElement, _, _ -> Genre.of(jsonElement.asInt) }
-        )
-        .create()
-  }
+  private fun createGson(): Gson =
+      GsonBuilder()
+          .setDateFormat("yyyy-MM-dd HH:mm:ss")
+          .registerTypeAdapter(
+              BigGenre::class.java,
+              JsonDeserializer { jsonElement, _, _ -> BigGenre.of(jsonElement.asInt) }
+          )
+          .registerTypeAdapter(
+              Genre::class.java,
+              JsonDeserializer { jsonElement, _, _ -> Genre.of(jsonElement.asInt) }
+          )
+          .create()
 }

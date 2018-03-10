@@ -63,12 +63,8 @@ class TopRankingFragment : DaggerFragment() {
   private fun bind(data: LiveData<Result<List<Ranking>>>, bind: RankingTopCellView) {
     data.observe(this, { result ->
       when (result) {
-        is Result.Success -> {
-          bind.setRankings(result.data)
-        }
-        is Result.Failure -> {
-          Timber.e(result.e)
-        }
+        is Result.Success -> bind.setRankings(result.data)
+        is Result.Failure -> Timber.e(result.e)
       }
     })
   }

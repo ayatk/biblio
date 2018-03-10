@@ -62,7 +62,7 @@ detekt {
   profile("main") {
     input = "$projectDir/app"
     config = "$projectDir/detekt.yml"
-    filters = ".*/build/.*,.*/test/.*,.*/resources/.*,.*/tmp/.*"
+    filters = ".*/build/.*,.*/resources/.*,.*/tmp/.*"
     output = "${project.buildDir}/reports/detekt"
     parallel = true
   }

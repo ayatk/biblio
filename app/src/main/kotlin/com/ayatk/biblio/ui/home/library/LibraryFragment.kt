@@ -90,9 +90,7 @@ class LibraryFragment : DaggerFragment() {
           binding.emptyView.setVisible(libraries.isEmpty())
           binding.recyclerView.setVisible(libraries.isNotEmpty())
         }
-        is Result.Failure -> {
-          Timber.e(result.e)
-        }
+        is Result.Failure -> Timber.e(result.e)
       }
     })
   }

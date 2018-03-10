@@ -65,6 +65,9 @@ class SearchViewModel @Inject constructor(
   fun saveNovel(novel: Novel) =
       useCase.saveNovel(novel)
           .observeOn(schedulerProvider.ui())
-          .subscribeBy(onError = { e -> Timber.e(e) })
+          .subscribeBy(
+              onComplete = { /* no-op */ },
+              onError = { e -> Timber.e(e) }
+          )
           .addTo(compositeDisposable)
 }

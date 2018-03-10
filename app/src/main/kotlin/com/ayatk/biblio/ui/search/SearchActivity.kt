@@ -117,9 +117,7 @@ class SearchActivity : DaggerAppCompatActivity() {
           })
           binding.searchResult.setVisible(novels.isNotEmpty())
         }
-        is Result.Failure -> {
-          Timber.e(result.e)
-        }
+        is Result.Failure -> Timber.e(result.e)
       }
     }
   }
