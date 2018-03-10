@@ -10,11 +10,11 @@ platform :android do
 
   desc 'Submit a new Nightly Build to DeployGate'
   lane :nightly do
-    gradle(task: 'assembleNightlyRelease')
+    gradle(task: 'assembleNightly')
     deploygate(
         api_token: ENV['DEPLOY_GATE_API_KEY'],
         user: 'ayatk',
-        apk: "#{ENV['ROOT_DIR']}/app/build/outputs/apk/nightly/release/biblio-v#{ENV['VERSION']}-#{ENV['CIRCLE_BUILD_NUM']}.apk",
+        apk: "#{ENV['ROOT_DIR']}/app/build/outputs/apk/nightly/biblio-v#{ENV['VERSION']}-#{ENV['CIRCLE_BUILD_NUM']}.apk",
         message: "Build #{ENV['CIRCLE_BUILD_NUM']}",
         release_note: "Build #{ENV['CIRCLE_BUILD_NUM']}",
         distribution_key: '3f542ebaa365a1893d3467b34eb27c0a77ca67a7'
@@ -24,10 +24,10 @@ platform :android do
   desc 'Deploy a new version to the Google Play'
   lane :deploy do
     track = ENV['VERSION'].dup
-    gradle(task: 'assembleProductionRelease')
+    gradle(task: 'assembleRelease')
     supply(
         track: track[/\d+\.\d+\.\d+-(\w*\d*)/, 1] || 'production',
-        apk: "#{ENV['ROOT_DIR']}/app/build/outputs/apk/production/release/biblio-v#{ENV['VERSION']}-#{ENV['CIRCLE_BUILD_NUM']}.apk"
+        apk: "#{ENV['ROOT_DIR']}/app/build/outputs/apk/release/biblio-v#{ENV['VERSION']}-#{ENV['CIRCLE_BUILD_NUM']}.apk"
     )
   end
 
