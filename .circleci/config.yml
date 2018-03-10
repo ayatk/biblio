@@ -30,7 +30,7 @@ jobs:
           name: Build APK
           command: |
             ./gradlew generateLicensePage
-            ./gradlew assembleProductionRelease -PdisablePreDex
+            ./gradlew assembleRelease -PdisablePreDex
       - store_artifacts:
           path: app/build/outputs/apk
           destination: apk
