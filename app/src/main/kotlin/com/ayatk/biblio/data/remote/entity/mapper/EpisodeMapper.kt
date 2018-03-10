@@ -33,4 +33,3 @@ fun NarouEpisode.toEntity(): EpisodeEntity =
         content,
         afterContent
     )
-
