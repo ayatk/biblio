@@ -20,16 +20,18 @@ import com.ayatk.biblio.data.entity.EpisodeEntity
 import com.ayatk.biblio.data.remote.entity.NarouEpisode
 import java.util.UUID
 
-fun NarouEpisode.toEntity(): EpisodeEntity =
-    EpisodeEntity(
-        UUID.nameUUIDFromBytes(
-            "$ncode-$page-${UUID.nameUUIDFromBytes("$ncode-$page".toByteArray())}".toByteArray()
-        ),
-        ncode,
-        UUID.nameUUIDFromBytes("$ncode-$page".toByteArray()),
-        page,
-        subtitle,
-        prevContent,
-        content,
-        afterContent
-    )
+fun NarouEpisode.toEntity(): EpisodeEntity {
+  val indexId = UUID.nameUUIDFromBytes("$ncode-$page".toByteArray())
+  return EpisodeEntity(
+      UUID.nameUUIDFromBytes(
+          "$ncode-$page-$indexId".toByteArray()
+      ),
+      ncode,
+      indexId,
+      page,
+      subtitle,
+      prevContent,
+      content,
+      afterContent
+  )
+}
