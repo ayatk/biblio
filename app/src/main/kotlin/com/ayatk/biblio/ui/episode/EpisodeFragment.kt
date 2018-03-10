@@ -56,6 +56,8 @@ class EpisodeFragment : DaggerFragment() {
     binding.setLifecycleOwner(this)
     binding.viewModel = viewModel
 
+    viewModel.start(novel, page)
+
     return binding.root
   }
 

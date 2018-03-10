@@ -39,12 +39,18 @@ import java.util.UUID
 )
 data class EpisodeEntity(
 
+    /**
+     * codeとpageとindexのIDをハイフンでつなぎ合わせてUUIDに変換したもの
+     */
     @PrimaryKey
     var id: UUID,
 
     @ColumnInfo(name = "novel_code", index = true)
     var code: String,
 
+    /**
+     * codeとpageをハイフンでつなぎ合わせてUUIDに変換したもの
+     */
     @ColumnInfo(name = "index_id", index = true)
     var indexId: UUID,
 

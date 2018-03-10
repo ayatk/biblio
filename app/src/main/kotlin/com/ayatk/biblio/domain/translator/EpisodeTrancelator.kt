@@ -14,18 +14,24 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.repository
+package com.ayatk.biblio.domain.translator
 
 import com.ayatk.biblio.data.entity.EpisodeEntity
-import com.ayatk.biblio.data.entity.NovelEntity
-import io.reactivex.Completable
-import io.reactivex.Flowable
+import com.ayatk.biblio.model.Episode
+import com.ayatk.biblio.model.Novel
 
-interface EpisodeRepository {
+fun EpisodeEntity.toModel(novel: Novel): Episode =
+    Episode(
+        id,
+        novel,
+        page,
+        subtitle,
+        prevContent,
+        content,
+        afterContent
+    )
 
-  fun find(entity: NovelEntity, page: Int): Flowable<EpisodeEntity>
-
-  fun save(episode: EpisodeEntity): Completable
-
-  fun deleteAll(code: String): Completable
-}
+//fun Index.toEntity(): IndexEntity =
+//    IndexEntity(
+//
+//    )
