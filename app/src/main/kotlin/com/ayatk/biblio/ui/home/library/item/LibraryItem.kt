@@ -22,8 +22,9 @@ import com.ayatk.biblio.databinding.ItemLibraryBinding
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.NovelState
-import com.ayatk.biblio.util.DateFormat
+import com.ayatk.biblio.util.DatePattern
 import com.ayatk.biblio.util.ext.setVisible
+import com.ayatk.biblio.util.format
 import com.xwray.groupie.databinding.BindableItem
 
 class LibraryItem(
@@ -40,7 +41,7 @@ class LibraryItem(
       it.libraryItem.setOnClickListener {
         onClickListener(library.novel)
       }
-      it.lastUpdate.text = DateFormat.yyyyMMddkkmm.format(library.novel.lastUpload)
+      it.lastUpdate.text = library.novel.lastUpload.format(DatePattern.YYYY_MM_DD_KK_MM)
       it.readProgress.setVisible(library.novel.novelState != NovelState.SHORT_STORY)
       it.tagLayout.setVisible(defaultPrefs.showTagAtLibrary && library.tag.isNotEmpty())
     }

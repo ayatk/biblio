@@ -25,7 +25,8 @@ import android.content.Context
 import com.ayatk.biblio.domain.usecase.DetailUseCase
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.util.helper.Navigator
-import com.ayatk.biblio.util.DateFormat
+import com.ayatk.biblio.util.DatePattern
+import com.ayatk.biblio.util.format
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
@@ -43,7 +44,7 @@ class InfoViewModel @Inject constructor(
 
   var tags = MutableLiveData<List<String>>()
 
-  fun lastUpdate(): String = DateFormat.yyyyMMddkkmmJP.format(novel.lastUpload)
+  fun lastUpdate(): String = novel.lastUpload.format(DatePattern.YYYY_MM_DD_KK_MM_JP)
 
   fun url(): String = novel.publisher.url + novel.code.toLowerCase()
 

@@ -17,12 +17,16 @@
 package com.ayatk.biblio.util
 
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
-object DateFormat {
-  @JvmStatic
-  val yyyyMMddkkmm = SimpleDateFormat("yyyy/MM/dd kk:mm", Locale.getDefault())
-
-  @JvmStatic
-  val yyyyMMddkkmmJP = SimpleDateFormat("yyyy年MM月dd日 kk時mm分", Locale.getDefault())
+enum class DatePattern(val pattern: String) {
+  YYYY_MM_DD_KK_MM("yyyy/MM/dd kk:mm"),
+  YYYY_MM_DD_KK_MM_JP("yyyy年MM月dd日 kk時mm分"),
 }
+
+fun String.purseDate(pattern: DatePattern): Date =
+    SimpleDateFormat(pattern.pattern, Locale.getDefault()).parse(this)
+
+fun Date.format(pattern: DatePattern): String =
+    SimpleDateFormat(pattern.pattern, Locale.getDefault()).format(this)
