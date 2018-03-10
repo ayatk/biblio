@@ -92,10 +92,9 @@ class IndexFragment : DaggerFragment() {
   companion object {
     private const val BUNDLE_ARGS_NOVEL = "NOVEL"
 
-    fun newInstance(novel: Novel): IndexFragment {
-      return IndexFragment().apply {
-        arguments = bundleOf(BUNDLE_ARGS_NOVEL to novel)
-      }
-    }
+    fun newInstance(novel: Novel): IndexFragment =
+        IndexFragment().apply {
+          arguments = bundleOf(BUNDLE_ARGS_NOVEL to novel)
+        }
   }
 }

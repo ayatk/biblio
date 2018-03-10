@@ -58,11 +58,10 @@ class RankingActivity : DaggerAppCompatActivity() {
   companion object {
     private const val EXTRA_RANKING_TYPE = "ranking_type"
 
-    fun createIntent(context: Context, rankingType: RankingType): Intent {
-      return Intent(context, RankingActivity::class.java).extraOf(
-          EXTRA_RANKING_TYPE to rankingType
-      )
-    }
+    fun createIntent(context: Context, rankingType: RankingType): Intent =
+        Intent(context, RankingActivity::class.java).extraOf(
+            EXTRA_RANKING_TYPE to rankingType
+        )
   }
 
   inner class RankingPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {

@@ -63,13 +63,12 @@ class EpisodeFragment : DaggerFragment() {
     private const val BUNDLE_ARGS_NOVEL = "NOVEL"
     private const val BUNDLE_ARGS_NOVEL_PAGE = "NOVEL_PAGE"
 
-    fun newInstance(novel: Novel, page: Int): EpisodeFragment {
-      return EpisodeFragment().apply {
-        arguments = bundleOf(
-            BUNDLE_ARGS_NOVEL to novel,
-            BUNDLE_ARGS_NOVEL_PAGE to page
-        )
-      }
-    }
+    fun newInstance(novel: Novel, page: Int): EpisodeFragment =
+        EpisodeFragment().apply {
+          arguments = bundleOf(
+              BUNDLE_ARGS_NOVEL to novel,
+              BUNDLE_ARGS_NOVEL_PAGE to page
+          )
+        }
   }
 }

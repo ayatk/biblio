@@ -65,10 +65,9 @@ class InfoFragment : DaggerFragment() {
   companion object {
     private const val BUNDLE_ARGS_NOVEL = "NOVEL"
 
-    fun newInstance(novel: Novel): InfoFragment {
-      return InfoFragment().apply {
-        arguments = bundleOf(BUNDLE_ARGS_NOVEL to novel)
-      }
-    }
+    fun newInstance(novel: Novel): InfoFragment =
+        InfoFragment().apply {
+          arguments = bundleOf(BUNDLE_ARGS_NOVEL to novel)
+        }
   }
 }

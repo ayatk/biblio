@@ -128,7 +128,5 @@ class QueryBuilder {
    * 設定したQueryをMapに変換します
    * @return Map<String, String>
    */
-  fun build(): Map<String, String> {
-    return query.toMap()
-  }
+  fun build(): Map<String, String> = query.toMap()
 }

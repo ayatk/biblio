@@ -35,15 +35,14 @@ class TopRankingUseCaseImpl @Inject constructor(
     private const val RANK_SIZE = 5
   }
 
-  override fun ranking(publisher: Publisher, rankingType: RankingType): Flowable<List<Ranking>> {
-    return when (publisher) {
-      Publisher.NAROU ->
-        repository.narouRanking(rankingType, 0 until RANK_SIZE)
-            .subscribeOn(schedulerProvider.io())
+  override fun ranking(publisher: Publisher, rankingType: RankingType): Flowable<List<Ranking>> =
+      when (publisher) {
+        Publisher.NAROU ->
+          repository.narouRanking(rankingType, 0 until RANK_SIZE)
+              .subscribeOn(schedulerProvider.io())
 
-      Publisher.NOCTURNE_MOONLIGHT ->
-        repository.nocturneRanking(rankingType, 0 until RANK_SIZE)
-            .subscribeOn(schedulerProvider.io())
-    }
-  }
+        Publisher.NOCTURNE_MOONLIGHT ->
+          repository.nocturneRanking(rankingType, 0 until RANK_SIZE)
+              .subscribeOn(schedulerProvider.io())
+      }
 }

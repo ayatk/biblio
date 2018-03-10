@@ -97,10 +97,9 @@ class RankingListFragment : DaggerFragment() {
   companion object {
     private const val BUNDLE_ARGS_RANKING_TYPE = "ranking_type"
 
-    fun newInstance(rankingType: RankingType): Fragment {
-      return RankingListFragment().apply {
-        arguments = bundleOf(BUNDLE_ARGS_RANKING_TYPE to rankingType)
-      }
-    }
+    fun newInstance(rankingType: RankingType): Fragment =
+        RankingListFragment().apply {
+          arguments = bundleOf(BUNDLE_ARGS_RANKING_TYPE to rankingType)
+        }
   }
 }

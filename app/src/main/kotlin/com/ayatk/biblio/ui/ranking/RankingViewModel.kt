@@ -33,9 +33,8 @@ class RankingViewModel @Inject constructor(
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
-  fun rankings(rankingType: RankingType): LiveData<Result<List<Ranking>>> {
-    return useCase.ranking(Publisher.NAROU, rankingType)
-        .toResult(schedulerProvider)
-        .toLiveData()
-  }
+  fun rankings(rankingType: RankingType): LiveData<Result<List<Ranking>>> =
+      useCase.ranking(Publisher.NAROU, rankingType)
+          .toResult(schedulerProvider)
+          .toLiveData()
 }

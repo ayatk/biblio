@@ -41,29 +41,26 @@ object QueryTime {
    * @param date
    * @return String 2017/2/1 -> 20170201
    */
-  fun day2MonthOne(date: Date): String {
-    return dateFormat.format(
-        cal.apply {
-          time = date
-          set(Calendar.DAY_OF_MONTH, 1)
-        }.time
-    )
-  }
+  fun day2MonthOne(date: Date): String = dateFormat.format(
+      cal.apply {
+        time = date
+        set(Calendar.DAY_OF_MONTH, 1)
+      }.time
+  )
 
   /**
    *
    */
-  fun day2Tuesday(date: Date): String {
-    return dateFormat.format(
-        cal.apply {
-          time = date
-          var week = get(Calendar.DAY_OF_WEEK)
-          if (week == Calendar.MONDAY || week == Calendar.SUNDAY) {
-            week += Calendar.DAY_OF_WEEK
-          }
-          add(Calendar.DAY_OF_MONTH, -week)
-          add(Calendar.DAY_OF_MONTH, Calendar.TUESDAY)
-        }.time
-    )
-  }
+  fun day2Tuesday(date: Date): String =
+      dateFormat.format(
+          cal.apply {
+            time = date
+            var week = get(Calendar.DAY_OF_WEEK)
+            if (week == Calendar.MONDAY || week == Calendar.SUNDAY) {
+              week += Calendar.DAY_OF_WEEK
+            }
+            add(Calendar.DAY_OF_MONTH, -week)
+            add(Calendar.DAY_OF_MONTH, Calendar.TUESDAY)
+          }.time
+      )
 }
