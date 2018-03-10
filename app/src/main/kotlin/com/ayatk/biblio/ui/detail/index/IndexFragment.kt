@@ -56,7 +56,7 @@ class IndexFragment : DaggerFragment() {
 
   private val indexSection = Section()
   private val onClickListener = { index: Index ->
-    Navigator.navigateToDetail(context!!, index.novel)
+    Navigator.navigateToEpisode(context!!, index.novel, index.page)
   }
 
   override fun onCreateView(

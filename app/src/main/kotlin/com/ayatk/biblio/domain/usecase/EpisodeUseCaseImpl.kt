@@ -17,6 +17,8 @@
 package com.ayatk.biblio.domain.usecase
 
 import com.ayatk.biblio.data.repository.EpisodeRepository
+import com.ayatk.biblio.domain.translator.toEntity
+import com.ayatk.biblio.domain.translator.toModel
 import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.util.rx.SchedulerProvider
@@ -28,7 +30,8 @@ class EpisodeUseCaseImpl @Inject constructor(
     private val schedulerProvider: SchedulerProvider
 ) : EpisodeUseCase {
 
-  override fun getEpisode(novel: Novel, page: Int): Flowable<Episode> {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-  }
+  override fun getEpisode(novel: Novel, page: Int): Flowable<Episode> =
+      repository.find(novel.toEntity(), page)
+          .map { it.toModel(novel) }
+          .subscribeOn(schedulerProvider.io())
 }

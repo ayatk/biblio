@@ -14,18 +14,24 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.data.repository
+package com.ayatk.biblio.data.remote.entity.mapper
 
 import com.ayatk.biblio.data.entity.EpisodeEntity
-import com.ayatk.biblio.data.entity.NovelEntity
-import io.reactivex.Completable
-import io.reactivex.Flowable
+import com.ayatk.biblio.data.remote.entity.NarouEpisode
+import java.util.UUID
 
-interface EpisodeRepository {
-
-  fun find(entity: NovelEntity, page: Int): Flowable<EpisodeEntity>
-
-  fun save(episode: EpisodeEntity): Completable
-
-  fun deleteAll(code: String): Completable
+fun NarouEpisode.toEntity(): EpisodeEntity {
+  val indexId = UUID.nameUUIDFromBytes("$ncode-$page".toByteArray())
+  return EpisodeEntity(
+      UUID.nameUUIDFromBytes(
+          "$ncode-$page-$indexId".toByteArray()
+      ),
+      ncode,
+      indexId,
+      page,
+      subtitle,
+      prevContent,
+      content,
+      afterContent
+  )
 }
