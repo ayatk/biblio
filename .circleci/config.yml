@@ -32,8 +32,8 @@ jobs:
             ./gradlew generateLicensePage
             ./gradlew assembleRelease -PdisablePreDex
       - store_artifacts:
-          path: app/build/outputs/apk
-          destination: apk
+          path: app/build/outputs
+          destination: outputs
       - save_cache:
           paths:
             - ~/.gradle
