@@ -87,9 +87,7 @@ class RankingListFragment : DaggerFragment() {
           binding.progress.setVisible(rankings.isEmpty())
           binding.list.setVisible(rankings.isNotEmpty())
         }
-        is Result.Failure -> {
-          Timber.e(result.e)
-        }
+        is Result.Failure -> Timber.e(result.e)
       }
     })
   }

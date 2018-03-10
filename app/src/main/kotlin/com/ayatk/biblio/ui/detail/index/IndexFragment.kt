@@ -80,9 +80,7 @@ class IndexFragment : DaggerFragment() {
           })
           binding.recyclerView.setVisible(indexes.isNotEmpty())
         }
-        is Result.Failure -> {
-          Timber.e(result.e)
-        }
+        is Result.Failure -> Timber.e(result.e)
       }
     })
 

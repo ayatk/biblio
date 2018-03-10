@@ -44,12 +44,8 @@ class EpisodeViewModel @Inject constructor(
           .observeOn(schedulerProvider.ui())
           .subscribe({ result ->
             when (result) {
-              is Result.Success -> {
-                episode.postValue(result.data)
-              }
-              is Result.Failure -> {
-                Timber.e(result.e)
-              }
+              is Result.Success -> episode.postValue(result.data)
+              is Result.Failure -> Timber.e(result.e)
             }
           })
           .addTo(compositeDisposable)
