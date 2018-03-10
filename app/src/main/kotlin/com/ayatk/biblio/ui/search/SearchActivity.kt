@@ -66,7 +66,7 @@ class SearchActivity : DaggerAppCompatActivity() {
   private val onItemClickListener = { novel: Novel ->
     navigateToDetail(novel)
   }
-  private val onDownloadClickListener = { novel: Novel ->
+  private val onDownloadClickListener: (Novel) -> Unit = { novel: Novel ->
     viewModel.saveNovel(novel)
   }
 
