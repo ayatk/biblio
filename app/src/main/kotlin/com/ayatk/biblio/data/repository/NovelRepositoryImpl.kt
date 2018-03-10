@@ -66,5 +66,7 @@ class NovelRepositoryImpl @Inject constructor(
       }
 
   override fun delete(novel: NovelEntity): Completable =
-      Completable.fromRunnable { dao::delete }
+      Completable.fromRunnable {
+        dao.delete(novel)
+      }
 }

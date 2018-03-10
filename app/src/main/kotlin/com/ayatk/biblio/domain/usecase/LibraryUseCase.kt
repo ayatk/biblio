@@ -17,6 +17,7 @@
 package com.ayatk.biblio.domain.usecase
 
 import com.ayatk.biblio.model.Library
+import com.ayatk.biblio.model.Novel
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
@@ -31,4 +32,9 @@ interface LibraryUseCase {
    * 呼ばれるたびにRemoteからデータを引っ張って来てDBを更新する
    */
   fun update(): Completable
+
+  /**
+   * 小説を消しちゃう
+   */
+  fun delete(novel: Novel): Completable
 }

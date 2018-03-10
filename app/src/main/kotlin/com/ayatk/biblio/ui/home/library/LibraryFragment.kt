@@ -18,6 +18,8 @@ package com.ayatk.biblio.ui.home.library
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
+import android.support.v7.widget.PopupMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,6 +59,22 @@ class LibraryFragment : DaggerFragment() {
   private val onClickListener = { novel: Novel ->
     context!!.navigateToDetail(novel)
   }
+  private val onMenuClickListener = { anchor: View, novel: Novel ->
+    PopupMenu(context!!, anchor).apply {
+      inflate(R.menu.menu_library_item)
+      setOnMenuItemClickListener {
+        when (it.itemId) {
+          R.id.item_novel_delete -> {
+            deleteDialog(novel)
+            true
+          }
+          else -> false
+        }
+      }
+      show()
+    }
+    false
+  }
 
   override fun onCreateView(
       inflater: LayoutInflater,
@@ -85,7 +103,7 @@ class LibraryFragment : DaggerFragment() {
         is Result.Success -> {
           val libraries = result.data
           librarySection.update(libraries.map {
-            LibraryItem(it, defaultPrefs, onClickListener)
+            LibraryItem(it, defaultPrefs, onClickListener, onMenuClickListener)
           })
           binding.emptyView.setVisible(libraries.isEmpty())
           binding.recyclerView.setVisible(libraries.isNotEmpty())
@@ -94,6 +112,18 @@ class LibraryFragment : DaggerFragment() {
       }
     })
   }
+
+  private fun deleteDialog(novel: Novel) =
+      AlertDialog.Builder(context!!)
+          .setTitle(context!!.getString(R.string.delete_popup_title, novel.title))
+          .setMessage(R.string.delete_popup_message)
+          .setPositiveButton(R.string.delete_popup_positive) { _, _ ->
+            viewModel.delete(novel)
+          }
+          .setNegativeButton(R.string.delete_popup_negative) { _, _ ->
+            /* no-op */
+          }
+          .show()
 
   companion object {
     fun newInstance(): LibraryFragment = LibraryFragment()
