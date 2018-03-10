@@ -119,4 +119,11 @@
   <string name="info_icon_description">info icon</string>
   <string name="keyword_icon_description">keyword icon</string>
   <string name="tag_icon_description">tag_icon</string>
+
+  <!-- Novel delete -->
+  <string name="menu_delete_novel">この小説を削除</string>
+  <string name="delete_popup_title">「%1$s」をライブラリから削除しますか?</string>
+  <string name="delete_popup_message">小説を削除するとしおりやタグなども消えてしまいます。</string>
+  <string name="delete_popup_positive">消しちゃう！</string>
+  <string name="delete_popup_negative">やだ！！！</string>
 </resources>

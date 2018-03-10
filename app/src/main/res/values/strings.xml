@@ -121,4 +121,12 @@
   <string name="info_icon_description">info icon</string>
   <string name="keyword_icon_description">keyword icon</string>
   <string name="tag_icon_description">tag_icon</string>
+
+
+  <!-- Novel delete -->
+  <string name="menu_delete_novel">Delete this novel</string>
+  <string name="delete_popup_title">Would you like to delete "%1$s" from the library?</string>
+  <string name="delete_popup_message">When you delete a novel, bookmarks and tags will also disappear.</string>
+  <string name="delete_popup_positive">delete!!</string>
+  <string name="delete_popup_negative">Nooooooo!!</string>
 </resources>

@@ -21,11 +21,13 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.ayatk.biblio.domain.usecase.LibraryUseCase
 import com.ayatk.biblio.model.Library
+import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.util.toResult
 import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.ext.toLiveData
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
 import javax.inject.Inject
@@ -56,5 +58,12 @@ class LibraryViewModel @Inject constructor(
             onComplete = { refreshing.postValue(false) },
             onError = Timber::e
         )
+        .addTo(compositeDisposable)
   }
+
+  fun delete(novel: Novel) =
+      useCase.delete(novel)
+          .observeOn(schedulerProvider.ui())
+          .subscribe()
+          .addTo(compositeDisposable)
 }

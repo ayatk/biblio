@@ -16,21 +16,21 @@
 
 package com.ayatk.biblio.ui.home.library.item
 
+import android.view.View
 import com.ayatk.biblio.R
 import com.ayatk.biblio.data.DefaultPrefs
 import com.ayatk.biblio.databinding.ItemLibraryBinding
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.NovelState
-import com.ayatk.biblio.util.DatePattern
 import com.ayatk.biblio.util.ext.setVisible
-import com.ayatk.biblio.util.format
 import com.xwray.groupie.databinding.BindableItem
 
 class LibraryItem(
     private val library: Library,
     private val defaultPrefs: DefaultPrefs,
-    private val onClickListener: (Novel) -> Unit
+    private val onClickListener: (Novel) -> Unit,
+    private val onMenuClickListener: (View, Novel) -> Boolean
 ) : BindableItem<ItemLibraryBinding>() {
 
   override fun getLayout(): Int = R.layout.item_library
@@ -41,7 +41,9 @@ class LibraryItem(
       it.libraryItem.setOnClickListener {
         onClickListener(library.novel)
       }
-      it.lastUpdate.text = library.novel.lastUpload.format(DatePattern.YYYY_MM_DD_KK_MM)
+      it.menu.setOnClickListener {
+        onMenuClickListener(it, library.novel)
+      }
       it.readProgress.setVisible(library.novel.novelState != NovelState.SHORT_STORY)
       it.tagLayout.setVisible(defaultPrefs.showTagAtLibrary && library.tag.isNotEmpty())
     }

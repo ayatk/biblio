@@ -18,8 +18,10 @@ package com.ayatk.biblio.domain.usecase
 
 import com.ayatk.biblio.data.repository.IndexRepository
 import com.ayatk.biblio.data.repository.NovelRepository
+import com.ayatk.biblio.domain.translator.toEntity
 import com.ayatk.biblio.domain.translator.toLibrary
 import com.ayatk.biblio.model.Library
+import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -35,7 +37,6 @@ class LibraryUseCaseImpl @Inject constructor(
 
   override val libraries: Flowable<List<Library>> =
       novelRepository.savedNovels
-          .filter { it.isNotEmpty() }
           .map { it.map { it.toLibrary() } }
           .subscribeOn(schedulerProvider.io())
 
@@ -43,5 +44,9 @@ class LibraryUseCaseImpl @Inject constructor(
       Completable.fromCallable {
         // TODO: 更新処理
       }
+          .subscribeOn(schedulerProvider.io())
+
+  override fun delete(novel: Novel): Completable =
+      novelRepository.delete(novel.toEntity())
           .subscribeOn(schedulerProvider.io())
 }
