@@ -121,7 +121,7 @@
   <string name="tag_icon_description">tag_icon</string>
 
   <!-- Novel delete -->
-  <string name="delete_novel">この小説を削除</string>
+  <string name="menu_delete_novel">この小説を削除</string>
   <string name="delete_popup_title">「%1$s」をライブラリから削除しますか?</string>
   <string name="delete_popup_message">小説を削除するとしおりやタグなども消えてしまいます。</string>
   <string name="delete_popup_positive">消しちゃう！</string>
