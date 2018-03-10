@@ -19,7 +19,8 @@ package com.ayatk.biblio.ui.detail.index.item
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ItemIndexBinding
 import com.ayatk.biblio.model.Index
-import com.ayatk.biblio.util.DateFormat
+import com.ayatk.biblio.util.DatePattern
+import com.ayatk.biblio.util.format
 import com.xwray.groupie.databinding.BindableItem
 
 class IndexItem(
@@ -31,7 +32,7 @@ class IndexItem(
   override fun bind(viewBinding: ItemIndexBinding, position: Int) {
     viewBinding.let {
       it.subtitle.text = index.subtitle
-      it.publishDate.text = DateFormat.yyyyMMddkkmm.format(index.lastUpdate)
+      it.publishDate.text = index.lastUpdate.format(DatePattern.YYYY_MM_DD_KK_MM)
       it.indexContainer.setOnClickListener {
         onClickListener(index)
       }

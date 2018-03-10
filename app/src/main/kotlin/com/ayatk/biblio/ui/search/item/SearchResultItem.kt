@@ -20,8 +20,9 @@ import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ItemSearchResultBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.NovelState
-import com.ayatk.biblio.util.DateFormat
+import com.ayatk.biblio.util.DatePattern
 import com.ayatk.biblio.util.ext.setVisible
+import com.ayatk.biblio.util.format
 import com.xwray.groupie.databinding.BindableItem
 
 class SearchResultItem(
@@ -39,7 +40,7 @@ class SearchResultItem(
       it.searchResult.setOnClickListener {
         onClickListener(novel.key)
       }
-      it.lastUpdate.text = DateFormat.yyyyMMddkkmm.format(novel.key.lastUpload)
+      it.lastUpdate.text = novel.key.lastUpload.format(DatePattern.YYYY_MM_DD_KK_MM)
       it.readProgress.setVisible(novel.key.novelState != NovelState.SHORT_STORY)
       it.addLibrary.setOnClickListener {
         onDownloadClickListener(novel.key)

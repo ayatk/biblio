@@ -27,7 +27,7 @@ import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.detail.index.item.IndexItem
-import com.ayatk.biblio.ui.util.helper.Navigator
+import com.ayatk.biblio.ui.util.helper.navigateToEpisode
 import com.ayatk.biblio.ui.util.init
 import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.ext.observe
@@ -56,7 +56,7 @@ class IndexFragment : DaggerFragment() {
 
   private val indexSection = Section()
   private val onClickListener = { index: Index ->
-    Navigator.navigateToEpisode(context!!, index.novel, index.page)
+    context!!.navigateToEpisode(index.novel, index.page)
   }
 
   override fun onCreateView(

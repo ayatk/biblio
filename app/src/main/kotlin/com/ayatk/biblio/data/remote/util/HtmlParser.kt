@@ -18,7 +18,8 @@ package com.ayatk.biblio.data.remote.util
 
 import com.ayatk.biblio.data.remote.entity.NarouEpisode
 import com.ayatk.biblio.data.remote.entity.NarouIndex
-import com.ayatk.biblio.util.DateFormat
+import com.ayatk.biblio.util.DatePattern
+import com.ayatk.biblio.util.purseDate
 import org.jsoup.Jsoup
 import javax.inject.Singleton
 
@@ -35,10 +36,8 @@ class HtmlParser {
     // 短編小説のときは目次がないのでタイトルのNarouIndexを生成
     if (parseTable.select(".index_box").isEmpty()) {
       val title = parseTable.select(".novel_title").text()
-      val update = DateFormat.yyyyMMddkkmm
-          .parse(
-              parseTable.select("meta[name=WWWC]").attr("content")
-          )
+      val update = parseTable.select("meta[name=WWWC]").attr("content")
+          .purseDate(DatePattern.YYYY_MM_DD_KK_MM)
       return listOf(NarouIndex(0, ncode, title, null, 1, update, update))
     }
 
@@ -58,20 +57,17 @@ class HtmlParser {
             .split("/".toRegex())
             .dropLastWhile(String::isEmpty).toTypedArray()
 
-        val date = DateFormat.yyyyMMddkkmm
-            .parse(
-                element.select(".long_update")
-                    .text()
-                    .replace(" （改）", "")
-            )
+        val date = element.select(".long_update")
+            .text()
+            .replace(" （改）", "")
+            .purseDate(DatePattern.YYYY_MM_DD_KK_MM)
 
         var lastUpdate = date
         if (element.select(".long_update span").isNotEmpty()) {
-          lastUpdate = DateFormat.yyyyMMddkkmm.parse(
-              element.select(".long_update span")
-                  .attr("title")
-                  .replace(" 改稿", "")
-          )
+          lastUpdate = element.select(".long_update span")
+              .attr("title")
+              .replace(" 改稿", "")
+              .purseDate(DatePattern.YYYY_MM_DD_KK_MM)
         }
         indexList.add(
             NarouIndex(
