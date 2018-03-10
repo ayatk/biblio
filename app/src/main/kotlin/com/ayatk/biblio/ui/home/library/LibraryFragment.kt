@@ -27,7 +27,7 @@ import com.ayatk.biblio.databinding.FragmentLibraryBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.home.library.item.LibraryItem
-import com.ayatk.biblio.ui.util.helper.Navigator
+import com.ayatk.biblio.ui.util.helper.navigateToDetail
 import com.ayatk.biblio.ui.util.init
 import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.ext.observe
@@ -55,7 +55,7 @@ class LibraryFragment : DaggerFragment() {
 
   private val librarySection = Section()
   private val onClickListener = { novel: Novel ->
-    Navigator.navigateToDetail(context!!, novel)
+    context!!.navigateToDetail(novel)
   }
 
   override fun onCreateView(

@@ -34,7 +34,7 @@ import com.ayatk.biblio.databinding.ActivitySearchBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.search.item.SearchResultItem
-import com.ayatk.biblio.ui.util.helper.Navigator
+import com.ayatk.biblio.ui.util.helper.navigateToDetail
 import com.ayatk.biblio.ui.util.init
 import com.ayatk.biblio.ui.util.initBackToolbar
 import com.ayatk.biblio.util.Result
@@ -64,9 +64,9 @@ class SearchActivity : DaggerAppCompatActivity() {
 
   private val searchSection = Section()
   private val onItemClickListener = { novel: Novel ->
-    Navigator.navigateToDetail(this, novel)
+    navigateToDetail(novel)
   }
-  private val onDownloadClickListener: (Novel) -> Unit = { novel: Novel ->
+  private val onDownloadClickListener = { novel: Novel ->
     viewModel.saveNovel(novel)
   }
 

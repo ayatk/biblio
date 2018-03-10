@@ -27,26 +27,21 @@ import com.ayatk.biblio.ui.detail.DetailActivity
 import com.ayatk.biblio.ui.episode.EpisodeActivity
 import com.ayatk.biblio.util.ext.color
 
-object Navigator {
+fun Context.navigateToDetail(novel: Novel) =
+    startActivity(DetailActivity.createIntent(this, novel))
 
-  fun navigateToDetail(context: Context, novel: Novel) {
-    context.startActivity(DetailActivity.createIntent(context, novel))
+fun Context.navigateToEpisode(novel: Novel, page: Int) =
+    startActivity(EpisodeActivity.createIntent(this, novel, page))
+
+fun Context.navigateToWebPage(url: String) {
+  if (TextUtils.isEmpty(url) || !URLUtil.isNetworkUrl(url)) {
+    return
   }
 
-  fun navigateToEpisode(context: Context, novel: Novel, page: Int) {
-    context.startActivity(EpisodeActivity.createIntent(context, novel, page))
-  }
+  val intent = CustomTabsIntent.Builder()
+      .setShowTitle(true)
+      .setToolbarColor(this.color(R.color.app_blue))
+      .build()
 
-  fun navigateToWebPage(context: Context, url: String) {
-    if (TextUtils.isEmpty(url) || !URLUtil.isNetworkUrl(url)) {
-      return
-    }
-
-    val intent = CustomTabsIntent.Builder()
-        .setShowTitle(true)
-        .setToolbarColor(context.color(R.color.app_blue))
-        .build()
-
-    intent.launchUrl(context, Uri.parse(url))
-  }
+  intent.launchUrl(this, Uri.parse(url))
 }

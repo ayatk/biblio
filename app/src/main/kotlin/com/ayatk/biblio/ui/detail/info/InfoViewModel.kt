@@ -24,7 +24,7 @@ import android.arch.lifecycle.ViewModel
 import android.content.Context
 import com.ayatk.biblio.domain.usecase.DetailUseCase
 import com.ayatk.biblio.model.Novel
-import com.ayatk.biblio.ui.util.helper.Navigator
+import com.ayatk.biblio.ui.util.helper.navigateToWebPage
 import com.ayatk.biblio.util.DatePattern
 import com.ayatk.biblio.util.format
 import com.ayatk.biblio.util.rx.SchedulerProvider
@@ -66,11 +66,11 @@ class InfoViewModel @Inject constructor(
   }
 
   fun onClickWriter(context: Context) {
-    Navigator.navigateToWebPage(context, "http://mypage.syosetu.com/" + novel.userID)
+    context.navigateToWebPage("http://mypage.syosetu.com/" + novel.userID)
   }
 
   fun onClickNovelPage(context: Context) {
-    Navigator.navigateToWebPage(context, "http://ncode.syosetu.com/" + novel.code.toLowerCase())
+    context.navigateToWebPage( "http://ncode.syosetu.com/" + novel.code.toLowerCase())
   }
 
   //   TODO: 2017/11/26 context持ってるのでFragmentに移動させる
