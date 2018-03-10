@@ -18,21 +18,18 @@ package com.ayatk.biblio.ui.detail.index
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.os.bundleOf
-import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.FragmentIndexBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.detail.index.item.IndexItem
 import com.ayatk.biblio.ui.util.helper.Navigator
+import com.ayatk.biblio.ui.util.init
 import com.ayatk.biblio.util.Result
-import com.ayatk.biblio.util.ext.drawable
 import com.ayatk.biblio.util.ext.observe
 import com.ayatk.biblio.util.ext.setVisible
 import com.xwray.groupie.GroupAdapter
@@ -69,7 +66,10 @@ class IndexFragment : DaggerFragment() {
   ): View? {
     binding = FragmentIndexBinding.inflate(inflater, container, false)
     binding.setLifecycleOwner(this)
-    initRecyclerView()
+
+    binding.recyclerView.init(GroupAdapter<ViewHolder>().apply {
+      add(indexSection)
+    })
 
     viewModel.getIndex(novel).observe(this, { result ->
       when (result) {
@@ -87,21 +87,6 @@ class IndexFragment : DaggerFragment() {
     })
 
     return binding.root
-  }
-
-  private fun initRecyclerView() {
-    val divider = DividerItemDecoration(context, 1)
-    context!!.drawable(R.drawable.divider)
-        .let { divider.setDrawable(it) }
-
-    binding.recyclerView.apply {
-      adapter = GroupAdapter<ViewHolder>().apply {
-        add(indexSection)
-      }
-      setHasFixedSize(true)
-      addItemDecoration(divider)
-      layoutManager = LinearLayoutManager(context)
-    }
   }
 
   companion object {

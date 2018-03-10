@@ -24,8 +24,6 @@ import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.OnScrollListener
 import android.support.v7.widget.SearchView
@@ -37,9 +35,9 @@ import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.search.item.SearchResultItem
 import com.ayatk.biblio.ui.util.helper.Navigator
+import com.ayatk.biblio.ui.util.init
 import com.ayatk.biblio.ui.util.initBackToolbar
 import com.ayatk.biblio.util.Result
-import com.ayatk.biblio.util.ext.drawable
 import com.ayatk.biblio.util.ext.observe
 import com.ayatk.biblio.util.ext.setVisible
 import com.xwray.groupie.GroupAdapter
@@ -80,7 +78,20 @@ class SearchActivity : DaggerAppCompatActivity() {
 
     initBackToolbar(binding.toolbar)
 
-    initRecyclerView()
+    val scrollListener = object : OnScrollListener() {
+      override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+        if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+          searchView.clearFocus()
+        }
+      }
+    }
+
+    binding.searchResult.init(
+        GroupAdapter<ViewHolder>().apply {
+          add(searchSection)
+        },
+        scrollListener
+    )
 
     binding.drawerLayout.addDrawerListener(
         object : ActionBarDrawerToggle(
@@ -163,29 +174,6 @@ class SearchActivity : DaggerAppCompatActivity() {
       binding.drawerLayout.closeDrawer(GravityCompat.END)
     } else {
       finish()
-    }
-  }
-
-  private fun initRecyclerView() {
-    val divider = DividerItemDecoration(this, 1)
-    this.drawable(R.drawable.divider).let { divider.setDrawable(it) }
-
-    binding.searchResult.apply {
-      adapter = GroupAdapter<ViewHolder>().apply {
-        add(searchSection)
-      }
-      setHasFixedSize(true)
-      addItemDecoration(divider)
-      layoutManager = LinearLayoutManager(context)
-      addOnScrollListener(
-          object : OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
-              if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-                searchView.clearFocus()
-              }
-            }
-          }
-      )
     }
   }
 
