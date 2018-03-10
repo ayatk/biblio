@@ -19,6 +19,7 @@ package com.ayatk.biblio.data.repository
 import com.ayatk.biblio.data.db.dao.EpisodeDao
 import com.ayatk.biblio.data.entity.EpisodeEntity
 import com.ayatk.biblio.data.entity.NovelEntity
+import com.ayatk.biblio.data.entity.enums.NovelState
 import com.ayatk.biblio.data.remote.NarouDataStore
 import com.ayatk.biblio.data.remote.entity.mapper.toEntity
 import com.ayatk.biblio.di.scope.Narou
@@ -36,7 +37,11 @@ class EpisodeRepositoryImpl @Inject constructor(
 ) : EpisodeRepository {
 
   override fun find(entity: NovelEntity, page: Int): Flowable<EpisodeEntity> =
-      narouDataStore.getEpisode(entity.code, page)
+      if (entity.novelState == NovelState.SHORT_STORY) {
+        narouDataStore.getShortStory(entity.code)
+      } else {
+        narouDataStore.getEpisode(entity.code, page)
+      }
           .map { it.toEntity() }
 
   override fun save(episode: EpisodeEntity): Completable =
