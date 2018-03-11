@@ -34,7 +34,9 @@ class DebugApp : App() {
     Takt.stock(this).play()
     Timber.plant(Timber.DebugTree())
 
-    initLeakCanary()
+    if (!LeakCanary.isInAnalyzerProcess(this)) {
+      LeakCanary.install(this)
+    }
   }
 
   override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
@@ -46,12 +48,5 @@ class DebugApp : App() {
   override fun onTerminate() {
     Takt.finish()
     super.onTerminate()
-  }
-
-  private fun initLeakCanary() {
-    if (LeakCanary.isInAnalyzerProcess(this)) {
-      return
-    }
-    LeakCanary.install(this)
   }
 }
