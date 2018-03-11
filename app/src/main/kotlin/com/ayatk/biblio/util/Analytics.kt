@@ -49,6 +49,7 @@ object Analytics {
   }
 
   enum class Category {
+    SCREEN_LOG,
     EPISODE,
     DETAIL,
     SEARCH,
@@ -133,7 +134,7 @@ object Analytics {
 
     private fun lifecycleEvent(event: Lifecycle.Event) {
       val bundle = bundleOf(
-          FirebaseAnalytics.Param.ITEM_CATEGORY to "SCREEN_LOG",
+          FirebaseAnalytics.Param.ITEM_CATEGORY to Category.SCREEN_LOG.name,
           FirebaseAnalytics.Param.ITEM_NAME to screen.name,
           FirebaseAnalytics.Param.VALUE to event.name
       )
@@ -141,7 +142,8 @@ object Analytics {
       Timber.v(app.getString(R.string.log_analytics_debug, "SCREEN_LOG", screen.name, event.name))
 
       tracker.logEvent("ga_" + screen.name, bundle)
-      Crashlytics.log(String.format("ga_%1\$s_%2\$s_%3\$s", "SCREEN_LOG", screen.name, event.name))
+      Crashlytics.log(
+          String.format("ga_%1\$s_%2\$s_%3\$s", Category.SCREEN_LOG.name, screen.name, event.name))
     }
   }
 }
