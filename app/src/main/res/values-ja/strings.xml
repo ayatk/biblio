@@ -126,4 +126,6 @@
   <string name="delete_popup_message">小説を削除するとしおりやタグなども消えてしまいます。</string>
   <string name="delete_popup_positive">消しちゃう！</string>
   <string name="delete_popup_negative">やだ！！！</string>
+
+  <string name="log_analytics_debug">CATEGORY: %1$s, ACTION: %2$s, VALUE: %3$s</string>
 </resources>

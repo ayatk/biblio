@@ -18,6 +18,7 @@ package com.ayatk.biblio
 
 import android.annotation.SuppressLint
 import com.ayatk.biblio.di.DaggerAppComponent
+import com.ayatk.biblio.util.Analytics
 import com.ayatk.biblio.util.forest.CrashlyticsTree
 import com.crashlytics.android.Crashlytics
 import dagger.android.AndroidInjector
@@ -32,6 +33,8 @@ open class App : DaggerApplication() {
     super.onCreate()
 
     Fabric.with(this, Crashlytics())
+
+    Analytics.init(this)
 
     // Timber forest
     Timber.plant(CrashlyticsTree())

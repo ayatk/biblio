@@ -129,4 +129,6 @@
   <string name="delete_popup_message">When you delete a novel, bookmarks and tags will also disappear.</string>
   <string name="delete_popup_positive">delete!!</string>
   <string name="delete_popup_negative">Nooooooo!!</string>
+
+  <string name="log_analytics_debug">CATEGORY: %1$s, ACTION: %2$s, VALUE: %3$s</string>
 </resources>
