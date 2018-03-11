@@ -61,6 +61,7 @@ class LibraryFragment : DaggerFragment() {
     context!!.navigateToDetail(novel)
   }
   private val onMenuClickListener = { anchor: View, novel: Novel ->
+    Analytics.event(Analytics.LibraryAction.TAP_CELL_MENU, novel.code)
     PopupMenu(context!!, anchor).apply {
       inflate(R.menu.menu_library_item)
       setOnMenuItemClickListener {
@@ -119,17 +120,20 @@ class LibraryFragment : DaggerFragment() {
     })
   }
 
-  private fun deleteDialog(novel: Novel) =
-      AlertDialog.Builder(context!!)
-          .setTitle(context!!.getString(R.string.delete_popup_title, novel.title))
-          .setMessage(R.string.delete_popup_message)
-          .setPositiveButton(R.string.delete_popup_positive) { _, _ ->
-            viewModel.delete(novel)
-          }
-          .setNegativeButton(R.string.delete_popup_negative) { _, _ ->
-            /* no-op */
-          }
-          .show()
+  private fun deleteDialog(novel: Novel) {
+    Analytics.event(Analytics.LibraryAction.DIALOG_NOVEL_DELETE_VIEWED, novel.code)
+    AlertDialog.Builder(context!!)
+        .setTitle(context!!.getString(R.string.delete_popup_title, novel.title))
+        .setMessage(R.string.delete_popup_message)
+        .setPositiveButton(R.string.delete_popup_positive) { _, _ ->
+          Analytics.event(Analytics.LibraryAction.DELETE_NOVEL, novel.code)
+          viewModel.delete(novel)
+        }
+        .setNegativeButton(R.string.delete_popup_negative) { _, _ ->
+          Analytics.event(Analytics.LibraryAction.DIALOG_NOVEL_DELETE_CANCEL, novel.code)
+        }
+        .show()
+  }
 
   companion object {
     fun newInstance(): LibraryFragment = LibraryFragment()

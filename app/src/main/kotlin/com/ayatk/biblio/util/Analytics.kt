@@ -71,6 +71,16 @@ object Analytics {
     override val category: Category = Category.HOME
   }
 
+  enum class LibraryAction : Action {
+    REFRESH_LIBRARIES,
+    TAP_CELL_MENU,
+    DIALOG_NOVEL_DELETE_VIEWED,
+    DIALOG_NOVEL_DELETE_CANCEL,
+    DELETE_NOVEL;
+
+    override val category: Category = Category.LIBRARY
+  }
+
   fun init(app: App) {
     tracker = FirebaseAnalytics.getInstance(app)
     this.app = app
