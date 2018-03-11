@@ -121,7 +121,7 @@ object Analytics {
       }
 
       override fun onPageSelected(position: Int) {
-       event(position)
+        event(position)
       }
     })
   }
