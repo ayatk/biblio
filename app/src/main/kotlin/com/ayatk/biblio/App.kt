@@ -20,7 +20,6 @@ import android.annotation.SuppressLint
 import com.ayatk.biblio.di.DaggerAppComponent
 import com.ayatk.biblio.util.forest.CrashlyticsTree
 import com.crashlytics.android.Crashlytics
-import com.crashlytics.android.core.CrashlyticsCore
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import io.fabric.sdk.android.Fabric
@@ -32,11 +31,8 @@ open class App : DaggerApplication() {
   override fun onCreate() {
     super.onCreate()
 
-    val core = CrashlyticsCore.Builder()
-        .disabled(BuildConfig.DEBUG)
-        .build()
+    Fabric.with(this, Crashlytics())
 
-    Fabric.with(this, Crashlytics.Builder().core(core).build())
     // Timber forest
     Timber.plant(CrashlyticsTree())
   }
