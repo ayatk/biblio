@@ -30,6 +30,7 @@ import com.ayatk.biblio.model.enums.RankingType
 import com.ayatk.biblio.ui.ranking.item.RankingItem
 import com.ayatk.biblio.ui.util.helper.navigateToDetail
 import com.ayatk.biblio.ui.util.init
+import com.ayatk.biblio.util.Analytics
 import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.ext.observe
 import com.ayatk.biblio.util.ext.setVisible
@@ -58,6 +59,11 @@ class RankingListFragment : DaggerFragment() {
   private val rankingSection = Section()
   private val onClickListener = { novel: Novel ->
     context!!.navigateToDetail(novel)
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    lifecycle.addObserver(Analytics.ScreenLog(Analytics.Screen.RANKING_LIST))
   }
 
   override fun onCreateView(

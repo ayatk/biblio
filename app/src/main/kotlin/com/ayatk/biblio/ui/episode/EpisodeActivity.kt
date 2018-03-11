@@ -30,6 +30,7 @@ import com.ayatk.biblio.databinding.ActivityEpisodeBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.UiEvent
 import com.ayatk.biblio.ui.util.initBackToolbar
+import com.ayatk.biblio.util.Analytics
 import com.ayatk.biblio.util.ext.extraOf
 import dagger.android.support.DaggerAppCompatActivity
 import org.greenrobot.eventbus.EventBus
@@ -51,6 +52,8 @@ class EpisodeActivity : DaggerAppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    lifecycle.addObserver(Analytics.ScreenLog(Analytics.Screen.EPISODE))
 
     initBackToolbar(binding.toolbar)
 

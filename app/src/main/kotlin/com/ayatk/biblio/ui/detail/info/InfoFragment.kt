@@ -25,6 +25,7 @@ import androidx.os.bundleOf
 import com.ayatk.biblio.databinding.FragmentInfoBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
+import com.ayatk.biblio.util.Analytics
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -46,6 +47,8 @@ class InfoFragment : DaggerFragment() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     viewModel.novel = novel
+
+    lifecycle.addObserver(Analytics.ScreenLog(Analytics.Screen.INFO))
   }
 
   override fun onCreateView(

@@ -37,6 +37,7 @@ import com.ayatk.biblio.ui.search.item.SearchResultItem
 import com.ayatk.biblio.ui.util.helper.navigateToDetail
 import com.ayatk.biblio.ui.util.init
 import com.ayatk.biblio.ui.util.initBackToolbar
+import com.ayatk.biblio.util.Analytics
 import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.ext.observe
 import com.ayatk.biblio.util.ext.setVisible
@@ -75,6 +76,8 @@ class SearchActivity : DaggerAppCompatActivity() {
     overridePendingTransition(R.anim.activity_fade_enter, R.anim.activity_fade_exit)
     binding.setLifecycleOwner(this)
     binding.viewModel = viewModel
+
+    lifecycle.addObserver(Analytics.ScreenLog(Analytics.Screen.SEARCH))
 
     initBackToolbar(binding.toolbar)
 

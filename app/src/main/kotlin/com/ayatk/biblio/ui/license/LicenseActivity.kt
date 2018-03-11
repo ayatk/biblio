@@ -24,6 +24,7 @@ import android.support.v7.app.AppCompatActivity
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityWebBinding
 import com.ayatk.biblio.ui.util.initBackToolbar
+import com.ayatk.biblio.util.Analytics
 import com.ayatk.biblio.util.ext.extraOf
 
 class LicenseActivity : AppCompatActivity() {
@@ -34,6 +35,7 @@ class LicenseActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    lifecycle.addObserver(Analytics.ScreenLog(Analytics.Screen.LICENSE))
 
     val title = intent.getStringExtra(EXTRA_TITLE)
     val url = intent.getStringExtra(EXTRA_URL)

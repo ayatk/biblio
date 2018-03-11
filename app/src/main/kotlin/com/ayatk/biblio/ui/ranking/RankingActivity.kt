@@ -27,6 +27,7 @@ import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityRankingBinding
 import com.ayatk.biblio.model.enums.RankingType
 import com.ayatk.biblio.ui.util.initBackToolbar
+import com.ayatk.biblio.util.Analytics
 import com.ayatk.biblio.util.ext.extraOf
 import com.ayatk.biblio.util.ext.integer
 import dagger.android.support.DaggerAppCompatActivity
@@ -43,6 +44,8 @@ class RankingActivity : DaggerAppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    lifecycle.addObserver(Analytics.ScreenLog(Analytics.Screen.RANKING))
 
     initBackToolbar(binding.toolbar)
 

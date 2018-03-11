@@ -16,6 +16,9 @@
 
 package com.ayatk.biblio.util
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.OnLifecycleEvent
 import androidx.os.bundleOf
 import com.ayatk.biblio.App
 import com.ayatk.biblio.R
@@ -27,6 +30,22 @@ object Analytics {
 
   private lateinit var tracker: FirebaseAnalytics
   private lateinit var app: App
+
+  enum class Screen {
+    HOME,
+    LIBRARY,
+    BOOKMARK,
+    TOP_RANKING,
+    SETTINGS,
+    DETAIL,
+    INDEX,
+    INFO,
+    EPISODE,
+    LICENSE,
+    RANKING,
+    RANKING_LIST,
+    SEARCH
+  }
 
   enum class Category {
     EPISODE,
@@ -59,5 +78,24 @@ object Analytics {
 
     tracker.logEvent(action.toString(), bundle)
     Crashlytics.log(String.format("%1\$s_%2\$s_%3\$s", action.category, action, value))
+  }
+
+  class ScreenLog(private val screen: Screen) : LifecycleObserver {
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    fun onCreate() = lifecycleEvent(Lifecycle.Event.ON_CREATE)
+
+    private fun lifecycleEvent(event: Lifecycle.Event) {
+      val bundle = bundleOf(
+          FirebaseAnalytics.Param.ITEM_CATEGORY to "SCREEN_LOG",
+          FirebaseAnalytics.Param.ITEM_NAME to screen.name,
+          FirebaseAnalytics.Param.VALUE to event.name
+      )
+
+      Timber.v(app.getString(R.string.log_analytics_debug, "SCREEN_LOG", screen.name, event.name))
+
+      tracker.logEvent("ga_" + screen.name, bundle)
+      Crashlytics.log(String.format("ga_%1\$s_%2\$s_%3\$s", "SCREEN_LOG", screen.name, event.name))
+    }
   }
 }

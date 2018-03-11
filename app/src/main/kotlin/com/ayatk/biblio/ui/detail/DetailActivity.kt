@@ -29,6 +29,7 @@ import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.detail.index.IndexFragment
 import com.ayatk.biblio.ui.detail.info.InfoFragment
 import com.ayatk.biblio.ui.util.initBackToolbar
+import com.ayatk.biblio.util.Analytics
 import com.ayatk.biblio.util.ext.extraOf
 import dagger.android.support.DaggerAppCompatActivity
 
@@ -52,6 +53,8 @@ class DetailActivity : DaggerAppCompatActivity() {
     val viewPager = binding.containerPager
     viewPager.adapter = DetailPagerAdapter(supportFragmentManager)
     binding.tab.setupWithViewPager(viewPager)
+
+    lifecycle.addObserver(Analytics.ScreenLog(Analytics.Screen.DETAIL))
   }
 
   companion object {

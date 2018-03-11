@@ -21,8 +21,14 @@ import android.support.v7.preference.PreferenceFragmentCompat
 import com.ayatk.biblio.BuildConfig
 import com.ayatk.biblio.R
 import com.ayatk.biblio.ui.license.LicenseActivity
+import com.ayatk.biblio.util.Analytics
 
 class SettingFragment : PreferenceFragmentCompat() {
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    lifecycle.addObserver(Analytics.ScreenLog(Analytics.Screen.SETTINGS))
+  }
 
   override fun onCreatePreferences(bundle: Bundle?, s: String?) {
     addPreferencesFromResource(R.xml.pref)

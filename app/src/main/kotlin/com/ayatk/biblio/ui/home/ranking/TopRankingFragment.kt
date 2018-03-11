@@ -26,6 +26,7 @@ import com.ayatk.biblio.databinding.FragmentRankingBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.ui.util.customview.RankingTopCellView
+import com.ayatk.biblio.util.Analytics
 import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.ext.observe
 import dagger.android.support.DaggerFragment
@@ -42,6 +43,11 @@ class TopRankingFragment : DaggerFragment() {
   }
 
   lateinit var binding: FragmentRankingBinding
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    lifecycle.addObserver(Analytics.ScreenLog(Analytics.Screen.TOP_RANKING))
+  }
 
   override fun onCreateView(
       inflater: LayoutInflater,

@@ -31,6 +31,7 @@ import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.home.library.item.LibraryItem
 import com.ayatk.biblio.ui.util.helper.navigateToDetail
 import com.ayatk.biblio.ui.util.init
+import com.ayatk.biblio.util.Analytics
 import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.ext.observe
 import com.ayatk.biblio.util.ext.setVisible
@@ -74,6 +75,11 @@ class LibraryFragment : DaggerFragment() {
       show()
     }
     false
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    lifecycle.addObserver(Analytics.ScreenLog(Analytics.Screen.LIBRARY))
   }
 
   override fun onCreateView(

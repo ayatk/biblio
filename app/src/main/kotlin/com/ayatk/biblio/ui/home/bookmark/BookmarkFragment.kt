@@ -21,11 +21,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ayatk.biblio.databinding.FragmentBookmarkBinding
+import com.ayatk.biblio.util.Analytics
 import dagger.android.support.DaggerFragment
 
 class BookmarkFragment : DaggerFragment() {
 
   lateinit var binding: FragmentBookmarkBinding
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    lifecycle.addObserver(Analytics.ScreenLog(Analytics.Screen.BOOKMARK))
+  }
 
   override fun onCreateView(
       inflater: LayoutInflater,
