@@ -65,6 +65,7 @@ class SearchActivity : DaggerAppCompatActivity() {
 
   private val searchSection = Section()
   private val onItemClickListener = { novel: Novel ->
+    Analytics.event(Analytics.DetailAction.VIEW_VIA_SEARCH_RESULT, novel.code)
     navigateToDetail(novel)
   }
   private val onDownloadClickListener: (Novel) -> Unit = { novel: Novel ->

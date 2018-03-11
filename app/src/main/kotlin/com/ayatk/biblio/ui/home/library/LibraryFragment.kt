@@ -58,6 +58,7 @@ class LibraryFragment : DaggerFragment() {
 
   private val librarySection = Section()
   private val onClickListener = { novel: Novel ->
+    Analytics.event(Analytics.DetailAction.VIEW_VIA_HOME_LIBRARY, novel.code)
     context!!.navigateToDetail(novel)
   }
   private val onMenuClickListener = { anchor: View, novel: Novel ->

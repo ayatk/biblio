@@ -31,6 +31,8 @@ import com.ayatk.biblio.model.enums.RankingType
 import com.ayatk.biblio.ui.ranking.RankingActivity
 import com.ayatk.biblio.ui.util.helper.DataBindingHelper.rankingIcon
 import com.ayatk.biblio.ui.util.helper.DataBindingHelper.rankingText
+import com.ayatk.biblio.ui.util.helper.navigateToDetail
+import com.ayatk.biblio.util.Analytics
 
 class RankingTopCellView @JvmOverloads constructor(
     context: Context,
@@ -94,6 +96,11 @@ class RankingTopCellView @JvmOverloads constructor(
       } else {
         title.text = it.novel.title
         author.text = it.novel.writer
+      }
+
+      rankingItem.setOnClickListener { view ->
+        Analytics.event(Analytics.DetailAction.VIEW_VIA_TOP_RANKING, it.novel.code)
+        view.context.navigateToDetail(it.novel)
       }
 
       container.addView(rankingItem)

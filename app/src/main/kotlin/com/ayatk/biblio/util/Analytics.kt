@@ -19,6 +19,7 @@ package com.ayatk.biblio.util
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.OnLifecycleEvent
+import android.support.v4.view.ViewPager
 import androidx.os.bundleOf
 import com.ayatk.biblio.App
 import com.ayatk.biblio.R
@@ -81,6 +82,17 @@ object Analytics {
     override val category: Category = Category.LIBRARY
   }
 
+  enum class DetailAction : Action {
+    VIEW_VIA_HOME_LIBRARY,
+    VIEW_VIA_SEARCH_RESULT,
+    VIEW_VIA_RANKING_LIST,
+    VIEW_VIA_TOP_RANKING,
+    VIEW_TABLE_OF_CONTENTS,
+    VIEW_NOVEL_INFO;
+
+    override val category: Category = Category.DETAIL
+  }
+
   fun init(app: App) {
     tracker = FirebaseAnalytics.getInstance(app)
     this.app = app
@@ -97,6 +109,21 @@ object Analytics {
 
     tracker.logEvent(action.toString(), bundle)
     Crashlytics.log(String.format("%1\$s_%2\$s_%3\$s", action.category, action, value))
+  }
+
+  fun viewPagerEvent(viewPager: ViewPager, event: (position: Int) -> Unit) {
+    viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+      override fun onPageScrollStateChanged(state: Int) {}
+
+      override fun onPageScrolled(
+          position: Int, positionOffset: Float, positionOffsetPixels: Int
+      ) {
+      }
+
+      override fun onPageSelected(position: Int) {
+       event(position)
+      }
+    })
   }
 
   class ScreenLog(private val screen: Screen) : LifecycleObserver {

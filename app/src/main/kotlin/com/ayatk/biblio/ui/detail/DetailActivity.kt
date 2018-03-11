@@ -52,6 +52,14 @@ class DetailActivity : DaggerAppCompatActivity() {
     // ViewPager
     val viewPager = binding.containerPager
     viewPager.adapter = DetailPagerAdapter(supportFragmentManager)
+
+    Analytics.viewPagerEvent(viewPager) { position ->
+      when (position) {
+        0 -> Analytics.event(Analytics.DetailAction.VIEW_TABLE_OF_CONTENTS, novel.code)
+        1 -> Analytics.event(Analytics.DetailAction.VIEW_NOVEL_INFO, novel.code)
+      }
+    }
+
     binding.tab.setupWithViewPager(viewPager)
 
     lifecycle.addObserver(Analytics.ScreenLog(Analytics.Screen.DETAIL))

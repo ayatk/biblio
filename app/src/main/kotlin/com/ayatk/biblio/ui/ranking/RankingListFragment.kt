@@ -58,6 +58,7 @@ class RankingListFragment : DaggerFragment() {
 
   private val rankingSection = Section()
   private val onClickListener = { novel: Novel ->
+    Analytics.event(Analytics.DetailAction.VIEW_VIA_RANKING_LIST, novel.code)
     context!!.navigateToDetail(novel)
   }
 
