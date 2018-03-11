@@ -19,6 +19,7 @@ package com.ayatk.biblio
 import android.annotation.SuppressLint
 import com.ayatk.biblio.di.DaggerAppComponent
 import com.crashlytics.android.Crashlytics
+import com.crashlytics.android.core.CrashlyticsCore
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import io.fabric.sdk.android.Fabric
@@ -29,7 +30,11 @@ open class App : DaggerApplication() {
   override fun onCreate() {
     super.onCreate()
 
-    Fabric.with(this, Crashlytics())
+    val core = CrashlyticsCore.Builder()
+        .disabled(BuildConfig.DEBUG)
+        .build()
+
+    Fabric.with(this, Crashlytics.Builder().core(core).build())
   }
 
   override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
