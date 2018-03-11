@@ -32,6 +32,7 @@ import com.ayatk.biblio.databinding.ActivityMainBinding
 import com.ayatk.biblio.ui.search.SearchActivity
 import com.ayatk.biblio.ui.util.Page
 import com.ayatk.biblio.ui.util.helper.disableShiftingMode
+import com.ayatk.biblio.util.Analytics
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -74,7 +75,9 @@ class HomeActivity : DaggerAppCompatActivity() {
     binding.bottomNav.selectedItemId = defaultPrefs.homePageState
     binding.bottomNav.setOnNavigationItemSelectedListener {
       defaultPrefs.homePageState = it.itemId
-      changePage(Page.forMenuId(it.itemId))
+      val page = Page.forMenuId(it.itemId)
+      Analytics.event(page.action, null)
+      changePage(page)
       invalidateOptionsMenu()
       true
     }

@@ -25,35 +25,30 @@ import com.ayatk.biblio.ui.home.bookmark.BookmarkFragment
 import com.ayatk.biblio.ui.home.library.LibraryFragment
 import com.ayatk.biblio.ui.home.ranking.TopRankingFragment
 import com.ayatk.biblio.ui.home.setting.SettingFragment
+import com.ayatk.biblio.util.Analytics
 
 enum class Page(
     @MenuRes val menuId: Int,
     @StringRes val titleResId: Int,
     val toggleToolbar: Boolean,
-    val pageName: String
+    val action: Analytics.HomeAction
 ) {
-  LIBRARY(R.id.nav_library, R.string.library, true, LibraryFragment::class.java.simpleName) {
+  LIBRARY(R.id.nav_library, R.string.library, true, Analytics.HomeAction.SELECT_LIBRARY_NAV) {
     override fun createFragment() = LibraryFragment.newInstance()
   },
-  BOOKMARK(R.id.nav_bookmark, R.string.bookmark, true, BookmarkFragment::class.java.simpleName) {
+  BOOKMARK(R.id.nav_bookmark, R.string.bookmark, true, Analytics.HomeAction.SELECT_BOOKMARK_NAV) {
     override fun createFragment() = BookmarkFragment.newInstance()
   },
-  RANKING(R.id.nav_ranking, R.string.ranking, true, TopRankingFragment::class.java.simpleName) {
+  RANKING(R.id.nav_ranking, R.string.ranking, true, Analytics.HomeAction.SELECT_TOP_RANKING_NAV) {
     override fun createFragment() = TopRankingFragment.newInstance()
   },
-  SETTINGS(R.id.nav_settings, R.string.setting, true, SettingFragment::class.java.simpleName) {
+  SETTINGS(R.id.nav_settings, R.string.setting, true, Analytics.HomeAction.SELECT_SETTINGS_NAV) {
     override fun createFragment() = SettingFragment.newInstance()
   };
 
   abstract fun createFragment(): Fragment
 
   companion object {
-
     fun forMenuId(@IdRes id: Int): Page = values().firstOrNull { it.menuId == id } ?: LIBRARY
-
-    fun forName(fragment: Fragment): Page {
-      val name = fragment.javaClass.simpleName
-      return values().first { it.pageName == name }
-    }
   }
 }

@@ -62,6 +62,15 @@ object Analytics {
     val category: Category
   }
 
+  enum class HomeAction : Action {
+    SELECT_LIBRARY_NAV,
+    SELECT_BOOKMARK_NAV,
+    SELECT_TOP_RANKING_NAV,
+    SELECT_SETTINGS_NAV;
+
+    override val category: Category = Category.HOME
+  }
+
   fun init(app: App) {
     tracker = FirebaseAnalytics.getInstance(app)
     this.app = app
