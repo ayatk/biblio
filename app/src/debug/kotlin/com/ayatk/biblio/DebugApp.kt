@@ -32,12 +32,9 @@ class DebugApp : App() {
     Stetho.initializeWithDefaults(this)
     DebotConfigurator.configureWithDefault()
     Takt.stock(this).play()
+    Timber.plant(Timber.DebugTree())
 
     initLeakCanary()
-
-    if (BuildConfig.DEBUG) {
-      Timber.plant(Timber.DebugTree())
-    }
   }
 
   override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
