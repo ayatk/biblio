@@ -87,6 +87,8 @@
   <string name="pref_privacy_policy">プライバシーポリシー</string>
   <string name="pref_version">バージョン</string>
   <string name="pref_show_tag_at_library">小説一覧にタグを表示する</string>
+  <string name="pref_allow_analytics_tracker">データの収集と使用を許可する</string>
+  <string name="pref_allow_analytics_summary">今後のアプリ改善のために匿名かされたデータを収集しますが、気に入らなければこの機能を無効にすることができます</string>
   <string name="close">閉じる</string>
 
   <string name="search_hint">小説を検索</string>

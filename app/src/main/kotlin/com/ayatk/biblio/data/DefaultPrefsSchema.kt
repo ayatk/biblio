@@ -38,4 +38,7 @@ class DefaultPrefsSchema {
 
   @Key(name = "home_page_state")
   val homePageState = R.id.nav_library
+
+  @Key(name = "allow_analytics_tracker")
+  val allowAnalyticsTracker = true
 }

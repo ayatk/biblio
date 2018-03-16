@@ -89,6 +89,8 @@
   <string name="pref_privacy_policy">Privacy Policy</string>
   <string name="pref_version">Version</string>
   <string name="pref_show_tag_at_library">Display tags in the novel list</string>
+  <string name="pref_allow_analytics_tracker">Allow data collection and use</string>
+  <string name="pref_allow_analytics_summary">We collect data anonymized for future application improvement, but if you do not like it you can cut off that function.</string>
   <string name="close">Close</string>
 
   <string name="search_hint">Search novels</string>
