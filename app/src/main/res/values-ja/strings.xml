@@ -84,6 +84,7 @@
   <string name="pref_category_other">その他</string>
 
   <string name="pref_oss_license">オープンソースライセンス</string>
+  <string name="pref_privacy_policy">プライバシーポリシー</string>
   <string name="pref_version">バージョン</string>
   <string name="pref_show_tag_at_library">小説一覧にタグを表示する</string>
   <string name="close">閉じる</string>

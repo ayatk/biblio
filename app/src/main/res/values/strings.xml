@@ -86,6 +86,7 @@
   <string name="pref_category_other">Other</string>
 
   <string name="pref_oss_license">Open source license</string>
+  <string name="pref_privacy_policy">Privacy Policy</string>
   <string name="pref_version">Version</string>
   <string name="pref_show_tag_at_library">Display tags in the novel list</string>
   <string name="close">Close</string>
