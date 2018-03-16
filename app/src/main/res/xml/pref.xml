@@ -41,7 +41,7 @@
 
     <Preference
         android:key="privacy_policy"
-        android:title="@string/pref_oss_license"/>
+        android:title="@string/pref_privacy_policy"/>
 
     <Preference
         android:key="app_version"
