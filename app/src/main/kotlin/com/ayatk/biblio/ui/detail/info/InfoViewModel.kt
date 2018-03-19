@@ -70,7 +70,7 @@ class InfoViewModel @Inject constructor(
   }
 
   fun onClickNovelPage(context: Context) {
-    context.navigateToWebPage( "http://ncode.syosetu.com/" + novel.code.toLowerCase())
+    context.navigateToWebPage("http://ncode.syosetu.com/" + novel.code.toLowerCase())
   }
 
   //   TODO: 2017/11/26 context持ってるのでFragmentに移動させる
