@@ -29,12 +29,6 @@
   <PreferenceCategory
       android:title="@string/pref_category_other">
 
-    <CheckBoxPreference
-        android:defaultValue="true"
-        android:key="allow_analytics_tracker"
-        android:summary="@string/pref_allow_analytics_summary"
-        android:title="@string/pref_allow_analytics_tracker"/>
-
     <Preference
         android:key="oss_license"
         android:title="@string/pref_oss_license"/>
