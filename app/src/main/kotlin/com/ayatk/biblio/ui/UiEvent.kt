@@ -17,7 +17,7 @@
 package com.ayatk.biblio.ui
 
 class UiEvent {
-  class EpisodeSelectedEvent(val position: Int)
+  data class EpisodeSelectedEvent(val position: Int)
 
-  class SubtitleChangeEvent(val subtitle: String)
+  data class SubtitleChangeEvent(val subtitle: String)
 }
