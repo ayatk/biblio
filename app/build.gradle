@@ -45,7 +45,7 @@ android {
   buildToolsVersion versions.buildTools
 
   defaultConfig {
-    applicationId PACKAGE_NAME
+    applicationId 'com.ayatk.biblio'
     minSdkVersion versions.minSdk
     targetSdkVersion versions.targetSdk
     versionCode BUILD_NUM.toInteger()
