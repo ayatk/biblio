@@ -17,7 +17,6 @@
 ext {
   APP_NAME = 'biblio'
   VERSION = '0.2.4-alpha'
-  PACKAGE_NAME = 'com.ayatk.biblio'
 
   // for debug info
   GIT_SHA = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
@@ -33,21 +32,21 @@ ext {
       targetSdk       : 27,
 
       // class path
-      gradleBuildTool : '3.2.0-alpha05',
-      googleServices  : '3.2.0',
-      fabricGradleTool: '1.25.1',
+      gradleBuildTool : '3.2.0-alpha08',
+      googleServices  : '3.2.1',
+      fabricGradleTool: '1.25.2',
       licenseTools    : '1.2.0',
 
       // implementation
       supportLibrary  : '27.1.0',
-      kotlin          : '1.2.30',
+      kotlin          : '1.2.31',
       ktlint          : '0.15.0',
-      retrofit        : '2.3.0',
+      retrofit        : '2.4.0',
       okhttp3         : '3.10.0',
       kotshi          : '0.3.0',
-      archLifecycle   : '1.1.0',
+      archLifecycle   : '1.1.1',
       archRoom        : '1.0.0',
-      dagger          : '2.14.1',
+      dagger          : '2.15',
       kvsSchema       : '5.0.1',
       groupie         : '2.0.3',
       stetho          : '1.5.0',
@@ -108,7 +107,7 @@ ext {
           compiler: "android.arch.persistence.room:compiler:${versions.archRoom}",
       ],
       rxjava2      : [
-          core   : "io.reactivex.rxjava2:rxjava:2.1.10",
+          core   : "io.reactivex.rxjava2:rxjava:2.1.12",
           android: "io.reactivex.rxjava2:rxandroid:2.0.2",
           kotlin : "io.reactivex.rxjava2:rxkotlin:2.2.0",
       ],
@@ -144,7 +143,7 @@ ext {
           timber : "com.facebook.stetho:stetho-timber:${versions.stetho}@aar",
       ],
       crashlytics  : "com.crashlytics.sdk.android:crashlytics:2.9.1@aar",
-      timber       : "com.jakewharton.timber:timber:4.6.1",
+      timber       : "com.jakewharton.timber:timber:4.7.0",
       leakcanary   : "com.squareup.leakcanary:leakcanary-android:1.5.4",
       takt         : "jp.wasabeef:takt:1.0.5",
       debot        : "com.tomoima.debot:debot:${versions.debot}",
