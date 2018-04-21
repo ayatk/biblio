@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.ui.util
+package com.ayatk.biblio.ui.home
 
 import android.support.annotation.IdRes
 import android.support.annotation.MenuRes

@@ -29,7 +29,6 @@ import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityMainBinding
 import com.ayatk.biblio.ui.search.SearchActivity
-import com.ayatk.biblio.ui.util.Page
 import com.ayatk.biblio.ui.util.helper.disableShiftingMode
 import dagger.android.support.DaggerAppCompatActivity
 
