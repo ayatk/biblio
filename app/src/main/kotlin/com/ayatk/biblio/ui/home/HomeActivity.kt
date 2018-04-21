@@ -17,28 +17,24 @@
 package com.ayatk.biblio.ui.home
 
 import android.content.Context
-import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.IdRes
-import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentStatePagerAdapter
+import android.support.v4.view.ViewPager
 import android.view.Menu
 import android.view.MenuItem
 import com.ayatk.biblio.R
-import com.ayatk.biblio.data.DefaultPrefs
 import com.ayatk.biblio.databinding.ActivityMainBinding
 import com.ayatk.biblio.ui.search.SearchActivity
-import com.ayatk.biblio.ui.util.Page
 import com.ayatk.biblio.ui.util.helper.disableShiftingMode
 import dagger.android.support.DaggerAppCompatActivity
-import javax.inject.Inject
 
 class HomeActivity : DaggerAppCompatActivity() {
 
-  @Inject
-  lateinit var defaultPrefs: DefaultPrefs
+  private lateinit var adapter: HomeFragmentStatePagerAdapter
 
   private val binding: ActivityMainBinding by lazy {
     DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
@@ -49,6 +45,21 @@ class HomeActivity : DaggerAppCompatActivity() {
 
     setSupportActionBar(binding.toolbar)
     initBottomNav()
+
+    adapter = HomeFragmentStatePagerAdapter(this, supportFragmentManager)
+    binding.viewPager.adapter = adapter
+    binding.viewPager.offscreenPageLimit = 4
+    binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+      override fun onPageScrollStateChanged(state: Int) {
+      }
+
+      override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+      }
+
+      override fun onPageSelected(position: Int) {
+        binding.toolbar.title = adapter.getPageTitle(position).toString()
+      }
+    })
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -70,11 +81,10 @@ class HomeActivity : DaggerAppCompatActivity() {
 
   private fun initBottomNav() {
     binding.bottomNav.disableShiftingMode()
-    changePage(Page.forMenuId(defaultPrefs.homePageState))
-    binding.bottomNav.selectedItemId = defaultPrefs.homePageState
     binding.bottomNav.setOnNavigationItemSelectedListener {
-      defaultPrefs.homePageState = it.itemId
-      changePage(Page.forMenuId(it.itemId))
+      val page = Page.forMenuId(it.itemId)
+      binding.viewPager.setCurrentItem(page.position, false)
+      toggleToolbarElevation(page.toggleToolbar)
       invalidateOptionsMenu()
       true
     }
@@ -87,19 +97,16 @@ class HomeActivity : DaggerAppCompatActivity() {
     }
   }
 
-  private fun changePage(page: Page) {
-    binding.toolbar.setTitle(page.titleResId)
-    toggleToolbarElevation(page.toggleToolbar)
-    replaceFragment(page.createFragment(), R.id.container)
-  }
+  private class HomeFragmentStatePagerAdapter(
+      val context: Context,
+      fm: FragmentManager
+  ) : FragmentStatePagerAdapter(fm) {
 
-  private fun replaceFragment(fragment: Fragment, @IdRes @LayoutRes layoutResId: Int) {
-    supportFragmentManager.beginTransaction()
-        .replace(layoutResId, fragment, fragment.javaClass.simpleName)
-        .commit()
-  }
+    override fun getItem(position: Int): Fragment = Page.values()[position].createFragment()
 
-  companion object {
-    fun createIntent(context: Context): Intent = Intent(context, HomeActivity::class.java)
+    override fun getCount(): Int = Page.values().size
+
+    override fun getPageTitle(position: Int): CharSequence? =
+        context.getString(Page.values()[position].titleResId)
   }
 }

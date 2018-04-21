@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ayatk.biblio.ui.util
+package com.ayatk.biblio.ui.home
 
 import android.support.annotation.IdRes
 import android.support.annotation.MenuRes
@@ -30,30 +30,24 @@ enum class Page(
     @MenuRes val menuId: Int,
     @StringRes val titleResId: Int,
     val toggleToolbar: Boolean,
-    val pageName: String
+    val position: Int
 ) {
-  LIBRARY(R.id.nav_library, R.string.library, true, LibraryFragment::class.java.simpleName) {
+  LIBRARY(R.id.nav_library, R.string.library, true, 0) {
     override fun createFragment() = LibraryFragment.newInstance()
   },
-  BOOKMARK(R.id.nav_bookmark, R.string.bookmark, true, BookmarkFragment::class.java.simpleName) {
+  BOOKMARK(R.id.nav_bookmark, R.string.bookmark, true, 1) {
     override fun createFragment() = BookmarkFragment.newInstance()
   },
-  RANKING(R.id.nav_ranking, R.string.ranking, true, TopRankingFragment::class.java.simpleName) {
+  RANKING(R.id.nav_ranking, R.string.ranking, true, 2) {
     override fun createFragment() = TopRankingFragment.newInstance()
   },
-  SETTINGS(R.id.nav_settings, R.string.setting, true, SettingFragment::class.java.simpleName) {
+  SETTINGS(R.id.nav_settings, R.string.setting, true, 3) {
     override fun createFragment() = SettingFragment.newInstance()
   };
 
   abstract fun createFragment(): Fragment
 
   companion object {
-
     fun forMenuId(@IdRes id: Int): Page = values().firstOrNull { it.menuId == id } ?: LIBRARY
-
-    fun forName(fragment: Fragment): Page {
-      val name = fragment.javaClass.simpleName
-      return values().first { it.pageName == name }
-    }
   }
 }
