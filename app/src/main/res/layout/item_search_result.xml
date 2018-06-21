@@ -47,11 +47,10 @@
             android:id="@+id/novel_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:lines="1"
             android:text="@{novel.title}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="悪役令嬢、庶民に堕ちる" />
 
@@ -85,7 +84,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/tag"
             android:padding="@dimen/space_4dp"
             android:text="@{novel.publisher.siteName}"
             android:textSize="12sp"
