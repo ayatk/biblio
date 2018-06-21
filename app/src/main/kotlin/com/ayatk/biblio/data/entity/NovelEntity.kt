@@ -16,9 +16,9 @@
 
 package com.ayatk.biblio.data.entity
 
-import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.ayatk.biblio.data.entity.enums.BigGenre
 import com.ayatk.biblio.data.entity.enums.Genre
 import com.ayatk.biblio.data.entity.enums.NovelState

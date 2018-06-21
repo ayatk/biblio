@@ -18,11 +18,11 @@ package com.ayatk.biblio.ui.detail
 
 import android.content.Context
 import android.content.Intent
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityDetailBinding
 import com.ayatk.biblio.model.Novel
@@ -64,9 +64,9 @@ class DetailActivity : DaggerAppCompatActivity() {
         )
   }
 
-  inner class DetailPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+  inner class DetailPagerAdapter(fm: androidx.fragment.app.FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(fm) {
 
-    override fun getItem(position: Int): Fragment =
+    override fun getItem(position: Int): androidx.fragment.app.Fragment =
         DetailPage.values()[position].createFragment(novel)
 
     override fun getCount(): Int =
@@ -78,12 +78,12 @@ class DetailActivity : DaggerAppCompatActivity() {
 
   private enum class DetailPage(val title: Int) {
     INDEX(R.string.novel_index_title) {
-      override fun createFragment(novel: Novel): Fragment = IndexFragment.newInstance(novel)
+      override fun createFragment(novel: Novel): androidx.fragment.app.Fragment = IndexFragment.newInstance(novel)
     },
     INFO(R.string.novel_info_title) {
-      override fun createFragment(novel: Novel): Fragment = InfoFragment.newInstance(novel)
+      override fun createFragment(novel: Novel): androidx.fragment.app.Fragment = InfoFragment.newInstance(novel)
     };
 
-    abstract fun createFragment(novel: Novel): Fragment
+    abstract fun createFragment(novel: Novel): androidx.fragment.app.Fragment
   }
 }

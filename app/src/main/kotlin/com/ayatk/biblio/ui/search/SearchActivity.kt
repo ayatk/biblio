@@ -16,19 +16,18 @@
 
 package com.ayatk.biblio.ui.search
 
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.RecyclerView.OnScrollListener
-import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.GravityCompat
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivitySearchBinding
 import com.ayatk.biblio.di.ViewModelFactory
@@ -79,8 +78,8 @@ class SearchActivity : DaggerAppCompatActivity() {
     initBackToolbar(binding.toolbar)
 
     val scrollListener = object : OnScrollListener() {
-      override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
-        if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+      override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        if (newState == androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_DRAGGING) {
           searchView.clearFocus()
         }
       }
@@ -101,7 +100,7 @@ class SearchActivity : DaggerAppCompatActivity() {
           override fun onDrawerStateChanged(newState: Int) {
             super.onDrawerStateChanged(newState)
             Timber.d(newState.toString())
-            if (newState != DrawerLayout.STATE_IDLE) {
+            if (newState != androidx.drawerlayout.widget.DrawerLayout.STATE_IDLE) {
               searchView.clearFocus()
             }
           }

@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.ui.util
 
-import android.support.annotation.CheckResult
+import androidx.annotation.CheckResult
 import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.rx.SchedulerProvider
 import io.reactivex.Completable

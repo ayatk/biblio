@@ -16,9 +16,10 @@
 
 package com.ayatk.biblio.ui.util.helper
 
-import android.support.design.internal.BottomNavigationItemView
-import android.support.design.internal.BottomNavigationMenuView
-import android.support.design.widget.BottomNavigationView
+import android.annotation.SuppressLint
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import timber.log.Timber
 
 /**
@@ -27,6 +28,7 @@ import timber.log.Timber
  * We can't access the flag and can't override the class. Then I hacked like this :(
  * http://stackoverflow.com/questions/40176244/how-to-disable-bottomnavigationview-shift-mode
  */
+@SuppressLint("RestrictedApi")
 fun BottomNavigationView.disableShiftingMode() {
   val menuView = this.getChildAt(0) as BottomNavigationMenuView
   try {
@@ -37,7 +39,7 @@ fun BottomNavigationView.disableShiftingMode() {
     }
     for (i in 0 until menuView.childCount) {
       (menuView.getChildAt(i) as BottomNavigationItemView).also { item ->
-        item.setShiftingMode(false)
+        item.setShifting(false)
         // Set once again checked value, so view will be updated
         item.setChecked(item.itemData.isChecked)
       }

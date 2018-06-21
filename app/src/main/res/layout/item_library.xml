@@ -27,7 +27,7 @@
         type="com.ayatk.biblio.model.Library"/>
   </data>
 
-  <android.support.constraint.ConstraintLayout
+  <androidx.constraintlayout.widget.ConstraintLayout
       android:id="@+id/library_item"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -132,6 +132,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_more_vert_grey500_24_vector"/>
 
-  </android.support.constraint.ConstraintLayout>
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

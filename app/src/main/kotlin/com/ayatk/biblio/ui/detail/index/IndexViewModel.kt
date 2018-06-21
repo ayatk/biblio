@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.ui.detail.index
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.ayatk.biblio.domain.usecase.DetailUseCase
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel

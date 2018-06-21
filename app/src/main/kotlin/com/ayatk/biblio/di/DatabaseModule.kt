@@ -17,7 +17,7 @@
 package com.ayatk.biblio.di
 
 import android.app.Application
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import com.ayatk.biblio.data.db.AppDatabase
 import com.ayatk.biblio.data.db.dao.BookmarkDao
 import com.ayatk.biblio.data.db.dao.EpisodeDao

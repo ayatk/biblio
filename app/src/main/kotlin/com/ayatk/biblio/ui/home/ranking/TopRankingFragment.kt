@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.ui.home.ranking
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

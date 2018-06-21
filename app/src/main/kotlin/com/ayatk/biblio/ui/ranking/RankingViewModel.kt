@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.ui.ranking
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.ayatk.biblio.domain.usecase.RankingUseCase
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher

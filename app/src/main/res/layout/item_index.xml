@@ -20,7 +20,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-  <android.support.constraint.ConstraintLayout
+  <androidx.constraintlayout.widget.ConstraintLayout
       android:id="@+id/index_container"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="2015/09/08 19:33"/>
 
-  </android.support.constraint.ConstraintLayout>
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
 

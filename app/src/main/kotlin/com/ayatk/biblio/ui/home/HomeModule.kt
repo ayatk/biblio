@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.ui.home
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.ayatk.biblio.di.ViewModelKey
 import com.ayatk.biblio.ui.home.bookmark.BookmarkFragment
 import com.ayatk.biblio.ui.home.library.LibraryFragment

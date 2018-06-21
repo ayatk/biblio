@@ -73,7 +73,7 @@
         android:orientation="horizontal">
 
       <view
-          class="android.support.v7.widget.SearchView$SearchAutoComplete"
+          class="androidx.appcompat.widget.SearchView$SearchAutoComplete"
           android:id="@+id/search_src_text"
           android:layout_width="0dp"
           android:layout_height="36dip"

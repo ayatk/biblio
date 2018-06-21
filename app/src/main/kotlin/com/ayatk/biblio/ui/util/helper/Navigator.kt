@@ -18,7 +18,7 @@ package com.ayatk.biblio.ui.util.helper
 
 import android.content.Context
 import android.net.Uri
-import android.support.customtabs.CustomTabsIntent
+import androidx.browser.customtabs.CustomTabsIntent
 import android.text.TextUtils
 import android.webkit.URLUtil
 import com.ayatk.biblio.R

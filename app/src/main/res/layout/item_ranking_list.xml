@@ -26,7 +26,7 @@
         type="com.ayatk.biblio.model.Ranking"/>
   </data>
 
-  <android.support.constraint.ConstraintLayout
+  <androidx.constraintlayout.widget.ConstraintLayout
       android:id="@+id/ranking_item"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -116,6 +116,6 @@
         app:layout_constraintTop_toBottomOf="@+id/novel_title"
         tools:text="1234pt"/>
 
-  </android.support.constraint.ConstraintLayout>
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

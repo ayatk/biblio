@@ -17,7 +17,7 @@
 package com.ayatk.biblio.ui.util.customview
 
 import android.content.Context
-import android.support.constraint.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
@@ -28,7 +28,7 @@ class InfoCellView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr) {
+) : androidx.constraintlayout.widget.ConstraintLayout(context, attrs, defStyleAttr) {
 
   private val inflater by lazy {
     LayoutInflater.from(context).inflate(R.layout.view_info_cell, this)

@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.ui.util.helper
 
-import android.databinding.BindingAdapter
-import android.databinding.BindingConversion
+import androidx.databinding.BindingAdapter
+import androidx.databinding.BindingConversion
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View

@@ -33,7 +33,7 @@
         type="Boolean"/>
   </data>
 
-  <android.support.constraint.ConstraintLayout
+  <androidx.constraintlayout.widget.ConstraintLayout
       android:id="@+id/search_result"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-      <android.support.v7.widget.AppCompatImageView
+      <androidx.appcompat.widget.AppCompatImageView
           android:id="@+id/add_library"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
           app:srcCompat="@drawable/ic_book_plus_gray600_24_vector"
           tools:visibility="visible"/>
 
-      <android.support.v7.widget.AppCompatImageView
+      <androidx.appcompat.widget.AppCompatImageView
           android:id="@+id/download_done"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -137,6 +137,6 @@
 
     </FrameLayout>
 
-  </android.support.constraint.ConstraintLayout>
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

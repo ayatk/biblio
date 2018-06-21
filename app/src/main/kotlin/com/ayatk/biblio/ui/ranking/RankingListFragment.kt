@@ -16,10 +16,10 @@
 
 package com.ayatk.biblio.ui.ranking
 
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -95,7 +95,7 @@ class RankingListFragment : DaggerFragment() {
   companion object {
     private const val BUNDLE_ARGS_RANKING_TYPE = "ranking_type"
 
-    fun newInstance(rankingType: RankingType): Fragment =
+    fun newInstance(rankingType: RankingType): androidx.fragment.app.Fragment =
         RankingListFragment().apply {
           arguments = bundleOf(BUNDLE_ARGS_RANKING_TYPE to rankingType)
         }

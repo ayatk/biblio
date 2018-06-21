@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.ui.episode
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.ayatk.biblio.di.ViewModelKey
 import dagger.Binds
 import dagger.Module

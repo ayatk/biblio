@@ -16,10 +16,10 @@
 
 package com.ayatk.biblio.ui.home
 
-import android.support.annotation.IdRes
-import android.support.annotation.MenuRes
-import android.support.annotation.StringRes
-import android.support.v4.app.Fragment
+import androidx.annotation.IdRes
+import androidx.annotation.MenuRes
+import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
 import com.ayatk.biblio.R
 import com.ayatk.biblio.ui.home.bookmark.BookmarkFragment
 import com.ayatk.biblio.ui.home.library.LibraryFragment
@@ -45,7 +45,7 @@ enum class Page(
     override fun createFragment() = SettingFragment.newInstance()
   };
 
-  abstract fun createFragment(): Fragment
+  abstract fun createFragment(): androidx.fragment.app.Fragment
 
   companion object {
     fun forMenuId(@IdRes id: Int): Page = values().firstOrNull { it.menuId == id } ?: LIBRARY

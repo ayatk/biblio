@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.ui.detail
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.ayatk.biblio.di.ViewModelKey
 import com.ayatk.biblio.ui.detail.index.IndexFragment
 import com.ayatk.biblio.ui.detail.index.IndexViewModel

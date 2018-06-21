@@ -50,7 +50,7 @@ android {
     targetSdkVersion versions.targetSdk
     versionCode BUILD_NUM.toInteger()
     versionName VERSION
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     vectorDrawables.useSupportLibrary true
     multiDexEnabled true
 
@@ -165,14 +165,12 @@ dependencies {
   implementation depends.kotlin.stdlib
   implementation depends.ktx
 
-  // android support libraries
-  implementation depends.support.appcompat
-  implementation depends.support.design
-  implementation depends.support.cardview
-  implementation depends.support.customtabs
-  implementation depends.support.preference
-  implementation depends.support.preferenceV14
-  implementation depends.support.constraint
+  // androidx libraries
+  implementation depends.androidx.appcompat
+  implementation depends.androidx.cardview
+  implementation depends.androidx.browser
+  implementation depends.androidx.preference
+  implementation depends.androidx.constraint
 
   // Android Architecture Components
   implementation depends.lifecycle.runtime
@@ -214,6 +212,7 @@ dependencies {
   implementation depends.jsoup
 
   // UI
+  implementation depends.material.material
   implementation depends.flexbox
   implementation depends.groupie.core
   implementation depends.groupie.binding
@@ -240,12 +239,12 @@ dependencies {
   // Test
   testImplementation depends.junit
 
-  androidTestImplementation depends.supportTest.runner
-  androidTestImplementation depends.supportTest.espresso
-  androidTestImplementation depends.supportTest.contrib
+  androidTestImplementation depends.androidxTest.runner
+  androidTestImplementation depends.androidxTest.espresso
+  androidTestImplementation depends.androidxTest.contrib
 
-  testImplementation depends.archTest.core
-  testImplementation depends.archTest.room
+  testImplementation 'androidx.arch.core:core-testing:2.0.0-alpha1'
+  testImplementation 'androidx.room:room-testing:2.0.0-alpha1'
 
   // Lint
   ktlint depends.ktlint

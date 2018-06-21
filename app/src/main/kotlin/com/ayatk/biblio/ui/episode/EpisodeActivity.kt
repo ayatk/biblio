@@ -18,12 +18,12 @@ package com.ayatk.biblio.ui.episode
 
 import android.content.Context
 import android.content.Intent
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
-import android.support.v4.view.ViewPager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.ViewPager
 import android.view.MenuItem
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityEpisodeBinding
@@ -59,7 +59,7 @@ class EpisodeActivity : DaggerAppCompatActivity() {
       adapter = EpisodePagerAdapter(supportFragmentManager)
       currentItem = page
       addOnPageChangeListener(
-          object : ViewPager.OnPageChangeListener {
+          object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
             override fun onPageSelected(position: Int) {
               EventBus.getDefault().post(UiEvent.EpisodeSelectedEvent(position))
             }
@@ -113,9 +113,9 @@ class EpisodeActivity : DaggerAppCompatActivity() {
         )
   }
 
-  inner class EpisodePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+  inner class EpisodePagerAdapter(fm: androidx.fragment.app.FragmentManager) : androidx.fragment.app.FragmentStatePagerAdapter(fm) {
 
-    override fun getItem(position: Int): Fragment =
+    override fun getItem(position: Int): androidx.fragment.app.Fragment =
         EpisodeFragment.newInstance(novel, position)
 
     override fun getCount(): Int = novel.page

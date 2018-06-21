@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.ui.episode
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.ayatk.biblio.domain.usecase.EpisodeUseCase
 import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel

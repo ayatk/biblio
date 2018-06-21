@@ -16,10 +16,10 @@
 
 package com.ayatk.biblio.ui.home.library
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
-import android.support.v7.widget.PopupMenu
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.PopupMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

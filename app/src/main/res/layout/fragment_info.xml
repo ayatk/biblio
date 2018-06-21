@@ -72,7 +72,7 @@
           app:setCellIcon="@drawable/ic_status_24"
           app:setCellText="@{context.getString(viewModel.novel.novelState.stateName)}"/>
 
-      <android.support.constraint.ConstraintLayout
+      <androidx.constraintlayout.widget.ConstraintLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground">
@@ -107,9 +107,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tags="@{viewModel.novel.keyword}"/>
 
-      </android.support.constraint.ConstraintLayout>
+      </androidx.constraintlayout.widget.ConstraintLayout>
 
-      <android.support.constraint.ConstraintLayout
+      <androidx.constraintlayout.widget.ConstraintLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground">
@@ -159,7 +159,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tags="@{viewModel.tags}"/>
 
-      </android.support.constraint.ConstraintLayout>
+      </androidx.constraintlayout.widget.ConstraintLayout>
 
       <com.ayatk.biblio.ui.util.customview.InfoCellView
           android:layout_width="match_parent"
