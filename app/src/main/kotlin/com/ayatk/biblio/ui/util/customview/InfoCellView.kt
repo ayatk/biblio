@@ -21,13 +21,14 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.ayatk.biblio.R
 
 class InfoCellView @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0
-) : androidx.constraintlayout.widget.ConstraintLayout(context, attrs, defStyleAttr) {
+) : ConstraintLayout(context, attrs, defStyleAttr) {
 
   private val inflater by lazy {
     LayoutInflater.from(context).inflate(R.layout.view_info_cell, this)

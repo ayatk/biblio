@@ -23,6 +23,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.content.systemService
 import com.ayatk.biblio.R
 import com.ayatk.biblio.model.Ranking
@@ -35,7 +36,7 @@ class RankingTopCellView @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0
-) : androidx.cardview.widget.CardView(context, attrs, defStyleAttr) {
+) : CardView(context, attrs, defStyleAttr) {
 
   private val rankingList: ArrayList<Ranking> = ArrayList()
 
