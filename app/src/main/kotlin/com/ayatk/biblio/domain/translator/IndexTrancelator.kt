@@ -33,7 +33,7 @@ fun List<IndexEntity>.toModel(novel: Novel): List<Index> =
       it.lastUpdate
     )
   }
-//fun Index.toEntity(): IndexEntity =
+// fun Index.toEntity(): IndexEntity =
 //    IndexEntity(
 //
 //    )

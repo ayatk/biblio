@@ -31,7 +31,7 @@ fun EpisodeEntity.toModel(novel: Novel): Episode =
     afterContent
   )
 
-//fun Index.toEntity(): IndexEntity =
-//    IndexEntity(
+// fun Index.toEntity(): IndexEntity =
+//   IndexEntity(
 //
-//    )
+//     )

@@ -41,7 +41,8 @@ class DetailUseCaseImpl @Inject constructor(
     Library("remote", novel, emptyList()).toSingle()
 
   override fun saveLibrary(library: Library): Completable {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    TODO("not implemented")
+    // To change body of created functions use File | Settings | File Templates.
   }
 
   override fun getIndex(novel: Novel): Flowable<List<Index>> =
@@ -50,6 +51,7 @@ class DetailUseCaseImpl @Inject constructor(
       .subscribeOn(schedulerProvider.io())
 
   override fun updateIndex(novel: Novel): Completable {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    TODO("not implemented")
+    // To change body of created functions use File | Settings | File Templates.
   }
 }
