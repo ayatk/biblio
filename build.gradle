@@ -20,8 +20,8 @@ buildscript {
   apply from: "${rootDir.absolutePath}/versions.gradle"
 
   repositories {
-    jcenter()
     google()
+    jcenter()
     maven { url "https://jitpack.io" }
     maven { url 'https://maven.fabric.io/public' }
   }
@@ -42,8 +42,8 @@ plugins {
 
 allprojects {
   repositories {
-    jcenter()
     google()
+    jcenter()
     maven { url "https://jitpack.io" }
     maven { url 'https://maven.fabric.io/public' }
   }
