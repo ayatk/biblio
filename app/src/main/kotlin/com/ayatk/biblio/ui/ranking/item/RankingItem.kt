@@ -31,6 +31,8 @@ class RankingItem(
 
   override fun getLayout(): Int = R.layout.item_ranking_list
 
+  override fun getId(): Long = ranking.novel.code.toByteArray().joinToString("").toLong()
+
   override fun bind(viewBinding: ItemRankingListBinding, position: Int) {
     viewBinding.ranking = ranking
     viewBinding.rankingItem.setOnClickListener {

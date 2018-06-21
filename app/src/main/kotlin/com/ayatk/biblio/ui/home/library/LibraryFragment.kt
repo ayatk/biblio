@@ -35,7 +35,6 @@ import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.ext.observe
 import com.ayatk.biblio.util.ext.setVisible
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 import dagger.android.support.DaggerFragment
 import timber.log.Timber
@@ -55,7 +54,7 @@ class LibraryFragment : DaggerFragment() {
 
   lateinit var binding: FragmentLibraryBinding
 
-  private val librarySection = Section()
+  private val groupAdapter = GroupAdapter<ViewHolder>()
   private val onClickListener = { novel: Novel ->
     context!!.navigateToDetail(novel)
   }
@@ -88,9 +87,7 @@ class LibraryFragment : DaggerFragment() {
     // 色設定
     binding.refresh.setColorSchemeResources(R.color.app_blue)
 
-    binding.recyclerView.init(GroupAdapter<ViewHolder>().apply {
-      add(librarySection)
-    })
+    binding.recyclerView.init(groupAdapter)
 
     return binding.root
   }
@@ -98,11 +95,11 @@ class LibraryFragment : DaggerFragment() {
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
 
-    viewModel.libraries.observe(this, { result ->
+    viewModel.libraries.observe(this) { result ->
       when (result) {
         is Result.Success -> {
           val libraries = result.data
-          librarySection.update(libraries.map {
+          groupAdapter.update(libraries.map {
             LibraryItem(it, defaultPrefs, onClickListener, onMenuClickListener)
           })
           binding.emptyView.setVisible(libraries.isEmpty())
@@ -110,7 +107,7 @@ class LibraryFragment : DaggerFragment() {
         }
         is Result.Failure -> Timber.e(result.e)
       }
-    })
+    }
   }
 
   private fun deleteDialog(novel: Novel) =

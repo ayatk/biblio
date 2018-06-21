@@ -28,6 +28,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
+import androidx.view.isGone
+import androidx.view.isVisible
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivitySearchBinding
 import com.ayatk.biblio.di.ViewModelFactory
@@ -38,9 +40,7 @@ import com.ayatk.biblio.ui.util.init
 import com.ayatk.biblio.ui.util.initBackToolbar
 import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.ext.observe
-import com.ayatk.biblio.util.ext.setVisible
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 import dagger.android.support.DaggerAppCompatActivity
 import timber.log.Timber
@@ -61,7 +61,7 @@ class SearchActivity : DaggerAppCompatActivity() {
 
   private lateinit var searchView: SearchView
 
-  private val searchSection = Section()
+  private val groupAdapter = GroupAdapter<ViewHolder>()
   private val onItemClickListener = { novel: Novel ->
     navigateToDetail(novel)
   }
@@ -85,12 +85,7 @@ class SearchActivity : DaggerAppCompatActivity() {
       }
     }
 
-    binding.searchResult.init(
-      GroupAdapter<ViewHolder>().apply {
-        add(searchSection)
-      },
-      scrollListener
-    )
+    binding.searchResult.init(groupAdapter, scrollListener)
 
     binding.drawerLayout.addDrawerListener(
       object : ActionBarDrawerToggle(
@@ -111,10 +106,12 @@ class SearchActivity : DaggerAppCompatActivity() {
       when (result) {
         is Result.Success -> {
           val novels = result.data
-          searchSection.update(novels.map {
+          groupAdapter.update(novels.map {
             SearchResultItem(it, onItemClickListener, onDownloadClickListener)
           })
-          binding.searchResult.setVisible(novels.isNotEmpty())
+          if (binding.searchResult.isGone) {
+            binding.searchResult.isVisible = novels.isNotEmpty()
+          }
         }
         is Result.Failure -> Timber.e(result.e)
       }

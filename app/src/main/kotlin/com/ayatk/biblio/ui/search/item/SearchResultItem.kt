@@ -33,6 +33,8 @@ class SearchResultItem(
 
   override fun getLayout(): Int = R.layout.item_search_result
 
+  override fun getId(): Long = novel.key.code.toByteArray().joinToString("").toLong()
+
   override fun bind(viewBinding: ItemSearchResultBinding, position: Int) {
     viewBinding.let {
       it.novel = novel.key
