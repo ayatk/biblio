@@ -24,8 +24,8 @@ import com.ayatk.biblio.util.format
 import com.xwray.groupie.databinding.BindableItem
 
 class IndexItem(
-    private val index: Index,
-    private val onClickListener: (Index) -> Unit
+  private val index: Index,
+  private val onClickListener: (Index) -> Unit
 ) : BindableItem<ItemIndexBinding>() {
   override fun getLayout(): Int = R.layout.item_index
 

@@ -18,9 +18,9 @@ package com.ayatk.biblio.model
 
 data class Library(
 
-    val id: String,
+  val id: String,
 
-    val novel: Novel,
+  val novel: Novel,
 
-    val tag: List<String>
+  val tag: List<String>
 )

@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.model.enums
 
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import com.ayatk.biblio.R
 
 enum class ReadingState(@StringRes val string: Int) {

@@ -17,13 +17,13 @@
 package com.ayatk.biblio.ui.util.customview
 
 import android.content.Context
-import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.content.systemService
 import com.ayatk.biblio.R
 import com.ayatk.biblio.model.Ranking
@@ -33,9 +33,9 @@ import com.ayatk.biblio.ui.util.helper.DataBindingHelper.rankingIcon
 import com.ayatk.biblio.ui.util.helper.DataBindingHelper.rankingText
 
 class RankingTopCellView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+  context: Context,
+  attrs: AttributeSet? = null,
+  defStyleAttr: Int = 0
 ) : CardView(context, attrs, defStyleAttr) {
 
   private val rankingList: ArrayList<Ranking> = ArrayList()

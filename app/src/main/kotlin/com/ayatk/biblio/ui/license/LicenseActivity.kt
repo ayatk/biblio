@@ -18,9 +18,9 @@ package com.ayatk.biblio.ui.license
 
 import android.content.Context
 import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityWebBinding
 import com.ayatk.biblio.ui.util.initBackToolbar
@@ -51,9 +51,9 @@ class LicenseActivity : AppCompatActivity() {
     private const val EXTRA_URL = "URL"
 
     fun createIntent(context: Context?, title: String, url: String): Intent =
-        Intent(context, LicenseActivity::class.java).extraOf(
-            EXTRA_TITLE to title,
-            EXTRA_URL to url
-        )
+      Intent(context, LicenseActivity::class.java).extraOf(
+        EXTRA_TITLE to title,
+        EXTRA_URL to url
+      )
   }
 }

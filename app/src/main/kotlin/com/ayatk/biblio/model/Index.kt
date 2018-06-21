@@ -22,19 +22,19 @@ import java.util.UUID
 
 data class Index(
 
-    val id: UUID,
+  val id: UUID,
 
-    val novel: Novel,
+  val novel: Novel,
 
-    val subtitle: String,
+  val subtitle: String,
 
-    val page: Int,
+  val page: Int,
 
-    val chapterTitle: String?,
+  val chapterTitle: String?,
 
-    val readingState: ReadingState,
+  val readingState: ReadingState,
 
-    val publishDate: Date,
+  val publishDate: Date,
 
-    val lastUpdate: Date
+  val lastUpdate: Date
 )

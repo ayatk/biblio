@@ -19,43 +19,43 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent">
 
-      <android.support.v7.widget.Toolbar
-          android:id="@+id/toolbar"
-          android:layout_width="match_parent"
-          android:layout_height="?attr/actionBarSize"
-          android:background="?attr/colorPrimary"
-          app:popupTheme="@style/AppTheme.PopupOverlay"/>
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-    </android.support.design.widget.AppBarLayout>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <com.ayatk.biblio.ui.util.customview.NonSwipeableViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_nav"
-        android:layout_below="@id/app_bar"/>
+        </com.google.android.material.appbar.AppBarLayout>
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_nav"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/bottom_nav_height"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="start"
-        android:background="@color/nav_background"
-        app:elevation="@dimen/elevation_4dp"
-        app:itemIconTint="@color/bottom_navigation_item"
-        app:itemTextColor="@color/bottom_navigation_item"
-        app:menu="@menu/bottom_nav"/>
+        <com.ayatk.biblio.ui.util.customview.NonSwipeableViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_nav"
+            android:layout_below="@id/app_bar" />
 
-  </RelativeLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_nav_height"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="start"
+            android:background="@color/nav_background"
+            app:elevation="@dimen/elevation_4dp"
+            app:itemIconTint="@color/bottom_navigation_item"
+            app:itemTextColor="@color/bottom_navigation_item"
+            app:menu="@menu/bottom_nav" />
+
+    </RelativeLayout>
 </layout>

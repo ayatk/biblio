@@ -26,18 +26,18 @@ import javax.inject.Singleton
 
 @Singleton
 class BookmarkRepositoryImpl @Inject constructor(
-    private val dao: BookmarkDao
+  private val dao: BookmarkDao
 ) : BookmarkRepository {
 
   override val bookmarks: Flowable<List<BookmarkEntity>> = dao.getAllBookmark()
 
   override fun save(bookmarks: List<BookmarkEntity>): Completable =
-      Completable.fromRunnable { dao::insert }
+    Completable.fromRunnable { dao::insert }
 
   override fun delete(id: UUID): Completable =
-      dao.getAllBookmark()
-          .map { it.first { it.id == id } } // 基本マッチしないIDはない設計
-          .flatMapCompletable {
-            Completable.fromRunnable { dao::delete }
-          }
+    dao.getAllBookmark()
+      .map { it.first { it.id == id } } // 基本マッチしないIDはない設計
+      .flatMapCompletable {
+        Completable.fromRunnable { dao::delete }
+      }
 }

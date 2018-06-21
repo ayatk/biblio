@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.ui.detail.index
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.ayatk.biblio.domain.usecase.DetailUseCase
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
@@ -28,14 +28,14 @@ import com.ayatk.biblio.util.rx.SchedulerProvider
 import javax.inject.Inject
 
 class IndexViewModel @Inject constructor(
-    private val detailUseCase: DetailUseCase,
-    private val schedulerProvider: SchedulerProvider
+  private val detailUseCase: DetailUseCase,
+  private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
   fun getIndex(novel: Novel): LiveData<Result<List<Index>>> =
-      detailUseCase.getIndex(novel)
-          .toResult(schedulerProvider)
-          .toLiveData()
+    detailUseCase.getIndex(novel)
+      .toResult(schedulerProvider)
+      .toLiveData()
 
   // TODO: リフレッシュの処理
 }

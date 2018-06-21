@@ -19,10 +19,10 @@ package com.ayatk.biblio.data.remote.entity.mapper
 import com.ayatk.biblio.data.entity.enums.NovelState
 
 fun Int.toNovelState(isEnd: Int): NovelState =
-    if (this == 2) {
-      NovelState.SHORT_STORY
-    } else if (this == 1 && isEnd == 1) {
-      NovelState.SERIES
-    } else {
-      NovelState.SERIES_END
-    }
+  if (this == 2) {
+    NovelState.SHORT_STORY
+  } else if (this == 1 && isEnd == 1) {
+    NovelState.SERIES
+  } else {
+    NovelState.SERIES_END
+  }

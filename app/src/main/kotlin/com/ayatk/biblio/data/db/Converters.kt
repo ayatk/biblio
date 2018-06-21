@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.data.db
 
-import android.arch.persistence.room.TypeConverter
+import androidx.room.TypeConverter
 import com.ayatk.biblio.data.entity.enums.BigGenre
 import com.ayatk.biblio.data.entity.enums.Genre
 import com.ayatk.biblio.data.entity.enums.NovelState

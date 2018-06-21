@@ -26,18 +26,18 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [
-      AndroidSupportInjectionModule::class,
-      AppModule::class,
-      RepositoryModule::class,
-      NetworkModule::class,
-      DataStoreModule::class,
-      DebugHttpClientModule::class,
-      DatabaseModule::class,
-      UiModule::class,
-      UseCaseModule::class,
-      ViewModelModule::class
-    ]
+  modules = [
+    AndroidSupportInjectionModule::class,
+    AppModule::class,
+    RepositoryModule::class,
+    NetworkModule::class,
+    DataStoreModule::class,
+    DebugHttpClientModule::class,
+    DatabaseModule::class,
+    UiModule::class,
+    UseCaseModule::class,
+    ViewModelModule::class
+  ]
 )
 interface DebugAppComponent : AndroidInjector<DebugApp> {
 

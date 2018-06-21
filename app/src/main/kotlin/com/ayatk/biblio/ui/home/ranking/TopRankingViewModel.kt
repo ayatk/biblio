@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.ui.home.ranking
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.ayatk.biblio.domain.usecase.TopRankingUseCase
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
@@ -29,37 +29,37 @@ import com.ayatk.biblio.util.rx.SchedulerProvider
 import javax.inject.Inject
 
 class TopRankingViewModel @Inject constructor(
-    private val useCase: TopRankingUseCase,
-    private val schedulerProvider: SchedulerProvider
+  private val useCase: TopRankingUseCase,
+  private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
   val daily: LiveData<Result<List<Ranking>>> by lazy {
     useCase.ranking(Publisher.NAROU, RankingType.DAILY)
-        .toResult(schedulerProvider)
-        .toLiveData()
+      .toResult(schedulerProvider)
+      .toLiveData()
   }
 
   val weekly: LiveData<Result<List<Ranking>>> by lazy {
     useCase.ranking(Publisher.NAROU, RankingType.WEEKLY)
-        .toResult(schedulerProvider)
-        .toLiveData()
+      .toResult(schedulerProvider)
+      .toLiveData()
   }
 
   val monthly: LiveData<Result<List<Ranking>>> by lazy {
     useCase.ranking(Publisher.NAROU, RankingType.MONTHLY)
-        .toResult(schedulerProvider)
-        .toLiveData()
+      .toResult(schedulerProvider)
+      .toLiveData()
   }
 
   val quarter: LiveData<Result<List<Ranking>>> by lazy {
     useCase.ranking(Publisher.NAROU, RankingType.QUARTET)
-        .toResult(schedulerProvider)
-        .toLiveData()
+      .toResult(schedulerProvider)
+      .toLiveData()
   }
 
   val all: LiveData<Result<List<Ranking>>> by lazy {
     useCase.ranking(Publisher.NAROU, RankingType.ALL)
-        .toResult(schedulerProvider)
-        .toLiveData()
+      .toResult(schedulerProvider)
+      .toLiveData()
   }
 }

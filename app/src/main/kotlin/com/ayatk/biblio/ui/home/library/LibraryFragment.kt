@@ -16,13 +16,13 @@
 
 package com.ayatk.biblio.ui.home.library
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
-import android.support.v7.widget.PopupMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.PopupMenu
+import androidx.lifecycle.ViewModelProviders
 import com.ayatk.biblio.R
 import com.ayatk.biblio.data.DefaultPrefs
 import com.ayatk.biblio.databinding.FragmentLibraryBinding
@@ -77,9 +77,9 @@ class LibraryFragment : DaggerFragment() {
   }
 
   override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
   ): View? {
     binding = FragmentLibraryBinding.inflate(inflater, container, false)
     binding.setLifecycleOwner(this)
@@ -114,16 +114,16 @@ class LibraryFragment : DaggerFragment() {
   }
 
   private fun deleteDialog(novel: Novel) =
-      AlertDialog.Builder(context!!)
-          .setTitle(context!!.getString(R.string.delete_popup_title, novel.title))
-          .setMessage(R.string.delete_popup_message)
-          .setPositiveButton(R.string.delete_popup_positive) { _, _ ->
-            viewModel.delete(novel)
-          }
-          .setNegativeButton(R.string.delete_popup_negative) { _, _ ->
-            /* no-op */
-          }
-          .show()
+    AlertDialog.Builder(context!!)
+      .setTitle(context!!.getString(R.string.delete_popup_title, novel.title))
+      .setMessage(R.string.delete_popup_message)
+      .setPositiveButton(R.string.delete_popup_positive) { _, _ ->
+        viewModel.delete(novel)
+      }
+      .setNegativeButton(R.string.delete_popup_negative) { _, _ ->
+        /* no-op */
+      }
+      .show()
 
   companion object {
     fun newInstance(): LibraryFragment = LibraryFragment()

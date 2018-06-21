@@ -16,9 +16,9 @@
 
 package com.ayatk.biblio.ui.home.library
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.ayatk.biblio.domain.usecase.LibraryUseCase
 import com.ayatk.biblio.model.Library
 import com.ayatk.biblio.model.Novel
@@ -33,16 +33,16 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class LibraryViewModel @Inject constructor(
-    private val useCase: LibraryUseCase,
-    private val schedulerProvider: SchedulerProvider
+  private val useCase: LibraryUseCase,
+  private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
   private val compositeDisposable = CompositeDisposable()
 
   val libraries: LiveData<Result<List<Library>>> by lazy {
     useCase.libraries
-        .toResult(schedulerProvider)
-        .toLiveData()
+      .toResult(schedulerProvider)
+      .toLiveData()
   }
 
   var refreshing = MutableLiveData<Boolean>()
@@ -53,17 +53,17 @@ class LibraryViewModel @Inject constructor(
 
   fun onSwipeRefresh() {
     useCase.update()
-        .observeOn(schedulerProvider.ui())
-        .subscribeBy(
-            onComplete = { refreshing.postValue(false) },
-            onError = Timber::e
-        )
-        .addTo(compositeDisposable)
+      .observeOn(schedulerProvider.ui())
+      .subscribeBy(
+        onComplete = { refreshing.postValue(false) },
+        onError = Timber::e
+      )
+      .addTo(compositeDisposable)
   }
 
   fun delete(novel: Novel) =
-      useCase.delete(novel)
-          .observeOn(schedulerProvider.ui())
-          .subscribe()
-          .addTo(compositeDisposable)
+    useCase.delete(novel)
+      .observeOn(schedulerProvider.ui())
+      .subscribe()
+      .addTo(compositeDisposable)
 }

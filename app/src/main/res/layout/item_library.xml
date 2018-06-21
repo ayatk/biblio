@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ Copyright (c) 2016-2018 ayatk.
   ~
@@ -20,118 +21,119 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-  <data>
+    <data>
 
-    <variable
-        name="library"
-        type="com.ayatk.biblio.model.Library"/>
-  </data>
+        <variable
+            name="library"
+            type="com.ayatk.biblio.model.Library" />
+    </data>
 
-  <android.support.constraint.ConstraintLayout
-      android:id="@+id/library_item"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="?attr/selectableItemBackground"
-      android:padding="@dimen/space_16dp">
-
-    <TextView
-        android:id="@+id/novel_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:ellipsize="end"
-        android:lines="1"
-        android:text="@{library.novel.title}"
-        app:layout_constraintBottom_toBottomOf="@+id/menu"
-        app:layout_constraintEnd_toStartOf="@+id/menu"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="悪役令嬢、庶民に堕ちる"/>
-
-    <TextView
-        android:id="@+id/novel_writer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:text="@{library.novel.writer}"
-        android:textColor="@color/grey500"
-        android:textSize="@dimen/text_12sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:text="緋月紫砲"/>
-
-    <TextView
-        android:id="@+id/publisher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@{library.novel.publisher.siteName}"
-        android:textSize="12sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu"
-        tools:text="小説家になろう"/>
-
-    <TextView
-        android:id="@+id/read_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="@{String.format(@string/novel_progress, 0, library.novel.page)}"
-        android:textSize="12sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
-        app:layout_constraintRight_toLeftOf="@+id/novel_type"/>
-
-    <TextView
-        android:id="@+id/novel_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="@{library.novel.novelState.stateName}"
-        android:textSize="12sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
-        app:layout_constraintRight_toLeftOf="@+id/publisher"
-        tools:text="連載中"/>
-
-    <LinearLayout
-        android:id="@+id/tag_layout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/library_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/publisher">
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/space_16dp">
 
-      <ImageView
-          android:id="@+id/tag_icon"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_marginEnd="@dimen/icon_space_4dp"
-          android:contentDescription="@string/tag_icon_description"
-          app:srcCompat="@drawable/ic_tag_multiple_grey400_20_vector"/>
+        <TextView
+            android:id="@+id/novel_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="@{library.novel.title}"
+            android:layout_marginStart="-1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/menu"
+            app:layout_constraintEnd_toStartOf="@+id/menu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="悪役令嬢、庶民に堕ちる" />
 
-      <com.google.android.flexbox.FlexboxLayout
-          android:id="@+id/tag_container"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="-2dp"
-          android:layout_marginTop="-2dp"
-          android:layout_weight="1"
-          app:flexDirection="row"
-          app:flexWrap="wrap"
-          app:tags="@{library.tag}">
+        <TextView
+            android:id="@+id/novel_writer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:text="@{library.novel.writer}"
+            android:textColor="@color/grey500"
+            android:textSize="@dimen/text_12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:text="緋月紫砲" />
 
-      </com.google.android.flexbox.FlexboxLayout>
-    </LinearLayout>
+        <TextView
+            android:id="@+id/publisher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{library.novel.publisher.siteName}"
+            android:textSize="12sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menu"
+            tools:text="小説家になろう" />
 
-    <ImageView
-        android:id="@+id/menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_more_vert_grey500_24_vector"/>
+        <TextView
+            android:id="@+id/read_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@{String.format(@string/novel_progress, 0, library.novel.page)}"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
+            app:layout_constraintRight_toLeftOf="@+id/novel_type" />
 
-  </android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/novel_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@{library.novel.novelState.stateName}"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
+            app:layout_constraintRight_toLeftOf="@+id/publisher"
+            tools:text="連載中" />
+
+        <LinearLayout
+            android:id="@+id/tag_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/publisher">
+
+            <ImageView
+                android:id="@+id/tag_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/icon_space_4dp"
+                android:contentDescription="@string/tag_icon_description"
+                app:srcCompat="@drawable/ic_tag_multiple_grey400_20_vector" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/tag_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-2dp"
+                android:layout_marginTop="-2dp"
+                android:layout_weight="1"
+                app:flexDirection="row"
+                app:flexWrap="wrap"
+                app:tags="@{library.tag}">
+
+            </com.google.android.flexbox.FlexboxLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_more_vert_grey500_24_vector" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

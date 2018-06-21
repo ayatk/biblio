@@ -21,17 +21,17 @@ import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel
 
 fun EpisodeEntity.toModel(novel: Novel): Episode =
-    Episode(
-        id,
-        novel,
-        page,
-        subtitle,
-        prevContent,
-        content,
-        afterContent
-    )
+  Episode(
+    id,
+    novel,
+    page,
+    subtitle,
+    prevContent,
+    content,
+    afterContent
+  )
 
-//fun Index.toEntity(): IndexEntity =
-//    IndexEntity(
+// fun Index.toEntity(): IndexEntity =
+//   IndexEntity(
 //
-//    )
+//     )

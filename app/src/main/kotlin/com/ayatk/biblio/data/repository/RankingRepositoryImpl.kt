@@ -34,8 +34,8 @@ import com.ayatk.biblio.data.entity.enums.RankingType as ApiRankingType
 
 @Singleton
 class RankingRepositoryImpl @Inject constructor(
-    @Narou private val narouDataStore: NarouDataStore,
-    @Nocturne private val nocDataStore: NarouDataStore
+  @Narou private val narouDataStore: NarouDataStore,
+  @Nocturne private val nocDataStore: NarouDataStore
 ) : RankingRepository {
 
   companion object {
@@ -53,29 +53,29 @@ class RankingRepositoryImpl @Inject constructor(
       }
 
       return narouDataStore.getRanking(apiRankingType, today.time)
-          .flatMap {
-            val codes = it
-                .map { it.ncode }
-                .drop(range.first)
+        .flatMap {
+          val codes = it
+            .map { it.ncode }
+            .drop(range.first)
+            .take(range.count())
+
+          val query = QueryBuilder()
+            .ncode(*codes.toTypedArray())
+            .size(range.count())
+            .build()
+
+          narouDataStore.getNovel(query)
+            .map { novel ->
+              it.drop(range.first)
                 .take(range.count())
-
-            val query = QueryBuilder()
-                .ncode(*codes.toTypedArray())
-                .size(range.count())
-                .build()
-
-            narouDataStore.getNovel(query)
-                .map { novel ->
-                  it.drop(range.first)
-                      .take(range.count())
-                      .toRanking(novel.toNovel(Publisher.NAROU))
-                }
-          }
+                .toRanking(novel.toNovel(Publisher.NAROU))
+            }
+        }
     } else {
       val query = QueryBuilder().order(OutputOrder.HYOKA_COUNT).size(range.last).build()
       return narouDataStore
-          .getNovel(query)
-          .map { it.toNovel(Publisher.NAROU).toRanking() }
+        .getNovel(query)
+        .map { it.toNovel(Publisher.NAROU).toRanking() }
     }
   }
 

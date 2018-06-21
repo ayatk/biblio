@@ -33,8 +33,8 @@ open class App : DaggerApplication() {
   }
 
   override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
-      DaggerAppComponent
-          .builder()
-          .application(this)
-          .build()
+    DaggerAppComponent
+      .builder()
+      .application(this)
+      .build()
 }

@@ -16,9 +16,9 @@
 
 package com.ayatk.biblio.data.db
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
-import android.arch.persistence.room.TypeConverters
+import androidx.room.Database
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.ayatk.biblio.data.db.dao.BookmarkDao
 import com.ayatk.biblio.data.db.dao.EpisodeDao
 import com.ayatk.biblio.data.db.dao.IndexDao
@@ -29,14 +29,14 @@ import com.ayatk.biblio.data.entity.IndexEntity
 import com.ayatk.biblio.data.entity.NovelEntity
 
 @Database(
-    entities = [
-      BookmarkEntity::class,
-      EpisodeEntity::class,
-      IndexEntity::class,
-      NovelEntity::class
-    ],
-    version = 1,
-    exportSchema = false
+  entities = [
+    BookmarkEntity::class,
+    EpisodeEntity::class,
+    IndexEntity::class,
+    NovelEntity::class
+  ],
+  version = 1,
+  exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {

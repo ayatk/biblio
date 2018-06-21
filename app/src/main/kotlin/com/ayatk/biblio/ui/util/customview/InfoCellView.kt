@@ -17,17 +17,17 @@
 package com.ayatk.biblio.ui.util.customview
 
 import android.content.Context
-import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.ayatk.biblio.R
 
 class InfoCellView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+  context: Context,
+  attrs: AttributeSet? = null,
+  defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
   private val inflater by lazy {

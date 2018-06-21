@@ -20,16 +20,16 @@
     android:viewportHeight="131.0"
     android:viewportWidth="130.0"
     android:width="24dp">
-  <path
-      android:fillColor="#F86C6B"
-      android:fillType="evenOdd"
-      android:pathData="M0,1h130v130h-130z"
-      android:strokeColor="#00000000"
-      android:strokeWidth="1"/>
-  <path
-      android:fillColor="#FF7473"
-      android:fillType="evenOdd"
-      android:pathData="M130,0.95l-130,0l0,130z"
-      android:strokeColor="#00000000"
-      android:strokeWidth="1"/>
+    <path
+        android:fillColor="#F86C6B"
+        android:fillType="evenOdd"
+        android:pathData="M0,1h130v130h-130z"
+        android:strokeColor="#00000000"
+        android:strokeWidth="1" />
+    <path
+        android:fillColor="#FF7473"
+        android:fillType="evenOdd"
+        android:pathData="M130,0.95l-130,0l0,130z"
+        android:strokeColor="#00000000"
+        android:strokeWidth="1" />
 </vector>

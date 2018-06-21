@@ -47,9 +47,9 @@ class HttpClientModule {
     val cache = Cache(cacheDir, MAX_CACHE_SIZE)
 
     return OkHttpClient
-        .Builder()
-        .addInterceptor(addUserAgentInterceptor)
-        .cache(cache)
-        .build()
+      .Builder()
+      .addInterceptor(addUserAgentInterceptor)
+      .cache(cache)
+      .build()
   }
 }

@@ -20,8 +20,8 @@ buildscript {
   apply from: "${rootDir.absolutePath}/versions.gradle"
 
   repositories {
-    jcenter()
     google()
+    jcenter()
     maven { url "https://jitpack.io" }
     maven { url 'https://maven.fabric.io/public' }
   }
@@ -36,14 +36,14 @@ buildscript {
 }
 
 plugins {
-  id 'com.github.ben-manes.versions' version '0.17.0'
-  id 'io.gitlab.arturbosch.detekt' version '1.0.0.RC6-4'
+  id 'com.github.ben-manes.versions' version '0.20.0'
+  id 'io.gitlab.arturbosch.detekt' version '1.0.0.RC7-2'
 }
 
 allprojects {
   repositories {
-    jcenter()
     google()
+    jcenter()
     maven { url "https://jitpack.io" }
     maven { url 'https://maven.fabric.io/public' }
   }
@@ -58,7 +58,7 @@ allprojects {
 }
 
 detekt {
-  version = "1.0.0.RC6-4"
+  version = "1.0.0.RC7-2"
   profile("main") {
     input = "$projectDir/app"
     config = "$projectDir/detekt.yml"

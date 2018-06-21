@@ -21,20 +21,20 @@ import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.Ranking
 
 fun List<NarouRanking>.toRanking(novels: List<Novel>): List<Ranking> =
-    map {
-      Ranking(
-          rank = it.rank,
-          novel = novels.firstOrNull { novel -> novel.code == it.ncode } ?: unknownNovel,
-          point = it.pt
-      )
-    }
+  map {
+    Ranking(
+      rank = it.rank,
+      novel = novels.firstOrNull { novel -> novel.code == it.ncode } ?: unknownNovel,
+      point = it.pt
+    )
+  }
 
 fun List<Novel>.toRanking(): List<Ranking> =
-    mapIndexed { index, novel ->
-      Ranking(rank = index + 1, novel = novel, point = novel.point)
-    }
+  mapIndexed { index, novel ->
+    Ranking(rank = index + 1, novel = novel, point = novel.point)
+  }
 
 private val unknownNovel = Novel(
-    code = "unknown",
-    title = "この小説は見ることができません"
+  code = "unknown",
+  title = "この小説は見ることができません"
 )

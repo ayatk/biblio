@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.data
 
-import android.support.annotation.StyleRes
+import androidx.annotation.StyleRes
 import com.ayatk.biblio.BuildConfig
 import com.ayatk.biblio.R
 import com.rejasupotaro.android.kvs.annotations.Key

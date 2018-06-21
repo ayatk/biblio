@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.ui.ranking
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.ayatk.biblio.domain.usecase.RankingUseCase
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.Publisher
@@ -29,12 +29,12 @@ import com.ayatk.biblio.util.rx.SchedulerProvider
 import javax.inject.Inject
 
 class RankingViewModel @Inject constructor(
-    private val useCase: RankingUseCase,
-    private val schedulerProvider: SchedulerProvider
+  private val useCase: RankingUseCase,
+  private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
   fun rankings(rankingType: RankingType): LiveData<Result<List<Ranking>>> =
-      useCase.ranking(Publisher.NAROU, rankingType)
-          .toResult(schedulerProvider)
-          .toLiveData()
+    useCase.ranking(Publisher.NAROU, rankingType)
+      .toResult(schedulerProvider)
+      .toLiveData()
 }

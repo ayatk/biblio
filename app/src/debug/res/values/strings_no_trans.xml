@@ -15,6 +15,6 @@
   -->
 
 <resources>
-  <string name="app_name" translatable="false">Biblio Debug</string>
-  <string name="leak_canary_display_activity_label" translatable="false">Biblio Leaks</string>
+    <string name="app_name" translatable="false">Biblio Debug</string>
+    <string name="leak_canary_display_activity_label" translatable="false">Biblio Leaks</string>
 </resources>

@@ -18,11 +18,11 @@ package com.ayatk.biblio.util.ext
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.annotation.BoolRes
-import android.support.annotation.ColorRes
-import android.support.annotation.DrawableRes
-import android.support.annotation.IntegerRes
-import android.support.v4.content.ContextCompat
+import androidx.annotation.BoolRes
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.IntegerRes
+import androidx.core.content.ContextCompat
 
 fun Context.color(@ColorRes color: Int): Int = ContextCompat.getColor(this, color)
 
@@ -31,4 +31,4 @@ fun Context.bool(@BoolRes boolRes: Int): Boolean = resources.getBoolean(boolRes)
 fun Context.integer(@IntegerRes integerRes: Int): Int = resources.getInteger(integerRes)
 
 fun Context.drawable(@DrawableRes drawableRes: Int): Drawable =
-    ContextCompat.getDrawable(this, drawableRes)!!
+  ContextCompat.getDrawable(this, drawableRes)!!

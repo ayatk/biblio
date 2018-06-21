@@ -17,7 +17,7 @@
 package com.ayatk.biblio.ui.home.setting
 
 import android.os.Bundle
-import android.support.v7.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceFragmentCompat
 import com.ayatk.biblio.BuildConfig
 import com.ayatk.biblio.R
 import com.ayatk.biblio.ui.license.LicenseActivity
@@ -29,9 +29,9 @@ class SettingFragment : PreferenceFragmentCompat() {
 
     findPreference("oss_license")?.setOnPreferenceClickListener { _ ->
       startActivity(
-          LicenseActivity.createIntent(
-              activity, getString(R.string.pref_oss_license), "file:///android_asset/licenses.html"
-          )
+        LicenseActivity.createIntent(
+          activity, getString(R.string.pref_oss_license), "file:///android_asset/licenses.html"
+        )
       )
       true
     }

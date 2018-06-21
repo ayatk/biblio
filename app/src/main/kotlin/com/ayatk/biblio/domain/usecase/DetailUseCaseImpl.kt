@@ -31,25 +31,27 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class DetailUseCaseImpl @Inject constructor(
-    private val novelRepository: NovelRepository,
-    private val indexRepository: IndexRepository,
-    private val schedulerProvider: SchedulerProvider
+  private val novelRepository: NovelRepository,
+  private val indexRepository: IndexRepository,
+  private val schedulerProvider: SchedulerProvider
 ) : DetailUseCase {
 
   override fun getLibrary(novel: Novel): Single<Library> =
-      // TODO とりあえず今はタグ実装してないのでそのまま変換して流してる
-      Library("remote", novel, emptyList()).toSingle()
+  // TODO とりあえず今はタグ実装してないのでそのまま変換して流してる
+    Library("remote", novel, emptyList()).toSingle()
 
   override fun saveLibrary(library: Library): Completable {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    TODO("not implemented")
+    // To change body of created functions use File | Settings | File Templates.
   }
 
   override fun getIndex(novel: Novel): Flowable<List<Index>> =
-      indexRepository.index(novel.toEntity())
-          .map { it.toModel(novel) }
-          .subscribeOn(schedulerProvider.io())
+    indexRepository.index(novel.toEntity())
+      .map { it.toModel(novel) }
+      .subscribeOn(schedulerProvider.io())
 
   override fun updateIndex(novel: Novel): Completable {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    TODO("not implemented")
+    // To change body of created functions use File | Settings | File Templates.
   }
 }

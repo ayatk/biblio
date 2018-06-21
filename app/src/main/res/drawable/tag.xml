@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ Copyright (c) 2016-2018 ayatk.
   ~
@@ -18,17 +19,17 @@
 <shape
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <solid android:color="@null"/>
+    <solid android:color="@null" />
 
-  <padding
-      android:bottom="4dp"
-      android:left="8dp"
-      android:right="8dp"
-      android:top="4dp"/>
+    <padding
+        android:bottom="4dp"
+        android:left="8dp"
+        android:right="8dp"
+        android:top="4dp" />
 
-  <stroke
-      android:color="@color/grey500"
-      android:width="@dimen/tag_border_width"/>
-  <corners android:radius="@dimen/tag_radius"/>
+    <stroke
+        android:color="@color/grey500"
+        android:width="@dimen/tag_border_width" />
+    <corners android:radius="@dimen/tag_radius" />
 
 </shape>

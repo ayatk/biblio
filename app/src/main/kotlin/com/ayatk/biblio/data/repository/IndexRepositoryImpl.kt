@@ -32,26 +32,26 @@ import javax.inject.Singleton
 
 @Singleton
 class IndexRepositoryImpl @Inject constructor(
-    private val dao: IndexDao,
-    @Narou private val narouDataStore: NarouDataStore,
-    @Nocturne private val nocDataStore: NarouDataStore
+  private val dao: IndexDao,
+  @Narou private val narouDataStore: NarouDataStore,
+  @Nocturne private val nocDataStore: NarouDataStore
 ) : IndexRepository {
 
   override fun index(entity: NovelEntity): Flowable<List<IndexEntity>> =
-      Flowables.combineLatest(
-          when (entity.publisher) {
-            Publisher.NAROU -> narouDataStore.getIndex(entity.code)
-            Publisher.NOCTURNE_MOONLIGHT -> nocDataStore.getIndex(entity.code)
-          }
-              .map { it.toEntity() },
-          dao.getAllIndexByCode(entity.code),
-          { remote, local ->
-            if (remote.isEmpty()) local else remote
-          })
+    Flowables.combineLatest(
+      when (entity.publisher) {
+        Publisher.NAROU -> narouDataStore.getIndex(entity.code)
+        Publisher.NOCTURNE_MOONLIGHT -> nocDataStore.getIndex(entity.code)
+      }
+        .map { it.toEntity() },
+      dao.getAllIndexByCode(entity.code),
+      { remote, local ->
+        if (remote.isEmpty()) local else remote
+      })
 
   override fun save(indexes: List<IndexEntity>): Completable =
-      Completable.fromRunnable { dao.insert(indexes) }
+    Completable.fromRunnable { dao.insert(indexes) }
 
   override fun delete(code: String): Completable =
-      Completable.fromRunnable { dao.getAllIndexByCode(code) }
+    Completable.fromRunnable { dao.getAllIndexByCode(code) }
 }

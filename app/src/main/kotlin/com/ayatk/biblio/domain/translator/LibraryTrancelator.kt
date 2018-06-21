@@ -20,10 +20,10 @@ import com.ayatk.biblio.data.entity.NovelEntity
 import com.ayatk.biblio.model.Library
 
 fun NovelEntity.toLibrary(tags: List<String> = listOf()): Library =
-    Library(
-        code,
-        this.toModel(),
-        tags
-    )
+  Library(
+    code,
+    this.toModel(),
+    tags
+  )
 
 fun Library.toNovelEntity(): NovelEntity = novel.toEntity()

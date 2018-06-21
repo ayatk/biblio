@@ -16,13 +16,12 @@
 
 package com.ayatk.biblio.ui.ranking
 
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.os.bundleOf
 import com.ayatk.biblio.databinding.FragmentRankingListBinding
 import com.ayatk.biblio.model.Novel
@@ -61,9 +60,9 @@ class RankingListFragment : DaggerFragment() {
   }
 
   override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
   ): View? {
     binding = FragmentRankingListBinding.inflate(inflater, container, false)
 
@@ -95,9 +94,9 @@ class RankingListFragment : DaggerFragment() {
   companion object {
     private const val BUNDLE_ARGS_RANKING_TYPE = "ranking_type"
 
-    fun newInstance(rankingType: RankingType): Fragment =
-        RankingListFragment().apply {
-          arguments = bundleOf(BUNDLE_ARGS_RANKING_TYPE to rankingType)
-        }
+    fun newInstance(rankingType: RankingType): androidx.fragment.app.Fragment =
+      RankingListFragment().apply {
+        arguments = bundleOf(BUNDLE_ARGS_RANKING_TYPE to rankingType)
+      }
   }
 }

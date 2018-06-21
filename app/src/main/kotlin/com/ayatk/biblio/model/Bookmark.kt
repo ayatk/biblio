@@ -19,11 +19,11 @@ package com.ayatk.biblio.model
 import java.util.UUID
 
 data class Bookmark(
-    val id: UUID,
+  val id: UUID,
 
-    val novel: Novel,
+  val novel: Novel,
 
-    val index: Index,
+  val index: Index,
 
-    val memo: String
+  val memo: String
 )

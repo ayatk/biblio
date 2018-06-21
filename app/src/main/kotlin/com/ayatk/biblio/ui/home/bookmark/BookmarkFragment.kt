@@ -28,9 +28,9 @@ class BookmarkFragment : DaggerFragment() {
   lateinit var binding: FragmentBookmarkBinding
 
   override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
   ): View? {
     binding = FragmentBookmarkBinding.inflate(inflater, container, false)
     return binding.root

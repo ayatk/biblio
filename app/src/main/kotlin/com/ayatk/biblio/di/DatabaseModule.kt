@@ -17,7 +17,7 @@
 package com.ayatk.biblio.di
 
 import android.app.Application
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import com.ayatk.biblio.data.db.AppDatabase
 import com.ayatk.biblio.data.db.dao.BookmarkDao
 import com.ayatk.biblio.data.db.dao.EpisodeDao
@@ -33,9 +33,9 @@ class DatabaseModule {
   @Singleton
   @Provides
   fun provideDb(app: Application): AppDatabase =
-      Room.databaseBuilder(app, AppDatabase::class.java, "biblio.db")
-          .fallbackToDestructiveMigration()
-          .build()
+    Room.databaseBuilder(app, AppDatabase::class.java, "biblio.db")
+      .fallbackToDestructiveMigration()
+      .build()
 
   @Singleton
   @Provides

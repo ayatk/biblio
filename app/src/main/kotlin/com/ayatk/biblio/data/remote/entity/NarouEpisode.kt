@@ -18,15 +18,15 @@ package com.ayatk.biblio.data.remote.entity
 
 data class NarouEpisode(
 
-    var ncode: String,
+  var ncode: String,
 
-    var page: Int,
+  var page: Int,
 
-    var subtitle: String,
+  var subtitle: String,
 
-    var prevContent: String,
+  var prevContent: String,
 
-    var content: String,
+  var content: String,
 
-    var afterContent: String
+  var afterContent: String
 )

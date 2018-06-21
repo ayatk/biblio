@@ -51,11 +51,11 @@ class DebugHttpClientModule {
     httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.HEADERS
 
     return OkHttpClient
-        .Builder()
-        .addInterceptor(addUserAgentInterceptor)
-        .cache(cache)
-        .addNetworkInterceptor(StethoInterceptor())
-        .addInterceptor(httpLoggingInterceptor)
-        .build()
+      .Builder()
+      .addInterceptor(addUserAgentInterceptor)
+      .cache(cache)
+      .addNetworkInterceptor(StethoInterceptor())
+      .addInterceptor(httpLoggingInterceptor)
+      .build()
   }
 }

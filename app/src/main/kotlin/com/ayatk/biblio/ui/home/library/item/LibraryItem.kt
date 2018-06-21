@@ -27,10 +27,10 @@ import com.ayatk.biblio.util.ext.setVisible
 import com.xwray.groupie.databinding.BindableItem
 
 class LibraryItem(
-    private val library: Library,
-    private val defaultPrefs: DefaultPrefs,
-    private val onClickListener: (Novel) -> Unit,
-    private val onMenuClickListener: (View, Novel) -> Boolean
+  private val library: Library,
+  private val defaultPrefs: DefaultPrefs,
+  private val onClickListener: (Novel) -> Unit,
+  private val onMenuClickListener: (View, Novel) -> Boolean
 ) : BindableItem<ItemLibraryBinding>() {
 
   override fun getLayout(): Int = R.layout.item_library

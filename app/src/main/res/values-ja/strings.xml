@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ Copyright (c) 2016-2018 ayatk.
   ~
@@ -16,114 +17,114 @@
   -->
 
 <resources>
-  <!-- Buttom Navigation -->
-  <string name="library">ライブラリ</string>
-  <string name="bookmark">しおり</string>
-  <string name="ranking">ランキング</string>
-  <string name="search">検索</string>
-  <string name="setting">設定</string>
+    <!-- Buttom Navigation -->
+    <string name="library">ライブラリ</string>
+    <string name="bookmark">しおり</string>
+    <string name="ranking">ランキング</string>
+    <string name="search">検索</string>
+    <string name="setting">設定</string>
 
-  <!-- library -->
-  <string name="empty_library">ダウンロードされた小説がありません\n\n小説を検索してライブラリに追加しましょう</string>
-  <string name="library_last_update">最終更新: %1$s</string>
-  <string name="add_novels">小説を追加</string>
+    <!-- library -->
+    <string name="empty_library">ダウンロードされた小説がありません\n\n小説を検索してライブラリに追加しましょう</string>
+    <string name="library_last_update">最終更新: %1$s</string>
+    <string name="add_novels">小説を追加</string>
 
-  <string name="series">連載中</string>
-  <string name="series_end">完結済み</string>
-  <string name="series_stop">更新停止</string>
-  <string name="short_story">短編</string>
-  <string name="novel_progress">%1$d/%2$d</string>
-  <string name="novel_total_pages">全%1$d部</string>
+    <string name="series">連載中</string>
+    <string name="series_end">完結済み</string>
+    <string name="series_stop">更新停止</string>
+    <string name="short_story">短編</string>
+    <string name="novel_progress">%1$d/%2$d</string>
+    <string name="novel_total_pages">全%1$d部</string>
 
-  <!-- novel detail -->
-  <string name="novel_detail">Novel Detail</string>
-  <string name="novel_index_title">目次</string>
-  <string name="novel_info_title">小説情報</string>
+    <!-- novel detail -->
+    <string name="novel_detail">Novel Detail</string>
+    <string name="novel_index_title">目次</string>
+    <string name="novel_info_title">小説情報</string>
 
-  <!-- Genre -->
-  <string name="big_genre_love">恋愛</string>
-  <string name="big_genre_fantasy">ファンタジー</string>
-  <string name="big_genre_literal">文学</string>
-  <string name="big_genre_sf">SF</string>
-  <string name="big_genre_other">その他</string>
-  <string name="big_genre_non_genre">ノンジャンル</string>
+    <!-- Genre -->
+    <string name="big_genre_love">恋愛</string>
+    <string name="big_genre_fantasy">ファンタジー</string>
+    <string name="big_genre_literal">文学</string>
+    <string name="big_genre_sf">SF</string>
+    <string name="big_genre_other">その他</string>
+    <string name="big_genre_non_genre">ノンジャンル</string>
 
-  <string name="genre_love_diff_world">異世界 [恋愛]</string>
-  <string name="genre_love_real_world">現実世界 [恋愛]</string>
-  <string name="genre_fantasy_high">ハイファンタジー [ファンタジー]</string>
-  <string name="genre_fantasy_low">ローファンタジー [ファンタジー]</string>
-  <string name="genre_literal_pure">純文学 [文学]</string>
-  <string name="genre_literal_drama">ヒューマンドラマ [文学]</string>
-  <string name="genre_literal_history">歴史 [文学]</string>
-  <string name="genre_literal_detective">推理 [文学]</string>
-  <string name="genre_literal_horror">ホラー [文学]</string>
-  <string name="genre_literal_action">アクション [文学]</string>
-  <string name="genre_literal_comedy">コメディ [文学]</string>
-  <string name="genre_sf_vr">VRゲーム [SF]</string>
-  <string name="genre_sf_space">宇宙 [SF]</string>
-  <string name="genre_sf_science">空想科学 [SF]</string>
-  <string name="genre_sf_panic">パニック [SF]</string>
-  <string name="genre_other_fairytale">童話 [その他]</string>
-  <string name="genre_other_poem">詩 [その他]</string>
-  <string name="genre_other_essay">エッセイ [その他]</string>
-  <string name="genre_other_replay">リプレイ [その他]</string>
-  <string name="genre_other">その他 [その他]</string>
-  <string name="genre_non_genre">ノンジャンル [ノンジャンル]</string>
+    <string name="genre_love_diff_world">異世界 [恋愛]</string>
+    <string name="genre_love_real_world">現実世界 [恋愛]</string>
+    <string name="genre_fantasy_high">ハイファンタジー [ファンタジー]</string>
+    <string name="genre_fantasy_low">ローファンタジー [ファンタジー]</string>
+    <string name="genre_literal_pure">純文学 [文学]</string>
+    <string name="genre_literal_drama">ヒューマンドラマ [文学]</string>
+    <string name="genre_literal_history">歴史 [文学]</string>
+    <string name="genre_literal_detective">推理 [文学]</string>
+    <string name="genre_literal_horror">ホラー [文学]</string>
+    <string name="genre_literal_action">アクション [文学]</string>
+    <string name="genre_literal_comedy">コメディ [文学]</string>
+    <string name="genre_sf_vr">VRゲーム [SF]</string>
+    <string name="genre_sf_space">宇宙 [SF]</string>
+    <string name="genre_sf_science">空想科学 [SF]</string>
+    <string name="genre_sf_panic">パニック [SF]</string>
+    <string name="genre_other_fairytale">童話 [その他]</string>
+    <string name="genre_other_poem">詩 [その他]</string>
+    <string name="genre_other_essay">エッセイ [その他]</string>
+    <string name="genre_other_replay">リプレイ [その他]</string>
+    <string name="genre_other">その他 [その他]</string>
+    <string name="genre_non_genre">ノンジャンル [ノンジャンル]</string>
 
-  <!-- Reading State -->
-  <string name="unread">読んでない</string>
-  <string name="reading">読んでる</string>
-  <string name="read">読んだ</string>
+    <!-- Reading State -->
+    <string name="unread">読んでない</string>
+    <string name="reading">読んでる</string>
+    <string name="read">読んだ</string>
 
-  <!-- Sites -->
-  <string name="site_narou">小説家になろう</string>
-  <string name="site_nocturne_moonlight">ノクターン･ムーンライト</string>
+    <!-- Sites -->
+    <string name="site_narou">小説家になろう</string>
+    <string name="site_nocturne_moonlight">ノクターン･ムーンライト</string>
 
-  <!-- Preference -->
-  <string name="pref_category_general">一般</string>
-  <string name="pref_category_other">その他</string>
+    <!-- Preference -->
+    <string name="pref_category_general">一般</string>
+    <string name="pref_category_other">その他</string>
 
-  <string name="pref_oss_license">オープンソースライセンス</string>
-  <string name="pref_version">バージョン</string>
-  <string name="pref_show_tag_at_library">小説一覧にタグを表示する</string>
-  <string name="close">閉じる</string>
+    <string name="pref_oss_license">オープンソースライセンス</string>
+    <string name="pref_version">バージョン</string>
+    <string name="pref_show_tag_at_library">小説一覧にタグを表示する</string>
+    <string name="close">閉じる</string>
 
-  <string name="search_hint">小説を検索</string>
-  <string name="filter">フイルター</string>
+    <string name="search_hint">小説を検索</string>
+    <string name="filter">フイルター</string>
 
-  <!-- Navigation drawer -->
-  <string name="drawer_open">開く</string>
-  <string name="drawer_close">閉じる</string>
-  <string name="suggest_add_user_tag">タップしてタグを追加しましょう</string>
+    <!-- Navigation drawer -->
+    <string name="drawer_open">開く</string>
+    <string name="drawer_close">閉じる</string>
+    <string name="suggest_add_user_tag">タップしてタグを追加しましょう</string>
 
-  <!-- Ranking -->
-  <string name="ranking_daily">日間ランキング</string>
-  <string name="ranking_weekly">週間ランキング</string>
-  <string name="ranking_monthly">月間ランキング</string>
-  <string name="ranking_quarter">四半期ランキング</string>
-  <string name="ranking_all">累計ランキング</string>
-  <string name="ranking_read_more">もっと見る</string>
+    <!-- Ranking -->
+    <string name="ranking_daily">日間ランキング</string>
+    <string name="ranking_weekly">週間ランキング</string>
+    <string name="ranking_monthly">月間ランキング</string>
+    <string name="ranking_quarter">四半期ランキング</string>
+    <string name="ranking_all">累計ランキング</string>
+    <string name="ranking_read_more">もっと見る</string>
 
-  <string name="ranking_daily_short">日間</string>
-  <string name="ranking_weekly_short">週間</string>
-  <string name="ranking_monthly_short">月間</string>
-  <string name="ranking_quarter_short">四半期</string>
-  <string name="ranking_all_short">累計</string>
+    <string name="ranking_daily_short">日間</string>
+    <string name="ranking_weekly_short">週間</string>
+    <string name="ranking_monthly_short">月間</string>
+    <string name="ranking_quarter_short">四半期</string>
+    <string name="ranking_all_short">累計</string>
 
-  <string name="novel_ranking_point">%1$d pt</string>
+    <string name="novel_ranking_point">%1$d pt</string>
 
-  <!-- Image description -->
-  <string name="ranking_icon_description">crown icon</string>
-  <string name="more_icon_description">more icon</string>
-  <string name="search_icon_description">search_icon</string>
-  <string name="info_icon_description">info icon</string>
-  <string name="keyword_icon_description">keyword icon</string>
-  <string name="tag_icon_description">tag_icon</string>
+    <!-- Image description -->
+    <string name="ranking_icon_description">crown icon</string>
+    <string name="more_icon_description">more icon</string>
+    <string name="search_icon_description">search_icon</string>
+    <string name="info_icon_description">info icon</string>
+    <string name="keyword_icon_description">keyword icon</string>
+    <string name="tag_icon_description">tag_icon</string>
 
-  <!-- Novel delete -->
-  <string name="menu_delete_novel">この小説を削除</string>
-  <string name="delete_popup_title">「%1$s」をライブラリから削除しますか?</string>
-  <string name="delete_popup_message">小説を削除するとしおりやタグなども消えてしまいます。</string>
-  <string name="delete_popup_positive">消しちゃう！</string>
-  <string name="delete_popup_negative">やだ！！！</string>
+    <!-- Novel delete -->
+    <string name="menu_delete_novel">この小説を削除</string>
+    <string name="delete_popup_title">「%1$s」をライブラリから削除しますか?</string>
+    <string name="delete_popup_message">小説を削除するとしおりやタグなども消えてしまいます。</string>
+    <string name="delete_popup_positive">消しちゃう！</string>
+    <string name="delete_popup_negative">やだ！！！</string>
 </resources>

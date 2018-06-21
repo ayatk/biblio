@@ -21,19 +21,19 @@ import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
 
 fun List<IndexEntity>.toModel(novel: Novel): List<Index> =
-    map {
-      Index(
-          it.id,
-          novel,
-          it.subtitle,
-          it.page,
-          it.chapter,
-          it.readingState.toModel(),
-          it.publishDate,
-          it.lastUpdate
-      )
-    }
-//fun Index.toEntity(): IndexEntity =
+  map {
+    Index(
+      it.id,
+      novel,
+      it.subtitle,
+      it.page,
+      it.chapter,
+      it.readingState.toModel(),
+      it.publishDate,
+      it.lastUpdate
+    )
+  }
+// fun Index.toEntity(): IndexEntity =
 //    IndexEntity(
 //
 //    )

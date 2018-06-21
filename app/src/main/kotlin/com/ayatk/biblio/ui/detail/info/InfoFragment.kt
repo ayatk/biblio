@@ -16,11 +16,11 @@
 
 package com.ayatk.biblio.ui.detail.info
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import androidx.os.bundleOf
 import com.ayatk.biblio.databinding.FragmentInfoBinding
 import com.ayatk.biblio.di.ViewModelFactory
@@ -49,9 +49,9 @@ class InfoFragment : DaggerFragment() {
   }
 
   override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
   ): View? {
     binding = FragmentInfoBinding.inflate(inflater, container, false)
 
@@ -66,8 +66,8 @@ class InfoFragment : DaggerFragment() {
     private const val BUNDLE_ARGS_NOVEL = "NOVEL"
 
     fun newInstance(novel: Novel): InfoFragment =
-        InfoFragment().apply {
-          arguments = bundleOf(BUNDLE_ARGS_NOVEL to novel)
-        }
+      InfoFragment().apply {
+        arguments = bundleOf(BUNDLE_ARGS_NOVEL to novel)
+      }
   }
 }
