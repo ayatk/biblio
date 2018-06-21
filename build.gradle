@@ -36,8 +36,8 @@ buildscript {
 }
 
 plugins {
-  id 'com.github.ben-manes.versions' version '0.17.0'
-  id 'io.gitlab.arturbosch.detekt' version '1.0.0.RC6-4'
+  id 'com.github.ben-manes.versions' version '0.20.0'
+  id 'io.gitlab.arturbosch.detekt' version '1.0.0.RC7-2'
 }
 
 allprojects {
