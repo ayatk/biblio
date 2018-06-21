@@ -15,118 +15,118 @@
   -->
 
 <resources>
-  <!-- App Info -->
-  <string name="app_name" translatable="false">Biblio</string>
+    <!-- App Info -->
+    <string name="app_name" translatable="false">Biblio</string>
 
-  <!-- Bottom Navigation -->
-  <string name="library">Library</string>
-  <string name="bookmark">Bookmarks</string>
-  <string name="ranking">Ranking</string>
-  <string name="search">Search</string>
-  <string name="setting">Settings</string>
+    <!-- Bottom Navigation -->
+    <string name="library">Library</string>
+    <string name="bookmark">Bookmarks</string>
+    <string name="ranking">Ranking</string>
+    <string name="search">Search</string>
+    <string name="setting">Settings</string>
 
-  <!-- library -->
-  <string name="empty_library">There is no downloaded novel\n\nLes\'s search for a novel and add it to the library</string>
-  <string name="library_last_update">Last update: %1$s</string>
-  <string name="add_novels">Add novel</string>
+    <!-- library -->
+    <string name="empty_library">There is no downloaded novel\n\nLes\'s search for a novel and add it to the library</string>
+    <string name="library_last_update">Last update: %1$s</string>
+    <string name="add_novels">Add novel</string>
 
-  <string name="series">Serialized</string>
-  <string name="series_end">Completion</string>
-  <string name="series_stop">Stop</string>
-  <string name="short_story">Short story</string>
-  <string name="novel_progress">%1$d/%2$d</string>
-  <string name="novel_total_pages">%1$d parts</string>
+    <string name="series">Serialized</string>
+    <string name="series_end">Completion</string>
+    <string name="series_stop">Stop</string>
+    <string name="short_story">Short story</string>
+    <string name="novel_progress">%1$d/%2$d</string>
+    <string name="novel_total_pages">%1$d parts</string>
 
-  <!-- novel detail -->
-  <string name="novel_detail">Novel Detail</string>
-  <string name="novel_index_title">Table of Contents</string>
-  <string name="novel_info_title">Novel info</string>
+    <!-- novel detail -->
+    <string name="novel_detail">Novel Detail</string>
+    <string name="novel_index_title">Table of Contents</string>
+    <string name="novel_info_title">Novel info</string>
 
-  <!-- Genre -->
-  <string name="big_genre_love">Love</string>
-  <string name="big_genre_fantasy">Fantasy</string>
-  <string name="big_genre_literal">Literature</string>
-  <string name="big_genre_sf">SF</string>
-  <string name="big_genre_other">Other</string>
-  <string name="big_genre_non_genre">NonGenre</string>
+    <!-- Genre -->
+    <string name="big_genre_love">Love</string>
+    <string name="big_genre_fantasy">Fantasy</string>
+    <string name="big_genre_literal">Literature</string>
+    <string name="big_genre_sf">SF</string>
+    <string name="big_genre_other">Other</string>
+    <string name="big_genre_non_genre">NonGenre</string>
 
-  <string name="genre_love_diff_world">Otherworldly [Love]</string>
-  <string name="genre_love_real_world">Real World [Love]</string>
-  <string name="genre_fantasy_high">High Fantasy [Fantasy]</string>
-  <string name="genre_fantasy_low">Low Fantasy [Fantasy]</string>
-  <string name="genre_literal_pure">Pure Literature [Literature]</string>
-  <string name="genre_literal_drama">Human Drama [Literature]</string>
-  <string name="genre_literal_history">History [Literature]</string>
-  <string name="genre_literal_detective">Mystery [Literature]</string>
-  <string name="genre_literal_horror">Horror [Literature]</string>
-  <string name="genre_literal_action">Action [Literature]</string>
-  <string name="genre_literal_comedy">Comedy [Literature]</string>
-  <string name="genre_sf_vr">VR Games [SF]</string>
-  <string name="genre_sf_space">Space [SF]</string>
-  <string name="genre_sf_science">Science fiction [SF]</string>
-  <string name="genre_sf_panic">Panic [SF]</string>
-  <string name="genre_other_fairytale">Fairytale [Other]</string>
-  <string name="genre_other_poem">Poem [Other]</string>
-  <string name="genre_other_essay">Essay [Other]</string>
-  <string name="genre_other_replay">Replay [Other]</string>
-  <string name="genre_other">Other [Other]</string>
-  <string name="genre_non_genre">NonGenre [NonGenre]</string>
+    <string name="genre_love_diff_world">Otherworldly [Love]</string>
+    <string name="genre_love_real_world">Real World [Love]</string>
+    <string name="genre_fantasy_high">High Fantasy [Fantasy]</string>
+    <string name="genre_fantasy_low">Low Fantasy [Fantasy]</string>
+    <string name="genre_literal_pure">Pure Literature [Literature]</string>
+    <string name="genre_literal_drama">Human Drama [Literature]</string>
+    <string name="genre_literal_history">History [Literature]</string>
+    <string name="genre_literal_detective">Mystery [Literature]</string>
+    <string name="genre_literal_horror">Horror [Literature]</string>
+    <string name="genre_literal_action">Action [Literature]</string>
+    <string name="genre_literal_comedy">Comedy [Literature]</string>
+    <string name="genre_sf_vr">VR Games [SF]</string>
+    <string name="genre_sf_space">Space [SF]</string>
+    <string name="genre_sf_science">Science fiction [SF]</string>
+    <string name="genre_sf_panic">Panic [SF]</string>
+    <string name="genre_other_fairytale">Fairytale [Other]</string>
+    <string name="genre_other_poem">Poem [Other]</string>
+    <string name="genre_other_essay">Essay [Other]</string>
+    <string name="genre_other_replay">Replay [Other]</string>
+    <string name="genre_other">Other [Other]</string>
+    <string name="genre_non_genre">NonGenre [NonGenre]</string>
 
-  <!-- Reading State -->
-  <string name="unread">Unread</string>
-  <string name="reading">Reading</string>
-  <string name="read">Read</string>
+    <!-- Reading State -->
+    <string name="unread">Unread</string>
+    <string name="reading">Reading</string>
+    <string name="read">Read</string>
 
-  <!-- Sites -->
-  <string name="site_narou">Narou</string>
-  <string name="site_nocturne_moonlight">Nocturne･Moonlight</string>
+    <!-- Sites -->
+    <string name="site_narou">Narou</string>
+    <string name="site_nocturne_moonlight">Nocturne･Moonlight</string>
 
-  <!-- Preference -->
-  <string name="pref_category_general">General</string>
-  <string name="pref_category_other">Other</string>
+    <!-- Preference -->
+    <string name="pref_category_general">General</string>
+    <string name="pref_category_other">Other</string>
 
-  <string name="pref_oss_license">Open source license</string>
-  <string name="pref_version">Version</string>
-  <string name="pref_show_tag_at_library">Display tags in the novel list</string>
-  <string name="close">Close</string>
+    <string name="pref_oss_license">Open source license</string>
+    <string name="pref_version">Version</string>
+    <string name="pref_show_tag_at_library">Display tags in the novel list</string>
+    <string name="close">Close</string>
 
-  <string name="search_hint">Search novels</string>
-  <string name="filter">filter</string>
+    <string name="search_hint">Search novels</string>
+    <string name="filter">filter</string>
 
-  <!-- Navigation drawer -->
-  <string name="drawer_open">Open</string>
-  <string name="drawer_close">Close</string>
-  <string name="suggest_add_user_tag">Tap to add tags.</string>
+    <!-- Navigation drawer -->
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="suggest_add_user_tag">Tap to add tags.</string>
 
-  <!-- Ranking -->
-  <string name="ranking_daily">Daily Ranking</string>
-  <string name="ranking_weekly">Weekly Ranking</string>
-  <string name="ranking_monthly">Monthly Ranking</string>
-  <string name="ranking_quarter">Quarter Ranking</string>
-  <string name="ranking_all">All terms Ranking</string>
-  <string name="ranking_read_more">READ MORE</string>
+    <!-- Ranking -->
+    <string name="ranking_daily">Daily Ranking</string>
+    <string name="ranking_weekly">Weekly Ranking</string>
+    <string name="ranking_monthly">Monthly Ranking</string>
+    <string name="ranking_quarter">Quarter Ranking</string>
+    <string name="ranking_all">All terms Ranking</string>
+    <string name="ranking_read_more">READ MORE</string>
 
-  <string name="ranking_daily_short">Daily</string>
-  <string name="ranking_weekly_short">Weekly</string>
-  <string name="ranking_monthly_short">Monthly</string>
-  <string name="ranking_quarter_short">Quarter</string>
-  <string name="ranking_all_short">All terms</string>
+    <string name="ranking_daily_short">Daily</string>
+    <string name="ranking_weekly_short">Weekly</string>
+    <string name="ranking_monthly_short">Monthly</string>
+    <string name="ranking_quarter_short">Quarter</string>
+    <string name="ranking_all_short">All terms</string>
 
-  <string name="novel_ranking_point">%1$d pt</string>
+    <string name="novel_ranking_point">%1$d pt</string>
 
-  <!-- Image description -->
-  <string name="ranking_icon_description">crown icon</string>
-  <string name="more_icon_description">more icon</string>
-  <string name="search_icon_description">search_icon</string>
-  <string name="info_icon_description">info icon</string>
-  <string name="keyword_icon_description">keyword icon</string>
-  <string name="tag_icon_description">tag_icon</string>
+    <!-- Image description -->
+    <string name="ranking_icon_description">crown icon</string>
+    <string name="more_icon_description">more icon</string>
+    <string name="search_icon_description">search_icon</string>
+    <string name="info_icon_description">info icon</string>
+    <string name="keyword_icon_description">keyword icon</string>
+    <string name="tag_icon_description">tag_icon</string>
 
 
-  <!-- Novel delete -->
-  <string name="menu_delete_novel">Delete this novel</string>
-  <string name="delete_popup_title">Would you like to delete "%1$s" from the library?</string>
-  <string name="delete_popup_message">When you delete a novel, bookmarks and tags will also disappear.</string>
-  <string name="delete_popup_positive">delete!!</string>
-  <string name="delete_popup_negative">Nooooooo!!</string>
+    <!-- Novel delete -->
+    <string name="menu_delete_novel">Delete this novel</string>
+    <string name="delete_popup_title">Would you like to delete "%1$s" from the library?</string>
+    <string name="delete_popup_message">When you delete a novel, bookmarks and tags will also disappear.</string>
+    <string name="delete_popup_positive">delete!!</string>
+    <string name="delete_popup_negative">Nooooooo!!</string>
 </resources>

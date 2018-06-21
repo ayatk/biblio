@@ -19,59 +19,59 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ayatk.biblio">
 
-  <uses-permission android:name="android.permission.INTERNET"/>
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-  <application
-      android:name=".App"
-      android:allowBackup="true"
-      android:fullBackupContent="@xml/backup"
-      android:icon="@mipmap/ic_launcher"
-      android:label="@string/app_name"
-      android:roundIcon="@mipmap/ic_launcher_round"
-      android:supportsRtl="true"
-      android:theme="@style/AppTheme">
-    <meta-data
-        android:name="io.fabric.ApiKey"
-        android:value="${FABRIC_API_KEY}"/>
-
-    <activity
-        android:name=".ui.home.HomeActivity"
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme.NoActionBar">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="${FABRIC_API_KEY}" />
 
-        <category android:name="android.intent.category.LAUNCHER"/>
-      </intent-filter>
-    </activity>
-    <activity
-        android:name=".ui.detail.DetailActivity"
-        android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-        android:exported="false"
-        android:label="@string/novel_detail"
-        android:launchMode="singleTask"
-        android:parentActivityName=".ui.home.HomeActivity"
-        android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-    <activity
-        android:name=".ui.episode.EpisodeActivity"
-        android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-        android:exported="false"
-        android:label="@string/novel_detail"
-        android:launchMode="singleTask"
-        android:parentActivityName=".ui.detail.DetailActivity"
-        android:theme="@style/AppTheme.NoActionBar"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.detail.DetailActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:exported="false"
+            android:label="@string/novel_detail"
+            android:launchMode="singleTask"
+            android:parentActivityName=".ui.home.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
-    <activity
-        android:name=".ui.license.LicenseActivity"
-        android:theme="@style/AppTheme.NoActionBar"/>
-    <activity
-        android:name=".ui.search.SearchActivity"
-        android:theme="@style/AppTheme.NoActionBar"/>
-    <activity
-        android:name=".ui.ranking.RankingActivity"
-        android:theme="@style/AppTheme.NoActionBar"/>
-  </application>
+        <activity
+            android:name=".ui.episode.EpisodeActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:exported="false"
+            android:label="@string/novel_detail"
+            android:launchMode="singleTask"
+            android:parentActivityName=".ui.detail.DetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.license.LicenseActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.ranking.RankingActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+    </application>
 
 </manifest>

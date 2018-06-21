@@ -19,7 +19,6 @@ package com.ayatk.biblio.ui.home
 import androidx.annotation.IdRes
 import androidx.annotation.MenuRes
 import androidx.annotation.StringRes
-import androidx.fragment.app.Fragment
 import com.ayatk.biblio.R
 import com.ayatk.biblio.ui.home.bookmark.BookmarkFragment
 import com.ayatk.biblio.ui.home.library.LibraryFragment
@@ -27,10 +26,10 @@ import com.ayatk.biblio.ui.home.ranking.TopRankingFragment
 import com.ayatk.biblio.ui.home.setting.SettingFragment
 
 enum class Page(
-    @MenuRes val menuId: Int,
-    @StringRes val titleResId: Int,
-    val toggleToolbar: Boolean,
-    val position: Int
+  @MenuRes val menuId: Int,
+  @StringRes val titleResId: Int,
+  val toggleToolbar: Boolean,
+  val position: Int
 ) {
   LIBRARY(R.id.nav_library, R.string.library, true, 0) {
     override fun createFragment() = LibraryFragment.newInstance()

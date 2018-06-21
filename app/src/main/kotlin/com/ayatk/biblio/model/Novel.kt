@@ -25,61 +25,61 @@ import java.util.Date
 
 data class Novel(
 
-    val code: String,
+  val code: String,
 
-    val title: String,
+  val title: String,
 
-    val userID: Int = 0,
+  val userID: Int = 0,
 
-    val writer: String = "",
+  val writer: String = "",
 
-    val story: String = "",
+  val story: String = "",
 
-    val publisher: Publisher = Publisher.NAROU,
+  val publisher: Publisher = Publisher.NAROU,
 
-    val bigGenre: BigGenre = BigGenre.OTHER,
+  val bigGenre: BigGenre = BigGenre.OTHER,
 
-    val genre: Genre = Genre.NON_GENRE,
+  val genre: Genre = Genre.NON_GENRE,
 
-    val keyword: List<String> = listOf(),
+  val keyword: List<String> = listOf(),
 
-    val novelState: NovelState = NovelState.SERIES_END,
+  val novelState: NovelState = NovelState.SERIES_END,
 
-    val firstUpload: Date = Date(),
+  val firstUpload: Date = Date(),
 
-    val lastUpload: Date = Date(),
+  val lastUpload: Date = Date(),
 
-    val page: Int = 0,
+  val page: Int = 0,
 
-    val length: Int = 0,
+  val length: Int = 0,
 
-    val readTime: Int = 0,
+  val readTime: Int = 0,
 
-    val isR18: Boolean = false,
+  val isR18: Boolean = false,
 
-    val isR15: Boolean = false,
+  val isR15: Boolean = false,
 
-    val isBL: Boolean = false,
+  val isBL: Boolean = false,
 
-    val isGL: Boolean = false,
+  val isGL: Boolean = false,
 
-    val isCruelness: Boolean = false,
+  val isCruelness: Boolean = false,
 
-    val isTransmigration: Boolean = false,
+  val isTransmigration: Boolean = false,
 
-    val isTransfer: Boolean = false,
+  val isTransfer: Boolean = false,
 
-    val point: Int = 0,
+  val point: Int = 0,
 
-    val bookmarkCount: Int = 0,
+  val bookmarkCount: Int = 0,
 
-    val reviewCount: Int = 0,
+  val reviewCount: Int = 0,
 
-    val ratingCount: Int = 0,
+  val ratingCount: Int = 0,
 
-    val illustrationCount: Int = 0,
+  val illustrationCount: Int = 0,
 
-    val conversationRate: Int = 0,
+  val conversationRate: Int = 0,
 
-    val novelUpdatedAt: Date = Date()
+  val novelUpdatedAt: Date = Date()
 ) : Serializable

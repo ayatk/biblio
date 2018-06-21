@@ -32,9 +32,9 @@ import javax.inject.Singleton
 
 @Singleton
 class NovelRepositoryImpl @Inject constructor(
-    private val dao: NovelDao,
-    @Narou private val narouDataStore: NarouDataStore,
-    @Nocturne private val nocDataStore: NarouDataStore
+  private val dao: NovelDao,
+  @Narou private val narouDataStore: NarouDataStore,
+  @Nocturne private val nocDataStore: NarouDataStore
 ) : NovelRepository {
 
   override val savedNovels: Flowable<List<NovelEntity>> = dao.getAllNovel()
@@ -46,7 +46,7 @@ class NovelRepositoryImpl @Inject constructor(
       Publisher.NAROU -> narouDataStore.getNovel(query)
       Publisher.NOCTURNE_MOONLIGHT -> nocDataStore.getNovel(query)
     }
-        .map { it.toEntity(publisher) }
+      .map { it.toEntity(publisher) }
   }
 
   override fun novelsByQuery(rawQuery: String, publisher: Publisher): Flowable<List<NovelEntity>> {
@@ -56,17 +56,17 @@ class NovelRepositoryImpl @Inject constructor(
       Publisher.NAROU -> narouDataStore.getNovel(query)
       Publisher.NOCTURNE_MOONLIGHT -> nocDataStore.getNovel(query)
     }
-        .map { it.toEntity(publisher) }
+      .map { it.toEntity(publisher) }
   }
 
   override fun save(novel: NovelEntity): Completable =
-      Completable.fromRunnable {
-        Timber.d("save ${novel.title}")
-        dao.insert(novel)
-      }
+    Completable.fromRunnable {
+      Timber.d("save ${novel.title}")
+      dao.insert(novel)
+    }
 
   override fun delete(novel: NovelEntity): Completable =
-      Completable.fromRunnable {
-        dao.delete(novel)
-      }
+    Completable.fromRunnable {
+      dao.delete(novel)
+    }
 }

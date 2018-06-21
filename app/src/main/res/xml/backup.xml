@@ -18,8 +18,8 @@
 
 <full-backup-content>
 
-  <exclude
-      domain="sharedpref"
-      path="gcm"/>
+    <exclude
+        domain="sharedpref"
+        path="gcm" />
 
 </full-backup-content>

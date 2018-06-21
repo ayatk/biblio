@@ -29,9 +29,9 @@ class SettingFragment : PreferenceFragmentCompat() {
 
     findPreference("oss_license")?.setOnPreferenceClickListener { _ ->
       startActivity(
-          LicenseActivity.createIntent(
-              activity, getString(R.string.pref_oss_license), "file:///android_asset/licenses.html"
-          )
+        LicenseActivity.createIntent(
+          activity, getString(R.string.pref_oss_license), "file:///android_asset/licenses.html"
+        )
       )
       true
     }

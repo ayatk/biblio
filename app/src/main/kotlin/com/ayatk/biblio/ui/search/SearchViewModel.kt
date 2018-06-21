@@ -35,8 +35,8 @@ import java.util.Locale
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
-    private val useCase: SearchUseCase,
-    private val schedulerProvider: SchedulerProvider
+  private val useCase: SearchUseCase,
+  private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
   private val compositeDisposable = CompositeDisposable()
@@ -44,11 +44,11 @@ class SearchViewModel @Inject constructor(
   private val query = MutableLiveData<String>()
 
   val result: LiveData<Result<Map<Novel, Boolean>>> =
-      Transformations.switchMap<String, Result<Map<Novel, Boolean>>>(query) { search ->
-        useCase.search(search, Publisher.NAROU)
-            .toResult(schedulerProvider)
-            .toLiveData()
-      }
+    Transformations.switchMap<String, Result<Map<Novel, Boolean>>>(query) { search ->
+      useCase.search(search, Publisher.NAROU)
+        .toResult(schedulerProvider)
+        .toLiveData()
+    }
 
   override fun onCleared() {
     super.onCleared()
@@ -63,11 +63,11 @@ class SearchViewModel @Inject constructor(
   }
 
   fun saveNovel(novel: Novel) =
-      useCase.saveNovel(novel)
-          .observeOn(schedulerProvider.ui())
-          .subscribeBy(
-              onComplete = { /* no-op */ },
-              onError = { e -> Timber.e(e) }
-          )
-          .addTo(compositeDisposable)
+    useCase.saveNovel(novel)
+      .observeOn(schedulerProvider.ui())
+      .subscribeBy(
+        onComplete = { /* no-op */ },
+        onError = { e -> Timber.e(e) }
+      )
+      .addTo(compositeDisposable)
 }

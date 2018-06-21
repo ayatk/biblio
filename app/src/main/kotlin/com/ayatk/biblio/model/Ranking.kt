@@ -18,9 +18,9 @@ package com.ayatk.biblio.model
 
 data class Ranking(
 
-    val rank: Int,
+  val rank: Int,
 
-    val novel: Novel,
+  val novel: Novel,
 
-    val point: Int
+  val point: Int
 )

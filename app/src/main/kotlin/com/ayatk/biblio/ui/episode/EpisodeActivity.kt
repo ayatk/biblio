@@ -18,13 +18,9 @@ package com.ayatk.biblio.ui.episode
 
 import android.content.Context
 import android.content.Intent
-import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager.widget.ViewPager
 import android.view.MenuItem
+import androidx.databinding.DataBindingUtil
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityEpisodeBinding
 import com.ayatk.biblio.model.Novel
@@ -59,20 +55,20 @@ class EpisodeActivity : DaggerAppCompatActivity() {
       adapter = EpisodePagerAdapter(supportFragmentManager)
       currentItem = page
       addOnPageChangeListener(
-          object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
-            override fun onPageSelected(position: Int) {
-              EventBus.getDefault().post(UiEvent.EpisodeSelectedEvent(position))
-            }
-
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-            }
-
-            override fun onPageScrollStateChanged(pos: Int) {}
+        object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
+          override fun onPageSelected(position: Int) {
+            EventBus.getDefault().post(UiEvent.EpisodeSelectedEvent(position))
           }
+
+          override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+          ) {
+          }
+
+          override fun onPageScrollStateChanged(pos: Int) {}
+        }
       )
     }
   }
@@ -107,16 +103,17 @@ class EpisodeActivity : DaggerAppCompatActivity() {
     private const val EXTRA_PAGE = "PAGE"
 
     fun createIntent(context: Context, novel: Novel, page: Int): Intent =
-        Intent(context, EpisodeActivity::class.java).extraOf(
-            EXTRA_NOVEL to novel,
-            EXTRA_PAGE to page
-        )
+      Intent(context, EpisodeActivity::class.java).extraOf(
+        EXTRA_NOVEL to novel,
+        EXTRA_PAGE to page
+      )
   }
 
-  inner class EpisodePagerAdapter(fm: androidx.fragment.app.FragmentManager) : androidx.fragment.app.FragmentStatePagerAdapter(fm) {
+  inner class EpisodePagerAdapter(fm: androidx.fragment.app.FragmentManager) :
+    androidx.fragment.app.FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): androidx.fragment.app.Fragment =
-        EpisodeFragment.newInstance(novel, position)
+      EpisodeFragment.newInstance(novel, position)
 
     override fun getCount(): Int = novel.page
   }

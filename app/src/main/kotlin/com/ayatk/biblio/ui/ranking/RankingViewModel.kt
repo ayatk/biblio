@@ -29,12 +29,12 @@ import com.ayatk.biblio.util.rx.SchedulerProvider
 import javax.inject.Inject
 
 class RankingViewModel @Inject constructor(
-    private val useCase: RankingUseCase,
-    private val schedulerProvider: SchedulerProvider
+  private val useCase: RankingUseCase,
+  private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
   fun rankings(rankingType: RankingType): LiveData<Result<List<Ranking>>> =
-      useCase.ranking(Publisher.NAROU, rankingType)
-          .toResult(schedulerProvider)
-          .toLiveData()
+    useCase.ranking(Publisher.NAROU, rankingType)
+      .toResult(schedulerProvider)
+      .toLiveData()
 }

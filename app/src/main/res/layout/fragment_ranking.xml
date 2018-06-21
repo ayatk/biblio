@@ -19,57 +19,57 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <data>
+    <data>
 
-    <import type="com.ayatk.biblio.model.enums.RankingType"/>
-  </data>
+        <import type="com.ayatk.biblio.model.enums.RankingType" />
+    </data>
 
-  <androidx.core.widget.NestedScrollView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-      <com.ayatk.biblio.ui.util.customview.RankingTopCellView
-          android:id="@+id/daily"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:rankingType="@{RankingType.DAILY}"
-          app:setRankingTitle="@string/ranking_daily"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-      <com.ayatk.biblio.ui.util.customview.RankingTopCellView
-          android:id="@+id/weekly"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:rankingType="@{RankingType.WEEKLY}"
-          app:setRankingTitle="@string/ranking_weekly"/>
+            <com.ayatk.biblio.ui.util.customview.RankingTopCellView
+                android:id="@+id/daily"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rankingType="@{RankingType.DAILY}"
+                app:setRankingTitle="@string/ranking_daily" />
 
-      <com.ayatk.biblio.ui.util.customview.RankingTopCellView
-          android:id="@+id/monthly"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:rankingType="@{RankingType.MONTHLY}"
-          app:setRankingTitle="@string/ranking_monthly"/>
+            <com.ayatk.biblio.ui.util.customview.RankingTopCellView
+                android:id="@+id/weekly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rankingType="@{RankingType.WEEKLY}"
+                app:setRankingTitle="@string/ranking_weekly" />
 
-      <com.ayatk.biblio.ui.util.customview.RankingTopCellView
-          android:id="@+id/quarter"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:rankingType="@{RankingType.QUARTET}"
-          app:setRankingTitle="@string/ranking_quarter"/>
+            <com.ayatk.biblio.ui.util.customview.RankingTopCellView
+                android:id="@+id/monthly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rankingType="@{RankingType.MONTHLY}"
+                app:setRankingTitle="@string/ranking_monthly" />
 
-      <com.ayatk.biblio.ui.util.customview.RankingTopCellView
-          android:id="@+id/all"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:rankingType="@{RankingType.ALL}"
-          app:setRankingTitle="@string/ranking_all"/>
+            <com.ayatk.biblio.ui.util.customview.RankingTopCellView
+                android:id="@+id/quarter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rankingType="@{RankingType.QUARTET}"
+                app:setRankingTitle="@string/ranking_quarter" />
 
-    </LinearLayout>
+            <com.ayatk.biblio.ui.util.customview.RankingTopCellView
+                android:id="@+id/all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rankingType="@{RankingType.ALL}"
+                app:setRankingTitle="@string/ranking_all" />
 
-  </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </layout>

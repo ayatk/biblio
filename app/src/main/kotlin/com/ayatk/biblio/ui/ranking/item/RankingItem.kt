@@ -25,8 +25,8 @@ import com.ayatk.biblio.util.ext.setVisible
 import com.xwray.groupie.databinding.BindableItem
 
 class RankingItem(
-    private val ranking: Ranking,
-    private val onClickListener: (Novel) -> Unit
+  private val ranking: Ranking,
+  private val onClickListener: (Novel) -> Unit
 ) : BindableItem<ItemRankingListBinding>(ranking.rank.toLong()) {
 
   override fun getLayout(): Int = R.layout.item_ranking_list

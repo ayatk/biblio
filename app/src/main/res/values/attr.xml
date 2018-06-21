@@ -17,12 +17,12 @@
   -->
 
 <resources>
-  <declare-styleable name="InfoCellView">
-    <attr format="reference" name="setCellText"/>
-    <attr format="reference" name="setCellIcon"/>
-  </declare-styleable>
+    <declare-styleable name="InfoCellView">
+        <attr format="reference" name="setCellText" />
+        <attr format="reference" name="setCellIcon" />
+    </declare-styleable>
 
-  <declare-styleable name="RankingTopCellView">
-    <attr format="reference" name="setRankingTitle"/>
-  </declare-styleable>
+    <declare-styleable name="RankingTopCellView">
+        <attr format="reference" name="setRankingTitle" />
+    </declare-styleable>
 </resources>

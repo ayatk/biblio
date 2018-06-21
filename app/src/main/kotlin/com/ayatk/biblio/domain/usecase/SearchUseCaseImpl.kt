@@ -28,20 +28,20 @@ import io.reactivex.rxkotlin.Flowables
 import javax.inject.Inject
 
 class SearchUseCaseImpl @Inject constructor(
-    private val repository: NovelRepository,
-    private val schedulerProvider: SchedulerProvider
+  private val repository: NovelRepository,
+  private val schedulerProvider: SchedulerProvider
 ) : SearchUseCase {
 
   override fun search(query: String, publisher: Publisher): Flowable<Map<Novel, Boolean>> =
-      Flowables.combineLatest(
-          repository.savedNovels,
-          repository.novelsByQuery(query, publisher.toEntity()),
-          { saved, remote ->
-            remote.map { it.toModel() to (it in saved) }.toMap()
-          })
-          .subscribeOn(schedulerProvider.io())
+    Flowables.combineLatest(
+      repository.savedNovels,
+      repository.novelsByQuery(query, publisher.toEntity()),
+      { saved, remote ->
+        remote.map { it.toModel() to (it in saved) }.toMap()
+      })
+      .subscribeOn(schedulerProvider.io())
 
   override fun saveNovel(novel: Novel): Completable =
-      repository.save(novel.toEntity())
-          .subscribeOn(schedulerProvider.io())
+    repository.save(novel.toEntity())
+      .subscribeOn(schedulerProvider.io())
 }

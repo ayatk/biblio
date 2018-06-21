@@ -31,4 +31,4 @@ fun Context.bool(@BoolRes boolRes: Int): Boolean = resources.getBoolean(boolRes)
 fun Context.integer(@IntegerRes integerRes: Int): Int = resources.getInteger(integerRes)
 
 fun Context.drawable(@DrawableRes drawableRes: Int): Drawable =
-    ContextCompat.getDrawable(this, drawableRes)!!
+  ContextCompat.getDrawable(this, drawableRes)!!

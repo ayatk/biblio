@@ -22,4 +22,4 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout="@layout/view_search_compat"
-    app:queryHint="@string/search_hint"/>
+    app:queryHint="@string/search_hint" />

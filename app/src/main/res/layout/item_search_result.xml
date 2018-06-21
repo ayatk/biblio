@@ -21,123 +21,123 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-  <data>
+    <data>
 
-    <import type="android.view.View"/>
+        <import type="android.view.View" />
 
-    <variable
-        name="novel"
-        type="com.ayatk.biblio.model.Novel"/>
+        <variable
+            name="novel"
+            type="com.ayatk.biblio.model.Novel" />
 
-    <variable
-        name="isDownloaded"
-        type="Boolean"/>
-  </data>
+        <variable
+            name="isDownloaded"
+            type="Boolean" />
+    </data>
 
-  <androidx.constraintlayout.widget.ConstraintLayout
-      android:id="@+id/search_result"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="?attr/selectableItemBackground"
-      android:clickable="true"
-      android:focusable="true"
-      android:padding="@dimen/space_16dp">
-
-    <TextView
-        android:id="@+id/novel_title"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/search_result"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:lines="1"
-        android:text="@{novel.title}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="悪役令嬢、庶民に堕ちる"/>
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/space_16dp">
 
-    <TextView
-        android:id="@+id/novel_writer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:text="@{novel.writer}"
-        android:textColor="@color/grey500"
-        android:textSize="@dimen/text_12sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:text="緋月紫砲"/>
+        <TextView
+            android:id="@+id/novel_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="@{novel.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="悪役令嬢、庶民に堕ちる" />
 
-    <TextView
-        android:id="@+id/last_update"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/grey500"
-        android:textSize="@dimen/text_12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/publisher"
-        tools:text="2017/03/01 07:00"/>
+        <TextView
+            android:id="@+id/novel_writer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:text="@{novel.writer}"
+            android:textColor="@color/grey500"
+            android:textSize="@dimen/text_12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:text="緋月紫砲" />
 
-    <TextView
-        android:id="@+id/publisher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/tag"
-        android:padding="@dimen/space_4dp"
-        android:text="@{novel.publisher.siteName}"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/novel_type"
-        app:layout_constraintTop_toBottomOf="@+id/novel_title"
-        tools:text="小説家になろう"/>
+        <TextView
+            android:id="@+id/last_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/grey500"
+            android:textSize="@dimen/text_12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/publisher"
+            tools:text="2017/03/01 07:00" />
 
-    <TextView
-        android:id="@+id/read_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@{String.format(@string/novel_total_pages, novel.page)}"
-        android:textSize="12sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
-        app:layout_constraintStart_toEndOf="@+id/novel_writer"/>
+        <TextView
+            android:id="@+id/publisher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/tag"
+            android:padding="@dimen/space_4dp"
+            android:text="@{novel.publisher.siteName}"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/novel_type"
+            app:layout_constraintTop_toBottomOf="@+id/novel_title"
+            tools:text="小説家になろう" />
 
-    <TextView
-        android:id="@+id/novel_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@{novel.novelState.stateName}"
-        android:textSize="12sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
-        app:layout_constraintStart_toEndOf="@+id/read_progress"
-        tools:text="連載中"/>
+        <TextView
+            android:id="@+id/read_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{String.format(@string/novel_total_pages, novel.page)}"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
+            app:layout_constraintStart_toEndOf="@+id/novel_writer" />
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+            android:id="@+id/novel_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{novel.novelState.stateName}"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/publisher"
+            app:layout_constraintStart_toEndOf="@+id/read_progress"
+            tools:text="連載中" />
 
-      <androidx.appcompat.widget.AppCompatImageView
-          android:id="@+id/add_library"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:visibility="@{isDownloaded ? View.GONE : View.VISIBLE}"
-          app:srcCompat="@drawable/ic_book_plus_gray600_24_vector"
-          tools:visibility="visible"/>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-      <androidx.appcompat.widget.AppCompatImageView
-          android:id="@+id/download_done"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:visibility="@{!isDownloaded ? View.GONE : View.VISIBLE}"
-          app:srcCompat="@drawable/ic_check_green_24_vector"
-          tools:visibility="visible"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/add_library"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{isDownloaded ? View.GONE : View.VISIBLE}"
+                app:srcCompat="@drawable/ic_book_plus_gray600_24_vector"
+                tools:visibility="visible" />
 
-    </FrameLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/download_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{!isDownloaded ? View.GONE : View.VISIBLE}"
+                app:srcCompat="@drawable/ic_check_green_24_vector"
+                tools:visibility="visible" />
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

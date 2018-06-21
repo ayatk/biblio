@@ -19,11 +19,11 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/recycler_view"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="@color/white"
-      style="@style/AppTheme.BaseRecyclerView"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        style="@style/AppTheme.BaseRecyclerView" />
 
 </layout>

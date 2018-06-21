@@ -16,12 +16,12 @@
 
 package com.ayatk.biblio.ui.detail.info
 
+import android.content.Context
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
-import android.content.Context
 import com.ayatk.biblio.domain.usecase.DetailUseCase
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.ui.util.helper.navigateToWebPage
@@ -34,8 +34,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class InfoViewModel @Inject constructor(
-    private val useCase: DetailUseCase,
-    private val schedulerProvider: SchedulerProvider
+  private val useCase: DetailUseCase,
+  private val schedulerProvider: SchedulerProvider
 ) : ViewModel(), LifecycleObserver {
 
   private val compositeDisposable = CompositeDisposable()
@@ -56,13 +56,13 @@ class InfoViewModel @Inject constructor(
   @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
   fun start() {
     useCase.getLibrary(novel)
-        .subscribeOn(schedulerProvider.io())
-        .observeOn(schedulerProvider.ui())
-        .subscribe(
-            { library -> tags.postValue(library.tag) },
-            Timber::e
-        )
-        .addTo(compositeDisposable)
+      .subscribeOn(schedulerProvider.io())
+      .observeOn(schedulerProvider.ui())
+      .subscribe(
+        { library -> tags.postValue(library.tag) },
+        Timber::e
+      )
+      .addTo(compositeDisposable)
   }
 
   fun onClickWriter(context: Context) {

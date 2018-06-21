@@ -16,12 +16,12 @@
 
 package com.ayatk.biblio.ui.home.ranking
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModelProviders
 import com.ayatk.biblio.databinding.FragmentRankingBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Ranking
@@ -44,9 +44,9 @@ class TopRankingFragment : DaggerFragment() {
   lateinit var binding: FragmentRankingBinding
 
   override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
   ): View? {
     binding = FragmentRankingBinding.inflate(inflater, container, false)
     binding.setLifecycleOwner(this)

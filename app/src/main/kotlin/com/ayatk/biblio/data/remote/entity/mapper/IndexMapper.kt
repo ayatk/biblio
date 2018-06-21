@@ -22,15 +22,15 @@ import com.ayatk.biblio.data.remote.entity.NarouIndex
 import java.util.UUID
 
 fun List<NarouIndex>.toEntity(): List<IndexEntity> =
-    map {
-      IndexEntity(
-          id = UUID.nameUUIDFromBytes("${it.ncode}-${it.page}".toByteArray()),
-          code = it.ncode,
-          subtitle = it.title,
-          page = it.page,
-          chapter = it.chapter,
-          readingState = ReadingState.UNREAD,
-          publishDate = it.publishDate,
-          lastUpdate = it.lastUpdate
-      )
-    }
+  map {
+    IndexEntity(
+      id = UUID.nameUUIDFromBytes("${it.ncode}-${it.page}".toByteArray()),
+      code = it.ncode,
+      subtitle = it.title,
+      page = it.page,
+      chapter = it.chapter,
+      readingState = ReadingState.UNREAD,
+      publishDate = it.publishDate,
+      lastUpdate = it.lastUpdate
+    )
+  }

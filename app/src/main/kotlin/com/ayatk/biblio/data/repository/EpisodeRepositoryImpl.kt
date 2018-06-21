@@ -31,25 +31,25 @@ import javax.inject.Singleton
 
 @Singleton
 class EpisodeRepositoryImpl @Inject constructor(
-    private val dao: EpisodeDao,
-    @Narou private val narouDataStore: NarouDataStore,
-    @Nocturne private val nocDataStore: NarouDataStore
+  private val dao: EpisodeDao,
+  @Narou private val narouDataStore: NarouDataStore,
+  @Nocturne private val nocDataStore: NarouDataStore
 ) : EpisodeRepository {
 
   override fun find(entity: NovelEntity, page: Int): Flowable<EpisodeEntity> =
-      if (entity.novelState == NovelState.SHORT_STORY) {
-        narouDataStore.getShortStory(entity.code)
-      } else {
-        narouDataStore.getEpisode(entity.code, page)
-      }
-          .map { it.toEntity() }
+    if (entity.novelState == NovelState.SHORT_STORY) {
+      narouDataStore.getShortStory(entity.code)
+    } else {
+      narouDataStore.getEpisode(entity.code, page)
+    }
+      .map { it.toEntity() }
 
   override fun save(episode: EpisodeEntity): Completable =
-      Completable.fromCallable { dao::insert }
+    Completable.fromCallable { dao::insert }
 
   override fun deleteAll(code: String): Completable =
-      Completable.fromRunnable {
-        dao.getAllEpisodeByCode(code)
-            .map { it.map(dao::delete) }
-      }
+    Completable.fromRunnable {
+      dao.getAllEpisodeByCode(code)
+        .map { it.map(dao::delete) }
+    }
 }

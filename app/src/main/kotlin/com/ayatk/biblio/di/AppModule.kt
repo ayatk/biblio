@@ -32,12 +32,12 @@ class AppModule {
 
   @Provides
   fun provideConnectivityManager(application: Application): ConnectivityManager =
-      application.systemService<ConnectivityManager>()
+    application.systemService<ConnectivityManager>()
 
   @Singleton
   @Provides
   fun provideDefaultPrefs(application: Application): DefaultPrefs =
-      DefaultPrefs.get(application)
+    DefaultPrefs.get(application)
 
   @Singleton
   @Provides

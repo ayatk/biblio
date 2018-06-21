@@ -19,7 +19,7 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <item
-      android:id="@+id/item_novel_delete"
-      android:title="@string/menu_delete_novel"/>
+    <item
+        android:id="@+id/item_novel_delete"
+        android:title="@string/menu_delete_novel" />
 </menu>

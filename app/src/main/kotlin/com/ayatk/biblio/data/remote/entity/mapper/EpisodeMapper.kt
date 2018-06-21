@@ -23,15 +23,15 @@ import java.util.UUID
 fun NarouEpisode.toEntity(): EpisodeEntity {
   val indexId = UUID.nameUUIDFromBytes("$ncode-$page".toByteArray())
   return EpisodeEntity(
-      UUID.nameUUIDFromBytes(
-          "$ncode-$page-$indexId".toByteArray()
-      ),
-      ncode,
-      indexId,
-      page,
-      subtitle,
-      prevContent,
-      content,
-      afterContent
+    UUID.nameUUIDFromBytes(
+      "$ncode-$page-$indexId".toByteArray()
+    ),
+    ncode,
+    indexId,
+    page,
+    subtitle,
+    prevContent,
+    content,
+    afterContent
   )
 }

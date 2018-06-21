@@ -16,8 +16,6 @@
 
 package com.ayatk.biblio.ui.util.helper
 
-import androidx.databinding.BindingAdapter
-import androidx.databinding.BindingConversion
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +23,8 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.content.systemService
+import androidx.databinding.BindingAdapter
+import androidx.databinding.BindingConversion
 import com.ayatk.biblio.R
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.util.ext.color

@@ -25,36 +25,36 @@ import java.util.Date
 import java.util.UUID
 
 @Entity(
-    tableName = "index",
-    foreignKeys = [
-      ForeignKey(
-          parentColumns = arrayOf("code"),
-          childColumns = arrayOf("novel_code"),
-          entity = NovelEntity::class
-      )
-    ]
+  tableName = "index",
+  foreignKeys = [
+    ForeignKey(
+      parentColumns = arrayOf("code"),
+      childColumns = arrayOf("novel_code"),
+      entity = NovelEntity::class
+    )
+  ]
 )
 data class IndexEntity(
 
-    @PrimaryKey
-    var id: UUID,
+  @PrimaryKey
+  var id: UUID,
 
-    @ColumnInfo(name = "novel_code", index = true)
-    var code: String,
+  @ColumnInfo(name = "novel_code", index = true)
+  var code: String,
 
-    var subtitle: String,
+  var subtitle: String,
 
-    @ColumnInfo(index = true)
-    var page: Int,
+  @ColumnInfo(index = true)
+  var page: Int,
 
-    var chapter: String?,
+  var chapter: String?,
 
-    @ColumnInfo(name = "reading_state")
-    var readingState: ReadingState,
+  @ColumnInfo(name = "reading_state")
+  var readingState: ReadingState,
 
-    @ColumnInfo(name = "publish_date")
-    var publishDate: Date,
+  @ColumnInfo(name = "publish_date")
+  var publishDate: Date,
 
-    @ColumnInfo(name = "last_update")
-    var lastUpdate: Date
+  @ColumnInfo(name = "last_update")
+  var lastUpdate: Date
 )

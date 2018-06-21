@@ -16,11 +16,11 @@
 
 package com.ayatk.biblio.ui.episode
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import androidx.os.bundleOf
 import com.ayatk.biblio.databinding.FragmentEpisodeBinding
 import com.ayatk.biblio.di.ViewModelFactory
@@ -48,9 +48,9 @@ class EpisodeFragment : DaggerFragment() {
   }
 
   override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
   ): View? {
     binding = FragmentEpisodeBinding.inflate(inflater, container, false)
     binding.setLifecycleOwner(this)
@@ -66,11 +66,11 @@ class EpisodeFragment : DaggerFragment() {
     private const val BUNDLE_ARGS_NOVEL_PAGE = "NOVEL_PAGE"
 
     fun newInstance(novel: Novel, page: Int): EpisodeFragment =
-        EpisodeFragment().apply {
-          arguments = bundleOf(
-              BUNDLE_ARGS_NOVEL to novel,
-              BUNDLE_ARGS_NOVEL_PAGE to page
-          )
-        }
+      EpisodeFragment().apply {
+        arguments = bundleOf(
+          BUNDLE_ARGS_NOVEL to novel,
+          BUNDLE_ARGS_NOVEL_PAGE to page
+        )
+      }
   }
 }

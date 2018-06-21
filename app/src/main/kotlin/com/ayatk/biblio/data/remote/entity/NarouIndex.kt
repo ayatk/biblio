@@ -20,17 +20,17 @@ import java.util.Date
 
 data class NarouIndex(
 
-    var id: Int,
+  var id: Int,
 
-    var ncode: String,
+  var ncode: String,
 
-    var title: String,
+  var title: String,
 
-    var chapter: String?,
+  var chapter: String?,
 
-    var page: Int,
+  var page: Int,
 
-    var publishDate: Date,
+  var publishDate: Date,
 
-    var lastUpdate: Date
+  var lastUpdate: Date
 )

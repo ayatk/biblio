@@ -21,10 +21,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ayatk.biblio">
 
-  <application
-      android:name=".DebugApp"
-      android:allowBackup="false"
-      android:icon="@mipmap/ic_launcher"
-      android:roundIcon="@mipmap/ic_launcher_round"
-      tools:replace="android:name, android:allowBackup,android:icon,android:roundIcon"/>
+    <application
+        android:name=".DebugApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        tools:replace="android:name, android:allowBackup,android:icon,android:roundIcon" />
 </manifest>

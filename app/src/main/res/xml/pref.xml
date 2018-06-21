@@ -18,25 +18,23 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <PreferenceCategory
-      android:title="@string/pref_category_general">
+    <PreferenceCategory android:title="@string/pref_category_general">
 
-    <CheckBoxPreference
-        android:key="show_tag_at_library"
-        android:title="@string/pref_show_tag_at_library"/>
+        <CheckBoxPreference
+            android:key="show_tag_at_library"
+            android:title="@string/pref_show_tag_at_library" />
 
-  </PreferenceCategory>
+    </PreferenceCategory>
 
-  <PreferenceCategory
-      android:title="@string/pref_category_other">
+    <PreferenceCategory android:title="@string/pref_category_other">
 
-    <Preference
-        android:key="oss_license"
-        android:title="@string/pref_oss_license"/>
+        <Preference
+            android:key="oss_license"
+            android:title="@string/pref_oss_license" />
 
-    <Preference
-        android:key="app_version"
-        android:title="@string/pref_version"/>
+        <Preference
+            android:key="app_version"
+            android:title="@string/pref_version" />
 
-  </PreferenceCategory>
+    </PreferenceCategory>
 </PreferenceScreen>

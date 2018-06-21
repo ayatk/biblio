@@ -22,45 +22,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.ayatk.biblio.ui.ranking.RankingActivity">
 
-  <data>
+    <data>
 
-    <variable
-        name="viewModel"
-        type="com.ayatk.biblio.ui.ranking.RankingViewModel"/>
-  </data>
+        <variable
+            name="viewModel"
+            type="com.ayatk.biblio.ui.ranking.RankingViewModel" />
+    </data>
 
-  <androidx.coordinatorlayout.widget.CoordinatorLayout
-      android:id="@+id/coordinator_layout"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent">
 
-      <androidx.appcompat.widget.Toolbar
-          android:id="@+id/toolbar"
-          android:layout_width="match_parent"
-          android:layout_height="?attr/actionBarSize"
-          android:elevation="0dp"
-          app:title="@string/ranking"
-          style="@style/AppTheme.BaseToolbar"/>
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-      <com.google.android.material.tabs.TabLayout
-          android:id="@+id/tab"
-          android:layout_width="match_parent"
-          android:layout_height="?attr/actionBarSize"
-          android:background="?attr/colorPrimary"/>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="0dp"
+                app:title="@string/ranking"
+                style="@style/AppTheme.BaseToolbar" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/ranking_view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        </com.google.android.material.appbar.AppBarLayout>
 
-  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/ranking_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

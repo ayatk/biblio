@@ -19,53 +19,53 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <data>
+    <data>
 
-    <import type="android.view.View"/>
+        <import type="android.view.View" />
 
-    <variable
-        name="viewModel"
-        type="com.ayatk.biblio.ui.home.library.LibraryViewModel"/>
-  </data>
+        <variable
+            name="viewModel"
+            type="com.ayatk.biblio.ui.home.library.LibraryViewModel" />
+    </data>
 
-  <FrameLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refresh"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:onRefreshListener="@{viewModel::onSwipeRefresh}"
-        app:refreshing="@{safeUnbox(viewModel.refreshing)}">
+        android:layout_height="match_parent">
 
-      <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/recycler_view"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:background="@color/white"
-          style="@style/AppTheme.BaseRecyclerView"/>
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:onRefreshListener="@{viewModel::onSwipeRefresh}"
+            app:refreshing="@{safeUnbox(viewModel.refreshing)}">
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                style="@style/AppTheme.BaseRecyclerView" />
 
-    <RelativeLayout
-        android:id="@+id/empty_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-      <TextView
-          android:id="@+id/empty_library_message"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_centerInParent="true"
-          android:layout_margin="@dimen/space_8dp"
-          android:text="@string/empty_library"
-          android:textAlignment="center"
-          android:textSize="@dimen/text_16sp"/>
+        <RelativeLayout
+            android:id="@+id/empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/empty_library_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/space_8dp"
+                android:text="@string/empty_library"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_16sp" />
 
-  </FrameLayout>
+        </RelativeLayout>
+
+    </FrameLayout>
 
 </layout>

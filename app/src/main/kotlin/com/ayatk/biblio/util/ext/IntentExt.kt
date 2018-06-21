@@ -70,7 +70,8 @@ fun Intent.extraOf(vararg pairs: Pair<String, Any>) = this.apply {
           else -> {
             val valueType = componentType.canonicalName
             throw IllegalArgumentException(
-                "Illegal value array type $valueType for key \"$key\"")
+              "Illegal value array type $valueType for key \"$key\""
+            )
           }
         }
       }

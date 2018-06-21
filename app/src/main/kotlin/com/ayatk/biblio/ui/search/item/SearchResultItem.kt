@@ -26,9 +26,9 @@ import com.ayatk.biblio.util.format
 import com.xwray.groupie.databinding.BindableItem
 
 class SearchResultItem(
-    private val novel: Map.Entry<Novel, Boolean>,
-    private val onClickListener: (Novel) -> Unit,
-    private val onDownloadClickListener: (Novel) -> Unit
+  private val novel: Map.Entry<Novel, Boolean>,
+  private val onClickListener: (Novel) -> Unit,
+  private val onDownloadClickListener: (Novel) -> Unit
 ) : BindableItem<ItemSearchResultBinding>() {
 
   override fun getLayout(): Int = R.layout.item_search_result

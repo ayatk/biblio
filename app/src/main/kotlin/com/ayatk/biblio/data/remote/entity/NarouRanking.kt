@@ -20,12 +20,12 @@ import com.google.gson.annotations.SerializedName
 
 data class NarouRanking(
 
-    @SerializedName("rank")
-    var rank: Int,
+  @SerializedName("rank")
+  var rank: Int,
 
-    @SerializedName("ncode")
-    var ncode: String,
+  @SerializedName("ncode")
+  var ncode: String,
 
-    @SerializedName("pt")
-    var pt: Int
+  @SerializedName("pt")
+  var pt: Int
 )

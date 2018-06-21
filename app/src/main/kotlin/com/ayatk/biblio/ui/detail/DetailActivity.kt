@@ -18,11 +18,8 @@ package com.ayatk.biblio.ui.detail
 
 import android.content.Context
 import android.content.Intent
-import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.databinding.DataBindingUtil
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityDetailBinding
 import com.ayatk.biblio.model.Novel
@@ -59,29 +56,32 @@ class DetailActivity : DaggerAppCompatActivity() {
     private const val EXTRA_NOVEL = "extra_novel"
 
     fun createIntent(context: Context, novel: Novel): Intent =
-        Intent(context, DetailActivity::class.java).extraOf(
-            EXTRA_NOVEL to novel
-        )
+      Intent(context, DetailActivity::class.java).extraOf(
+        EXTRA_NOVEL to novel
+      )
   }
 
-  inner class DetailPagerAdapter(fm: androidx.fragment.app.FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(fm) {
+  inner class DetailPagerAdapter(fm: androidx.fragment.app.FragmentManager) :
+    androidx.fragment.app.FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): androidx.fragment.app.Fragment =
-        DetailPage.values()[position].createFragment(novel)
+      DetailPage.values()[position].createFragment(novel)
 
     override fun getCount(): Int =
-        DetailPage.values().size
+      DetailPage.values().size
 
     override fun getPageTitle(position: Int): CharSequence =
-        getString(DetailPage.values()[position].title)
+      getString(DetailPage.values()[position].title)
   }
 
   private enum class DetailPage(val title: Int) {
     INDEX(R.string.novel_index_title) {
-      override fun createFragment(novel: Novel): androidx.fragment.app.Fragment = IndexFragment.newInstance(novel)
+      override fun createFragment(novel: Novel): androidx.fragment.app.Fragment =
+        IndexFragment.newInstance(novel)
     },
     INFO(R.string.novel_info_title) {
-      override fun createFragment(novel: Novel): androidx.fragment.app.Fragment = InfoFragment.newInstance(novel)
+      override fun createFragment(novel: Novel): androidx.fragment.app.Fragment =
+        InfoFragment.newInstance(novel)
     };
 
     abstract fun createFragment(novel: Novel): androidx.fragment.app.Fragment

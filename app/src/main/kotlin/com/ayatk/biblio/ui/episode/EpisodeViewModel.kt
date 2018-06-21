@@ -30,8 +30,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class EpisodeViewModel @Inject constructor(
-    private val useCase: EpisodeUseCase,
-    private val schedulerProvider: SchedulerProvider
+  private val useCase: EpisodeUseCase,
+  private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
   private val compositeDisposable = CompositeDisposable()
@@ -39,16 +39,16 @@ class EpisodeViewModel @Inject constructor(
   val episode = MutableLiveData<Episode>()
 
   fun start(novel: Novel, page: Int) =
-      useCase.getEpisode(novel, page)
-          .toResult(schedulerProvider)
-          .observeOn(schedulerProvider.ui())
-          .subscribe { result ->
-            when (result) {
-              is Result.Success -> episode.postValue(result.data)
-              is Result.Failure -> Timber.e(result.e)
-            }
-          }
-          .addTo(compositeDisposable)
+    useCase.getEpisode(novel, page)
+      .toResult(schedulerProvider)
+      .observeOn(schedulerProvider.ui())
+      .subscribe { result ->
+        when (result) {
+          is Result.Success -> episode.postValue(result.data)
+          is Result.Failure -> Timber.e(result.e)
+        }
+      }
+      .addTo(compositeDisposable)
 
   override fun onCleared() {
     super.onCleared()

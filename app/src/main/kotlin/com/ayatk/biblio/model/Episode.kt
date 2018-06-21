@@ -20,17 +20,17 @@ import java.util.UUID
 
 data class Episode(
 
-    val id: UUID,
+  val id: UUID,
 
-    val novel: Novel,
+  val novel: Novel,
 
-    val page: Int,
+  val page: Int,
 
-    val subtitle: String,
+  val subtitle: String,
 
-    val prevContent: String,
+  val prevContent: String,
 
-    val content: String,
+  val content: String,
 
-    val afterContent: String
+  val afterContent: String
 )

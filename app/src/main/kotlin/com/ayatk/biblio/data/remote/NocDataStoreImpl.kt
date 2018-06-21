@@ -32,27 +32,27 @@ import javax.inject.Singleton
 
 @Singleton
 class NocDataStoreImpl @Inject constructor(
-    private val htmlParser: HtmlParser,
-    private val narouApiService: NarouApiService,
-    @Nocturne private val nocService: NarouService
+  private val htmlParser: HtmlParser,
+  private val narouApiService: NarouApiService,
+  @Nocturne private val nocService: NarouService
 ) : NarouDataStore {
 
   override fun getNovel(query: Map<String, String>): Flowable<List<NarouNovel>> =
-      narouApiService.getNovel18(query)
-          // 0番目にall nullの要素が入ってしまってるのでdrop(1)しないと落ちる
-          .map { novels -> novels.drop(1) }
+    narouApiService.getNovel18(query)
+      // 0番目にall nullの要素が入ってしまってるのでdrop(1)しないと落ちる
+      .map { novels -> novels.drop(1) }
 
   override fun getIndex(code: String): Flowable<List<NarouIndex>> =
-      nocService.getTableOfContents(code.toLowerCase())
-          .map { htmlParser.parseTableOfContents(code, it) }
+    nocService.getTableOfContents(code.toLowerCase())
+      .map { htmlParser.parseTableOfContents(code, it) }
 
   override fun getEpisode(code: String, page: Int): Flowable<NarouEpisode> =
-      nocService.getPage(code, page)
-          .map { htmlParser.parsePage(code, it, page) }
+    nocService.getPage(code, page)
+      .map { htmlParser.parsePage(code, it, page) }
 
   override fun getShortStory(code: String): Flowable<NarouEpisode> =
-      nocService.getSSPage(code)
-          .map { htmlParser.parsePage(code, it, 1) }
+    nocService.getSSPage(code)
+      .map { htmlParser.parsePage(code, it, 1) }
 
   override fun getRanking(rankingType: RankingType, date: Date): Flowable<List<NarouRanking>> {
     TODO()

@@ -16,11 +16,11 @@
 
 package com.ayatk.biblio.ui.detail.index
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import androidx.os.bundleOf
 import com.ayatk.biblio.databinding.FragmentIndexBinding
 import com.ayatk.biblio.di.ViewModelFactory
@@ -60,9 +60,9 @@ class IndexFragment : DaggerFragment() {
   }
 
   override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
   ): View? {
     binding = FragmentIndexBinding.inflate(inflater, container, false)
     binding.setLifecycleOwner(this)
@@ -91,8 +91,8 @@ class IndexFragment : DaggerFragment() {
     private const val BUNDLE_ARGS_NOVEL = "NOVEL"
 
     fun newInstance(novel: Novel): IndexFragment =
-        IndexFragment().apply {
-          arguments = bundleOf(BUNDLE_ARGS_NOVEL to novel)
-        }
+      IndexFragment().apply {
+        arguments = bundleOf(BUNDLE_ARGS_NOVEL to novel)
+      }
   }
 }

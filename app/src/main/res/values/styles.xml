@@ -14,63 +14,62 @@
   ~ limitations under the License.
   -->
 
-<resources
-    xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-  <!-- Base application theme. -->
-  <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-    <!-- Customize your theme here. -->
-    <item name="colorPrimary">@color/app_blue</item>
-    <item name="colorPrimaryDark">@color/app_blue_dark</item>
-    <item name="colorAccent">@color/app_yellow</item>
-  </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/app_blue</item>
+        <item name="colorPrimaryDark">@color/app_blue_dark</item>
+        <item name="colorAccent">@color/app_yellow</item>
+    </style>
 
-  <!-- ToolBar -->
-  <style name="AppTheme.NoActionBar">
-    <item name="windowActionBar">false</item>
-    <item name="windowNoTitle">true</item>
-    <item name="preferenceTheme">@style/AppTheme.PreferenceThemeOverlay</item>
-  </style>
+    <!-- ToolBar -->
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="preferenceTheme">@style/AppTheme.PreferenceThemeOverlay</item>
+    </style>
 
-  <!-- Component -->
-  <style name="AppTheme.BaseRecyclerView">
-    <item name="android:clipToPadding">false</item>
-    <item name="android:fadingEdge">none</item>
-    <item name="android:scrollbarStyle">outsideOverlay</item>
-    <item name="android:scrollingCache">false</item>
-  </style>
+    <!-- Component -->
+    <style name="AppTheme.BaseRecyclerView">
+        <item name="android:clipToPadding">false</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:scrollingCache">false</item>
+    </style>
 
-  <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-  <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-  <style name="AppTheme.PreferenceThemeOverlay" parent="PreferenceThemeOverlay.v14.Material">
-    <item name="android:colorAccent" tools:targetApi="21">@color/app_blue_dark</item>
-    <item name="colorAccent">@color/app_blue_dark</item>
-  </style>
+    <style name="AppTheme.PreferenceThemeOverlay" parent="PreferenceThemeOverlay.v14.Material">
+        <item name="android:colorAccent" tools:targetApi="21">@color/app_blue_dark</item>
+        <item name="colorAccent">@color/app_blue_dark</item>
+    </style>
 
-  <style name="AppTheme.BaseToolbar" parent="@style/Widget.AppCompat.Toolbar">
-    <!-- Don't change to `@color/toolbar_background`. This is workaround for a bug on API 16. -->
-    <item name="android:background">@color/app_blue</item>
-    <item name="android:elevation" tools:targetApi="lollipop">@dimen/elevation_2dp</item>
-    <item name="android:theme">@style/AppTheme.ToolbarTheme</item>
-    <item name="elevation">@dimen/elevation_2dp</item>
-    <item name="actionMenuTextColor">@color/white</item>
-    <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-    <item name="theme">@style/AppTheme.ToolbarTheme</item>
-    <item name="contentInsetStartWithNavigation">0dp</item>
-  </style>
+    <style name="AppTheme.BaseToolbar" parent="@style/Widget.AppCompat.Toolbar">
+        <!-- Don't change to `@color/toolbar_background`. This is workaround for a bug on API 16. -->
+        <item name="android:background">@color/app_blue</item>
+        <item name="android:elevation" tools:targetApi="lollipop">@dimen/elevation_2dp</item>
+        <item name="android:theme">@style/AppTheme.ToolbarTheme</item>
+        <item name="elevation">@dimen/elevation_2dp</item>
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="theme">@style/AppTheme.ToolbarTheme</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+    </style>
 
-  <style name="AppTheme.ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-    <item name="android:textColorPrimary">@color/white</item>
-    <item name="android:textColorSecondary">@color/white</item>
-    <item name="colorControlActivated">@color/white</item>
-    <item name="searchViewStyle">@style/AppTheme.SearchViewStyle</item>
-  </style>
+    <style name="AppTheme.ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="searchViewStyle">@style/AppTheme.SearchViewStyle</item>
+    </style>
 
-  <style name="AppTheme.SearchViewStyle" parent="Widget.AppCompat.SearchView">
-    <item name="queryBackground">@null</item>
-    <item name="submitBackground">@null</item>
-    <item name="searchHintIcon">@null</item>
-  </style>
+    <style name="AppTheme.SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="queryBackground">@null</item>
+        <item name="submitBackground">@null</item>
+        <item name="searchHintIcon">@null</item>
+    </style>
 </resources>

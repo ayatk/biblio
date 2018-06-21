@@ -30,23 +30,23 @@ import javax.inject.Singleton
 
 @Singleton
 class LibraryUseCaseImpl @Inject constructor(
-    private val novelRepository: NovelRepository,
-    private val indexRepository: IndexRepository,
-    private val schedulerProvider: SchedulerProvider
+  private val novelRepository: NovelRepository,
+  private val indexRepository: IndexRepository,
+  private val schedulerProvider: SchedulerProvider
 ) : LibraryUseCase {
 
   override val libraries: Flowable<List<Library>> =
-      novelRepository.savedNovels
-          .map { it.map { it.toLibrary() } }
-          .subscribeOn(schedulerProvider.io())
+    novelRepository.savedNovels
+      .map { it.map { it.toLibrary() } }
+      .subscribeOn(schedulerProvider.io())
 
   override fun update(): Completable =
-      Completable.fromCallable {
-        // TODO: 更新処理
-      }
-          .subscribeOn(schedulerProvider.io())
+    Completable.fromCallable {
+      // TODO: 更新処理
+    }
+      .subscribeOn(schedulerProvider.io())
 
   override fun delete(novel: Novel): Completable =
-      novelRepository.delete(novel.toEntity())
-          .subscribeOn(schedulerProvider.io())
+    novelRepository.delete(novel.toEntity())
+      .subscribeOn(schedulerProvider.io())
 }

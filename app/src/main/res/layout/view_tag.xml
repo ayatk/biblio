@@ -27,12 +27,12 @@
     android:paddingStart="0dp"
     android:paddingTop="@dimen/space_4dp">
 
-  <TextView
-      android:id="@+id/tag"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="@drawable/tag"
-      android:textSize="12sp"
-      tools:text="hoghoge"/>
+    <TextView
+        android:id="@+id/tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tag"
+        android:textSize="12sp"
+        tools:text="hoghoge" />
 
 </FrameLayout>

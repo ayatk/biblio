@@ -26,7 +26,7 @@ enum class DatePattern(val pattern: String) {
 }
 
 fun String.purseDate(pattern: DatePattern): Date =
-    SimpleDateFormat(pattern.pattern, Locale.getDefault()).parse(this)
+  SimpleDateFormat(pattern.pattern, Locale.getDefault()).parse(this)
 
 fun Date.format(pattern: DatePattern): String =
-    SimpleDateFormat(pattern.pattern, Locale.getDefault()).format(this)
+  SimpleDateFormat(pattern.pattern, Locale.getDefault()).format(this)

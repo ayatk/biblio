@@ -23,8 +23,8 @@ import com.ayatk.biblio.R
 import com.ayatk.biblio.util.ext.drawable
 
 fun <VH : RecyclerView.ViewHolder> RecyclerView.init(
-    adapter: RecyclerView.Adapter<VH>,
-    scrollListener: RecyclerView.OnScrollListener? = null
+  adapter: RecyclerView.Adapter<VH>,
+  scrollListener: RecyclerView.OnScrollListener? = null
 ) {
   val divider = DividerItemDecoration(context, 1)
   context.drawable(R.drawable.divider).let { divider.setDrawable(it) }

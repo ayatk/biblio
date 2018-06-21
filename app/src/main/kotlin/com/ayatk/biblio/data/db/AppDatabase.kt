@@ -29,14 +29,14 @@ import com.ayatk.biblio.data.entity.IndexEntity
 import com.ayatk.biblio.data.entity.NovelEntity
 
 @Database(
-    entities = [
-      BookmarkEntity::class,
-      EpisodeEntity::class,
-      IndexEntity::class,
-      NovelEntity::class
-    ],
-    version = 1,
-    exportSchema = false
+  entities = [
+    BookmarkEntity::class,
+    EpisodeEntity::class,
+    IndexEntity::class,
+    NovelEntity::class
+  ],
+  version = 1,
+  exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {

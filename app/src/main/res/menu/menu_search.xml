@@ -20,17 +20,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <item
-      android:id="@+id/action_search"
-      android:icon="@drawable/ic_search_white_24_vector"
-      android:title="@string/search"
-      app:actionLayout="@layout/view_search"
-      app:showAsAction="collapseActionView|always"/>
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search_white_24_vector"
+        android:title="@string/search"
+        app:actionLayout="@layout/view_search"
+        app:showAsAction="collapseActionView|always" />
 
-  <item
-      android:id="@+id/action_filter"
-      android:icon="@drawable/ic_filter_list_white_24_vector"
-      android:title="@string/filter"
-      app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_filter"
+        android:icon="@drawable/ic_filter_list_white_24_vector"
+        android:title="@string/filter"
+        app:showAsAction="always" />
 
 </menu>

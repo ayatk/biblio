@@ -23,47 +23,47 @@ import androidx.room.PrimaryKey
 import java.util.UUID
 
 @Entity(
-    tableName = "episode",
-    foreignKeys = [
-      ForeignKey(
-          parentColumns = arrayOf("code"),
-          childColumns = arrayOf("novel_code"),
-          entity = NovelEntity::class
-      ),
-      ForeignKey(
-          parentColumns = arrayOf("id"),
-          childColumns = arrayOf("index_id"),
-          entity = IndexEntity::class
-      )
-    ]
+  tableName = "episode",
+  foreignKeys = [
+    ForeignKey(
+      parentColumns = arrayOf("code"),
+      childColumns = arrayOf("novel_code"),
+      entity = NovelEntity::class
+    ),
+    ForeignKey(
+      parentColumns = arrayOf("id"),
+      childColumns = arrayOf("index_id"),
+      entity = IndexEntity::class
+    )
+  ]
 )
 data class EpisodeEntity(
 
-    /**
-     * codeとpageとindexのIDをハイフンでつなぎ合わせてUUIDに変換したもの
-     */
-    @PrimaryKey
-    var id: UUID,
+  /**
+   * codeとpageとindexのIDをハイフンでつなぎ合わせてUUIDに変換したもの
+   */
+  @PrimaryKey
+  var id: UUID,
 
-    @ColumnInfo(name = "novel_code", index = true)
-    var code: String,
+  @ColumnInfo(name = "novel_code", index = true)
+  var code: String,
 
-    /**
-     * codeとpageをハイフンでつなぎ合わせてUUIDに変換したもの
-     */
-    @ColumnInfo(name = "index_id", index = true)
-    var indexId: UUID,
+  /**
+   * codeとpageをハイフンでつなぎ合わせてUUIDに変換したもの
+   */
+  @ColumnInfo(name = "index_id", index = true)
+  var indexId: UUID,
 
-    @ColumnInfo(index = true)
-    var page: Int,
+  @ColumnInfo(index = true)
+  var page: Int,
 
-    var subtitle: String,
+  var subtitle: String,
 
-    @ColumnInfo(name = "prev_content")
-    var prevContent: String,
+  @ColumnInfo(name = "prev_content")
+  var prevContent: String,
 
-    var content: String,
+  var content: String,
 
-    @ColumnInfo(name = "after_content")
-    var afterContent: String
+  @ColumnInfo(name = "after_content")
+  var afterContent: String
 )

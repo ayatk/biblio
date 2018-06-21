@@ -18,11 +18,8 @@ package com.ayatk.biblio.ui.ranking
 
 import android.content.Context
 import android.content.Intent
-import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.databinding.DataBindingUtil
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityRankingBinding
 import com.ayatk.biblio.model.enums.RankingType
@@ -59,19 +56,20 @@ class RankingActivity : DaggerAppCompatActivity() {
     private const val EXTRA_RANKING_TYPE = "ranking_type"
 
     fun createIntent(context: Context, rankingType: RankingType): Intent =
-        Intent(context, RankingActivity::class.java).extraOf(
-            EXTRA_RANKING_TYPE to rankingType
-        )
+      Intent(context, RankingActivity::class.java).extraOf(
+        EXTRA_RANKING_TYPE to rankingType
+      )
   }
 
-  inner class RankingPagerAdapter(fm: androidx.fragment.app.FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(fm) {
+  inner class RankingPagerAdapter(fm: androidx.fragment.app.FragmentManager) :
+    androidx.fragment.app.FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): androidx.fragment.app.Fragment =
-        RankingListFragment.newInstance(RankingType.values()[position])
+      RankingListFragment.newInstance(RankingType.values()[position])
 
     override fun getCount(): Int = RankingType.values().size
 
     override fun getPageTitle(position: Int): CharSequence? =
-        getString(RankingType.values()[position].title)
+      getString(RankingType.values()[position].title)
   }
 }

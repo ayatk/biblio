@@ -41,10 +41,10 @@ class DebugApp : App() {
   }
 
   override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
-      DaggerDebugAppComponent
-          .builder()
-          .application(this)
-          .build()
+    DaggerDebugAppComponent
+      .builder()
+      .application(this)
+      .build()
 
   override fun onTerminate() {
     Takt.finish()

@@ -23,26 +23,26 @@ import androidx.room.PrimaryKey
 import java.util.UUID
 
 @Entity(
-    tableName = "bookmark",
-    foreignKeys = [
-      ForeignKey(
-          parentColumns = arrayOf("code"),
-          childColumns = arrayOf("novel_code"),
-          entity = NovelEntity::class
-      )
+  tableName = "bookmark",
+  foreignKeys = [
+    ForeignKey(
+      parentColumns = arrayOf("code"),
+      childColumns = arrayOf("novel_code"),
+      entity = NovelEntity::class
+    )
 
-    ]
+  ]
 )
 data class BookmarkEntity(
 
-    @PrimaryKey
-    var id: UUID,
+  @PrimaryKey
+  var id: UUID,
 
-    @ColumnInfo(name = "novel_code", index = true)
-    var code: String,
+  @ColumnInfo(name = "novel_code", index = true)
+  var code: String,
 
-    @ColumnInfo(index = true)
-    var page: Int,
+  @ColumnInfo(index = true)
+  var page: Int,
 
-    var memo: String
+  var memo: String
 )

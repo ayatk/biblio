@@ -27,8 +27,8 @@ import javax.inject.Singleton
 
 @Singleton
 class TopRankingUseCaseImpl @Inject constructor(
-    private val repository: RankingRepository,
-    private val schedulerProvider: SchedulerProvider
+  private val repository: RankingRepository,
+  private val schedulerProvider: SchedulerProvider
 ) : TopRankingUseCase {
 
   companion object {
@@ -36,13 +36,13 @@ class TopRankingUseCaseImpl @Inject constructor(
   }
 
   override fun ranking(publisher: Publisher, rankingType: RankingType): Flowable<List<Ranking>> =
-      when (publisher) {
-        Publisher.NAROU ->
-          repository.narouRanking(rankingType, 0 until RANK_SIZE)
-              .subscribeOn(schedulerProvider.io())
+    when (publisher) {
+      Publisher.NAROU ->
+        repository.narouRanking(rankingType, 0 until RANK_SIZE)
+          .subscribeOn(schedulerProvider.io())
 
-        Publisher.NOCTURNE_MOONLIGHT ->
-          repository.nocturneRanking(rankingType, 0 until RANK_SIZE)
-              .subscribeOn(schedulerProvider.io())
-      }
+      Publisher.NOCTURNE_MOONLIGHT ->
+        repository.nocturneRanking(rankingType, 0 until RANK_SIZE)
+          .subscribeOn(schedulerProvider.io())
+    }
 }

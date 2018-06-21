@@ -26,12 +26,12 @@ import io.reactivex.Flowable
 import javax.inject.Inject
 
 class EpisodeUseCaseImpl @Inject constructor(
-    private val repository: EpisodeRepository,
-    private val schedulerProvider: SchedulerProvider
+  private val repository: EpisodeRepository,
+  private val schedulerProvider: SchedulerProvider
 ) : EpisodeUseCase {
 
   override fun getEpisode(novel: Novel, page: Int): Flowable<Episode> =
-      repository.find(novel.toEntity(), page)
-          .map { it.toModel(novel) }
-          .subscribeOn(schedulerProvider.io())
+    repository.find(novel.toEntity(), page)
+      .map { it.toModel(novel) }
+      .subscribeOn(schedulerProvider.io())
 }
