@@ -35,6 +35,8 @@ class LibraryItem(
 
   override fun getLayout(): Int = R.layout.item_library
 
+  override fun getId(): Long = library.novel.code.toByteArray().joinToString("").toLong()
+
   override fun bind(viewBinding: ItemLibraryBinding, position: Int) {
     viewBinding.let {
       it.library = library

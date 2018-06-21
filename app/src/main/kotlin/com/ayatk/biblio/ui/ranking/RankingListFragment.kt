@@ -33,7 +33,6 @@ import com.ayatk.biblio.util.Result
 import com.ayatk.biblio.util.ext.observe
 import com.ayatk.biblio.util.ext.setVisible
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 import dagger.android.support.DaggerFragment
 import timber.log.Timber
@@ -54,7 +53,7 @@ class RankingListFragment : DaggerFragment() {
     arguments?.getSerializable(BUNDLE_ARGS_RANKING_TYPE)!! as RankingType
   }
 
-  private val rankingSection = Section()
+  private val groupAdapter = GroupAdapter<ViewHolder>()
   private val onClickListener = { novel: Novel ->
     context!!.navigateToDetail(novel)
   }
@@ -72,15 +71,13 @@ class RankingListFragment : DaggerFragment() {
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
 
-    binding.list.init(GroupAdapter<ViewHolder>().apply {
-      add(rankingSection)
-    })
+    binding.list.init(groupAdapter)
 
-    viewModel.rankings(rankingType).observe(this, { result ->
+    viewModel.rankings(rankingType).observe(this) { result ->
       when (result) {
         is Result.Success -> {
           val rankings = result.data
-          rankingSection.update(rankings.map {
+          groupAdapter.update(rankings.map {
             RankingItem(it, onClickListener)
           })
           binding.progress.setVisible(rankings.isEmpty())
@@ -88,7 +85,7 @@ class RankingListFragment : DaggerFragment() {
         }
         is Result.Failure -> Timber.e(result.e)
       }
-    })
+    }
   }
 
   companion object {
