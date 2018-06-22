@@ -164,7 +164,6 @@ dependencies {
 
   // Kotlin
   implementation depends.kotlin.stdlib
-  implementation depends.ktx
 
   // androidx libraries
   implementation depends.androidx.appcompat
@@ -172,6 +171,7 @@ dependencies {
   implementation depends.androidx.browser
   implementation depends.androidx.preference
   implementation depends.androidx.constraint
+  implementation depends.androidx.ktx
 
   // Android Architecture Components
   implementation depends.lifecycle.runtime

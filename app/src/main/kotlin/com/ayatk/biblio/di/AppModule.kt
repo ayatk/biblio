@@ -18,7 +18,7 @@ package com.ayatk.biblio.di
 
 import android.app.Application
 import android.net.ConnectivityManager
-import androidx.content.systemService
+import androidx.core.content.getSystemService
 import com.ayatk.biblio.data.DefaultPrefs
 import com.ayatk.biblio.data.remote.util.HtmlParser
 import com.ayatk.biblio.util.rx.AppSchedulerProvider
@@ -32,7 +32,7 @@ class AppModule {
 
   @Provides
   fun provideConnectivityManager(application: Application): ConnectivityManager =
-    application.systemService<ConnectivityManager>()
+    application.getSystemService<ConnectivityManager>()!!
 
   @Singleton
   @Provides

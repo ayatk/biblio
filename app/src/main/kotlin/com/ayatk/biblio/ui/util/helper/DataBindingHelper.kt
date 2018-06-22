@@ -22,7 +22,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.content.systemService
+import androidx.core.content.getSystemService
 import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingConversion
 import com.ayatk.biblio.R
@@ -47,7 +47,7 @@ object DataBindingHelper {
       return
     }
     this.removeAllViews()
-    val inflater = this.context.systemService<LayoutInflater>()
+    val inflater = this.context.getSystemService<LayoutInflater>()!!
     tags.map {
       val tagItem = inflater.inflate(R.layout.view_tag, null)
       val frameLayout = tagItem.findViewById<FrameLayout>(R.id.tag_container)

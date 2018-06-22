@@ -20,8 +20,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProviders
-import androidx.os.bundleOf
 import com.ayatk.biblio.databinding.FragmentIndexBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Index
@@ -71,7 +71,7 @@ class IndexFragment : DaggerFragment() {
       add(indexSection)
     })
 
-    viewModel.getIndex(novel).observe(this, { result ->
+    viewModel.getIndex(novel).observe(this) { result ->
       when (result) {
         is Result.Success -> {
           val indexes = result.data
@@ -82,7 +82,7 @@ class IndexFragment : DaggerFragment() {
         }
         is Result.Failure -> Timber.e(result.e)
       }
-    })
+    }
 
     return binding.root
   }

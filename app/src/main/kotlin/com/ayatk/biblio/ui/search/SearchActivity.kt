@@ -24,12 +24,12 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.GravityCompat
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
-import androidx.view.isGone
-import androidx.view.isVisible
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivitySearchBinding
 import com.ayatk.biblio.di.ViewModelFactory

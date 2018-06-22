@@ -24,7 +24,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.content.systemService
+import androidx.core.content.getSystemService
 import com.ayatk.biblio.R
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.RankingType
@@ -77,7 +77,7 @@ class RankingTopCellView @JvmOverloads constructor(
 
   private fun updateRankings() {
     container.removeAllViews()
-    val inflater = this.context.systemService<LayoutInflater>()
+    val inflater = this.context.getSystemService<LayoutInflater>()!!
     rankingList.map {
       val rankingItem = inflater.inflate(R.layout.item_ranking_top, null)
       val rank = rankingItem.findViewById<ImageView>(R.id.rank)
