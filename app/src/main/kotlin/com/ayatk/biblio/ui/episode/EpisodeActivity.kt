@@ -21,6 +21,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityEpisodeBinding
 import com.ayatk.biblio.model.Novel
@@ -54,22 +58,20 @@ class EpisodeActivity : DaggerAppCompatActivity() {
     binding.novelViewPager.apply {
       adapter = EpisodePagerAdapter(supportFragmentManager)
       currentItem = page
-      addOnPageChangeListener(
-        object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
-          override fun onPageSelected(position: Int) {
-            EventBus.getDefault().post(UiEvent.EpisodeSelectedEvent(position))
-          }
-
-          override fun onPageScrolled(
-            position: Int,
-            positionOffset: Float,
-            positionOffsetPixels: Int
-          ) {
-          }
-
-          override fun onPageScrollStateChanged(pos: Int) {}
+      addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        override fun onPageSelected(position: Int) {
+          EventBus.getDefault().post(UiEvent.EpisodeSelectedEvent(position))
         }
-      )
+
+        override fun onPageScrolled(
+          position: Int,
+          positionOffset: Float,
+          positionOffsetPixels: Int
+        ) {
+        }
+
+        override fun onPageScrollStateChanged(pos: Int) {}
+      })
     }
   }
 
@@ -109,11 +111,9 @@ class EpisodeActivity : DaggerAppCompatActivity() {
       )
   }
 
-  inner class EpisodePagerAdapter(fm: androidx.fragment.app.FragmentManager) :
-    androidx.fragment.app.FragmentStatePagerAdapter(fm) {
+  inner class EpisodePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
-    override fun getItem(position: Int): androidx.fragment.app.Fragment =
-      EpisodeFragment.newInstance(novel, position)
+    override fun getItem(position: Int): Fragment = EpisodeFragment.newInstance(novel, position)
 
     override fun getCount(): Int = novel.page
   }

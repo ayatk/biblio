@@ -25,9 +25,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import androidx.view.isGone
 import androidx.view.isVisible
 import com.ayatk.biblio.R
@@ -77,9 +77,9 @@ class SearchActivity : DaggerAppCompatActivity() {
 
     initBackToolbar(binding.toolbar)
 
-    val scrollListener = object : OnScrollListener() {
+    val scrollListener = object : RecyclerView.OnScrollListener() {
       override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-        if (newState == androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_DRAGGING) {
+        if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
           searchView.clearFocus()
         }
       }
@@ -95,7 +95,7 @@ class SearchActivity : DaggerAppCompatActivity() {
         override fun onDrawerStateChanged(newState: Int) {
           super.onDrawerStateChanged(newState)
           Timber.d(newState.toString())
-          if (newState != androidx.drawerlayout.widget.DrawerLayout.STATE_IDLE) {
+          if (newState != DrawerLayout.STATE_IDLE) {
             searchView.clearFocus()
           }
         }

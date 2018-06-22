@@ -20,6 +20,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityRankingBinding
 import com.ayatk.biblio.model.enums.RankingType
@@ -61,10 +64,9 @@ class RankingActivity : DaggerAppCompatActivity() {
       )
   }
 
-  inner class RankingPagerAdapter(fm: androidx.fragment.app.FragmentManager) :
-    androidx.fragment.app.FragmentPagerAdapter(fm) {
+  inner class RankingPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-    override fun getItem(position: Int): androidx.fragment.app.Fragment =
+    override fun getItem(position: Int): Fragment =
       RankingListFragment.newInstance(RankingType.values()[position])
 
     override fun getCount(): Int = RankingType.values().size

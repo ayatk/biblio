@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.os.bundleOf
@@ -91,7 +92,7 @@ class RankingListFragment : DaggerFragment() {
   companion object {
     private const val BUNDLE_ARGS_RANKING_TYPE = "ranking_type"
 
-    fun newInstance(rankingType: RankingType): androidx.fragment.app.Fragment =
+    fun newInstance(rankingType: RankingType): Fragment =
       RankingListFragment().apply {
         arguments = bundleOf(BUNDLE_ARGS_RANKING_TYPE to rankingType)
       }

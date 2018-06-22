@@ -22,6 +22,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivityMainBinding
 import com.ayatk.biblio.ui.search.SearchActivity
@@ -45,8 +49,7 @@ class HomeActivity : DaggerAppCompatActivity() {
     adapter = HomeFragmentStatePagerAdapter(this, supportFragmentManager)
     binding.viewPager.adapter = adapter
     binding.viewPager.offscreenPageLimit = 4
-    binding.viewPager.addOnPageChangeListener(object :
-      androidx.viewpager.widget.ViewPager.OnPageChangeListener {
+    binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
       override fun onPageScrollStateChanged(state: Int) {
       }
 
@@ -96,11 +99,10 @@ class HomeActivity : DaggerAppCompatActivity() {
 
   private class HomeFragmentStatePagerAdapter(
     val context: Context,
-    fm: androidx.fragment.app.FragmentManager
-  ) : androidx.fragment.app.FragmentStatePagerAdapter(fm) {
+    fm: FragmentManager
+  ) : FragmentStatePagerAdapter(fm) {
 
-    override fun getItem(position: Int): androidx.fragment.app.Fragment =
-      Page.values()[position].createFragment()
+    override fun getItem(position: Int): Fragment = Page.values()[position].createFragment()
 
     override fun getCount(): Int = Page.values().size
 
