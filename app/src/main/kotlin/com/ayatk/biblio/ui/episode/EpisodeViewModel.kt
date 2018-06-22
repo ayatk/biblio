@@ -54,6 +54,4 @@ class EpisodeViewModel @Inject constructor(
     super.onCleared()
     compositeDisposable.clear()
   }
-
-
 }
