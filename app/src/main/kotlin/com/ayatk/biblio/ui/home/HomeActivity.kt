@@ -83,7 +83,7 @@ class HomeActivity : DaggerAppCompatActivity() {
     binding.bottomNav.disableShiftingMode()
     binding.bottomNav.setOnNavigationItemSelectedListener {
       val page = Page.forMenuId(it.itemId)
-      binding.viewPager.setCurrentItem(page.position, false)
+      binding.viewPager.setCurrentItem(page.ordinal, false)
       toggleToolbarElevation(page.toggleToolbar)
       invalidateOptionsMenu()
       true

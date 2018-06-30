@@ -41,11 +41,11 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                style="@style/AppTheme.BaseToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:elevation="0dp"
-                app:title="@string/ranking"
-                style="@style/AppTheme.BaseToolbar" />
+                app:title="@string/ranking" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab"
