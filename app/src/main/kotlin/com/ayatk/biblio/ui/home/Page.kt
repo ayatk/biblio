@@ -29,19 +29,18 @@ import com.ayatk.biblio.ui.home.setting.SettingFragment
 enum class Page(
   @MenuRes val menuId: Int,
   @StringRes val titleResId: Int,
-  val toggleToolbar: Boolean,
-  val position: Int
+  val toggleToolbar: Boolean
 ) {
-  LIBRARY(R.id.nav_library, R.string.library, true, 0) {
+  LIBRARY(R.id.nav_library, R.string.library, true) {
     override fun createFragment() = LibraryFragment.newInstance()
   },
-  BOOKMARK(R.id.nav_bookmark, R.string.bookmark, true, 1) {
+  BOOKMARK(R.id.nav_bookmark, R.string.bookmark, true) {
     override fun createFragment() = BookmarkFragment.newInstance()
   },
-  RANKING(R.id.nav_ranking, R.string.ranking, true, 2) {
+  RANKING(R.id.nav_ranking, R.string.ranking, true) {
     override fun createFragment() = TopRankingFragment.newInstance()
   },
-  SETTINGS(R.id.nav_settings, R.string.setting, true, 3) {
+  SETTINGS(R.id.nav_settings, R.string.setting, true) {
     override fun createFragment() = SettingFragment.newInstance()
   };
 
