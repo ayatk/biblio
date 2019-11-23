@@ -39,7 +39,7 @@ ext {
 
       // implementation
       androidx        : '1.0.0-alpha3',
-      kotlin          : '1.3.10',
+      kotlin          : '1.3.60',
       ktlint          : '0.24.0',
       retrofit        : '2.4.0',
       okhttp3         : '3.10.0',
