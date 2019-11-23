@@ -245,7 +245,7 @@ dependencies {
   androidTestImplementation depends.androidxTest.contrib
 
   testImplementation 'androidx.arch.core:core-testing:2.0.0-alpha1'
-  testImplementation 'androidx.room:room-testing:2.0.0-alpha1'
+  testImplementation 'androidx.room:room-testing:2.2.2'
 
   // Lint
   ktlint depends.ktlint
