@@ -180,7 +180,7 @@ dependencies {
   implementation "androidx.room:room-runtime:2.0.0-alpha1"
   implementation "androidx.room:room-rxjava2:2.0.0-alpha1"
   kapt "androidx.lifecycle:lifecycle-compiler:2.0.0-alpha1"
-  kapt "androidx.room:room-compiler:2.0.0-alpha1"
+  kapt "androidx.room:room-compiler:2.2.2"
 
   // Network
   implementation "com.squareup.retrofit2:retrofit:2.6.2"
