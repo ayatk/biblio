@@ -269,13 +269,6 @@
 - artifact: com.google.firebase:+:+
   name: firebase
   skip: true
-- artifact: com.jakewharton.fliptables:fliptables:+
-  name: Flip Tables
-  year: 2014
-  copyrightHolder: Jake Wharton
-  license: Apache 2.0
-  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/JakeWharton/flip-tables/
 - artifact: com.jakewharton.timber:timber:+
   name: Timber
   year: 2013
