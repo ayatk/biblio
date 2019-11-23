@@ -162,13 +162,15 @@ configurations {
 
 dependencies {
 
+  implementation project(":model")
+
   // Kotlin
   implementation "org.jetbrains.kotlin:kotlin-stdlib:1.3.60"
 
   // androidx libraries
   implementation "androidx.appcompat:appcompat:1.1.0"
   implementation "androidx.cardview:cardview:1.0.0"
-  implementation "androidx.browser:browser:1.2.0-beta01"
+  implementation "androidx.browser:browser:1.0.0"
   implementation "androidx.preference:preference:1.0.0-alpha3"
   implementation "androidx.constraintlayout:constraintlayout:1.1.3"
   implementation "androidx.core:core-ktx:1.0.0-alpha3"

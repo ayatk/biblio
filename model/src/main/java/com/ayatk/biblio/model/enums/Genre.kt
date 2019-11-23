@@ -16,92 +16,89 @@
 
 package com.ayatk.biblio.model.enums
 
-import androidx.annotation.StringRes
-import com.ayatk.biblio.R
-
-enum class Genre(@StringRes val genreName: Int) {
+enum class Genre {
   /**
    * 異世界〔恋愛〕 LOVE_DIFF_WORLD
    */
-  LOVE_DIFF_WORLD(R.string.genre_love_diff_world),
+  LOVE_DIFF_WORLD,
   /**
    * 現実世界〔恋愛〕 LOVE_REAL_WORLD
    */
-  LOVE_REAL_WORLD(R.string.genre_love_real_world),
+  LOVE_REAL_WORLD,
   /**
    * ハイファンタジー〔ファンタジー〕 FANTASY_HIGH
    */
-  FANTASY_HIGH(R.string.genre_fantasy_high),
+  FANTASY_HIGH,
   /**
    * ハイファンタジー〔ファンタジー〕 FANTASY_LOW
    */
-  FANTASY_LOW(R.string.genre_fantasy_low),
+  FANTASY_LOW,
   /**
    * 純文学〔文学〕 LITERAL_PURE
    */
-  LITERAL_PURE(R.string.genre_literal_pure),
+  LITERAL_PURE,
   /**
    * ヒューマンドラマ〔文学〕 LITERAL_DRAMA
    */
-  LITERAL_DRAMA(R.string.genre_literal_drama),
+  LITERAL_DRAMA,
   /**
    * 歴史〔文学〕 LITERAL_HISTORY
    */
-  LITERAL_HISTORY(R.string.genre_literal_history),
+  LITERAL_HISTORY,
   /**
    * 推理〔文学〕 LITERAL_DETECTIVE
    */
-  LITERAL_DETECTIVE(R.string.genre_literal_detective),
+  LITERAL_DETECTIVE,
   /**
    * ホラー〔文学〕 LITERAL_HORROR
    */
-  LITERAL_HORROR(R.string.genre_literal_horror),
+  LITERAL_HORROR,
   /**
    * アクション〔文学〕 LITERAL_ACTION
    */
-  LITERAL_ACTION(R.string.genre_literal_action),
+  LITERAL_ACTION,
   /**
    * コメディ〔文学〕 LITERAL_COMEDY
    */
-  LITERAL_COMEDY(R.string.genre_literal_comedy),
+  LITERAL_COMEDY,
   /**
    * VRゲーム 〔SF〕 SF_VR
    */
-  SF_VR(R.string.genre_sf_vr),
+  SF_VR,
   /**
    * 宇宙 〔SF〕 SF_SPACE
    */
-  SF_SPACE(R.string.genre_sf_space),
+  SF_SPACE,
   /**
    * 空想科学 〔SF〕 SF_SCIENCE
    */
-  SF_SCIENCE(R.string.genre_sf_science),
+  SF_SCIENCE,
   /**
    * パニック 〔SF〕 SF_PANIC
    */
-  SF_PANIC(R.string.genre_sf_panic),
+  SF_PANIC,
   /**
    * 童話 〔その他〕 OTHER_FAIRYTALE
    */
-  OTHER_FAIRYTALE(R.string.genre_other_fairytale),
+  OTHER_FAIRYTALE,
   /**
    * 詩 〔その他〕 OTHER_POEM
    */
-  OTHER_POEM(R.string.genre_other_poem),
+  OTHER_POEM,
   /**
    * エッセイ 〔その他〕 OTHER_ESSAY
    */
-  OTHER_ESSAY(R.string.genre_other_essay),
+  OTHER_ESSAY,
   /**
    * リプレイ 〔その他〕 OTHER_REPLAY
    */
-  OTHER_REPLAY(R.string.genre_other_replay),
+  OTHER_REPLAY,
   /**
    * その他 〔その他〕 OTHER
    */
-  OTHER(R.string.genre_other),
+  OTHER,
   /**
    * ノンジャンル 〔ノンジャンル〕 NON_GENRE
    */
-  NON_GENRE(R.string.genre_non_genre)
+  NON_GENRE
 }

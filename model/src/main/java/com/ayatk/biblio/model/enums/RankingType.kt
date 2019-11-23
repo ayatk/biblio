@@ -16,36 +16,26 @@
 
 package com.ayatk.biblio.model.enums
 
-import androidx.annotation.StringRes
-import com.ayatk.biblio.R
-
-enum class BigGenre(@StringRes val genreName: Int) {
-  /**
-   * 恋愛 LOVE
-   */
-  LOVE(R.string.big_genre_love),
+enum class RankingType(val title: String) {
 
   /**
-   * ファンタジー FANTASY
+   * DAILY 日間ランキング
    */
-  FANTASY(R.string.big_genre_fantasy),
-
+  DAILY("日間"),
   /**
-   * 文学 LITERATURE
+   * WEEKLY 週間ランキング
    */
-  LITERATURE(R.string.big_genre_literal),
-
+  WEEKLY("週間"),
   /**
-   * SF SF
+   * MONTHLY 月間ランキング
    */
-  SF(R.string.big_genre_sf),
-
+  MONTHLY("月間"),
   /**
-   * ノンジャンル NON_GENRE
+   * QUARTET 四半期ランキング
    */
-  NON_GENRE(R.string.big_genre_non_genre),
+  QUARTET("四半期"),
   /**
-   * その他 OTHER
+   * ALL 累計ランキング
    */
-  OTHER(R.string.big_genre_other)
+  ALL("累計")
 }

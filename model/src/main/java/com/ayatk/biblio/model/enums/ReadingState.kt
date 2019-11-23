@@ -16,17 +16,9 @@
 
 package com.ayatk.biblio.model.enums
 
-import androidx.annotation.StringRes
-import com.ayatk.biblio.R
 
-enum class Publisher(@StringRes val siteName: Int, val url: String) {
-  /**
-   * なろう
-   */
-  NAROU(R.string.site_narou, "https://ncode.syosetu.com/"),
-
-  /**
-   * ノクターンとムーンライト
-   */
-  NOCTURNE_MOONLIGHT(R.string.site_nocturne_moonlight, "https://novel18.syosetu.com/")
+enum class ReadingState {
+  UNREAD, // 読んでない
+  READING, // 読んでる
+  READ // 読んだ
 }

@@ -16,28 +16,34 @@
 
 package com.ayatk.biblio.model.enums
 
-import androidx.annotation.StringRes
-import com.ayatk.biblio.R
-
-enum class NovelState(@StringRes val stateName: Int) {
+enum class BigGenre {
+  /**
+   * 恋愛 LOVE
+   */
+  LOVE,
 
   /**
-   * 短編
+   * ファンタジー FANTASY
    */
-  SHORT_STORY(R.string.short_story),
+  FANTASY,
 
   /**
-   * 連載
+   * 文学 LITERATURE
    */
-  SERIES(R.string.series),
+  LITERATURE,
 
   /**
-   * 完結
+   * SF SF
    */
-  SERIES_END(R.string.series_end),
+  SF,
 
   /**
-   * 連載停止
+   * ノンジャンル NON_GENRE
    */
-  SERIES_STOP(R.string.series_stop)
+  NON_GENRE,
+
+  /**
+   * その他 OTHER
+   */
+  OTHER
 }

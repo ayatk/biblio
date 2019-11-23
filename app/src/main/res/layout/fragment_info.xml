@@ -65,13 +65,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setCellIcon="@drawable/ic_publish_24"
-                app:setCellText="@{context.getString(viewModel.novel.publisher.siteName)}" />
+                app:setCellText="@{viewModel.novel.publisher.siteName}" />
 
             <com.ayatk.biblio.ui.util.customview.InfoCellView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:setCellIcon="@drawable/ic_status_24"
-                app:setCellText="@{context.getString(viewModel.novel.novelState.stateName)}" />
+                app:setCellText="@{viewModel.novel.novelState.stateName}" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

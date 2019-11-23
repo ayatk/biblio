@@ -31,7 +31,11 @@ fun List<NarouRanking>.toRanking(novels: List<Novel>): List<Ranking> =
 
 fun List<Novel>.toRanking(): List<Ranking> =
   mapIndexed { index, novel ->
-    Ranking(rank = index + 1, novel = novel, point = novel.point)
+    Ranking(
+      rank = index + 1,
+      novel = novel,
+      point = novel.point
+    )
   }
 
 private val unknownNovel = Novel(

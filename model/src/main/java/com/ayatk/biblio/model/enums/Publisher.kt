@@ -16,29 +16,14 @@
 
 package com.ayatk.biblio.model.enums
 
-import androidx.annotation.StringRes
-import com.ayatk.biblio.R
+enum class Publisher(val siteName: String, val url: String) {
+  /**
+   * なろう
+   */
+  NAROU("なろう", "https://ncode.syosetu.com/"),
 
-enum class RankingType(@StringRes val title: Int) {
-
   /**
-   * DAILY 日間ランキング
+   * ノクターンとムーンライト
    */
-  DAILY(R.string.ranking_daily_short),
-  /**
-   * WEEKLY 週間ランキング
-   */
-  WEEKLY(R.string.ranking_weekly_short),
-  /**
-   * MONTHLY 月間ランキング
-   */
-  MONTHLY(R.string.ranking_monthly_short),
-  /**
-   * QUARTET 四半期ランキング
-   */
-  QUARTET(R.string.ranking_quarter_short),
-  /**
-   * ALL 累計ランキング
-   */
-  ALL(R.string.ranking_all_short);
+  NOCTURNE_MOONLIGHT("ノクターン･ムーンライト", "https://novel18.syosetu.com/")
 }
