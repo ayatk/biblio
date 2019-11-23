@@ -71,7 +71,6 @@ class RankingActivity : DaggerAppCompatActivity() {
 
     override fun getCount(): Int = RankingType.values().size
 
-    override fun getPageTitle(position: Int): CharSequence? =
-      getString(RankingType.values()[position].title)
+    override fun getPageTitle(position: Int): CharSequence? = RankingType.values()[position].title
   }
 }
