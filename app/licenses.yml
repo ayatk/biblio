@@ -195,6 +195,18 @@
   license: The Apache Software License, Version 2.0
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
   url: http://developer.android.com/tools/extras/support-library.html
+- artifact: androidx.test:monitor:+
+  name: AndroidX Test Library
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://developer.android.com/testing
+- artifact: androidx.test:runner:+
+  name: AndroidX Test Library
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://developer.android.com/testing
 - artifact: androidx.transition:+:+
   name: Android Transition Support Library
   copyrightHolder: The Android Open Source Project
@@ -344,6 +356,12 @@
   license: Eclipse Public License 1.0
   licenseUrl: http://www.eclipse.org/legal/epl-v10.html
   url: http://junit.org
+- artifact: net.sf.kxml:kxml2:+
+  name: kXML 2 is a small XML pull parser based on the common XML pull API
+  copyrightHolder: kXML contributors
+  license: BSD style
+  licenseUrl: http://kxml.cvs.sourceforge.net/viewvc/kxml/kxml2/license.txt?view=markup
+  url: http://kxml.sourceforge.net/
 - artifact: org.greenrobot:eventbus:+
   name: EventBus
   year: 2012-2016
