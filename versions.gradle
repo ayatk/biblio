@@ -27,19 +27,19 @@ ext {
 
   versions = [
       compileSdk      : 28,
-      buildTools      : '28.0.0',
+      buildTools      : '28.0.3',
       minSdk          : 21,
       targetSdk       : 28,
 
       // class path
-      gradleBuildTool : '3.2.0-beta02',
+      gradleBuildTool : '3.5.2',
       googleServices  : '4.0.1',
       fabricGradleTool: '1.25.4',
       licenseTools    : '1.4.0',
 
       // implementation
       androidx        : '1.0.0-alpha3',
-      kotlin          : '1.2.50',
+      kotlin          : '1.3.10',
       ktlint          : '0.24.0',
       retrofit        : '2.4.0',
       okhttp3         : '3.10.0',
@@ -59,7 +59,7 @@ ext {
       // Kotlin
       // ----------------------------------------
       kotlin       : [
-          stdlib: "org.jetbrains.kotlin:kotlin-stdlib-jre8:${versions.kotlin}",
+          stdlib: "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}",
       ],
 
       // ----------------------------------------
