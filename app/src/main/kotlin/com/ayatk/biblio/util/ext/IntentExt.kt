@@ -52,7 +52,7 @@ fun Intent.extraOf(vararg pairs: Pair<String, Any>) = this.apply {
       is ShortArray -> putExtra(key, value)
 
       is ArrayList<*> -> {
-        val componentType = value::class.java.componentType
+        val componentType = value::class.java.componentType!!
         @Suppress("UNCHECKED_CAST") // Checked by reflection.
         when {
           Parcelable::class.java.isAssignableFrom(componentType) -> {
