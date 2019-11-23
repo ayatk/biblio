@@ -237,7 +237,7 @@ dependencies {
   debugImplementation "com.tomoima.debot:debot:2.0.5"
   debugImplementation "jp.wasabeef:takt:1.0.5"
 
-  implementation("com.crashlytics.sdk.android:crashlytics:2.9.4@aar") {
+  implementation("com.crashlytics.sdk.android:crashlytics:2.10.1@aar") {
     transitive = true
   }
 
