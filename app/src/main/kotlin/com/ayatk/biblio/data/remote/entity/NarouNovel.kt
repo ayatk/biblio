@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.data.remote.entity
 
-import com.ayatk.biblio.data.entity.enums.BigGenre
-import com.ayatk.biblio.data.entity.enums.Genre
+import com.ayatk.biblio.infrastructure.database.entity.enums.BigGenre
+import com.ayatk.biblio.infrastructure.database.entity.enums.Genre
 import com.google.gson.annotations.SerializedName
 import java.util.Date
 

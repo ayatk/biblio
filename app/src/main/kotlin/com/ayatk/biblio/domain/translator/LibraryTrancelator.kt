@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.domain.translator
 
-import com.ayatk.biblio.data.entity.NovelEntity
+import com.ayatk.biblio.infrastructure.database.entity.NovelEntity
 import com.ayatk.biblio.model.Library
 
 fun NovelEntity.toLibrary(tags: List<String> = listOf()): Library =

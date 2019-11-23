@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.data.entity.enums.OutputOrder
-import com.ayatk.biblio.data.entity.enums.Publisher
+import com.ayatk.biblio.infrastructure.database.entity.enums.OutputOrder
+import com.ayatk.biblio.infrastructure.database.entity.enums.Publisher
 import com.ayatk.biblio.data.remote.NarouDataStore
 import com.ayatk.biblio.data.remote.entity.mapper.toNovel
 import com.ayatk.biblio.data.remote.entity.mapper.toRanking
@@ -30,7 +30,7 @@ import io.reactivex.Flowable
 import java.util.Calendar
 import javax.inject.Inject
 import javax.inject.Singleton
-import com.ayatk.biblio.data.entity.enums.RankingType as ApiRankingType
+import com.ayatk.biblio.infrastructure.database.entity.enums.RankingType as ApiRankingType
 
 @Singleton
 class RankingRepositoryImpl @Inject constructor(

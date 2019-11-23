@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-include ':app', ':model'
+include ':app', ':model', ':infrastructure:database'

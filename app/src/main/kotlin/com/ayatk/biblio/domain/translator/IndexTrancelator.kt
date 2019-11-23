@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.domain.translator
 
-import com.ayatk.biblio.data.entity.IndexEntity
+import com.ayatk.biblio.infrastructure.database.entity.IndexEntity
 import com.ayatk.biblio.model.Index
 import com.ayatk.biblio.model.Novel
 

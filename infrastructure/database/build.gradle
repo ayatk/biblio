@@ -1,0 +1,24 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+
+apply from: rootProject.file("android.gradle")
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+  implementation "com.google.dagger:dagger:2.16"
+  kapt "com.google.dagger:dagger-compiler:2.16"
+
+  api "androidx.room:room-runtime:2.2.2"
+  implementation "androidx.room:room-rxjava2:2.2.2"
+  kapt "androidx.room:room-compiler:2.2.2"
+
+  api "com.google.code.gson:gson:2.8.6"
+
+  testImplementation 'junit:junit:4.12'
+  testImplementation 'androidx.room:room-testing:2.2.2'
+  androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+}

@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.domain.translator
 
-import com.ayatk.biblio.data.entity.EpisodeEntity
+import com.ayatk.biblio.infrastructure.database.entity.EpisodeEntity
 import com.ayatk.biblio.model.Episode
 import com.ayatk.biblio.model.Novel
 

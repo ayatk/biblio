@@ -21,11 +21,11 @@ import com.ayatk.biblio.model.enums.Genre
 import com.ayatk.biblio.model.enums.NovelState
 import com.ayatk.biblio.model.enums.Publisher
 import com.ayatk.biblio.model.enums.ReadingState
-import com.ayatk.biblio.data.entity.enums.BigGenre as DataBigGenre
-import com.ayatk.biblio.data.entity.enums.Genre as DataGenre
-import com.ayatk.biblio.data.entity.enums.NovelState as DataNovelState
-import com.ayatk.biblio.data.entity.enums.Publisher as DataPublisher
-import com.ayatk.biblio.data.entity.enums.ReadingState as DataReadingState
+import com.ayatk.biblio.infrastructure.database.entity.enums.BigGenre as DataBigGenre
+import com.ayatk.biblio.infrastructure.database.entity.enums.Genre as DataGenre
+import com.ayatk.biblio.infrastructure.database.entity.enums.NovelState as DataNovelState
+import com.ayatk.biblio.infrastructure.database.entity.enums.Publisher as DataPublisher
+import com.ayatk.biblio.infrastructure.database.entity.enums.ReadingState as DataReadingState
 
 // Publisher
 fun DataPublisher.toModel() = Publisher.valueOf(name)
