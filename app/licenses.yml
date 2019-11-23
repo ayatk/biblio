@@ -338,6 +338,12 @@
   license: The Apache Software License, Version 2.0
   licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
   url: https://code.google.com/p/atinject/
+- artifact: junit:junit:+
+  name: JUnit
+  copyrightHolder: JUnit contributors
+  license: Eclipse Public License 1.0
+  licenseUrl: http://www.eclipse.org/legal/epl-v10.html
+  url: http://junit.org
 - artifact: org.greenrobot:eventbus:+
   name: EventBus
   year: 2012-2016
@@ -345,6 +351,10 @@
   license: The Apache Software License, Version 2.0
   licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
   url: https://greenrobot.org/eventbus/
+- artifact: org.hamcrest:hamcrest-core:+
+  name: Hamcrest Core
+  copyrightHolder: Hamcrest contributors
+  license: bsd_3_clauses
 - artifact: org.jetbrains.kotlin:+:+
   name: Kotlin
   year: 2000-2017
@@ -365,6 +375,17 @@
   license: The MIT License
   licenseUrl: https://jsoup.org/license
   url: https://jsoup.org/
+- artifact: org.mockito:mockito-core:+
+  name: mockito-core
+  copyrightHolder: Mockito contributors
+  license: The MIT License
+  licenseUrl: https://github.com/mockito/mockito/blob/release/3.x/LICENSE
+  url: http://mockito.org
+- artifact: org.objenesis:objenesis:+
+  name: Objenesis
+  copyrightHolder: Objenesis Team and all contributor
+  license: The Apache Software License, Version 2.0
+  url: http://objenesis.org
 - artifact: org.reactivestreams:reactive-streams:+
   name: Reactive Streams
   license: CC0

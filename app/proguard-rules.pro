@@ -69,3 +69,5 @@
 # Dagger2
 # ----------------------------------------
 -dontwarn com.google.errorprone.annotations.*
+
+-keep public class * extends androidx.versionedparcelable.VersionedParcelable
