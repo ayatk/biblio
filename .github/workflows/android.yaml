@@ -31,4 +31,4 @@ jobs:
           openssl aes-256-cbc -pbkdf2 -d -k $SIGNATURE_DECRYPT_KEY -in signature.tar.gz.enc -out signature.tar.gz
           tar -xvf signature.tar.gz
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew buildRelease
