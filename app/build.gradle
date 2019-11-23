@@ -210,7 +210,7 @@ dependencies {
   kapt "com.rejasupotaro:kvs-schema-compiler:5.0.1"
 
   // Jsoup
-  implementation "org.jsoup:jsoup:1.11.3"
+  implementation "org.jsoup:jsoup:1.12.1"
 
   // ----------------------------------------
   // UI
