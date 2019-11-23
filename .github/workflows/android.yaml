@@ -17,7 +17,7 @@ jobs:
         id: cache
         with:
           path: ~/.gradle
-          key: gradle-${{ hashFiles('app/build.gradle') }}-${{ hashFiles('versions.gradle') }}
+          key: gradle-${{ hashFiles('app/build.gradle') }}
           restore-keys: |
             gradle-
       - name: Install Dependencies

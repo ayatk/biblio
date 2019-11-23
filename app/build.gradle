@@ -41,13 +41,13 @@ if (secretPropsFile.canRead()) {
 }
 
 android {
-  compileSdkVersion versions.compileSdk
-  buildToolsVersion versions.buildTools
+  compileSdkVersion 29
+  buildToolsVersion "28.0.3"
 
   defaultConfig {
     applicationId 'com.ayatk.biblio'
-    minSdkVersion versions.minSdk
-    targetSdkVersion versions.targetSdk
+    minSdkVersion 21
+    targetSdkVersion 29
     versionCode BUILD_NUM.toInteger()
     versionName VERSION
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -163,92 +163,99 @@ configurations {
 dependencies {
 
   // Kotlin
-  implementation depends.kotlin.stdlib
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:1.3.60"
 
   // androidx libraries
-  implementation depends.androidx.appcompat
-  implementation depends.androidx.cardview
-  implementation depends.androidx.browser
-  implementation depends.androidx.preference
-  implementation depends.androidx.constraint
-  implementation depends.androidx.ktx
+  implementation "androidx.appcompat:appcompat:1.0.0-alpha3"
+  implementation "androidx.cardview:cardview:1.0.0-alpha3"
+  implementation "androidx.browser:browser:1.0.0-alpha3"
+  implementation "androidx.preference:preference:1.0.0-alpha3"
+  implementation "androidx.constraintlayout:constraintlayout:1.1.2"
+  implementation "androidx.core:core-ktx:1.0.0-alpha3"
 
   // Android Architecture Components
-  implementation depends.lifecycle.runtime
-  implementation depends.lifecycle.extensions
-  implementation depends.lifecycle.reactivestreams
-  implementation depends.room.runtime
-  implementation depends.room.rxjava2
-  kapt depends.lifecycle.compiler
-  kapt depends.room.compiler
+  implementation "androidx.lifecycle:lifecycle-runtime:2.0.0-alpha1"
+  implementation "androidx.lifecycle:lifecycle-extensions:2.0.0-alpha1"
+  implementation "androidx.lifecycle:lifecycle-reactivestreams:2.0.0-alpha1"
+  implementation "androidx.room:room-runtime:2.0.0-alpha1"
+  implementation "androidx.room:room-rxjava2:2.0.0-alpha1"
+  kapt "androidx.lifecycle:lifecycle-compiler:2.0.0-alpha1"
+  kapt "androidx.room:room-compiler:2.0.0-alpha1"
 
   // Network
-  implementation depends.retrofit.core
-  implementation depends.retrofit.converterGson
-  implementation depends.retrofit.converterScalars
-  implementation depends.retrofit.adapterRxJava2
+  implementation "com.squareup.retrofit2:retrofit:2.4.0"
+  implementation "com.squareup.retrofit2:converter-gson:2.4.0"
+  implementation "com.squareup.retrofit2:converter-scalars:2.4.0"
+  implementation "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
 
-  implementation depends.gson
+  implementation "com.google.code.gson:gson:2.8.5"
 
-  implementation depends.okhttp3.core
-  implementation depends.okhttp3.loggingIntercepter
+  implementation "com.squareup.okhttp3:okhttp:3.10.0"
+  implementation "com.squareup.okhttp3:logging-interceptor:3.10.0"
 
   // Dependency Injection
-  implementation depends.dagger.core
-  implementation depends.dagger.android
-  implementation depends.dagger.androidSupport
-  kapt depends.dagger.compiler
-  kapt depends.dagger.androidProcessor
+  implementation "com.google.dagger:dagger:2.16"
+  implementation "com.google.dagger:dagger-android:2.16"
+  implementation "com.google.dagger:dagger-android-support:2.16"
+  kapt "com.google.dagger:dagger-compiler:2.16"
+  kapt "com.google.dagger:dagger-android-processor:2.16"
 
   // ReactiveX
-  implementation depends.rxjava2.core
-  implementation depends.rxjava2.android
-  implementation depends.rxjava2.kotlin
+  implementation "io.reactivex.rxjava2:rxjava:2.1.16"
+  implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+  implementation "io.reactivex.rxjava2:rxkotlin:2.2.0"
 
   // SharedPreferences
-  implementation depends.kvsSchema.core
-  kapt depends.kvsSchema.compiler
+  implementation "com.rejasupotaro:kvs-schema:5.0.1"
+  kapt "com.rejasupotaro:kvs-schema-compiler:5.0.1"
 
   // Jsoup
-  implementation depends.jsoup
+  implementation "org.jsoup:jsoup:1.11.3"
 
+  // ----------------------------------------
   // UI
-  implementation depends.material.material
-  implementation depends.flexbox
-  implementation depends.groupie.core
-  implementation depends.groupie.binding
+  // ----------------------------------------
+  implementation "com.google.android.material:material:1.0.0-alpha3"
+  implementation 'com.google.android:flexbox:1.0.0'
+  implementation "com.xwray:groupie:2.1.0"
+  implementation "com.xwray:groupie-databinding:2.1.0"
 
   // Util
-  implementation depends.eventbus
+  implementation "org.greenrobot:eventbus:3.1.1"
 
+  // ----------------------------------------
   // Debug
-  implementation depends.timber
+  // ----------------------------------------
+  implementation "com.jakewharton.timber:timber:4.7.1"
 
-  debugImplementation depends.leakcanary
+  debugImplementation "com.squareup.leakcanary:leakcanary-android:1.5.4"
 
-  debugImplementation depends.stetho.core
-  debugImplementation depends.stetho.okhttp3
-  debugImplementation depends.stetho.timber
+  debugImplementation "com.facebook.stetho:stetho:1.5.0"
+  debugImplementation "com.facebook.stetho:stetho-okhttp3:1.5.0"
+  debugImplementation "com.facebook.stetho:stetho-timber:1.5.0@aar"
 
-  debugImplementation depends.debot
-  debugImplementation depends.takt
+  debugImplementation "com.tomoima.debot:debot:2.0.3"
+  debugImplementation "jp.wasabeef:takt:1.0.5"
 
-  implementation(depends.crashlytics) {
+  implementation("com.crashlytics.sdk.android:crashlytics:2.9.4@aar") {
     transitive = true
   }
 
+  // ----------------------------------------
   // Test
-  testImplementation depends.junit
-
-  androidTestImplementation depends.androidxTest.runner
-  androidTestImplementation depends.androidxTest.espresso
-  androidTestImplementation depends.androidxTest.contrib
-
+  // ----------------------------------------
+  testImplementation "androidx.test:runner:1.1.0-alpha3"
   testImplementation 'androidx.arch.core:core-testing:2.1.0'
   testImplementation 'androidx.room:room-testing:2.2.2'
 
+  androidTestImplementation "androidx.test:runner:1.1.0-alpha3"
+  androidTestImplementation "androidx.test.espresso:espresso-core:3.1.0-alpha3"
+  androidTestImplementation "androidx.test.espresso:espresso-contrib:3.1.0-alpha3"
+
+  // ----------------------------------------
   // Lint
-  ktlint depends.ktlint
+  // ----------------------------------------
+  ktlint "com.github.shyiko:ktlint:0.24.0"
 }
 
 task ktlint(type: JavaExec, group: "verification") {

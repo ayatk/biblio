@@ -39,7 +39,7 @@ class DetailActivity : DaggerAppCompatActivity() {
   }
 
   private val novel: Novel by lazy {
-    intent.extras.get(EXTRA_NOVEL) as Novel
+    intent.extras?.get(EXTRA_NOVEL) as Novel
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
