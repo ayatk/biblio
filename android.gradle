@@ -1,0 +1,26 @@
+android {
+  compileSdkVersion 29
+  buildToolsVersion "28.0.3"
+
+  defaultConfig {
+    minSdkVersion 21
+    targetSdkVersion 29
+    multiDexEnabled true
+  }
+
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+    debug.java.srcDirs += 'src/debug/kotlin'
+    test.java.srcDirs += 'src/test/kotlin'
+    androidTest.java.srcDirs += 'src/androidTest/kotlin'
+  }
+
+  dataBinding {
+    enabled = true
+  }
+
+  kapt {
+    // NonExistentClass Errorを無視
+    correctErrorTypes = true
+  }
+}

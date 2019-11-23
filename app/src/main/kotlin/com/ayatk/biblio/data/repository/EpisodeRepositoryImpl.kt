@@ -16,10 +16,10 @@
 
 package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.data.db.dao.EpisodeDao
-import com.ayatk.biblio.data.entity.EpisodeEntity
-import com.ayatk.biblio.data.entity.NovelEntity
-import com.ayatk.biblio.data.entity.enums.NovelState
+import com.ayatk.biblio.infrastructure.database.dao.EpisodeDao
+import com.ayatk.biblio.infrastructure.database.entity.EpisodeEntity
+import com.ayatk.biblio.infrastructure.database.entity.NovelEntity
+import com.ayatk.biblio.infrastructure.database.entity.enums.NovelState
 import com.ayatk.biblio.data.remote.NarouDataStore
 import com.ayatk.biblio.data.remote.entity.mapper.toEntity
 import com.ayatk.biblio.di.scope.Narou

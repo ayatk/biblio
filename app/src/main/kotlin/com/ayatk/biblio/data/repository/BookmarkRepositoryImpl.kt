@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.data.db.dao.BookmarkDao
-import com.ayatk.biblio.data.entity.BookmarkEntity
+import com.ayatk.biblio.infrastructure.database.dao.BookmarkDao
+import com.ayatk.biblio.infrastructure.database.entity.BookmarkEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import java.util.UUID

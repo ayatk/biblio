@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.data.remote
 
-import com.ayatk.biblio.data.entity.enums.RankingType
+import com.ayatk.biblio.infrastructure.database.entity.enums.RankingType
 import com.ayatk.biblio.data.remote.entity.NarouEpisode
 import com.ayatk.biblio.data.remote.entity.NarouIndex
 import com.ayatk.biblio.data.remote.entity.NarouNovel

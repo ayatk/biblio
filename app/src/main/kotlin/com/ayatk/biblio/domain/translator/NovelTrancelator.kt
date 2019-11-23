@@ -1,6 +1,6 @@
 package com.ayatk.biblio.domain.translator
 
-import com.ayatk.biblio.data.entity.NovelEntity
+import com.ayatk.biblio.infrastructure.database.entity.NovelEntity
 import com.ayatk.biblio.model.Novel
 
 fun NovelEntity.toModel(): Novel =

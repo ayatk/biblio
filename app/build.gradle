@@ -20,6 +20,8 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.cookpad.android.licensetools'
 apply plugin: 'io.fabric'
 
+apply from: rootProject.file("android.gradle")
+
 // Keys
 def RELEASE_STORE_PASSWORD = (System.getenv("RELEASE_STORE_PASSWORD") != null) ?
     System.getenv("RELEASE_STORE_PASSWORD") : ""
@@ -41,18 +43,10 @@ if (secretPropsFile.canRead()) {
 }
 
 android {
-  compileSdkVersion 29
-  buildToolsVersion "28.0.3"
-
   defaultConfig {
     applicationId 'com.ayatk.biblio'
-    minSdkVersion 21
-    targetSdkVersion 29
     versionCode BUILD_NUM.toInteger()
     versionName VERSION
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    vectorDrawables.useSupportLibrary true
-    multiDexEnabled true
 
     buildConfigField "String", "GIT_SHA", "\"${GIT_SHA}\""
     buildConfigField "String", "GIT_BRANCH", "\"${GIT_BRANCH}\""
@@ -77,14 +71,6 @@ android {
   }
 
   buildTypes {
-    applicationVariants.all { variant ->
-      variant.outputs.all { output ->
-        if (output.outputFile != null && output.outputFile.name.endsWith('.apk')) {
-          outputFileName = "${APP_NAME}-v${VERSION}-${BUILD_NUM}.apk"
-        }
-      }
-    }
-
     release {
       shrinkResources true
       debuggable false
@@ -92,12 +78,6 @@ android {
       minifyEnabled true
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
       signingConfig signingConfigs.release
-    }
-
-    nightly {
-      initWith release
-      applicationIdSuffix '.nightly'
-      versionNameSuffix '-nightly'
     }
 
     debug {
@@ -109,51 +89,6 @@ android {
       signingConfig signingConfigs.debug
     }
   }
-
-  sourceSets {
-    main.java.srcDirs += 'src/main/kotlin'
-    debug.java.srcDirs += 'src/debug/kotlin'
-    test.java.srcDirs += 'src/test/kotlin'
-    androidTest.java.srcDirs += 'src/androidTest/kotlin'
-  }
-
-  packagingOptions {
-    exclude 'META-INF/ASL2.0'
-    exclude 'META-INF/LICENSE'
-    exclude 'META-INF/NOTICE'
-    exclude 'META-INF/NOTICE.txt'
-    exclude 'META-INF/LICENSE.txt'
-    exclude 'META-INF/MANIFEST.MF'
-  }
-
-  dataBinding {
-    enabled = true
-  }
-
-  kapt {
-    // NonExistentClass Errorを無視
-    correctErrorTypes = true
-  }
-
-  lintOptions {
-    disable 'GoogleAppIndexingWarning',
-        'AppCompatResource'
-  }
-
-  testOptions {
-    unitTests.all {
-      // All the usual Gradle options.
-      testLogging {
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-        outputs.upToDateWhen { false }
-        showCauses true
-        showExceptions true
-        showStackTraces true
-        showStandardStreams true
-        exceptionFormat "full"
-      }
-    }
-  }
 }
 
 configurations {
@@ -163,9 +98,10 @@ configurations {
 dependencies {
 
   implementation project(":model")
+  implementation project(":infrastructure:database")
 
   // Kotlin
-  implementation "org.jetbrains.kotlin:kotlin-stdlib:1.3.60"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
   // androidx libraries
   implementation "androidx.appcompat:appcompat:1.1.0"
@@ -179,10 +115,7 @@ dependencies {
   implementation "androidx.lifecycle:lifecycle-runtime:2.0.0-alpha1"
   implementation "androidx.lifecycle:lifecycle-extensions:2.0.0-alpha1"
   implementation "androidx.lifecycle:lifecycle-reactivestreams:2.0.0-alpha1"
-  implementation "androidx.room:room-runtime:2.0.0-alpha1"
-  implementation "androidx.room:room-rxjava2:2.0.0-alpha1"
   kapt "androidx.lifecycle:lifecycle-compiler:2.0.0-alpha1"
-  kapt "androidx.room:room-compiler:2.0.0-alpha1"
 
   // Network
   implementation "com.squareup.retrofit2:retrofit:2.6.2"
@@ -248,7 +181,6 @@ dependencies {
   // ----------------------------------------
   testImplementation "androidx.test:runner:1.1.0-alpha3"
   testImplementation 'androidx.arch.core:core-testing:2.1.0'
-  testImplementation 'androidx.room:room-testing:2.2.2'
 
   androidTestImplementation "androidx.test:runner:1.1.0-alpha3"
   androidTestImplementation "androidx.test.espresso:espresso-core:3.1.0-alpha3"

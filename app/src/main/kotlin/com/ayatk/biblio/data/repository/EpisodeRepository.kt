@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.data.entity.EpisodeEntity
-import com.ayatk.biblio.data.entity.NovelEntity
+import com.ayatk.biblio.infrastructure.database.entity.EpisodeEntity
+import com.ayatk.biblio.infrastructure.database.entity.NovelEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
