@@ -14,12 +14,12 @@ jobs:
         with:
           java-version: 1.8
       - uses: actions/cache@v1
-          id: cache
-          with:
-            path: ~/.gradle
-            key: gradle-${{ hashFiles('app/build.gradle') }}-${{ hashFiles('versions.gradle') }}
-            restore-keys: |
-              gradle-
+        id: cache
+        with:
+          path: ~/.gradle
+          key: gradle-${{ hashFiles('app/build.gradle') }}-${{ hashFiles('versions.gradle') }}
+          restore-keys: |
+            gradle-
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: ./gradlew androidDependencies
