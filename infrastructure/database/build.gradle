@@ -10,7 +10,7 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
   implementation "com.google.dagger:dagger:2.25.4"
-  kapt "com.google.dagger:dagger-compiler:2.16"
+  kapt "com.google.dagger:dagger-compiler:2.25.4"
 
   api "androidx.room:room-runtime:2.2.3"
   implementation "androidx.room:room-rxjava2:2.2.3"
