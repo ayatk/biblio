@@ -14,7 +14,7 @@ dependencies {
 
   api "androidx.room:room-runtime:2.2.3"
   implementation "androidx.room:room-rxjava2:2.2.4"
-  kapt "androidx.room:room-compiler:2.2.3"
+  kapt "androidx.room:room-compiler:2.2.4"
 
   api "com.google.code.gson:gson:2.8.6"
 
