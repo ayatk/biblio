@@ -19,6 +19,6 @@ dependencies {
   api "com.google.code.gson:gson:2.8.6"
 
   testImplementation 'junit:junit:4.13'
-  testImplementation 'androidx.room:room-testing:2.2.4'
+  testImplementation 'androidx.room:room-testing:2.2.5'
   androidTestImplementation 'androidx.test.ext:junit:1.1.1'
 }
