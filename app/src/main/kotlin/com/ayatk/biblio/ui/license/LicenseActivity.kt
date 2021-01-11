@@ -42,7 +42,7 @@ class LicenseActivity : AppCompatActivity() {
 
     initBackToolbar(binding.toolbar)
     // WebViewによる表示
-    binding.webView.loadUrl(url)
+    binding.webView.loadUrl(url!!)
   }
 
   companion object {
