@@ -157,7 +157,7 @@ dependencies {
   implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
   implementation 'com.google.android:flexbox:2.0.1'
   implementation "com.xwray:groupie:2.1.0"
-  implementation "com.xwray:groupie-databinding:2.1.0"
+  implementation "com.xwray:groupie-databinding:2.8.1"
 
   // Util
   implementation "org.greenrobot:eventbus:3.1.1"
