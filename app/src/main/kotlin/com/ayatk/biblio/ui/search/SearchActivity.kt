@@ -28,7 +28,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.ayatk.biblio.R
 import com.ayatk.biblio.databinding.ActivitySearchBinding
@@ -52,11 +52,11 @@ class SearchActivity : DaggerAppCompatActivity() {
   lateinit var viewModelFactory: ViewModelFactory
 
   private val viewModel: SearchViewModel by lazy {
-    ViewModelProviders.of(this, viewModelFactory).get(SearchViewModel::class.java)
+    ViewModelProvider(this, viewModelFactory).get(SearchViewModel::class.java)
   }
 
   private val binding: ActivitySearchBinding by lazy {
-    DataBindingUtil.setContentView<ActivitySearchBinding>(this, R.layout.activity_search)
+    DataBindingUtil.setContentView(this, R.layout.activity_search)
   }
 
   private lateinit var searchView: SearchView
@@ -72,7 +72,7 @@ class SearchActivity : DaggerAppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     overridePendingTransition(R.anim.activity_fade_enter, R.anim.activity_fade_exit)
-    binding.setLifecycleOwner(this)
+    binding.lifecycleOwner = this
     binding.viewModel = viewModel
 
     initBackToolbar(binding.toolbar)

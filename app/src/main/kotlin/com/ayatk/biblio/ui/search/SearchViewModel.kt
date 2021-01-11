@@ -31,7 +31,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
-import java.util.Locale
+import java.util.*
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
@@ -44,7 +44,7 @@ class SearchViewModel @Inject constructor(
   private val query = MutableLiveData<String>()
 
   val result: LiveData<Result<Map<Novel, Boolean>>> =
-    Transformations.switchMap<String, Result<Map<Novel, Boolean>>>(query) { search ->
+    Transformations.switchMap(query) { search ->
       useCase.search(search, Publisher.NAROU)
         .toResult(schedulerProvider)
         .toLiveData()

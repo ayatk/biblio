@@ -38,7 +38,7 @@ import org.greenrobot.eventbus.Subscribe
 class EpisodeActivity : DaggerAppCompatActivity() {
 
   private val binding: ActivityEpisodeBinding by lazy {
-    DataBindingUtil.setContentView<ActivityEpisodeBinding>(this, R.layout.activity_episode)
+    DataBindingUtil.setContentView(this, R.layout.activity_episode)
   }
 
   private val novel: Novel by lazy {

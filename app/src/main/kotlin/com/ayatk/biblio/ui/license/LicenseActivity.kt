@@ -29,7 +29,7 @@ import com.ayatk.biblio.util.ext.extraOf
 class LicenseActivity : AppCompatActivity() {
 
   private val binding: ActivityWebBinding by lazy {
-    DataBindingUtil.setContentView<ActivityWebBinding>(this, R.layout.activity_web)
+    DataBindingUtil.setContentView(this, R.layout.activity_web)
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {

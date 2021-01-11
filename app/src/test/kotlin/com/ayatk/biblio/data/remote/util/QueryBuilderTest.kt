@@ -16,8 +16,8 @@
 
 package com.ayatk.biblio.data.remote.util
 
-import com.ayatk.biblio.infrastructure.database.entity.enums.OutputOrder
 import com.ayatk.biblio.data.remote.exception.NarouOutOfRangeException
+import com.ayatk.biblio.infrastructure.database.entity.enums.OutputOrder
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import org.junit.Test

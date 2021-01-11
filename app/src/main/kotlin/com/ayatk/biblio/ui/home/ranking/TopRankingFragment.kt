@@ -21,7 +21,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.ayatk.biblio.databinding.FragmentRankingBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Ranking
@@ -38,7 +38,7 @@ class TopRankingFragment : DaggerFragment() {
   lateinit var viewModelFactory: ViewModelFactory
 
   private val viewModel: TopRankingViewModel by lazy {
-    ViewModelProviders.of(this, viewModelFactory).get(TopRankingViewModel::class.java)
+    ViewModelProvider(this, viewModelFactory).get(TopRankingViewModel::class.java)
   }
 
   lateinit var binding: FragmentRankingBinding
@@ -47,9 +47,9 @@ class TopRankingFragment : DaggerFragment() {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     binding = FragmentRankingBinding.inflate(inflater, container, false)
-    binding.setLifecycleOwner(this)
+    binding.lifecycleOwner = this
 
     bind(viewModel.daily, binding.daily)
     bind(viewModel.weekly, binding.weekly)

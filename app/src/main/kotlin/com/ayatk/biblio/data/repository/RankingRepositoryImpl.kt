@@ -16,18 +16,18 @@
 
 package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.infrastructure.database.entity.enums.OutputOrder
-import com.ayatk.biblio.infrastructure.database.entity.enums.Publisher
 import com.ayatk.biblio.data.remote.NarouDataStore
 import com.ayatk.biblio.data.remote.entity.mapper.toNovel
 import com.ayatk.biblio.data.remote.entity.mapper.toRanking
 import com.ayatk.biblio.data.remote.util.QueryBuilder
 import com.ayatk.biblio.di.scope.Narou
 import com.ayatk.biblio.di.scope.Nocturne
+import com.ayatk.biblio.infrastructure.database.entity.enums.OutputOrder
+import com.ayatk.biblio.infrastructure.database.entity.enums.Publisher
 import com.ayatk.biblio.model.Ranking
 import com.ayatk.biblio.model.enums.RankingType
 import io.reactivex.Flowable
-import java.util.Calendar
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 import com.ayatk.biblio.infrastructure.database.entity.enums.RankingType as ApiRankingType
@@ -53,8 +53,8 @@ class RankingRepositoryImpl @Inject constructor(
       }
 
       return narouDataStore.getRanking(apiRankingType, today.time)
-        .flatMap {
-          val codes = it
+        .flatMap { novels ->
+          val codes = novels
             .map { it.ncode }
             .drop(range.first)
             .take(range.count())
@@ -66,7 +66,7 @@ class RankingRepositoryImpl @Inject constructor(
 
           narouDataStore.getNovel(query)
             .map { novel ->
-              it.drop(range.first)
+              novels.drop(range.first)
                 .take(range.count())
                 .toRanking(novel.toNovel(Publisher.NAROU))
             }

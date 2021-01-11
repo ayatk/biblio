@@ -20,7 +20,7 @@ import com.ayatk.biblio.infrastructure.database.dao.BookmarkDao
 import com.ayatk.biblio.infrastructure.database.entity.BookmarkEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import java.util.UUID
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -36,7 +36,7 @@ class BookmarkRepositoryImpl @Inject constructor(
 
   override fun delete(id: UUID): Completable =
     dao.getAllBookmark()
-      .map { it.first { it.id == id } } // 基本マッチしないIDはない設計
+      .map { bookmarks -> bookmarks.first { it.id == id } } // 基本マッチしないIDはない設計
       .flatMapCompletable {
         Completable.fromRunnable { dao::delete }
       }

@@ -49,7 +49,7 @@
                 app:fastScrollHorizontalThumbDrawable="@drawable/fast_scroll_thumb"
                 app:fastScrollHorizontalTrackDrawable="@drawable/fast_scroll_track"
                 app:fastScrollVerticalThumbDrawable="@drawable/fast_scroll_thumb"
-                app:fastScrollVerticalTrackDrawable="@drawable/fast_scroll_track"/>
+                app:fastScrollVerticalTrackDrawable="@drawable/fast_scroll_track" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

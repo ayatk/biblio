@@ -34,7 +34,7 @@ import dagger.android.support.DaggerAppCompatActivity
 class RankingActivity : DaggerAppCompatActivity() {
 
   private val binding: ActivityRankingBinding by lazy {
-    DataBindingUtil.setContentView<ActivityRankingBinding>(this, R.layout.activity_ranking)
+    DataBindingUtil.setContentView(this, R.layout.activity_ranking)
   }
 
   private val rankingType: RankingType by lazy {
@@ -71,6 +71,6 @@ class RankingActivity : DaggerAppCompatActivity() {
 
     override fun getCount(): Int = RankingType.values().size
 
-    override fun getPageTitle(position: Int): CharSequence? = RankingType.values()[position].title
+    override fun getPageTitle(position: Int): CharSequence = RankingType.values()[position].title
   }
 }

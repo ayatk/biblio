@@ -21,7 +21,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.ayatk.biblio.databinding.FragmentEpisodeBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
@@ -36,7 +36,7 @@ class EpisodeFragment : DaggerFragment() {
   private lateinit var binding: FragmentEpisodeBinding
 
   private val viewModel: EpisodeViewModel by lazy {
-    ViewModelProviders.of(this, viewModelFactory).get(EpisodeViewModel::class.java)
+    ViewModelProvider(this, viewModelFactory).get(EpisodeViewModel::class.java)
   }
 
   private val novel: Novel by lazy {
@@ -51,9 +51,9 @@ class EpisodeFragment : DaggerFragment() {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     binding = FragmentEpisodeBinding.inflate(inflater, container, false)
-    binding.setLifecycleOwner(this)
+    binding.lifecycleOwner = this
     binding.viewModel = viewModel
 
     viewModel.start(novel, page)

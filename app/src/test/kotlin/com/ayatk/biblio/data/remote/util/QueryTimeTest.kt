@@ -19,7 +19,7 @@ package com.ayatk.biblio.data.remote.util
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
-import java.util.Calendar
+import java.util.*
 
 class QueryTimeTest {
 

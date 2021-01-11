@@ -16,14 +16,14 @@
 
 package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.infrastructure.database.dao.IndexDao
-import com.ayatk.biblio.infrastructure.database.entity.IndexEntity
-import com.ayatk.biblio.infrastructure.database.entity.NovelEntity
-import com.ayatk.biblio.infrastructure.database.entity.enums.Publisher
 import com.ayatk.biblio.data.remote.NarouDataStore
 import com.ayatk.biblio.data.remote.entity.mapper.toEntity
 import com.ayatk.biblio.di.scope.Narou
 import com.ayatk.biblio.di.scope.Nocturne
+import com.ayatk.biblio.infrastructure.database.dao.IndexDao
+import com.ayatk.biblio.infrastructure.database.entity.IndexEntity
+import com.ayatk.biblio.infrastructure.database.entity.NovelEntity
+import com.ayatk.biblio.infrastructure.database.entity.enums.Publisher
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.rxkotlin.Flowables
@@ -44,10 +44,10 @@ class IndexRepositoryImpl @Inject constructor(
         Publisher.NOCTURNE_MOONLIGHT -> nocDataStore.getIndex(entity.code)
       }
         .map { it.toEntity() },
-      dao.getAllIndexByCode(entity.code),
-      { remote, local ->
-        if (remote.isEmpty()) local else remote
-      })
+      dao.getAllIndexByCode(entity.code)
+    ) { remote, local ->
+      if (remote.isEmpty()) local else remote
+    }
 
   override fun save(indexes: List<IndexEntity>): Completable =
     Completable.fromRunnable { dao.insert(indexes) }

@@ -16,7 +16,6 @@
 
 package com.ayatk.biblio.data.remote
 
-import com.ayatk.biblio.infrastructure.database.entity.enums.RankingType
 import com.ayatk.biblio.data.remote.entity.NarouEpisode
 import com.ayatk.biblio.data.remote.entity.NarouIndex
 import com.ayatk.biblio.data.remote.entity.NarouNovel
@@ -25,8 +24,9 @@ import com.ayatk.biblio.data.remote.service.NarouApiService
 import com.ayatk.biblio.data.remote.service.NarouService
 import com.ayatk.biblio.data.remote.util.HtmlParser
 import com.ayatk.biblio.di.scope.Nocturne
+import com.ayatk.biblio.infrastructure.database.entity.enums.RankingType
 import io.reactivex.Flowable
-import java.util.Date
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 

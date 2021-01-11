@@ -17,9 +17,7 @@
 package com.ayatk.biblio.data.remote.util
 
 import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
+import java.util.*
 
 /**
  * ランキング用の日付を生成するクラス

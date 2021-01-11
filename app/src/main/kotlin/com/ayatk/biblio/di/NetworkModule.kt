@@ -16,12 +16,12 @@
 
 package com.ayatk.biblio.di
 
-import com.ayatk.biblio.infrastructure.database.entity.enums.BigGenre
-import com.ayatk.biblio.infrastructure.database.entity.enums.Genre
 import com.ayatk.biblio.data.remote.service.NarouApiService
 import com.ayatk.biblio.data.remote.service.NarouService
 import com.ayatk.biblio.di.scope.Narou
 import com.ayatk.biblio.di.scope.Nocturne
+import com.ayatk.biblio.infrastructure.database.entity.enums.BigGenre
+import com.ayatk.biblio.infrastructure.database.entity.enums.Genre
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer
@@ -41,7 +41,7 @@ class NetworkModule {
   fun provideNarouApiService(client: OkHttpClient): NarouApiService =
     Retrofit.Builder()
       .client(client)
-      .baseUrl("http://api.syosetu.com")
+      .baseUrl("https://api.syosetu.com")
       .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
       .addConverterFactory(GsonConverterFactory.create(createGson()))
       .build()
