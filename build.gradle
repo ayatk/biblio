@@ -23,7 +23,6 @@ buildscript {
     google()
     jcenter()
     maven { url "https://jitpack.io" }
-    maven { url 'https://maven.fabric.io/public' }
   }
 
   dependencies {
@@ -31,7 +30,6 @@ buildscript {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     classpath "com.google.gms:google-services:4.3.3"
     classpath "com.cookpad.android.licensetools:license-tools-plugin:1.7.0"
-    classpath "io.fabric.tools:gradle:1.31.2"
   }
 }
 
@@ -57,7 +55,6 @@ allprojects {
     google()
     jcenter()
     maven { url "https://jitpack.io" }
-    maven { url 'https://maven.fabric.io/public' }
   }
 
   project.plugins.whenPluginAdded { plugin ->
