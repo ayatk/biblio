@@ -72,7 +72,7 @@ class SearchActivity : DaggerAppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     overridePendingTransition(R.anim.activity_fade_enter, R.anim.activity_fade_exit)
-    binding.setLifecycleOwner(this)
+    binding.lifecycleOwner = this
     binding.viewModel = viewModel
 
     initBackToolbar(binding.toolbar)
