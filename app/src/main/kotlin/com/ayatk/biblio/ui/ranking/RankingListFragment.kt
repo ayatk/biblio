@@ -23,7 +23,6 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.ayatk.biblio.databinding.FragmentRankingListBinding
 import com.ayatk.biblio.model.Novel
 import com.ayatk.biblio.model.enums.RankingType
@@ -47,7 +46,7 @@ class RankingListFragment : DaggerFragment() {
   private lateinit var binding: FragmentRankingListBinding
 
   private val viewModel: RankingViewModel by lazy {
-    ViewModelProviders.of(this, viewModelFactory).get(RankingViewModel::class.java)
+    ViewModelProvider(this, viewModelFactory).get(RankingViewModel::class.java)
   }
 
   private val rankingType: RankingType by lazy {
@@ -56,14 +55,14 @@ class RankingListFragment : DaggerFragment() {
 
   private val groupAdapter = GroupAdapter<ViewHolder>()
   private val onClickListener = { novel: Novel ->
-    context!!.navigateToDetail(novel)
+    requireContext().navigateToDetail(novel)
   }
 
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     binding = FragmentRankingListBinding.inflate(inflater, container, false)
 
     return binding.root

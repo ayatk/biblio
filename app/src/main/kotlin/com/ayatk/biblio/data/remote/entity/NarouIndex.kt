@@ -16,7 +16,7 @@
 
 package com.ayatk.biblio.data.remote.entity
 
-import java.util.Date
+import java.util.*
 
 data class NarouIndex(
 

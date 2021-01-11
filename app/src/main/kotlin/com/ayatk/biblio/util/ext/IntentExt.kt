@@ -25,7 +25,7 @@ import java.io.Serializable
 fun Intent.extraOf(vararg pairs: Pair<String, Any>) = this.apply {
   for ((key, value) in pairs) {
     when (value) {
-    // Scalars
+      // Scalars
       is Boolean -> putExtra(key, value)
       is Byte -> putExtra(key, value)
       is Char -> putExtra(key, value)
@@ -35,13 +35,13 @@ fun Intent.extraOf(vararg pairs: Pair<String, Any>) = this.apply {
       is Long -> putExtra(key, value)
       is Short -> putExtra(key, value)
 
-    // References
+      // References
       is Bundle -> putExtra(key, value)
       is CharSequence -> putExtra(key, value)
       is Parcelable -> putExtra(key, value)
       is Serializable -> putExtra(key, value)
 
-    // Scalar arrays
+      // Scalar arrays
       is BooleanArray -> putExtra(key, value)
       is ByteArray -> putExtra(key, value)
       is CharArray -> putExtra(key, value)

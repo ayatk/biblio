@@ -21,7 +21,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.ayatk.biblio.databinding.FragmentInfoBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Novel
@@ -34,7 +34,7 @@ class InfoFragment : DaggerFragment() {
   lateinit var viewModelFactory: ViewModelFactory
 
   private val viewModel: InfoViewModel by lazy {
-    ViewModelProviders.of(this, viewModelFactory).get(InfoViewModel::class.java)
+    ViewModelProvider(this, viewModelFactory).get(InfoViewModel::class.java)
   }
 
   private lateinit var binding: FragmentInfoBinding
@@ -52,11 +52,11 @@ class InfoFragment : DaggerFragment() {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     binding = FragmentInfoBinding.inflate(inflater, container, false)
 
     lifecycle.addObserver(viewModel)
-    binding.setLifecycleOwner(this)
+    binding.lifecycleOwner = this
     binding.viewModel = viewModel
 
     return binding.root

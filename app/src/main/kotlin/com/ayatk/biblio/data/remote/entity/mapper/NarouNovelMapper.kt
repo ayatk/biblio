@@ -16,12 +16,12 @@
 
 package com.ayatk.biblio.data.remote.entity.mapper
 
-import com.ayatk.biblio.infrastructure.database.entity.NovelEntity
-import com.ayatk.biblio.infrastructure.database.entity.enums.Publisher
 import com.ayatk.biblio.data.remote.entity.NarouNovel
 import com.ayatk.biblio.domain.translator.toKeywordEntity
 import com.ayatk.biblio.domain.translator.toKeywordModel
 import com.ayatk.biblio.domain.translator.toModel
+import com.ayatk.biblio.infrastructure.database.entity.NovelEntity
+import com.ayatk.biblio.infrastructure.database.entity.enums.Publisher
 import com.ayatk.biblio.model.Novel
 
 fun List<NarouNovel>.toEntity(publisher: Publisher): List<NovelEntity> =

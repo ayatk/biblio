@@ -16,10 +16,10 @@
 
 package com.ayatk.biblio.data.remote.entity.mapper
 
+import com.ayatk.biblio.data.remote.entity.NarouIndex
 import com.ayatk.biblio.infrastructure.database.entity.IndexEntity
 import com.ayatk.biblio.infrastructure.database.entity.enums.ReadingState
-import com.ayatk.biblio.data.remote.entity.NarouIndex
-import java.util.UUID
+import java.util.*
 
 fun List<NarouIndex>.toEntity(): List<IndexEntity> =
   map {

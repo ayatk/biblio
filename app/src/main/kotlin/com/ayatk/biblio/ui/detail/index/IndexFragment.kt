@@ -21,7 +21,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.ayatk.biblio.databinding.FragmentIndexBinding
 import com.ayatk.biblio.di.ViewModelFactory
 import com.ayatk.biblio.model.Index
@@ -45,7 +45,7 @@ class IndexFragment : DaggerFragment() {
   lateinit var viewModelFactory: ViewModelFactory
 
   private val viewModel: IndexViewModel by lazy {
-    ViewModelProviders.of(this, viewModelFactory).get(IndexViewModel::class.java)
+    ViewModelProvider(this, viewModelFactory).get(IndexViewModel::class.java)
   }
 
   private lateinit var binding: FragmentIndexBinding
@@ -56,16 +56,16 @@ class IndexFragment : DaggerFragment() {
 
   private val indexSection = Section()
   private val onClickListener = { index: Index ->
-    context!!.navigateToEpisode(index.novel, index.page)
+    requireContext().navigateToEpisode(index.novel, index.page)
   }
 
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     binding = FragmentIndexBinding.inflate(inflater, container, false)
-    binding.setLifecycleOwner(this)
+    binding.lifecycleOwner = this
 
     binding.recyclerView.init(GroupAdapter<ViewHolder>().apply {
       add(indexSection)

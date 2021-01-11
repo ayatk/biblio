@@ -22,7 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.ayatk.biblio.R
 import com.ayatk.biblio.data.DefaultPrefs
 import com.ayatk.biblio.databinding.FragmentLibraryBinding
@@ -49,17 +49,17 @@ class LibraryFragment : DaggerFragment() {
   lateinit var defaultPrefs: DefaultPrefs
 
   private val viewModel: LibraryViewModel by lazy {
-    ViewModelProviders.of(this, viewModelFactory).get(LibraryViewModel::class.java)
+    ViewModelProvider(this, viewModelFactory).get(LibraryViewModel::class.java)
   }
 
   lateinit var binding: FragmentLibraryBinding
 
   private val groupAdapter = GroupAdapter<ViewHolder>()
   private val onClickListener = { novel: Novel ->
-    context!!.navigateToDetail(novel)
+    requireContext().navigateToDetail(novel)
   }
   private val onMenuClickListener = { anchor: View, novel: Novel ->
-    PopupMenu(context!!, anchor).apply {
+    PopupMenu(requireContext(), anchor).apply {
       inflate(R.menu.menu_library_item)
       setOnMenuItemClickListener {
         when (it.itemId) {
@@ -79,9 +79,9 @@ class LibraryFragment : DaggerFragment() {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     binding = FragmentLibraryBinding.inflate(inflater, container, false)
-    binding.setLifecycleOwner(this)
+    binding.lifecycleOwner = this
     binding.viewModel = viewModel
 
     // 色設定
@@ -111,8 +111,8 @@ class LibraryFragment : DaggerFragment() {
   }
 
   private fun deleteDialog(novel: Novel) =
-    AlertDialog.Builder(context!!)
-      .setTitle(context!!.getString(R.string.delete_popup_title, novel.title))
+    AlertDialog.Builder(requireContext())
+      .setTitle(requireContext().getString(R.string.delete_popup_title, novel.title))
       .setMessage(R.string.delete_popup_message)
       .setPositiveButton(R.string.delete_popup_positive) { _, _ ->
         viewModel.delete(novel)

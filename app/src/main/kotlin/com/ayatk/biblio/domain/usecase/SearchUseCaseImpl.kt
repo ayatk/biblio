@@ -35,10 +35,10 @@ class SearchUseCaseImpl @Inject constructor(
   override fun search(query: String, publisher: Publisher): Flowable<Map<Novel, Boolean>> =
     Flowables.combineLatest(
       repository.savedNovels,
-      repository.novelsByQuery(query, publisher.toEntity()),
-      { saved, remote ->
-        remote.map { it.toModel() to (it in saved) }.toMap()
-      })
+      repository.novelsByQuery(query, publisher.toEntity())
+    ) { saved, remote ->
+      remote.map { it.toModel() to (it in saved) }.toMap()
+    }
       .subscribeOn(schedulerProvider.io())
 
   override fun saveNovel(novel: Novel): Completable =

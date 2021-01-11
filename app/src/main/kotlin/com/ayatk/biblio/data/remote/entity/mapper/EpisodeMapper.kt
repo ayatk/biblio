@@ -16,9 +16,9 @@
 
 package com.ayatk.biblio.data.remote.entity.mapper
 
-import com.ayatk.biblio.infrastructure.database.entity.EpisodeEntity
 import com.ayatk.biblio.data.remote.entity.NarouEpisode
-import java.util.UUID
+import com.ayatk.biblio.infrastructure.database.entity.EpisodeEntity
+import java.util.*
 
 fun NarouEpisode.toEntity(): EpisodeEntity {
   val indexId = UUID.nameUUIDFromBytes("$ncode-$page".toByteArray())

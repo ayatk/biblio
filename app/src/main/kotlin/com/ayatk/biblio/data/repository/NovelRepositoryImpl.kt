@@ -16,14 +16,14 @@
 
 package com.ayatk.biblio.data.repository
 
-import com.ayatk.biblio.infrastructure.database.dao.NovelDao
-import com.ayatk.biblio.infrastructure.database.entity.NovelEntity
-import com.ayatk.biblio.infrastructure.database.entity.enums.Publisher
 import com.ayatk.biblio.data.remote.NarouDataStore
 import com.ayatk.biblio.data.remote.entity.mapper.toEntity
 import com.ayatk.biblio.data.remote.util.QueryBuilder
 import com.ayatk.biblio.di.scope.Narou
 import com.ayatk.biblio.di.scope.Nocturne
+import com.ayatk.biblio.infrastructure.database.dao.NovelDao
+import com.ayatk.biblio.infrastructure.database.entity.NovelEntity
+import com.ayatk.biblio.infrastructure.database.entity.enums.Publisher
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import timber.log.Timber

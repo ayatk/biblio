@@ -37,7 +37,7 @@ class DetailUseCaseImpl @Inject constructor(
 ) : DetailUseCase {
 
   override fun getLibrary(novel: Novel): Single<Library> =
-  // TODO とりあえず今はタグ実装してないのでそのまま変換して流してる
+    // TODO とりあえず今はタグ実装してないのでそのまま変換して流してる
     Library("remote", novel, emptyList()).toSingle()
 
   override fun saveLibrary(library: Library): Completable {
