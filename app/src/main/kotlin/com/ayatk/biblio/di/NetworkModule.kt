@@ -41,7 +41,7 @@ class NetworkModule {
   fun provideNarouApiService(client: OkHttpClient): NarouApiService =
     Retrofit.Builder()
       .client(client)
-      .baseUrl("http://api.syosetu.com")
+      .baseUrl("https://api.syosetu.com")
       .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
       .addConverterFactory(GsonConverterFactory.create(createGson()))
       .build()
